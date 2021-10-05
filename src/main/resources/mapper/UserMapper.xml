@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.onetrillion.trip.service.mapper.UserMapper">
+
+   <!-- 전체 유저 리스트 -->
+   <select resultType="com.onetrillion.trip.user.UserDTO" id="AlluserList">
+      select * from Tril_Member order by u_id asc 
+   </select>
+
+
+   <select resultType="com.onetrillion.trip.user.UserDTO" id="selectMember" parameterType="String">
+      select * 
+      from tril_Member 
+      where u_email = #{u_email} 
+   </select>
+      
+      
+   <!-- 회원정보가져오기 -->
+   <select id="readMember" resultType="com.onetrillion.trip.user.UserDTO">
+      select *
+      from tril_member
+      where u_id=#{u_id}
+   </select>
+
+
+   
+   <select resultType="com.onetrillion.trip.user.UserDTO" id="oneUser_id" parameterType="String">
+      select * 
+      from Tril_Member 
+      WHERE u_id = #{u_id} 
+   </select>
+
+
+
+   <!-- 회원가입 -->
+   <insert id="joinUser"
+      parameterType="com.onetrillion.trip.user.UserDTO">insert into Tril_Member(u_id, u_pwd, u_name, u_address1,
+      u_address2, zipcode, u_tel, u_email) values
+      (#{u_id},#{u_pwd},#{u_name},#{u_address1}, #{u_address2} ,#{zipcode}, #{u_tel},
+      #{u_email}) 
+   </insert>
+
+
+<!-- 회원탈퇴 -->
+   <delete id="deleteUser" >
+   delete from Tril_Member where u_id = #{u_id} 
+   </delete>
+
+
+
+   <!-- 회원정보수정 -->
+   <update id="modifyUser" parameterType="com.onetrillion.trip.user.UserDTO">
+      update Tril_Member set 
+         u_pwd = #{u_pwd}, 
+         u_name = #{u_name}, 
+         u_address1 = #{u_address1}, 
+         u_address2 = #{u_address2}, 
+         zipcode = #{zipcode}, 
+         u_tel = #{u_tel},
+         u_email = #{u_email} 
+      where 
+         u_id = #{u_id} 
+   </update>
+
+   
+   
+   <!-- 유저 로그인 09 13 수정 -->
+   <select resultType="com.onetrillion.trip.user.UserDTO" id="member_Login">
+      SELECT u_id, u_pwd, u_name, u_address1, u_address2, zipcode, u_tel, u_email FROM Tril_Member WHERE u_id = #{u_id} AND u_pwd = #{u_pwd} 
+   </select>
+
+
+
+   <!-- 아이디 찾기 select u_id from tril_member where u_email = 'cording@coco.com'; 
+      쿼리문확인완료 -->
+   <select resultType="String" id="find_Id" parameterType="String">
+      select u_id from tril_member where u_email = #{u_email} 
+   </select>
+
+
+
+   <!-- 비밀번호 변경 이메일 관련 update tril_member set u_pwd = 'asd123ASDF' where u_id = 'asd123ASD'; 
+      쿼리문확인완료 -->
+   <select resultType="com.onetrillion.trip.user.UserDTO" id="oneUser_email" parameterType="String">
+   select * from Tril_Member WHERE u_email =
+      #{u_email} </select>
+
+
+
+   <update id="update_pw" parameterType="com.onetrillion.trip.user.UserDTO">
+      update tril_member set u_pwd = #{u_pwd} where u_email = #{u_email} 
+   </update>
+
+
+</mapper>

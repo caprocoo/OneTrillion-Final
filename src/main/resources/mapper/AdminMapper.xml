@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.onetrillion.trip.service.mapper.AdminMapper">
+
+<!-- 어드민 로그인 -->
+	<select resultType="com.onetrillion.trip.admin.AdminDTO" id="admin_Login">
+		SELECT AD_ID, AD_PWD FROM Tril_Admin 
+		WHERE AD_ID = #{AD_ID} 
+		AND AD_PWD = #{AD_PWD} 
+	</select>
+
+</mapper>
+
+
+
+

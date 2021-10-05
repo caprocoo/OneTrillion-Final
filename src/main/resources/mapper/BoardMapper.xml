@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.onetrillion.trip.service.mapper.BoardMapper">
+
+<select resultType="com.onetrillion.trip.board.BoardDTO" id="selectAll">
+
+<![CDATA[
+SELECT * FROM Tril_PRODUCT ORDER BY PD_SEQ ASC
+    ]]>
+</select>
+
+<select resultType="com.onetrillion.trip.board.BoardDTO" id="searchData">
+
+<![CDATA[
+ SELECT * FROM TRIL_PRODUCT WHERE PD_STARTDATE BETWEEN TO_DATE('2021-01-01', 'YYYY-MM-DD') AND TO_DATE('2021-01-03') ORDER BY PD_SEQ ASC
+    ]]>
+</select>
+
+<select resultType="com.onetrillion.trip.board.BoardDTO" id="detail">
+
+<![CDATA[
+      select * from Tril_PRODUCT where pd_seq=#{pd_seq}]]>
+</select>
+
+
+
+
+<!-- TRIL_IMAGE 이용한 쿼리문 -->
+<select resultType="com.onetrillion.trip.board.ImageDTO" id="detailImage">
+<![CDATA[
+      SELECT * FROM TRIL_IMAGE where pd_seq=#{pd_seq}]]>
+</select>
+
+
+<update id="modify">
+
+<![CDATA[
+		update Tril_PRODUCT set
+		pd_seq=#{pd_seq}, pd_name=#{pd_name}, pd_price=#{pd_price}
+		, pd_keyword=#{pd_keyword}, pd_startDate=#{pd_startDate}, pd_endDate=#{pd_endDate}
+		, pd_cnt=#{pd_cnt}, pd_theme=#{pd_theme}, pd_people=#{pd_people}
+		, pd_image=#{pd_image}, pd_content=#{pd_content},mylist=#{mylist},good=#{good}
+		where pd_seq=#{pd_seq}]]>
+</update>
+
+<delete id="delete">
+
+<![CDATA[
+		delete from Tril_PRODUCT where pd_seq=#{pd_seq}]]>
+</delete>
+
+<update id="cntUp">
+
+<![CDATA[
+		update Tril_PRODUCT set
+		pd_cnt=#{pd_cnt}
+		where pd_seq=#{pd_seq}]]>
+</update>
+
+<select resultType="int" id="getCount">
+
+<![CDATA[
+		select count(*) from Tril_PRODUCT]]>
+</select>
+
+<insert id="insert">
+<![CDATA[
+		insert into
+		Tril_PRODUCT(pd_seq, pd_name, pd_price, pd_keyword, pd_startDate, pd_endDate, pd_cnt, pd_theme, pd_people, pd_image, pd_content,mylist,good)
+		values(
+		(select nvl(max(pd_seq), 0)+1 from Tril_PRODUCT)
+		,#{pd_name},#{pd_price},#{pd_keyword},#{pd_startDate},#{pd_endDate},#{pd_cnt},#{pd_theme},#{pd_people},#{pd_image},#{pd_content},#{mylist},#{good})
+]]>		
+</insert>
+
+<select resultType="com.onetrillion.trip.board.BoardDTO" id="theme">
+
+<![CDATA[
+      SELECT * FROM TRIL_PRODUCT WHERE PD_THEME =#{pd_theme}
+      ]]>
+</select>
+
+</mapper>
