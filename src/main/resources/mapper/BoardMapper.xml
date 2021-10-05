@@ -39,7 +39,7 @@ SELECT * FROM Tril_PRODUCT ORDER BY PD_SEQ ASC
 		pd_seq=#{pd_seq}, pd_name=#{pd_name}, pd_price=#{pd_price}
 		, pd_keyword=#{pd_keyword}, pd_startDate=#{pd_startDate}, pd_endDate=#{pd_endDate}
 		, pd_cnt=#{pd_cnt}, pd_theme=#{pd_theme}, pd_people=#{pd_people}
-		, pd_image=#{pd_image}, pd_content=#{pd_content},mylist=#{mylist},good=#{good}
+		, pd_image=#{pd_image}, pd_content1=#{pd_content1}
 		where pd_seq=#{pd_seq}]]>
 </update>
 
@@ -66,10 +66,10 @@ SELECT * FROM Tril_PRODUCT ORDER BY PD_SEQ ASC
 <insert id="insert">
 <![CDATA[
 		insert into
-		Tril_PRODUCT(pd_seq, pd_name, pd_price, pd_keyword, pd_startDate, pd_endDate, pd_cnt, pd_theme, pd_people, pd_image, pd_content,mylist,good)
+		Tril_PRODUCT(pd_seq, pd_name, pd_price, pd_keyword, pd_startDate, pd_endDate, pd_cnt, pd_theme, pd_people, pd_image, pd_content1)
 		values(
 		(select nvl(max(pd_seq), 0)+1 from Tril_PRODUCT)
-		,#{pd_name},#{pd_price},#{pd_keyword},#{pd_startDate},#{pd_endDate},#{pd_cnt},#{pd_theme},#{pd_people},#{pd_image},#{pd_content},#{mylist},#{good})
+		,#{pd_name},#{pd_price},#{pd_keyword},#{pd_startDate},#{pd_endDate},#{pd_cnt},#{pd_theme},#{pd_people},#{pd_image},#{pd_content1})
 ]]>		
 </insert>
 

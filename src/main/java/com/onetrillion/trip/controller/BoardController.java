@@ -63,36 +63,29 @@ public class BoardController {
 	public String search(Model model) {
 		List<BoardDTO> searchList = service.selectAll();
 		model.addAttribute("searchList", searchList);
-
-		// System.out.println(searchList);
 		return "board/search";
 	}
 
 	@RequestMapping(value = "/detail.do", method = RequestMethod.GET) //// ========================================추가
 	//// 9/11
-	public String detail(Model model, int pd_seq, String u_id, HttpServletRequest request) {
+	public String detail(Model model, int pd_seq) {
 		BoardDTO dto = service.detail(pd_seq);
-//System.out.println(divList);
 
-//1박 2일 구하기
+		//1박 2일 구하기
 		LocalDate start_date = dto.getPd_startDate();
 		LocalDate last_date = dto.getPd_endDate();
-//		System.out.println(start_date);
-//		System.out.println(last_date);
-		
+
 		Period period = Period.between(start_date, last_date);
 		Period period2 = period.plusDays(1);
-//		System.out.println(period.getDays());
-//		System.out.println(period2.getDays());
 
 		model.addAttribute("period", period.getDays()); // 6박
 		model.addAttribute("period2", period2.getDays()); // 7일
 
-// 조회수 추가 9/10
+		// 조회수 추가 
 		dto.setPd_cnt(dto.getPd_cnt() + 1);
 		service.cntUp(dto); // 조회수 증가
 
-//디테일 이미지 5개
+		//디테일 이미지 5개
 		ImageDTO image = service.detailImage(pd_seq);
 		model.addAttribute("dto", dto);
 		model.addAttribute("image", image);
@@ -102,7 +95,7 @@ public class BoardController {
 
 	@RequestMapping(value = "/search.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String searchData(@RequestParam Map<String, Object> map, Model model) {
+	public String searchData(@RequestParam Map<String, Object> map) {
 		JSONArray dateSearch = new JSONArray();
 
 		JSONObject searchList = new JSONObject();
@@ -110,7 +103,6 @@ public class BoardController {
 		String sd = (String) map.get("startDate");
 		String ed = (String) map.get("endDate");
 
-		String nt = (String) map.get("nation");
 		String loc = (String) map.get("location");
 		// String kw = (String) map.get("keyword");
 		if (sd == "" || ed == "") {
@@ -130,34 +122,17 @@ public class BoardController {
 			LocalDate startDate = LocalDate.parse(sd, formatter);
 			LocalDate endDate = LocalDate.parse(ed, formatter);
 
-//		System.out.println(startDate);
-//		System.out.println(endDate);
-//		System.out.println(startDate.getClass().getName());
-
-			// BoardDTO dto = service.detail(84);
-//		System.out.println(dto.getPd_startDate());// 관련된 dto toString() 출력
-//		System.out.println(dto.getPd_endDate());
-//		System.out.println(dto.getPd_startDate().isBefore(startDate));
-//		System.out.println(dto.getPd_endDate().isAfter(endDate));
-
 			List<BoardDTO> dataAll = service.selectAll();
-
-			// System.out.println(dto.getPd_startDate().getClass().getName());
-			// System.out.println(!dto.getPd_startDate().equals(startDate)); // true
-			// System.out.println(!dto.getPd_endDate().equals(endDate)); // true
 
 			// pd_startDate, pd_endDate 중간 데이터 다 뽑아오기
 
 			for (BoardDTO data : dataAll) {
 
 				if (startDate.isEqual(data.getPd_startDate()) || endDate.isEqual(data.getPd_endDate())
-						|| (!startDate.isEqual(data.getPd_startDate()) || !endDate.isEqual(data.getPd_endDate()))
-				// || !startDate.isEqual(data.getPd_startDate()) ||
-				// !endDate.isEqual(data.getPd_endDate())
-				) {
+						|| (!startDate.isEqual(data.getPd_startDate()) || !endDate.isEqual(data.getPd_endDate()))) {
 					if (!startDate.isAfter(data.getPd_startDate()) && !endDate.isBefore(data.getPd_endDate())) {
 
-						if (nt.equals(data.getPd_nation()) && loc.equals(data.getPd_location())) {
+						if (loc.equals(data.getPd_location())) {
 							// && kw.equals(data.getPd_land())
 
 							JSONObject dateJson = new JSONObject();
@@ -177,28 +152,6 @@ public class BoardController {
 					}
 				}
 
-//				else if (!startDate.isEqual(data.getPd_startDate()) || !endDate.isEqual(data.getPd_endDate())) {
-//					if (data.getPd_startDate().isBefore(startDate) || endDate.isAfter(data.getPd_endDate())) {
-//						// System.out.println("2 >> startDate >>> "+data.getPd_startDate());
-//						// System.out.println("2 >> endDate >>> "+data.getPd_endDate());
-//						if (nt.equals(data.getPd_nation()) && loc.equals(data.getPd_location()) && kw.equals(data.getPd_land())) {
-//							JSONObject dateJson = new JSONObject();
-//							dateJson.put("pd_seq", data.getPd_seq());
-//							dateJson.put("pd_name", data.getPd_name());
-//							dateJson.put("pd_theme", data.getPd_theme());
-//							dateJson.put("pd_price", data.getPd_price());
-//							dateJson.put("pd_image", data.getPd_image());
-//							dateJson.put("pd_startDate", data.getPd_startDate());
-//							dateJson.put("pd_endDate", data.getPd_endDate());
-//							dateSearch.put(dateJson);
-//							istrue = true;
-//						}else {
-//							istrue = false;
-//						}
-//
-//					}
-//				}
-
 			}
 
 			if (dateSearch.length() > 0) {
@@ -211,15 +164,15 @@ public class BoardController {
 			return searchList.toString(2);
 		}
 	}
-
+	
+	//관리자 상품 수정 페이지 이동
 	@RequestMapping(value = "modify.do", method = RequestMethod.GET)
-	public String modifyGet(@RequestParam("pd_seq") int pd_seq, Model model, RedirectAttributes re) {
-		re.addAttribute("pd_seq", pd_seq);
+	public String modifyGet(@RequestParam("pd_seq") int pd_seq, Model model) {
 		BoardDTO dto = service.detail(pd_seq);
 		model.addAttribute("dto", dto);
 		return "board/modify";
 	}
-
+	//관리자 상품 수정 완료(Ajax)
 	@RequestMapping(value = "modify.do", method = RequestMethod.POST)
 	public String modifyPost(@RequestParam("pd_seq") int pd_seq, Model model, BoardDTO dto) {
 		model.addAttribute("pd_seq", pd_seq);
@@ -227,18 +180,21 @@ public class BoardController {
 		return "redirect:detail.do";
 
 	}
-
+	//관리자가 상품 삭제 완료(Ajax)
 	@RequestMapping(value = "delete.do", method = RequestMethod.POST)
-	public String deletePost(Model model, BoardDTO dto) {
+	public String deletePost(BoardDTO dto) {
 		service.delete(dto);
 		return "redirect:search.do";
 	}
-
+	
+	//관리자 상품 입력 페이지 이동
 	@RequestMapping(value = "/insert.do", method = RequestMethod.GET)
 	public String insertGet() {
+		
 		return "board/insert";
 	}
-
+	
+	//관리자 상품 입력 완료
 	@RequestMapping(value = "/insert.do", method = RequestMethod.POST)
 	public String insertPost(BoardDTO dto) {
 		int cnt = service.insert(dto);
@@ -247,16 +203,17 @@ public class BoardController {
 		}
 		return "board/insert";
 	}
-
+	
+	
+	//예약하기 페이지 이동
 	@RequestMapping(value = "reservation.do", method = RequestMethod.GET)
-	public String rsv_Get(@RequestParam("pd_seq") int pd_seq, Model model, RedirectAttributes re,
+	public String rsv_Get(@RequestParam("pd_seq") int pd_seq, Model model,
 			@RequestParam("sel_adault") int sel_adault, // 성인
 			@RequestParam("sel_young") int sel_young, // 18세 미만
 			@RequestParam("sel_pet") int sel_pet, // 반려동물
 			@RequestParam("total_price") int total_price, // 총 금액
 			@RequestParam(value = "u_id") String u_id // 유저 아이디
 	) {
-		re.addAttribute("pd_seq", pd_seq);
 		BoardDTO dto = service.detail(pd_seq); // seq에 대한 정보들 detail
 		model.addAttribute("dto", dto);
 
@@ -271,13 +228,15 @@ public class BoardController {
 		DecimalFormat fomatter = new DecimalFormat("###,###,###");
 		String total_price_won = fomatter.format(total_price); // 150000
 		model.addAttribute("total_price_won", total_price_won); // 150,000
-		// 총 인원 (명)
+		// 총 인원 (명) - 아직 사용 안함
 		int total = sel_adault + sel_young + sel_pet;
 		model.addAttribute("total", total);
+		
 
 		return "board/reservation";
 	}
-
+	
+	//확인필요!!
 	@RequestMapping(value = "reservation.do", method = RequestMethod.POST)
 	public String rsv_Post(@RequestParam("pd_seq") int pd_seq, @RequestParam(value = "u_id") String u_id, Model model,
 			BoardDTO dto) {
@@ -287,7 +246,8 @@ public class BoardController {
 		return "redirect:success.do";
 
 	}
-
+	
+	//결제 완료 페이지 이동
 	@RequestMapping(value = "/success.do", method = RequestMethod.GET)
 	public String successGet(@RequestParam("pd_seq") int pd_seq, @RequestParam(value = "u_id") String u_id,
 			Model model) {
@@ -296,7 +256,8 @@ public class BoardController {
 		model.addAttribute("dto", dto);
 		return "board/success";
 	}
-
+	
+	//테마 더보기 클릭시 페이지 이동
 	@RequestMapping(value = "/searchTheme.do", method = RequestMethod.GET)
 	public String searchTheme(@RequestParam("pd_theme") String pd_theme, Model model) {
 		// System.out.println(pd_theme);
@@ -324,6 +285,7 @@ public class BoardController {
 
 		return "board/tripAgreeFoot";
 	}
+
 	@RequestMapping(value = "/introduce.do", method = RequestMethod.GET)
 	public String introduce() {
 

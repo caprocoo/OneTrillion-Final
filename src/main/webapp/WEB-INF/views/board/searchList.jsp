@@ -45,13 +45,6 @@
          </figure>
       </c:forEach> 
    </div>
-   
-
-	<c:if test="${sessionScope.AD_ID != null  }">
-	<div id="searchInput001"
-		style="position: fixed; top: 70px; left: 10px; width: 50px; height: 50px; line-height: 50px; text-align: center; background-color: #f7f7f7; border-radius: 10px;"
-		onclick="location.href='<%=request.getContextPath()%>/board/insert.do'">입력</div>
-	</c:if>
 <script>
 
 var searchImg01Over=function(){

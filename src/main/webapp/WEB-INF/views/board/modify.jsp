@@ -53,7 +53,7 @@
 	</tr>
 		<tr>
 		<th>상품내용</th>
-		<td><textarea rows="15" cols="80" name="pd_content">${dto.pd_content }</textarea> 	</td>
+		<td><textarea rows="15" cols="80" name="pd_content1">${dto.pd_content1 }</textarea> 	</td>
 	</tr>	
 </table>
 		

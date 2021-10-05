@@ -269,7 +269,7 @@ li.slider>imgs {
 			style="margin: auto; position: relative; top: 10px;">
 			<div id="textmargin"
 				style="text-align: left; font: bold; font-size: 130%;">
-				마음편하게 떠나볼까? <strong> 혼자여행 🪂</strong>
+				마음편하게 떠나볼까? <strong> 혼자여행</strong>
 			</div>
 			<div
 				style="text-align: right; font-size: 15px; position: relative; top: -20px;">
@@ -302,7 +302,7 @@ li.slider>imgs {
 		<div id="themebox"
 			style="margin: auto; position: relative; top: 10px;">
 			<div style="text-align: left; font: bold; font-size: 130%;">
-				새로운곳에서 차곡차곡 특별한 기억을 <strong> 커플 여행 🚘 </strong>
+				새로운곳에서 차곡차곡 특별한 기억을 <strong> 커플 여행</strong>
 			</div>
 			<div
 				style="text-align: right; font-size: 15px; position: relative; top: -20px;">
@@ -335,7 +335,7 @@ li.slider>imgs {
 		<div id="themebox"
 			style="margin: auto; position: relative; top: 10px;">
 			<div style="text-align: left; font: bold; font-size: 130%;">
-				잊지못할 추억을 우리같이 <strong> 우정여행 🚅</strong>
+				잊지못할 추억을 우리같이 <strong> 우정여행</strong>
 			</div>
 			<div
 				style="text-align: right; font-size: 15px; position: relative; top: -20px;">
@@ -368,7 +368,7 @@ li.slider>imgs {
 		<div id="themebox"
 			style="margin: auto; position: relative; top: 10px;">
 			<div style="text-align: left; font: bold; font-size: 130%;">
-				반려동물과 함께 <strong> 반려동물여행 🐶</strong>
+				반려동물과 함께 <strong> 반려동물여행</strong>
 			</div>
 			<div
 				style="text-align: right; font-size: 15px; position: relative; top: -20px;">
@@ -402,7 +402,7 @@ li.slider>imgs {
 		<div id="themebox"
 			style="margin: auto; position: relative; top: 10px;">
 			<div style="text-align: left; font: bold; font-size: 130%;">
-				특별한곳에 누구보다 특별한 사람들이랑 <strong>가족여행 🧳</strong>
+				특별한곳에 누구보다 특별한 사람들이랑 <strong>가족여행</strong>
 			</div>
 			<div
 				style="text-align: right; font-size: 15px; position: relative; top: -20px;">
@@ -435,7 +435,7 @@ li.slider>imgs {
 		<div id="themebox"
 			style="margin: auto; position: relative; top: 10px;">
 			<div style="text-align: left; font: bold; font-size: 130%;">
-				살면서 가장 기억에남을 <strong> 신혼여행 🚆</strong>
+				살면서 가장 기억에남을 <strong> 신혼여행</strong>
 			</div>
 			<div
 				style="text-align: right; font-size: 15px; position: relative; top: -20px;">
@@ -490,7 +490,7 @@ $("#adminLogout").on("click", function(){
 
 	$(function() {
 		var idHtml = $('A element: not("#testId")').html
-		console.log(idHtml)
+		//console.log(idHtml)
 	});
 
 	function init() {

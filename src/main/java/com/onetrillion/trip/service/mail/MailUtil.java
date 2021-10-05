@@ -11,10 +11,10 @@ public class MailUtil {
 		
 		String charSet = "UTF-8";
 		String hostSMTP = "smtp.naver.com";
-		String hostSMTPid = "dyong1993";
-		String hostSMTPpw = "324893gys!@";
+		String hostSMTPid = "보내는사람 메일아이디";
+		String hostSMTPpw = "보내는사람 메일 비밀번호";
 		
-		String fromEmail  = "dyong1993@naver.com";
+		String fromEmail  = "보내는사람 이메일";
 		String fromName = "OneTrillionManager";
 		
 		String subject = "";

@@ -38,20 +38,14 @@
             <img class="searchImg01" src="${board.pd_image }" onclick="location.href='<%=request.getContextPath() %>/board/detail.do?pd_seq=${board.pd_seq}' ">
             <div class="searchImgModal2" onclick="location.href='<%=request.getContextPath() %>/board/detail.do?pd_seq=${board.pd_seq}' " >상세보기</div>
              <figcaption>
-	           <p>${board.pd_name }🔥</p>
+	           <p>${board.pd_name }</p>
 	           <p>${board.pd_startDate} ~ ${board.pd_endDate}</p>
 	           <p>#${board.pd_theme } #${board.pd_theme } #${board.pd_theme }</p>
              </figcaption>
          </figure>
       </c:forEach> 
    </div>
-   
- 
-	<c:if test="${sessionScope.AD_ID != null  }">
-	<div id="searchInput001"
-		style="position: fixed; top: 70px; left: 10px; width: 50px; height: 50px; line-height: 50px; text-align: center; background-color: #f7f7f7; border-radius: 10px;"
-		onclick="location.href='<%=request.getContextPath()%>/board/insert.do'">입력</div>
-	</c:if>
+
 <script>
 
 var searchImg01Over=function(){

@@ -85,20 +85,11 @@ h1, #logdiv001{text-align: center;}
 </style>
 
 <body>
-<%
-if(request.getProtocol().equals("HTTP/1.0")){
-response.setHeader("Pragma","no-cache");
-response.setDateHeader("Expires",0);
-} else if(request.getProtocol().equals("HTTP/1.1")){
-response.setHeader("Cache-Control","no-cache");
-}
-%>
 
 
 <%
 	String u_id = (String) session.getAttribute("u_id");
-	String AD_ID = (String) session.getAttribute("AD_ID");
-	if( u_id != null || AD_ID != null){%>
+	if( u_id != null){%>
 		<script> window.history.forword(1); </script>
 	<%}%>
 	<script> window.history.forword(1); </script>

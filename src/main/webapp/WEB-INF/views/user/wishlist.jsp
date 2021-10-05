@@ -9,7 +9,7 @@
 </head>
 <body>
 <c:if test="${sessionScope.u_id != null }">
-	<jsp:include page="../include/header2_user.jsp"></jsp:include>
+	<jsp:include page="../include/header2.jsp"></jsp:include>
 </c:if>
 <%
 	// 로그인 처리 -> 로그인 x (로그인페이지 이동)

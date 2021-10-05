@@ -34,31 +34,25 @@ public class UserController {
 
 	@Autowired
 	public UserService userService;
+	
+	@Autowired
+	public UserServiceImpl service;
+	
 
 // 회원가입 관련 페이지 ============================================================================================
 
-//	// 1. 아이디 중복검사 페이지 이동
-//	@RequestMapping(value = "/user/idCheck.do", method = RequestMethod.GET)
-//	public String idCheck_page(@ModelAttribute UserDTO dto) {
-//		logger.info(">>>> 들어왔단다");
-//		
-//		
-//		userService.oneUser(dto.getU_id());
-//		if ((dto.getU_pwd()) == null) {
-//			System.out.println("아이디가 존재하지 않아유 >> 회원가입 가능!");
-//			return "user/join";
-//		} else {
-//			System.out.println("아이디가 존재해유 >> 회원가입 불가ㅠ_ㅠ");
-//			return null;
-//		}
-//	}
-//
-//	// 2. 아이디 중복검사 실행 (일단 넣어놔쓰,,,)
-//	@RequestMapping(value = "/user/idCheck.do", method = RequestMethod.POST)
-//	public String idCheck_action(@ModelAttribute UserDTO dto) {
-//		logger.info(">>>> user/idCheck ");
-//		return "redirect:join.do";
-//	}
+	@RequestMapping(value="/user/idCheckAjax.do", method=RequestMethod.GET)
+	@ResponseBody
+	public String idCheckAjax(@RequestParam("id") String id) {
+		String result = "impossible";
+		
+		UserDTO user = service.oneUser_id(id);
+		// DB에 ID값이 없으면
+		if(user == null) {
+			result = "possible";
+		}
+		return result;
+	}
 
 	// 3. 회원가입 페이지로 이동
 
@@ -72,21 +66,17 @@ public class UserController {
 	// 4. 회원가입 실행
 	@RequestMapping(value = "/user/join.do", method = RequestMethod.POST)
 	public String join_action(@Valid UserDTO dto, BindingResult result) {
-		// BindingResult는 검증결과에 대한 결과정보를 받음 즉 컨트롤러에서 뷰이름을 반환하면 에러내용을 바인딩해서 JSP에 넘겨줄테니 값을
-		// 사용자에게 보여주라는 의미의 포워딩 개념이깔려있다
-
-		// logger.info(">>>> user/join_action");
-		// 에러가 생기면(hasErrors)를 ObjectError list에 담아서 쏴주고 리턴
-		if (result.hasErrors()) {
-
-			List<ObjectError> list = result.getAllErrors();
-			for (ObjectError error : list) {
-				System.out.println(error);
-			}
-			return "user/join";
+		if(result.hasErrors()) {
+			 logger.info(result.getAllErrors().get(0).getDefaultMessage());
+			 return"user/join";
 		}
-
-		userService.joinUser(dto);
+		
+		try {
+			userService.joinUser(dto);
+			return "redirect:login.do";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		// 회원가입 성공 시 로그인 페이지로 이동~
 		return "redirect:login.do";
 	}

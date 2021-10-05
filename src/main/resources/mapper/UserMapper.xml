@@ -34,11 +34,18 @@
 
 
    <!-- 회원가입 -->
-   <insert id="joinUser"
+   <!-- <insert id="joinUser"
       parameterType="com.onetrillion.trip.user.UserDTO">insert into Tril_Member(u_id, u_pwd, u_name, u_address1,
       u_address2, zipcode, u_tel, u_email) values
       (#{u_id},#{u_pwd},#{u_name},#{u_address1}, #{u_address2} ,#{zipcode}, #{u_tel},
       #{u_email}) 
+   </insert> -->
+   
+   <insert id="joinUser"
+      parameterType="com.onetrillion.trip.user.UserDTO">
+      insert into Tril_Member(u_id, u_pwd, u_nickName,u_email) 
+      values
+      (#{u_id},#{u_pwd},#{u_nickName},#{u_email}) 
    </insert>
 
 
@@ -49,7 +56,7 @@
 
 
 
-   <!-- 회원정보수정 -->
+<!--    
    <update id="modifyUser" parameterType="com.onetrillion.trip.user.UserDTO">
       update Tril_Member set 
          u_pwd = #{u_pwd}, 
@@ -61,13 +68,13 @@
          u_email = #{u_email} 
       where 
          u_id = #{u_id} 
-   </update>
+   </update> -->
 
    
    
    <!-- 유저 로그인 09 13 수정 -->
    <select resultType="com.onetrillion.trip.user.UserDTO" id="member_Login">
-      SELECT u_id, u_pwd, u_name, u_address1, u_address2, zipcode, u_tel, u_email FROM Tril_Member WHERE u_id = #{u_id} AND u_pwd = #{u_pwd} 
+      SELECT u_id, u_pwd, u_nickName, u_email FROM Tril_Member WHERE u_id = #{u_id} AND u_pwd = #{u_pwd} 
    </select>
 
 

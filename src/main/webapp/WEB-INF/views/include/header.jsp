@@ -143,7 +143,7 @@
             <img onmouseover="searchImg01Over()" onmouseout="searchImg01Out()" class="searchImg01" src="{{=search['pd_image'] }} " onclick="location.href='http://localhost:8088/trip/board/detail.do?pd_seq={{=search['pd_seq'] }} ' ">
             <div onmouseover="searchImgModal2Over()" onmouseout="searchImgModal2Out()" class="searchImgModal2">예약하기</div>
              <figcaption>
-				<p>{{=search['pd_name'] }}🔥</p>
+				<p>{{=search['pd_name'] }}</p>
 	            <p>{{=search['pd_startDate'] }} ~ {{=search['pd_endDate'] }}</p>
 	            <p># {{=search['pd_theme'] }} # {{=search['pd_theme'] }} # {{=search['pd_theme'] }}</p>
              </figcaption>
@@ -159,9 +159,7 @@
 		});
 
 		function search() {
-			var nation = $('.nation').val();
 			var location = $('.location').val();
-			var land = $('.land').val();
 			var startDate = $('.startDate').val();
 			var endDate = $('.endDate').val();
 
@@ -169,7 +167,6 @@
 				type : 'POST',
 				/* data : JSON.stringify(param), */
 				data : {
-					nation : $('.nation').val(),
 					location : $('.location').val(),
 					//keyword : $('.land').val(),
 					startDate : $('.startDate').val(),
@@ -228,9 +225,9 @@
 					<%
 		            String u_id = (String) session.getAttribute("u_id");
 		            // 미로그인 시,
-		            if(u_id == null){%>
-		            <a href="<%=request.getContextPath() %>/user/login.do">로그인 &nbsp;</a>
-		            <a href="<%=request.getContextPath() %>/user/myPage.do?u_id=${member.u_id}">회원정보 &nbsp;</a>
+		            if(u_id == null) { %>
+		            <a href="<%=request.getContextPath()%>/user/login.do">로그인 &nbsp;</a>
+		            <a href="<%=request.getContextPath()%>/user/myPage.do?u_id=${member.u_id}">회원정보 &nbsp;</a>
 					<a href="<%=request.getContextPath()%>/user/cs.do">고객센터&nbsp;</a> 
 					<a href="<%=request.getContextPath()%>/user/wishlist.do">찜&nbsp;</a> 
 					<a href="<%=request.getContextPath()%>/user/reserveCheck.do">예약조회&nbsp;</a> 

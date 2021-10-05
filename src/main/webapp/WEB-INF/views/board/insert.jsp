@@ -51,12 +51,8 @@
 		<td> <input type="text"  name="pd_image" value="https://ifh.cc/g/uVCtpi.jpg"> </td>
 	</tr>
 	<tr>
-		<th>인원 수</th>
-		<td> <input type="text"  name="mylist" value="2"> </td>
-	</tr>
-	<tr>
 		<th>상품내용</th>
-		<td><textarea rows="15" cols="80" name="pd_content"></textarea> 	</td>
+		<td><textarea rows="15" cols="80" name="pd_content1"></textarea> 	</td>
 	</tr>	
 </table>
 		

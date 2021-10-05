@@ -110,9 +110,8 @@
 <body >
 	<jsp:include page="../include/header2.jsp"></jsp:include>
 	<div style="margin:auto; width:1100px">
-		<h1 style="margin-top: 30px;">[오늘의 여행] ${dto.pd_name }🔥</h1>
+		<h1 style="margin-top: 30px;">[오늘의 여행] ${dto.pd_name }</h1>
 		<input type="hidden" id="u_id" value="${member.u_id }">
-		<input type="hidden" id="ad_id" value="${admin.AD_ID }">
 	</div>
 	<div style="margin: auto; width: 1100px; height: 0;">
 		<hr style="margin-top: 10px;" />
@@ -213,12 +212,6 @@
 			</div>
 			<div>
 				<input type="button" onclick="Like_click()"   value="찜" />
-			</div>
-			<hr />
-	
-			<div id="modi_del_DIV_showUP">
-				<input id="detailInput003" type="button" value="수정" style="width: 100px;" /><input
-					type="button" class="btn_delete" value="삭제" style="width: 100px; margin-left: 10px;" />
 			</div>
 		</div>
 	</div>
@@ -419,21 +412,11 @@
 						<td> ${dto.pd_image}</td><!--  상단노출 -->
 						<td ><input class="inputBox"  id="pd_image" value="${dto.pd_image}"></td>
 					</tr>
-					<tr>
-						<th>마이리스트
-						</th>
-						<td> ${dto.mylist}</td> <!--  파악 해야함 -->
-						<td> <input class="inputBox"  id="mylist" value="${dto.mylist}" ></td>
-					</tr>
-					<tr >
-						<th>좋아요</th>
-						<td> ${dto.good}</td><!--  상단노출 -->
-						<td ><input class="inputBox"  id="good" value="${dto.good}"></td>
-					</tr>
+
 					<tr >
 						<th>상품내용</th>
-						<td> ${dto.pd_content}</td><!--  하단노출 -->
-						<td ><input class="inputBox"  id="pd_content" value="${dto.pd_content}"></td>
+						<td> ${dto.pd_content1}</td><!--  하단노출 -->
+						<td ><input class="inputBox"  id="pd_content1" value="${dto.pd_content1}"></td>
 					</tr>
 					<tr>
 						<td colspan="3" style="border-radius:0 0 20px 20px; ">
@@ -539,14 +522,11 @@
 	    	const pd_theme = $("#pd_theme").val().trim();
 	    	const pd_people = $("#pd_people").val().trim();
 	    	const pd_image = $("#pd_image").val().trim();
-	    	const pd_content = $("#pd_content").val().trim();
-	    	const mylist = $("#mylist").val().trim();
-	    	const good = $("#good").val().trim();
-			console.log(pd_seq);
+	    	const pd_content1 = $("#pd_content1").val().trim();
 	    	
 			
-			var allData = {"pd_seq":pd_seq,"pd_name":pd_name,"pd_price":pd_price,"pd_keyword":pd_keyword,"pd_startDate":pd_startDate,"pd_endDate":pd_endDate,"pd_cnt":pd_cnt,"pd_theme":pd_theme,"pd_people":pd_people,"pd_image":pd_image,"pd_content":pd_content,"mylist":mylist,"good":good};
-		    console.log(allData);	
+			var allData = {"pd_seq":pd_seq,"pd_name":pd_name,"pd_price":pd_price,"pd_keyword":pd_keyword,"pd_startDate":pd_startDate,"pd_endDate":pd_endDate,"pd_cnt":pd_cnt,"pd_theme":pd_theme,"pd_people":pd_people,"pd_image":pd_image,"pd_content1":pd_content1};
+		    //console.log(allData);	
 		    
 			    $.ajax({
 			        url:"modify.do",
@@ -577,7 +557,7 @@
     	
     	const pd_seq = $("#pd_seq").val().trim();
     	var seqdata ={"pd_seq":pd_seq};
-    	console.log(seqdata);
+    	//console.log(seqdata);
 	    $.ajax({
 	        url:"delete.do",
 	        type:'POST',
@@ -601,7 +581,7 @@
     	const pd_seq = $("#pd_seq").val().trim();
     	const pd_name = $("#pd_name").val().trim();
     	var u_id=$("#u_id").val();
-    	console.log(u_id);
+    	//console.log(u_id);
     	    	
     	if(u_id == "" ){ 
     		alert("로그인이 필요합니다.");
@@ -629,7 +609,7 @@
 	    	console.log(checkbox_values); //출력 ,,, 배열로 넘기는거 실패*/
 	    	
 	    	var allData ={"pd_seq":pd_seq,"u_id":u_id,"sel_adault":sel_adault,"sel_young":sel_young,"sel_pet":sel_pet,"total_price":total_price}; //아이디랑 인원 담고
-	    	console.log(allData);
+	    	//console.log(allData);
 
   	        $.ajax({
 	            url:"reservation.do",	            

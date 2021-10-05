@@ -100,12 +100,6 @@
 				<td><div><input type="text" placeholder="생년월일을 작성 해주세요 예) 20210912"/></div></td>
 			</tr>
 			<tr>
-				<td><div><span class="essential_write">** </span>성 별</div></td>
-				<td><div>
-					<label><input type="checkbox" name="women" value="women" > 여자</label>
-     					<label><input type="checkbox" name="men" value="men"> 남자</label></div></td>
-			</tr>
-			<tr>
 				<td><div><span class="essential_write">** </span>이메일</div></td>
 				<td><div><input style="width: 40%" type="text" id="emailId" placeholder="이메일을 작성 해주세요">@ <input style="width: 40%" type="text" id="textEmail" placeholder="이메일을 선택하세요."> 
 					<select id="select" style="height: 50px; border-radius: 25px; border-color: #ededed">
@@ -121,10 +115,6 @@
 			<tr>
 				<td><div><span class="essential_write">** </span>휴대폰번호</div></td>
 				<td><div><input style="width: 65%"type="text" placeholder="'-' 제외 숫자만 입력 해주세요"/> <input type="checkbox" name="agree_message" value="1"><span> 예약 알림 메세지 수신 동의</span></div>
-			</tr>
-			<tr>
-				<td><div>전화번호</div></td>
-				<td><div><input type="text" placeholder="'-' 제외 숫자만 입력 해주세요"/></div></td>
 			</tr>
 			<tr>
 				<td><div>요청사항</div></td>
@@ -172,7 +162,7 @@ $(function() { //이메일 입력
 	const pd_name=$("#pd_name").text(); //상품이름
 	const pd_seq=$("#pd_seq").text();
 	const u_id=$("#u_id").text();
-	console.log(pd_name);
+	//console.log(pd_name);
 
 $(document).ready(function(){
 	$("#item_pay").click(function(){//===========================================결제하기 버튼 눌렀을 때 이벤트!			
@@ -206,18 +196,17 @@ $(document).ready(function(){
                  email: '(이메일)',
                  phone: '(고객의 휴대폰 정보)',                        
                  username: '구매자성함',
-                 addr: '(고객의 거주지역)'
              }
          }).error(function (data) { 
              // 결제가 실패했을 때 호출되는 함수입니다.
              var msg = "결제 에러입니다. ";
              alert(msg);
-             console.log(data);
+             //console.log(data);
          }).cancel(function (data) {
              // 결제창에서 결제 진행을 하다가 취소버튼을 눌렀을때 호출되는 함수입니다.
              var msg = "결제를 취소하셨습니다. ";
              alert(msg);
-             console.log(data);
+             //console.log(data);
          }).confirm(function (data) {
              // 결제가 진행되고 나서 승인 이전에 호출되는 함수입니다.
              // 일부 결제는 이 함수가 호출되지 않을 수 있습니다. ex) 가상계좌 및 카드 수기결제는 호출되지 않습니다.        
@@ -235,10 +224,11 @@ $(document).ready(function(){
          }).done(function (data) {
              // 결제가 모두 완료되었을 때 호출되는 함수입니다.
              alert("결제가 완료되었습니다.");
-             console.log(data);
+             location.href="./success.do?pd_seq=" + pd_seq+"&u_id="+u_id;
+             //console.log(data);
          }).ready(function (data) {
              // 가상계좌 번호가 체번(발급) 되었을 때 호출되는 함수입니다.
-             console.log(data);
+             //console.log(data);
         }); //결제 AIP 끝
          
          

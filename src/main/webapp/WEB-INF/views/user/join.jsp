@@ -54,35 +54,39 @@
 
 <body>
 	<h1 style="margin-top: 70px; text-align: center;">OneTrillion Member Join</h1>
+	<%-- <form:form modelAttribute="userDTO" method="post" id="signform"> --%>
 	<form action="join.do" method="POST" id="signform">
 		<div id="joinDiv001">
 			<div style="height: 70px;"></div>
 			<!-- 아이디 입력칸 --------------------------------------------------------------------->
 			<input type="text" name="u_id" id="id" value="" placeholder="아이디를 입력하세요" style="border-radius: 15px 15px 0px 0px;">
-			<!--  <input type="button" value="중복확인" id="idCheck">-->
 			<div class="id regex"></div>
-			<div class="joinLine"></div>			
+			<div class="joinLine"></div>
+			<%-- <form:input path="u_id" id="u_id" name="u_id" type="text"/>
+			<form:errors path="u_id" /> --%>
 			<!-- 비밀번호 입력 칸 --------------------------------------------------------------------->
 			<input type="password" name="u_pwd" id="pw" placeholder="비밀번호를 입력하세요">
 			<div class="pw regex"></div>
 			<div class="joinLine"></div>
+			<%-- <form:input path="u_pwd" id="u_pwd" name="u_pwd" type="password"/>
+			<form:errors path="u_pwd" /> --%>
 			<!-- 비밀번호 확인 입력 칸 --------------------------------------------------------------------->
 			<input type="password" id="repw" placeholder="비밀번호를 다시한번 입력하세요">
 			<div class="repw regex"></div>
 			<div class="joinLine"></div>
 			<!-- 이름 입력 칸 --------------------------------------------------------------------->
-			<input type="text" name="u_name" id="name" placeholder="성함을 입력하세요">
+			<input type="text" name="u_nickName" id="name" placeholder="성함을 입력하세요">
 			<div class="name regex"></div>
-			<div class="joinLine"></div>
-			<!-- 전화번호 입력 칸 --------------------------------------------------------------------->
-			<input class=joinDiv001_input001 type="text" name="u_tel" id="phone" placeholder="전화번호를 입력하세요">
-			<div class="phone regex"></div>
 			<div class="joinLine"></div>
 			<!-- 이메일 입력 칸 --------------------------------------------------------------------->
 			<input type="text" name="u_email" id="email" placeholder="이메일을 입력하세요">
 			<div class="email regex"></div>
 			<div class="joinLine"></div> 
-            <!-- 우편번호 입력 칸 --------------------------------------------------------------------->
+			<!-- 전화번호 입력 칸 --------------------------------------------------------------------->
+			<!-- <input class=joinDiv001_input001 type="text" name="u_tel" id="phone" placeholder="전화번호를 입력하세요">
+			<div class="phone regex"></div>
+			<div class="joinLine"></div>
+            우편번호 입력 칸 -------------------------------------------------------------------
 	        <input type="text" id="postcode" placeholder="우편번호" name="zipcode" style="float:left; width:249px; " readonly><input id="zipBtn" type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" style="float:right;width:249px; background-color: black;">
 	        <div class="regex" style="clear:both"></div>
 	        <div class="joinLine"></div>
@@ -91,10 +95,11 @@
 	        <div class="joinLine"></div>
 	        <input type="text" id="detailAddress" placeholder="상세주소를 입력하세요" name="u_address2">
 	        <div class="regex"></div>
-	        <div class="joinLine"></div>
+	        <div class="joinLine"></div> -->
 			<input type="submit" name="signup" value="작성완료" id="signupbtn" style="float:left; width:249px; background-color: black; border-radius: 0px 0px 0px 15px;"><input type="reset" value="다시입력" id="resignupbtn" style="float:right;width:249px; background-color: black; border-radius: 0px 0px 15px 0px;">
 		</div>
-	</form>
+	 </form> 
+	<%-- </form:form> --%>
 
 	<script>
 
@@ -103,7 +108,7 @@
 			var inputId = $(this).val();
 			var regex = /^[A-Za-z\d]{8,15}$/;
 			var result = regex.exec(id);
-			var sendUrl = "http://localhost:9999/trip/user/idCheckAjax.do?id=" + inputId;
+			var sendUrl = "http://localhost:8088/trip/user/idCheckAjax.do?id=" + inputId;
 			$(".id.regex").html("영어 대소문자와 숫자를 혼합하여 8-15자리로 입력하세요.");
 			$(".id.regex").css("color", "red");
 			
@@ -127,24 +132,7 @@
 			}
 		});// keyup 종료
 		
-		//다음 우편번호 API
-		function sample4_execDaumPostcode() {
-			new daum.Postcode({
-				oncomplete : function(data) {
-					var roadAddr = data.roadAddress;
-					var extraRoadAddr = '';
-					if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
-						extraRoadAddr += data.bname;
-					}
-					if (data.buildingName !== '' && data.apartment === 'Y') {
-						extraRoadAddr += (extraRoadAddr !== '' ? ', '
-								+ data.buildingName : data.buildingName);
-					}
-					document.getElementById('postcode').value = data.zonecode;
-					document.getElementById("roadAddress").value = roadAddr;
-				}
-			}).open();
-		}
+		
 
 		// 실행함수 ----------------------------------------------------------------------
 		$(function() {
@@ -187,19 +175,7 @@
 
 			})
 
-			//전화번호 유효성검사
-			$("#phone").on("input", function() {
-				var regex = /^01\d\d{3,4}\d{4}$/;
-				var result = regex.exec($("#phone").val());
-
-				if (result != null) {
-					$(".phone.regex").html("");
-				} else {
-					$(".phone.regex").html("올바른 전화번호가 아닙니다");
-					$(".phone.regex").css("color", "red");
-				}
-
-			})
+		
 
 			// 이메일 유효성 검사
 			$("#email").on("input", function() {
@@ -219,43 +195,42 @@
 				var id = $("#id").val();
 				var pw = $("#pw").val();
 				var name = $("#name").val();
-				var phone = $("#phone").val();
 				var email = $("#email").val();
 
-				var idregex = /^[a-z][a-z\d]{8,15}$/;
+				var idregex = /^[A-Za-z\d]{8,15}$/;
 				var pwregex = /^[A-Za-z\d]{8,15}$/;
 				var nameregex = /[가-힣]{2,}/;
-				var phoneregex = /^01\d\d{3,4}\d{4}$/;
 				var emailregex = /.+@[a-z]+(\.[a-z]+){1,2}$/;
 
-				var pwregex = pwregex.exec(pw);
-				if (pwregex == null) {
+				
+				
+				var idregexc = idregex.exec(id);
+				if (idregexc == null) {
+					alert("아이디 양식을 다시 확인해주세요");
+					return;
+				}
+				
+				var pwregexc = pwregex.exec(pw);
+				if (pwregexc == null) {
 					alert("비밀번호 양식을 다시 확인해주세요");
-					retrun;
+					return;
 				}
 
-				var nameregex = nameregex.exec(name);
-				if (nameregex == null) {
+				var nameregexc = nameregex.exec(name);
+				if (nameregexc == null) {
 					alert("이름 양식을 다시 확인해주세요");
-					retrun;
+					return;
 				}
 
-				var phoneregex = phoneregex.exec(phone);
-				if (phoneregex == null) {
-					alert("전화번호 양식을 다시 확인해주세요");
-					retrun;
-				}
-
-				var emailregex = emailregex.exec(email);
-				if (emailregex == null) {
+				var emailregexc = emailregex.exec(email);
+				if (emailregexc == null) {
 					alert("이메일 양식을 다시 확인해주세요");
-					retrun;
-
+					return;
 				}
 
 				//빈칸이 없으면 제출~
 				$("#signform").submit();
-				alert("회원가입 성공!");
+				alert("회원가입 성공");
 			})
 		})
 	</script>
