@@ -15,7 +15,7 @@
 <body>
 <div style="clear:both; width: 100%; height: 350px; background-color: gray; margin-top:30px; position: relative;">
     <div style="height: 50px; box-shadow: 0px 0px 3px;">
-        <div id="footerDiv02" style="margin:auto; width: 1000px; line-height: 50px; color: #dbdbdb;"><a href="../board/introduce.do">회사소개</a> | <a href="../board/perinfo.do">개인정보처리방침</a> | <a href="../board/agreeFoot.do">이용약관</a> | <a href="../board/tripAgreeFoot.do">여행약관</a></div>
+        <div id="footerDiv02" style="margin:auto; width: 1000px; line-height: 50px; color: #dbdbdb;"><a href="<%=request.getContextPath()%>/board/introduce.do">회사소개</a> | <a href="<%=request.getContextPath()%>/board/perinfo.do">개인정보처리방침</a> | <a href="<%=request.getContextPath()%>/board/agreeFoot.do">이용약관</a> | <a href="<%=request.getContextPath()%>/board/tripAgreeFoot.do">여행약관</a></div>
     </div>
     <div style="margin:auto; width: 1000px; height: 280px;">
         <div id="footerDiv01" style="margin-top:20px;">

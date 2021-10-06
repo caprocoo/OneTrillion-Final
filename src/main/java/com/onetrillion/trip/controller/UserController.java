@@ -186,7 +186,7 @@ public class UserController {
 	  userService.deleteUser(member); 
 	  session.invalidate();
 	  
-	  return "redirect:../board/mainPage.do"; 
+	  return "redirect:../"; 
 	  }
 
 	@RequestMapping(value = "/user/cs.do", method = RequestMethod.GET)

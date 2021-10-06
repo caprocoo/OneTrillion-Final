@@ -220,7 +220,7 @@
 	<div id="div001">
 		<div id="div001_in01">
 			<div id="div001_in01_in01">
-				<a href="<%=request.getContextPath()%>/board/mainPage.do">&nbsp;
+				<a href="<%=request.getContextPath()%>/">&nbsp;
 					홈 &nbsp;</a> 
 					<%
 		            String u_id = (String) session.getAttribute("u_id");

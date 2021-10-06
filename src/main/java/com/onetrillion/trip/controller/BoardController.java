@@ -39,25 +39,25 @@ public class BoardController {
 	@Autowired
 	public BoardService service;
 
-	@RequestMapping(value = "/mainPage.do", method = RequestMethod.GET)
-	public String mainPage(Model model) {
-
-		List<BoardDTO> aloneList = service.theme("alone");
-		List<BoardDTO> familyList = service.theme("family");
-		List<BoardDTO> coupleList = service.theme("couple");
-		List<BoardDTO> petList = service.theme("pet");
-		List<BoardDTO> honeymoonList = service.theme("honeymoon");
-		List<BoardDTO> friendList = service.theme("friend");
-
-		model.addAttribute("aloneList", aloneList);
-		model.addAttribute("familyList", familyList);
-		model.addAttribute("coupleList", coupleList);
-		model.addAttribute("petList", petList);
-		model.addAttribute("honeymoonList", honeymoonList);
-		model.addAttribute("friendList", friendList);
-
-		return "board/mainPage";
-	}
+//	@RequestMapping(value = "/mainPage.do", method = RequestMethod.GET)
+//	public String mainPage(Model model) {
+//
+//		List<BoardDTO> aloneList = service.theme("alone");
+//		List<BoardDTO> familyList = service.theme("family");
+//		List<BoardDTO> coupleList = service.theme("couple");
+//		List<BoardDTO> petList = service.theme("pet");
+//		List<BoardDTO> honeymoonList = service.theme("honeymoon");
+//		List<BoardDTO> friendList = service.theme("friend");
+//
+//		model.addAttribute("aloneList", aloneList);
+//		model.addAttribute("familyList", familyList);
+//		model.addAttribute("coupleList", coupleList);
+//		model.addAttribute("petList", petList);
+//		model.addAttribute("honeymoonList", honeymoonList);
+//		model.addAttribute("friendList", friendList);
+//
+//		return "board/mainPage";
+//	}
 
 	@RequestMapping(value = "/search.do", method = RequestMethod.GET)
 	public String search(Model model) {
@@ -271,25 +271,25 @@ public class BoardController {
 	@RequestMapping(value = "/perinfo.do", method = RequestMethod.GET)
 	public String personalInfo() {
 
-		return "board/perinfo";
+		return "compony/perinfo";
 	}
 
 	@RequestMapping(value = "/agreeFoot.do", method = RequestMethod.GET)
 	public String agreefoot() {
 
-		return "board/agreeFoot";
+		return "compony/agreeFoot";
 	}
 
 	@RequestMapping(value = "/tripAgreeFoot.do", method = RequestMethod.GET)
 	public String tripAgreeFoot() {
 
-		return "board/tripAgreeFoot";
+		return "compony/tripAgreeFoot";
 	}
 
 	@RequestMapping(value = "/introduce.do", method = RequestMethod.GET)
 	public String introduce() {
 
-		return "board/introduce";
+		return "compony/introduce";
 	}
 
 }

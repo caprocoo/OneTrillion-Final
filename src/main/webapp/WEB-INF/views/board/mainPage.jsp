@@ -6,10 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
 <style type="text/css">
 .mySlides img {
 	width: 100%;
@@ -250,8 +249,7 @@ li.slider>imgs {
 			location.href="<%=request.getContextPath()%>/board/detail.do?pd_seq=9";
 		})
 		$("#mySlides003").click(function(){
-			location.href="<%=request.getContextPath()%>
-		/board/search.do";
+			location.href="<%=request.getContextPath()%>/board/search.do";
 		})
 	</script>
 	<br>
@@ -273,7 +271,7 @@ li.slider>imgs {
 			</div>
 			<div
 				style="text-align: right; font-size: 15px; position: relative; top: -20px;">
-				<a href="searchTheme.do?pd_theme=alone">더보기</a>
+				<a href="board/searchTheme.do?pd_theme=alone">더보기</a>
 			</div>
 		</div>
 		<div class="swiper-container">
@@ -306,7 +304,7 @@ li.slider>imgs {
 			</div>
 			<div
 				style="text-align: right; font-size: 15px; position: relative; top: -20px;">
-				<a href="searchTheme.do?pd_theme=couple">더보기</a>
+				<a href="board/searchTheme.do?pd_theme=couple">더보기</a>
 			</div>
 		</div>
 		<div class="swiper-container">
@@ -339,7 +337,7 @@ li.slider>imgs {
 			</div>
 			<div
 				style="text-align: right; font-size: 15px; position: relative; top: -20px;">
-				<a href="searchTheme.do?pd_theme=friend ">더보기</a>
+				<a href="board/searchTheme.do?pd_theme=friend ">더보기</a>
 			</div>
 		</div>
 		<div class="swiper-container">
@@ -372,7 +370,7 @@ li.slider>imgs {
 			</div>
 			<div
 				style="text-align: right; font-size: 15px; position: relative; top: -20px;">
-				<a href="searchTheme.do?pd_theme=pet ">더보기</a>
+				<a href="board/searchTheme.do?pd_theme=pet ">더보기</a>
 			</div>
 		</div>
 		<div class="swiper-container swiper5">
@@ -406,7 +404,7 @@ li.slider>imgs {
 			</div>
 			<div
 				style="text-align: right; font-size: 15px; position: relative; top: -20px;">
-				<a href="searchTheme.do?pd_theme=family ">더보기</a>
+				<a href="board/searchTheme.do?pd_theme=family ">더보기</a>
 			</div>
 		</div>
 		<div class="swiper-container">
@@ -439,7 +437,7 @@ li.slider>imgs {
 			</div>
 			<div
 				style="text-align: right; font-size: 15px; position: relative; top: -20px;">
-				<a href="searchTheme.do?pd_theme=honeymoon ">더보기</a>
+				<a href="board/searchTheme.do?pd_theme=honeymoon ">더보기</a>
 			</div>
 		</div>
 		<div class="swiper-container swiper5">
@@ -488,10 +486,6 @@ $("#adminLogout").on("click", function(){
 
 	var myswiper = null;
 
-	$(function() {
-		var idHtml = $('A element: not("#testId")').html
-		//console.log(idHtml)
-	});
 
 	function init() {
 		if (myswiper != null)

@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService{
 	         session.setAttribute("u_id", dto.getU_id());
 	         session.setAttribute("member", member);
 	         mav.addObject("member", member);
-	         mav.setViewName("redirect:../board/mainPage.do");
+	         mav.setViewName("redirect:../");
 	         //System.out.println("member 세션에 담겨있어=>" + member);
 	         //System.out.println("세션:  "+session);
 	         session.setMaxInactiveInterval(-1);
