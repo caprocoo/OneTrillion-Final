@@ -39,9 +39,6 @@ public class BoardDTO {
 	
 	public BoardDTO() {}
 	
-	
-	
-	
 	public BoardDTO(int pd_seq, String pd_name, int pd_price, String pd_keyword, LocalDate pd_startDate,
 			LocalDate pd_endDate, int pd_cnt, String pd_theme, String pd_people, String pd_image, String pd_content1,
 			String pd_location, int adult_num, int teenager_num, int pet_num, int adult_price, int teenager_price,

@@ -197,6 +197,7 @@ public class BoardController {
 	//관리자 상품 입력 완료
 	@RequestMapping(value = "/insert.do", method = RequestMethod.POST)
 	public String insertPost(BoardDTO dto) {
+		System.out.println(dto);
 		int cnt = service.insert(dto);
 		if (cnt > 0) {
 			return "redirect:search.do";
@@ -216,7 +217,6 @@ public class BoardController {
 	) {
 		BoardDTO dto = service.detail(pd_seq); // seq에 대한 정보들 detail
 		model.addAttribute("dto", dto);
-
 		// 1박 2일 구하기
 		LocalDate start_date = dto.getPd_startDate();
 		LocalDate last_date = dto.getPd_endDate();
