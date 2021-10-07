@@ -39,25 +39,6 @@ public class BoardController {
 	@Autowired
 	public BoardService service;
 
-//	@RequestMapping(value = "/mainPage.do", method = RequestMethod.GET)
-//	public String mainPage(Model model) {
-//
-//		List<BoardDTO> aloneList = service.theme("alone");
-//		List<BoardDTO> familyList = service.theme("family");
-//		List<BoardDTO> coupleList = service.theme("couple");
-//		List<BoardDTO> petList = service.theme("pet");
-//		List<BoardDTO> honeymoonList = service.theme("honeymoon");
-//		List<BoardDTO> friendList = service.theme("friend");
-//
-//		model.addAttribute("aloneList", aloneList);
-//		model.addAttribute("familyList", familyList);
-//		model.addAttribute("coupleList", coupleList);
-//		model.addAttribute("petList", petList);
-//		model.addAttribute("honeymoonList", honeymoonList);
-//		model.addAttribute("friendList", friendList);
-//
-//		return "board/mainPage";
-//	}
 
 	@RequestMapping(value = "/search.do", method = RequestMethod.GET)
 	public String search(Model model) {

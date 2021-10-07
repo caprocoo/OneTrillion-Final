@@ -1,6 +1,5 @@
 package com.onetrillion.trip.controller;
 
-
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -11,33 +10,28 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.onetrillion.trip.noUserRes.NoUserResDTO;
-import com.onetrillion.trip.noUserRes.impl.NoUserResService;
+import com.onetrillion.trip.userRes.UserResDTO;
+import com.onetrillion.trip.userRes.impl.UserResService;
 
 @Controller
-@RequestMapping(value = "/noUserRes")
-public class NoUserResController {
-	
-	private static final Logger logger = LoggerFactory.getLogger(NoUserResController.class);
+@RequestMapping(value = "/userRes")
+public class UserResController {
+	private static final Logger logger = LoggerFactory.getLogger(UserResController.class);
 	
 	@Autowired
-	public NoUserResService service;
+	public UserResService service;
+	
 	
 	@RequestMapping(value = "/insert.do", method = RequestMethod.GET)
-	public String noUserResInsert(){
+	public String userResInsert(){
 		
 		return null;
 	}
-	
-	
 	@RequestMapping(value = "/list.do", method = RequestMethod.GET)
-	public String noUserSelectAll(Model model){
+	public String userSelectAll(Model model){
 		
-		List<NoUserResDTO> noUserResList = service.noUserSelectAll();
-		model.addAttribute("noUserResList", noUserResList);
-		
-		return "noUserRes/list";
+		List<UserResDTO> userResList = service.userSelectAll();
+		model.addAttribute("userResList", userResList);
+		return "userRes/list";
 	}
-	
-	
 }

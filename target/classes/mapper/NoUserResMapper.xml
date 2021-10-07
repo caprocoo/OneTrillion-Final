@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mapper.NoUserResMapper">
+<mapper namespace="com.onetrillion.trip.service.mapper.NoUserResMapper">
 	
 	<insert id="noUserResInsert">
 		<![CDATA[
@@ -12,5 +12,11 @@
 		#{RES_NAME},#{RES_BIRTH},#{RES_EMAIL},#{RES_COMMENT})
 		]]>	
 	</insert>
+	
+	<select resultType="com.onetrillion.trip.noUserRes.NoUserResDTO" id="noUserSelectAll">
+		<![CDATA[
+		 SELECT * FROM Tril_NOUSERRESERVATION ORDER BY res_seq ASC
+		]]>
+	</select>
 	
 </mapper>

@@ -10,4 +10,13 @@
 		#{ADULT_NUM},#{TEENAGER_NUM},#{PET_NUM},#{ADULT_PRICE},#{TEENAGER_PRICE},#{PET_PRICE},#{RES_PRICE},#{RES_PEOPLE},
 		#{RES_NAME},#{RES_BIRTH},#{RES_EMAIL},#{RES_COMMENT})
 </insert>
+
+	<select resultType="com.onetrillion.trip.userRes.UserResDTO" id="userSelectAll">
+		<![CDATA[
+		 SELECT * FROM Tril_USERRESERVATION ORDER BY ures_seq ASC
+		]]>
+	</select>
+	
+
+
 </mapper>
