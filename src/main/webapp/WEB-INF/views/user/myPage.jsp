@@ -48,7 +48,7 @@
               <table id="myPageinfoTab2" style="width:900px;">
                   <tr>
                       <td style="height: 300px; width: 40%; text-align: center;">
-                          <div style="margin: auto; width:100px;height:100px; background-color: #ededed; border-radius: 50px; text-align: center; line-height: 100px; box-shadow: 0 0 10px #ededed; font-size: 120%;">${member.u_name }</div>
+                          <div style="margin: auto; width:100px;height:100px; background-color: #ededed; border-radius: 50px; text-align: center; line-height: 100px; box-shadow: 0 0 10px #ededed; font-size: 120%;">${member.u_nickName }</div>
                           <div>고객님 안녕하세요!</div>
                       </td>
                       <td >
@@ -67,19 +67,11 @@
                   </tr>
                   <tr>
                       <th>성함</th>
-                      <td>${member.u_name }</td>
-                  </tr>
-                  <tr>
-                      <th>전화번호</th>
-                      <td>${member.u_tel }</td>
+                      <td>${member.u_nickName }</td>
                   </tr>
                   <tr>
                       <th>이메일</th>
                       <td>${member.u_email }</td>
-                  </tr>
-                  <tr>
-                      <th>주소</th>
-                      <td>${member.u_address1 } ${member.u_address2 }</td>
                   </tr>
               </table>
           </div>

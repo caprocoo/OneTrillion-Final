@@ -143,31 +143,31 @@
 <div style="margin:auto; width:350px;">
 	<div style="margin-left:70px;">
 		<label for="agree_all">
-		  <input type="checkbox" name="agree_all" id="agree_all">
+		  <input type="checkbox"  name="agree_all" id="agree_all" onclick='selectAll(this)'>
 		  <strong>모두 동의합니다</strong>
 		</label>
 	</div>
 	<div>
 		<label for="agree">
-		  <input type="checkbox" name="agree" id="agree_01" value="1">
+		  <input type="checkbox" name="agree" id="agree_01"  onclick='checkSelectAll(this)' value="1">
 		  <span>여행 약관에 동의합니다.<span class="essential_write"><strong>(필수)</strong></span></span>
 		</label>
 	</div>
 	<div>
 		<label for="agree">
-		  <input type="checkbox" name="agree"  id="agree_02" value="2">
+		  <input type="checkbox"  name="agree"  id="agree_02"  onclick='checkSelectAll(this)' value="2">
 		  <span>개인정보 수집, 이용에 동의합니다.<span class="essential_write"><strong>(필수)</strong></span></span>
 		</label>
 	</div>
 	<div>
 		<label for="agree">
-		  <input type="checkbox" name="agree" id="agree_03" value="3">
+		  <input type="checkbox"   name="agree" id="agree_03"  onclick='checkSelectAll(this)' value="3">
 		  <span> 개인정보 제3자 제공에 동의합니다.<span class="essential_write"><strong>(필수)</strong></span></span>
 		</label>
 	</div>
 	<div>
 		<label for="agree">
-		  <input type="checkbox" name="agree" value="4">
+		  <input type="checkbox"  name="agree" value="4">
 		  <span>이벤트, 혜택정보 수신동의<strong class="select_disable">(선택)</strong></span>
 		</label>
 	</div>
@@ -175,7 +175,7 @@
 
 <script type="text/javascript">
 
-const agreeChkAll = document.querySelector('input[name=agree_all]');
+/* const agreeChkAll = document.querySelector('input[name=agree_all]');
 
 	agreeChkAll.addEventListener('change', (e) => { //agreeChkAll누르면 이벤트 발생
 		let agreeChk = document.querySelectorAll('input[name=agree]');  //agree이름 체크박스 전체 체크 변수
@@ -184,7 +184,31 @@ const agreeChkAll = document.querySelector('input[name=agree_all]');
 			  agreeChk[i].checked = e.target.checked; //체크됨
 			}
 		
-	}); //agreeChkAll 이벤트 함수 (끝)
+	}); //agreeChkAll 이벤트 함수 (끝) */
+	
+	
+
+	function checkSelectAll(checkbox)  {
+		  const selectall   = document.querySelector('input[name="agree_all"]');
+		  
+		  if(checkbox.checked === false)  {
+			  agree_all.checked = false;
+		  }
+		}
+
+		function selectAll(selectAll)  {
+		  const checkboxes   = document.getElementsByName('agree');
+		  
+		  checkboxes.forEach((checkbox) => {
+		    checkbox.checked = selectAll.checked
+		  })
+		}
+	
+	
+	
+	
+	
+	
 
 </script>	
 </body>
