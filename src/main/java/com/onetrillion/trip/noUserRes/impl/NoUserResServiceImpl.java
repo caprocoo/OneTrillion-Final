@@ -7,7 +7,7 @@ import com.onetrillion.trip.noUserRes.NoUserResDTO;
 import com.onetrillion.trip.service.mapper.NoUserResMapper;
 
 @Service
-public class NoUserResImplService implements NoUserResService{
+public class NoUserResServiceImpl implements NoUserResService{
 	
 	@Autowired
 	NoUserResMapper noUserResMapper;

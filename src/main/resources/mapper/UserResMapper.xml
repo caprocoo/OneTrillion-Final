@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.onetrillion.trip.service.mapper.UserResMapper">
+
+<insert id="userResInsert">
+	INSERT INTO TRIL_USERRESERVATION(res_seq, u_id, PD_SEQ, PD_NAME, PD_STARTDATE, PD_ENDDATE,
+		 ADULT_NUM, TEENAGER_NUM, PET_NUM, ADULT_PRICE, TEENAGER_PRICE, PET_PRICE, RES_PRICE, RES_PEOPLE,
+		 RES_NAME, RES_BIRTH, RES_EMAIL, RES_COMMENT)
+		values(RES_SEQ.nextVal,#{u_id},#{PD_SEQ},#{PD_NAME},#{PD_STARTDATE},#{PD_ENDDATE},
+		#{ADULT_NUM},#{TEENAGER_NUM},#{PET_NUM},#{ADULT_PRICE},#{TEENAGER_PRICE},#{PET_PRICE},#{RES_PRICE},#{RES_PEOPLE},
+		#{RES_NAME},#{RES_BIRTH},#{RES_EMAIL},#{RES_COMMENT})
+</insert>
+</mapper>
