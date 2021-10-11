@@ -24,23 +24,31 @@
    </select>
 
 
-   
+ <!-- 아이디 이메일 중복체크 에이젝스용 Mapper -->  
    <select resultType="com.onetrillion.trip.user.UserDTO" id="oneUser_id" parameterType="String">
       select * 
       from Tril_Member 
       WHERE u_id = #{u_id} 
    </select>
+   
+   <!-- <select resultType="com.onetrillion.trip.user.UserDTO" id="user_email" parameterType="String">
+      select *
+      from Tril_Member
+      where u_email = #{u_email}
+   </select> -->
+   
+   <!--이메일 중복 검사 -->
+	<select id="user_email" parameterType="String" resultType="com.onetrillion.trip.user.UserDTO">
+	      SELECT *
+	      FROM Tril_Member 
+	      WHERE u_email = #{u_email} 
+	</select>
+   	
+  <!-- 아이디 이메일 중복체크 에이젝스용 Mapper 끝-->   
 
 
 
    <!-- 회원가입 -->
-   <!-- <insert id="joinUser"
-      parameterType="com.onetrillion.trip.user.UserDTO">insert into Tril_Member(u_id, u_pwd, u_name, u_address1,
-      u_address2, zipcode, u_tel, u_email) values
-      (#{u_id},#{u_pwd},#{u_name},#{u_address1}, #{u_address2} ,#{zipcode}, #{u_tel},
-      #{u_email}) 
-   </insert> -->
-   
    <insert id="joinUser"
       parameterType="com.onetrillion.trip.user.UserDTO">
       insert into Tril_Member(u_id, u_pwd, u_nickName,u_email) 
@@ -56,19 +64,15 @@
 
 
 
-<!--    
+ <!-- 회원수정 10/09  -->  
    <update id="modifyUser" parameterType="com.onetrillion.trip.user.UserDTO">
       update Tril_Member set 
          u_pwd = #{u_pwd}, 
-         u_name = #{u_name}, 
-         u_address1 = #{u_address1}, 
-         u_address2 = #{u_address2}, 
-         zipcode = #{zipcode}, 
-         u_tel = #{u_tel},
+         u_nickName = #{u_nickName}, 
          u_email = #{u_email} 
       where 
          u_id = #{u_id} 
-   </update> -->
+   </update>
 
    
    

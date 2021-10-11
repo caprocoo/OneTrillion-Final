@@ -90,9 +90,8 @@ h1, #logdiv001{text-align: center;}
 <%
 	String u_id = (String) session.getAttribute("u_id");
 	if( u_id != null){%>
-		<script> window.history.forword(1); </script>
 	<%}%>
-	<script> window.history.forword(1); </script>
+
 	
 	<h1 style="margin-top: 140px;">안녕하세요 고객님!</h1>
 	<h1>OneTrillion에 오신것을 환영합니다!</h1>
@@ -110,83 +109,42 @@ h1, #logdiv001{text-align: center;}
 			</div>
 			<div></div>
 			<div>
-				<input type="submit" value="로그인" onclick="loginChk()"><input type="button" value="회원가입" onclick="location.href='join.do'">
+				<input type="submit" value="로그인"><input type="button" value="회원가입" onclick="location.href='join.do'">
 			</div>
 			<div></div>
 			<div>
 				<a href="findMyId.do">아이디 찾기</a> | <a href="pw-find.do">비밀번호 찾기</a>
 			</div>
-				<a href="../admin/adminlogin.do">관리자만 입장하슈</a>
 		</div>
 	</form>
 
 <script type="text/javascript">
 
-	$("#u_id").on("input", function() {
+ 	$("#u_id").keyup(function() {
         var regex = /^[A-Za-z\d]{8,15}$/;
         var result_blank = regex.exec($("#u_id").val())
         var result = regex.exec($("#u_id").val())
-        if (result != null) {
-           $(".u_id.regex").html("");
-        } else {
-           $(".u_id.regex").html("영어 대소문자와 숫자를 혼합하여 8-15자리로 입력하세요.");
-           $(".u_id.regex").css("color", "red")
-        } 
+        if (result == null && $("#u_id").val() != "") {
+           $(".u_id").html("영어 대소문자와 숫자를 혼합하여 8-15자리로 입력하세요.");
+           $(".u_id").css("color", "red")
+        } else{
+           $(".u_id").html("");
+        }
      });
 
 
-	$("#u_pwd").on("input", function() {
+ 	$("#u_pwd").keyup(function() {
         var regex = /^[A-Za-z\d]{8,15}$/;
         var result_blank = regex.exec($("#u_pwd").val())
         var result = regex.exec($("#u_pwd").val())
-        if (result != null) {
-           $(".u_pwd.regex").html("");
-        } else {
-           $(".u_pwd.regex").html("영어 대소문자와 숫자를 혼합하여 8-15자리로 입력하세요.");
-           $(".u_pwd.regex").css("color", "red")
-        } 
+        if (result == null && $("#u_pwd").val() != "") {
+           $(".u_pwd").html("영어 대소문자와 숫자를 혼합하여 8-15자리로 입력하세요.");
+           $(".u_pwd").css("color", "red")
+        } else{
+           $(".u_pwd").html("");
+        }
      });
-	
-	 function loginChk() {
-	     var id = $("#u_id").val();
-	     var num_id = id.search(/[0-9]/g);
-	     var eng_id = id.search(/[a-z]/ig);
-	     var beng_id = id.search(/[A-Z]/ig);
-	     
-	     if(id.length < 8 || id.length > 15){
-	        alert("아이디는 8자리 ~ 15자리 이내로 입력해주세요");
-	        return false;
-	     } else if (id.search(/\s/) != -1){
-	        alert("아이디는 공백 없이 입력해주세요");
-	        return false;
-	     } else if ( (num_id < 0 && eng_id < 0) || (eng_id < 0 && beng_id < 0) || (beng_id < 0 && num_id < 0)) {
-	        alert("아이디는 영어 대소문자 , 숫자를 혼합해서 사용해주세요");
-	        return false;
-	     } else if ( id == null){
-	    	 alert("아이디를 입력해주세요.");
-	    	 return false;
-	     }
-	     
-	     var pw = $("#u_pwd").val();
-	     var num_pw = pw.search(/[0-9]/g);
-	     var eng_pw = pw.search(/[a-z]/ig);
-	     var beng_pw = pw.search(/[A-Z]/ig);
-	     //var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-	     
-	     if(pw.length < 8 || pw.length > 15){
-	        alert("비밀번호는 8자리 ~ 15자리 이내로 입력해주세요.");
-	        return false;
-	       }else if(pw.search(/\s/) != -1){
-	        alert("비밀번호는 공백 없이 입력해주세요.");
-	        return false;
-	       }else if( (num_pw < 0 && eng_pw < 0) || (eng_pw < 0 && beng_pw < 0) || (beng_pw < 0 && num_pw < 0) ){
-	        alert("비밀번호는 영어 대소문자 , 숫자를 혼합해서 사용해주세요");
-	        return false;
-	       } else if ( pw == null){
-		    	 alert("비밀번호를 입력해주세요.");
-		    	 return false;
-	       }
-	 }
+
 </script>
 
 <jsp:include page="../include/footer.jsp"></jsp:include>

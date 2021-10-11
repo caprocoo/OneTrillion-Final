@@ -1,6 +1,7 @@
 package com.onetrillion.trip.user.Impl;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -17,21 +18,33 @@ public interface UserService {
 
 	public List<UserDTO> AlluserList();
 
+	
+	
+// ==============================================
+	
 	public UserDTO oneUser_id(String u_id);
+	public UserDTO user_email(String u_email);
 
+// ==============================================	
+	
+	
+	
 	public int joinUser(UserDTO dto);
 
 	public void deleteUser(UserDTO dto) throws Exception;
 
-	public int modifyUser(UserDTO dto);
+	public void modifyUser(UserDTO dto);
 
-	public String find_Id(String u_email);
+	public ModelAndView find_Id(String u_email, HttpServletResponse resp) throws IOException;
 	
 	public UserDTO selectMember(String u_email);
 	
 	public int update_pw(UserDTO dto);
-	public String findPw(UserDTO dto);
+	
+	public ModelAndView findPw(UserDTO dto, HttpServletResponse resp) throws IOException;
+	
 	public UserDTO oneUser_email(UserDTO dto);
+	
 	
 	public UserDTO readMember(String u_id);
 }

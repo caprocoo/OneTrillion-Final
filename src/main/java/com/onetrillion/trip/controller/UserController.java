@@ -2,20 +2,18 @@ package com.onetrillion.trip.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.onetrillion.trip.user.UserDTO;
 import com.onetrillion.trip.user.Impl.UserService;
 import com.onetrillion.trip.user.Impl.UserServiceImpl;
@@ -47,6 +44,21 @@ public class UserController {
 		String result = "impossible";
 		
 		UserDTO user = service.oneUser_id(id);
+		// DB에 ID값이 없으면
+		if(user == null) {
+			result = "possible";
+		}
+		return result;
+	}
+	
+	
+	//이메일 중복확인
+	@RequestMapping(value="/user/emailCheckAjax.do", method=RequestMethod.GET)
+	@ResponseBody
+	public String emailCheckAjax(@RequestParam("email") String email) {
+		String result = "impossible";
+		
+		UserDTO user = service.user_email(email);
 		// DB에 ID값이 없으면
 		if(user == null) {
 			result = "possible";
@@ -121,11 +133,13 @@ public class UserController {
 
 	// 아이디 찾기 실행
 	@RequestMapping(value = "/user/find_id.do", method = RequestMethod.POST)
-	public String find_id(HttpServletResponse resp, @RequestParam(value = "u_email") String u_email, Model model) {
-
-		model.addAttribute("id", userService.find_Id(u_email));
-		return "user/find_id";
+	public ModelAndView find_id(HttpServletResponse resp, @RequestParam(value = "u_email") String u_email) throws IOException {
+		ModelAndView mav = new ModelAndView();
+		
+		mav = userService.find_Id(u_email, resp);
+		return mav;
 	}
+	
 
 	// ============================================================================================
 	@RequestMapping(value = "/user/pw-find", method = RequestMethod.GET)
@@ -133,23 +147,46 @@ public class UserController {
 		return new ModelAndView("/user/pw-find");
 	}
 
-	// Mav로 받아서 쏴주니까 된당 ㅋ
+
 	@RequestMapping(value = "/user/pw-find", method = RequestMethod.POST)
 	@ResponseBody
-	public ModelAndView findPwd(UserDTO dto, ModelAndView mav) { // 모델앤뷰?
-		String findpw = userService.findPw(dto);
-		//System.out.println("폼에서 받아온 이메일값 체크" + dto);
-		mav.addObject("findpw", findpw);
+	public ModelAndView findPwd(UserDTO dto, ModelAndView mav,HttpServletResponse resp) throws IOException {
+		ModelAndView findpw = userService.findPw(dto,resp);
+		resp.setCharacterEncoding("html/text; charset=utf-8");
+		PrintWriter out = resp.getWriter();
+		
 
-		if (findpw == null || findpw == "") {
+		if(findpw == null) {
 			mav.setViewName("redirect:/user/pw-find");
 		} else {
-			mav.setViewName("/user/pw-find");
+			out.println("<script> alert('임시비밀번호를 전송하였습니다 가입하신 이메일을 확인해주세요');");
+	        out.println("location.href='http://localhost:8088/trip/user/login.do'</script>");
+	        out.close();
 		}
 		return mav;
 	}
+	
+	
+	// 회원정보 수정 페이지 이동
+	@RequestMapping(value = "/user/modifyInfo", method = RequestMethod.GET)
+	public String modify_page() {
+		
+		return "user/modifyInfo";
+	}
 
-// 미구현 ============================================================================================
+	// 회원정보 수정 실행 메소드
+	@RequestMapping(value = "/user/modifyInfo.do", method = RequestMethod.POST)
+	public String modify_action(UserDTO member,String u_id,HttpSession session) {
+		
+		userService.modifyUser(member);
+		
+		session.removeAttribute("member");
+		session.setAttribute("member", member);
+		
+		return "redirect:/user/myPage.do?u_id="+u_id;
+	}
+
+
 	@RequestMapping(value = "/user/myPage.do", method = RequestMethod.GET)
 	public String myPage_page(@RequestParam("u_id") String u_id, @ModelAttribute UserDTO dto, HttpServletRequest req) {
 		// logger.info(">>>> user/myPage_page ");
@@ -159,16 +196,7 @@ public class UserController {
 		return "user/myPage";
 	}
 
-	@RequestMapping(value = "/user/myPage.do", method = RequestMethod.POST)
-	public String myPage_page_Post(@RequestParam("u_id") String u_id, @ModelAttribute UserDTO dto,
-			HttpServletRequest req) {
-		// logger.info(">>> user/myPage_page_Post");
 
-		userService.modifyUser(dto);
-		req.setAttribute("dto", dto);
-		req.setAttribute("u_id", u_id);
-		return "redirect:/user/myPage.do";
-	}
 
 	@RequestMapping(value = "/user/delete.do", method = RequestMethod.GET)
 	public void delete_page() throws Exception {
@@ -180,14 +208,14 @@ public class UserController {
 	  public String delete_page(HttpSession session, UserDTO dto, RedirectAttributes rttr) throws Exception{ 
 		   logger.info(">>>> user/delete_page 이제 삭제 하면 돼,,,, "); 
 		  UserDTO member = (UserDTO) session.getAttribute("member"); 
-		  //String oldPwd = member.getU_pwd(); 
-		 //String newPwd = dto.getU_pwd();
-
+		  
 	  userService.deleteUser(member); 
 	  session.invalidate();
 	  
 	  return "redirect:../"; 
 	  }
+	  
+	// 미구현 ============================================================================================	  
 
 	@RequestMapping(value = "/user/cs.do", method = RequestMethod.GET)
 	public String cs_page() {
@@ -207,26 +235,6 @@ public class UserController {
 		return "user/reserveCheck";
 	}
 
-	// 회원정보 수정 페이지 이동
-	@RequestMapping(value = "/user/modify.do", method = RequestMethod.GET)
-	public String modify_page(@RequestParam("u_id") String u_id, @ModelAttribute UserDTO dto, HttpServletRequest req) {
-		// logger.info(">>> user/modify");
-		UserDTO userDto = userService.readMember(u_id);
-		req.setAttribute("userDto", userDto);
 
-		return "user/modify";
-	}
-
-	// 회원정보 수정 실행 메소드
-	@RequestMapping(value = "/user/modify.do", method = RequestMethod.POST)
-	public String modify_action(@RequestParam("u_id") String u_id, @ModelAttribute UserDTO dto,
-			HttpServletRequest req) {
-		// logger.info(">>> user/modify");
-
-		userService.modifyUser(dto);
-		req.setAttribute("dto", dto);
-		req.setAttribute("u_id", u_id);
-		return "redirect:/user/myPage.do";
-	}
 
 }

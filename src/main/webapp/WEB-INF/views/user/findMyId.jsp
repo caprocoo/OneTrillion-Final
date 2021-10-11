@@ -24,12 +24,13 @@
 				<div>
 					<p>
 						<label>가입하신 이메일을 입력하여 주세요.</label> <input class="w3-input" type="text"
-							id="u_email" name="u_email" onclick="emailChk()"  required>
+							id="u_email" name="u_email">
 					</p>
+					<div class="u_email regex"></div>
 					<p class="w3-center">
 						<button type="submit" id=findBtn
 							class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">찾기</button>
-						<button type="button" onclick="history.go(-1);"
+						<button type="button" onclick="location.href='../user/login.do'"
 							class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">취소</button>
 					</p>
 				</div>
@@ -37,6 +38,20 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	
+	$("#u_email").keyup(function() {
+        var regex = /.+@[a-z]+(\.[a-z]+){1,2}$/;
+        var result = regex.exec($("#u_email").val());
+        if (result == null && $("#u_email").val() != "") {
+           $(".u_email").html("올바른 이메일 형식으로 입력해주세요");
+           $(".u_email").css("color", "red")
+        } else{
+           $(".u_email").html("");
+        }
+     });
+</script>
 </body>
 <jsp:include page="../include/footer.jsp"></jsp:include>
 </html>

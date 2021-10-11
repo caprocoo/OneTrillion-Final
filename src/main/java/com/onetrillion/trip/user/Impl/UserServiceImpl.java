@@ -29,35 +29,46 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public List<UserDTO> AlluserList(){
 		return mapper.AlluserList();
-	};
+	}
 
+	// ==============================================
 	@Override
 	public UserDTO oneUser_id(String u_id) {
 		//System.out.println("::::: oneUser ::::::");
 		UserDTO user = mapper.oneUser_id(u_id);
 		//System.out.println(user);
 		return user;
-	};
+	}
+	
+	@Override
+	public UserDTO user_email(String u_email) {
+		
+		UserDTO user = mapper.user_email(u_email);
+		
+		return user;
+		
+	}
+	// ==============================================
 	
 	@Override
 	public UserDTO oneUser_email(UserDTO dto) {
 
 		return mapper.oneUser_email(dto);
-	};
+	}
 
 	@Override
 	public int joinUser(UserDTO dto) {
 		return mapper.joinUser(dto);
-	};
+	}
 
 	@Override
 	public void deleteUser(UserDTO dto) throws Exception {
 		mapper.deleteUser(dto);
-	};
+	}
 
 	@Override
-	public int modifyUser(UserDTO dto) {
-		return mapper.modifyUser(dto);
+	public void modifyUser(UserDTO dto) {		
+		mapper.modifyUser(dto);
 	}
 	
 
@@ -68,21 +79,22 @@ public class UserServiceImpl implements UserService{
 	      PrintWriter out = resp.getWriter();
 	      UserDTO member = mapper.member_Login(dto);
 
-	      // 로그인이 되면,
 	      if (member != null) {
 	         session.setAttribute("u_id", dto.getU_id());
 	         session.setAttribute("member", member);
 	         mav.addObject("member", member);
+
 	         mav.setViewName("redirect:../");
 	         //System.out.println("member 세션에 담겨있어=>" + member);
 	         //System.out.println("세션:  "+session);
+
 	         session.setMaxInactiveInterval(-1);
 
 	      } else {
-	         out.println("<script> alert('아이디 또는 비밀번호가 틀립니다');");
+	         out.println("<script> alert('아이디 또는 비밀번호를 다시 확인해주세요');");
 	         out.println("history.go(-1);</script>");
 	         out.close();
-
+	         
 	      }
 	      return mav;
 	   }
@@ -93,25 +105,35 @@ public class UserServiceImpl implements UserService{
 		return mapper.selectMember(u_email);
 	}
 
-	@Override
-	public int update_pw(UserDTO dto) {
-		return mapper.update_pw(dto);
-	}
+
 
 	@Override
-	public String find_Id(String u_email) {
+	public ModelAndView find_Id(String u_email,HttpServletResponse resp) throws IOException {
+		ModelAndView mav = new ModelAndView();
+		resp.setContentType("text/html; charset=utf-8");
+		PrintWriter out = resp.getWriter();
+		String email = mapper.find_Id(u_email);
 		
-		return mapper.find_Id(u_email);
+		if(email != null) {
+			mav.addObject("u_email",email);
+			mav.setViewName("user/find_id");
+		} else {
+			out.println("<script> alert('이메일을 다시 확인해주세요');");
+	        out.println("history.go(-1);</script>");
+	        out.close();
+		}
+		return mav;
 	}
 	
 	
-
+// 메일로 비밀번호찾기
 	@Override
-	public String findPw(UserDTO dto) {
-		String result = null;
-
-		//System.out.println("로그인확인: " + dto);
-
+	public ModelAndView findPw(UserDTO dto, HttpServletResponse resp) throws IOException {
+		PrintWriter out = resp.getWriter();
+		ModelAndView mav = new ModelAndView();
+		resp.setContentType("text/html; charset=utf-8");
+		
+		String result = "";
 		// 회원정보 불러오기
 		UserDTO user = mapper.oneUser_email(dto);
 
@@ -121,8 +143,6 @@ public class UserServiceImpl implements UserService{
 			String tempPw = UUID.randomUUID().toString().replace("-", ""); // -를 제거
 			tempPw = tempPw.substring(0, 10); // tempPw를 우리 비밀번호 범위에 맞춰서 나오게 서브스트링으로 앞에서 10번째까지 짜름
 
-			//System.out.println("임시 비밀번호 확인: " + tempPw);
-
 			// user객체에 임시 비밀번호 담기
 			user.setU_pwd(tempPw);
 
@@ -131,16 +151,23 @@ public class UserServiceImpl implements UserService{
 			mail.sendMail(user);
 
 			mapper.update_pw(user);
-
-			result = "Success";
+			
+			result = "success";
 		} else {
-
-			result = "fail";
+			out.println("<script> alert('이메일을 다시 확인해주세요');");
+	        out.println("history.go(-1);</script>");
+	        out.close();
 		}
-
-		return result;
+		return mav;
 	}
-
+	
+	@Override
+	public int update_pw(UserDTO dto) {
+		return mapper.update_pw(dto);
+	}
+	// 메일로 비밀번호찾기
+	
+	
 	@Override // 회원정보보기
 	public UserDTO readMember(String u_id) {
 		UserDTO dto = null;
@@ -152,6 +179,4 @@ public class UserServiceImpl implements UserService{
 		}
 		return dto;
 	}
-
-	
 }

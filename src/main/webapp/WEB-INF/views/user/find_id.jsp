@@ -25,11 +25,11 @@
 			</div>
 			<div>
 				<h5>
-					회원님의 아이디는:  ${ id } 입니다.
+					회원님의 아이디는:  ${ u_email } 입니다.
 				</h5>
 				<p class="w3-center">
 					<button type="button" id=loginBtn class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">로그인</button>
-					<button type="button" onclick="history.go(-1);" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">취소</button>
+					<button type="button" onclick="location.href='../user/login.do'" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">취소</button>
 				</p>
 			</div>
 		</div>
