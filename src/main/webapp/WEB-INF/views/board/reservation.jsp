@@ -115,7 +115,7 @@
 			</tr>
 			<tr>
 				<td><div><span class="essential_write">** </span>휴대폰번호</div></td>
-				<td><div><input style="width: 65%"type="text" id = "bookerPhone" placeholder="'-' 제외 숫자만 입력 해주세요"/> <input type="checkbox" name="agree_message" value="1"><span> 예약 알림 메세지 수신 동의</span></div>
+				<td><div><input style="width: 65%"type="text" id = "bookerPhone" placeholder=" '-' 포함해서 입력 해주세요"/> <input type="checkbox" name="agree_message" value="1"><span> 예약 알림 메세지 수신 동의</span></div>
 			</tr>
 			<tr>
 				<td><div>요청사항</div></td>
@@ -169,13 +169,15 @@ $(function() { //이메일 입력
 	const pd_seq=$("#pd_seq").text();
 	const u_id=$("#u_id").text();
 
+	
+	//console.log(pd_name);
 
 
 	
 	//2021. 10. 11 15:50 현성 userReservation - 회원 예약하기 insert 구현
 	function payFinished(){
 		
-		const bookerEmail = $("#bookerEmail").val()+"@"+$('#select').val();
+		const bookerEmail = $("#bookerEmail").val()+"@"+$('#textEmail').val();
 		const total_people = ${param.sel_adault}+${param.sel_young}+${param.sel_pet}
 		const total_adult_price = ${param.sel_adault}*${dto.adult_price };
 		const total_teenager_price = ${param.sel_young}*${dto.teenager_price };
@@ -219,26 +221,52 @@ $(function() { //이메일 입력
 	} // 현성 insert 구현 끝
 	
 	
-
+//2021. 10. 11 16:35 현성 - 회원 예약자 정보 유효성 검사 확인
 $(document).ready(function(){
 	$("#item_pay").click(function(){//===========================================결제하기 버튼 눌렀을 때 이벤트!			
-		
+		var birthValue = $("#bookerBirth").val();
+		var birthEffect = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
+		var birthCheck = birthEffect.exec(birthValue);
+		var emailEffect = /((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+		var emailCheck = emailEffect.exec($('#textEmail').val());
+		var phoneEffect = /01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}/;
+		var phoneCheck = phoneEffect.exec($("#bookerPhone").val());
+
 		if($("#agree_01").is(":checked") == false || $("#agree_02").is(":checked") == false || $("#agree_03").is(":checked") == false){ //약관 동의를 하지 않았을 경우
 			alert('모든약관에 동의하셔야 결제 가능합니다.');
 			$('#agree_01').focus(); //동의하는 곳으로 포커스
 			return;
-		}if else (){
+		}else if($("#bookerName").val()==""){
+			alert('예약자명을 확인해주세요!')
+			return;
 		
-			else { //약관 체크가 되어있을 경우 BootPay 실행!
+		}else if(birthValue=="" ) {
+			alert('생년월일을 다시 한번 확인해주세요!');
+			return;
+		}else if(birthCheck == null){
+			alert('생년월일의 양식을 확인해주세요! (ex : 20210101)');
+			return;
+		}else if($("#bookerEmail").val() == "" || $('#textEmail').val() == ""){
+			alert('이메일을 다시 한번 확인해주세요!');
+			return;
+		}else if(emailCheck == null){
+			alert('이메일의 양식을 확인해주세요! (ex : oneTrillion@gmail.com)');
+			return;
+		}else if($("#bookerPhone").val() == ""){
+			alert('핸드폰 번호를 확인해주세요!')
+		}else if(phoneCheck == null){
+			alert('핸드폰 번호의 양식을 확인해주세요!(ex : 010-0000-0000)')
 		}
-
+		else { //약관 체크가 되어있을 경우 BootPay 실행!
+		
+		const bookerEmail = $("#bookerEmail").val()+"@"+$('#textEmail').val();
 		
 		
         BootPay.request({
         	 price: total_price, // 결제할 금액
              application_id: '613ecc0f7b5ba4002352b1a7',
              name: pd_name, // 아이템 이름,
-             phone: '(구매자 전화번호 ex) 01000000000)',
+             phone: $("#bookerPhone").val(),
              order_id: pd_seq,
              pg: 'kcp',
              method: 'card',
@@ -252,9 +280,9 @@ $(document).ready(function(){
                  }
              ],
              user_info: { // 구매한 고객정보 ( 통계 혹은 PG사에서 요구하는 고객 정보 )
-                 email: '(이메일)',
-                 phone: '(고객의 휴대폰 정보)',                        
-                 username: '구매자성함',
+                 email: bookerEmail,
+                 phone: $("#bookerPhone").val(),                        
+                 username: $("#bookerName").val(),
              }
          }).error(function (data) { 
              // 결제가 실패했을 때 호출되는 함수입니다.
