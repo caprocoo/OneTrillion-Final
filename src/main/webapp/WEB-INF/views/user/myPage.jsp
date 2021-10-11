@@ -53,7 +53,7 @@
                       </td>
                       <td >
                           <div style="margin: auto; width: 100%;  text-align: center;">
-                              <input type="button" value="회원정보 변경" onclick="location.href='<%=request.getContextPath() %>/user/modifyInfo.do?u_id=${member.u_id }' "/>            
+                              <input type="button" value="회원정보 변경">
                               <input type="button" value="비밀번호 변경">
                               <input type="button" value="회원탈퇴"  onclick="location.href='<%=request.getContextPath() %>/user/delete.do' ">
                           </div>
@@ -66,8 +66,8 @@
                       <td style="border-top:2px solid black">${member.u_id }</td>
                   </tr>
                   <tr>
-						<th>성함</th>
-						<td>${member.u_nickName }</td>
+                      <th>성함</th>
+                      <td>${member.u_nickName }</td>
                   </tr>
                   <tr>
                       <th>이메일</th>

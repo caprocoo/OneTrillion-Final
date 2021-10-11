@@ -3,6 +3,7 @@ package com.onetrillion.trip.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +22,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.onetrillion.trip.board.CsnoticeDTO;
+import com.onetrillion.trip.board.OftenDTO;
+import com.onetrillion.trip.notice.Impl.NoticeService;
 import com.onetrillion.trip.user.UserDTO;
 import com.onetrillion.trip.user.Impl.UserService;
 import com.onetrillion.trip.user.Impl.UserServiceImpl;
@@ -34,6 +39,9 @@ public class UserController {
 	
 	@Autowired
 	public UserServiceImpl service;
+	
+	@Autowired                 
+	NoticeService noticeService; //@@ 공지사항&자주하는질문   [10/11 월 한보영]
 	
 
 // 회원가입 관련 페이지 ============================================================================================
@@ -217,11 +225,19 @@ public class UserController {
 	  
 	// 미구현 ============================================================================================	  
 
-	@RequestMapping(value = "/user/cs.do", method = RequestMethod.GET)
-	public String cs_page() {
-		// logger.info(">>>> user/cs_page");
-		return "user/cs";
-	}
+	  @RequestMapping(value = "/user/cs.do", method = RequestMethod.GET)
+		public String cs_page(Model model) {
+			//@@ 공지사항 목록 [10/11 월 한보영]
+			List<CsnoticeDTO> noticeList = noticeService.selectAll();
+			model.addAttribute("noticeList", noticeList);
+			
+			//@@ 자주하는 질문 목록 [10/11 월 한보영]
+			List<OftenDTO> oftenList = noticeService.selectAll_often();
+			model.addAttribute("oftenList", oftenList);
+			
+			
+			return "user/cs";
+		}
 
 	@RequestMapping(value = "/user/wishlist.do", method = RequestMethod.GET)
 	public String wishlist_page() {

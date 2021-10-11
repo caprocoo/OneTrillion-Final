@@ -14,6 +14,8 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
+	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script> <!-- 카카오톡 공유하기CDN 10/11보영 -->
+	
 </head>
 <style>
 #detailDiv001>div {
@@ -90,6 +92,11 @@
 	/* 아래에 있는 실행가능한 소스를 가지고 실험해 보세요 */
 	;
 }
+<!-- 카톡/페이스북/트위터 공유하기 10-11 한보영-->
+.link-icon { position: relative; display: inline-block; width: auto;    font-size: 14px; font-weight: 500; color: #333; margin-right: 10px; padding-top: 50px; }
+.link-icon.twitter { background-image: url('https://ifh.cc/g/ORGhzR.png'); background-repeat: no-repeat; }
+.link-icon.facebook { background-image: url('https://ifh.cc/g/fshkW4.png'); background-repeat: no-repeat; } 
+.link-icon.kakao { background-image: url('https://ifh.cc/g/NqDEib.png'); background-repeat: no-repeat; }
 
 /* 모달창(관리자 삭제/수정) css----------------------------------------------------------------------------------------------------------------------------------- */
 #conBox>table>tbody>tr>td>input {
@@ -288,6 +295,11 @@
 			</div>
 			<div>
 				<input type="button" onclick="If_NoUser()" value="비회원으로 예약하기" />
+			</div>
+			<div id="test001" style="height:100px">			
+				<a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter();">트위터</a>
+				<a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();">페이스북</a>    
+				<a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();">카카오톡</a>    
 			</div>
 			
 		</div>
@@ -610,7 +622,7 @@
 
 	
 	const u_id = $("#u_id").val().trim();
-	const ad_id = $("#ad_id").val().trim();
+	const ad_id = $("#ad_id").val();
 
 	
 	$(document).ready(function(){
@@ -819,7 +831,42 @@ function Like_click(){
 
 }//Like_click 함수(끝) =================================================================(끝)9/13
     
-    
+		//트위터, 카카오톡, 페이스북 공유하기 [10-11 한보영]
+		const pd_seq = $("#pd_seq").val().trim();
+		const pd_name = $("#pd_name").val().trim();
+		
+		
+		
+		function shareTwitter() {//트위터 공유하기
+		var sendText =  "[Onetrillion]"+ pd_name+"여행지 공유하기"; // 전달할 텍스트
+		var sendUrl = "localhost:8088/trip/board/detail.do?pd_seq="+pd_seq// 전달할 URL
+		window.open("https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl);
+		}
+			
+
+		function shareFacebook() {
+		    var sendUrl = "localhost:8088/trip/board/detail.do?pd_seq="+pd_seq;// 전달할 URL
+		    window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
+		}
+			
+		function shareKakao() {  //카카오톡 공유하기
+		  Kakao.init('ca25fe0ce664caec60cfd9ff98deb904');	 
+		
+		  Kakao.Link.createDefaultButton({
+		    container: '#btnKakao', // 카카오공유버튼ID
+		    objectType: 'feed',
+		    content: {
+		      title: "[Onetrillion]"+pd_name, //  제목
+		      description: pd_name+" 여행지를 공유합니다.", // 설명
+		      imageUrl: "https://ifh.cc/g/y8CkiM.png", // URL
+		      link: {
+		         mobileWebUrl: "http://localhost:8088/trip/board/detail.do?pd_seq="+pd_seq,
+		         webUrl: "http://localhost:8088/trip/board/detail.do?pd_seq="+pd_seq
+		      }
+		    }
+		  });
+		}
+
     
     
     
