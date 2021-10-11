@@ -25,6 +25,7 @@ public class NoUserResDTO {
 	private String res_birth; // 예약자 생년월일
 	private String res_email; // 예약자 이메일
 	private String res_comment; // 요청사항
+	private String res_phone;
 	
 	public NoUserResDTO() {}
 	
@@ -32,7 +33,7 @@ public class NoUserResDTO {
 	public NoUserResDTO(int res_seq, String res_pwd, int pd_seq, String pd_name, LocalDate pd_startDate,
 			LocalDate pd_endDate, int adult_num, int teenager_num, int pet_num, int adult_price, int teenager_price,
 			int pet_price, int res_price, int res_people, String res_name, String res_birth, String res_email,
-			String res_comment) {
+			String res_comment, String res_phone) {
 		this.res_seq = res_seq;
 		this.res_pwd = res_pwd;
 		this.pd_seq = pd_seq;
@@ -51,7 +52,9 @@ public class NoUserResDTO {
 		this.res_birth = res_birth;
 		this.res_email = res_email;
 		this.res_comment = res_comment;
+		this.res_phone = res_phone;
 	}
+	
 
 	public int getRes_seq() {
 		return res_seq;
@@ -161,6 +164,12 @@ public class NoUserResDTO {
 	public void setRes_comment(String res_comment) {
 		this.res_comment = res_comment;
 	}
+	public String getRes_phone() {
+		return res_phone;
+	}
+	public void setRes_phone(String res_phone) {
+		this.res_phone = res_phone;
+	}
 	@Override
 	public String toString() {
 		return "NoUserResDTO [res_seq=" + res_seq + ", res_pwd=" + res_pwd + ", pd_seq=" + pd_seq + ", pd_name="
@@ -168,7 +177,8 @@ public class NoUserResDTO {
 				+ ", teenager_num=" + teenager_num + ", pet_num=" + pet_num + ", adult_price=" + adult_price
 				+ ", teenager_price=" + teenager_price + ", pet_price=" + pet_price + ", res_price=" + res_price
 				+ ", res_people=" + res_people + ", res_name=" + res_name + ", res_birth=" + res_birth + ", res_email="
-				+ res_email + ", res_comment=" + res_comment + "]";
+				+ res_email + ", res_comment=" + res_comment + ", res_phone=" + res_phone + "]";
 	}
+	
 
 }
