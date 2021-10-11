@@ -85,8 +85,6 @@ public class UserServiceImpl implements UserService{
 	         mav.addObject("member", member);
 
 	         mav.setViewName("redirect:../");
-	         //System.out.println("member 세션에 담겨있어=>" + member);
-	         //System.out.println("세션:  "+session);
 
 	         session.setMaxInactiveInterval(-1);
 
@@ -126,14 +124,13 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	
-// 메일로 비밀번호찾기
+	// 메일로 비밀번호찾기
 	@Override
 	public ModelAndView findPw(UserDTO dto, HttpServletResponse resp) throws IOException {
 		PrintWriter out = resp.getWriter();
 		ModelAndView mav = new ModelAndView();
 		resp.setContentType("text/html; charset=utf-8");
 		
-		String result = "";
 		// 회원정보 불러오기
 		UserDTO user = mapper.oneUser_email(dto);
 
@@ -152,7 +149,6 @@ public class UserServiceImpl implements UserService{
 
 			mapper.update_pw(user);
 			
-			result = "success";
 		} else {
 			out.println("<script> alert('이메일을 다시 확인해주세요');");
 	        out.println("history.go(-1);</script>");

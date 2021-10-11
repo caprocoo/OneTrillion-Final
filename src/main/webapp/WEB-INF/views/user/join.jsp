@@ -75,7 +75,7 @@ label {
 			<%-- <form:input path="u_pwd" id="u_pwd" name="u_pwd" type="password"/>
 			<form:errors path="u_pwd" /> --%>
 			<!-- 비밀번호 확인 입력 칸 --------------------------------------------------------------------->
-			<input type="password" id="repw" placeholder="비밀번호를 다시한번 입력하세요">
+			<input type="password" id="repw" placeholder="비밀번호를 다시한번 입력하세요" readonly>
 			<div class="repw regex"></div>
 			<div class="joinLine"></div>
 			<!-- 이름 입력 칸 --------------------------------------------------------------------->
@@ -119,8 +119,8 @@ label {
 							console.log('else if',data);
 							console.log('else if',result);
 							$(".email").html("사용 가능한 이메일입니다.");
-							$(".email").css("color", "red");
-						} else if('input#email' == null || 'input#email' == ""){
+							$(".email").css("color", "pink");
+						} else if($("input#email").val() == "" ){
 							$(".email").html("");
 						} else {
 							$(".email").html("");
@@ -146,7 +146,7 @@ label {
 							$(".id").css("color", "red");
 							if(inputId.length > 7 && inputId.length < 16){
 								$(".id").html("사용가능한 아이디입니다!");
-								$(".id").css("color", "red");								
+								$(".id").css("color", "pink");								
 							}
 						} else if(data === "impossible"){
 							$(".id").html("이미 존재하는 아이디입니다!");
@@ -176,13 +176,18 @@ label {
 		           $(".u_pwd").css("color", "red")
 		        } else {
 		           $(".u_pwd").html("");
+		           $(".repw").attr("readonly","");
+		           $(".repw").removeAttr("");
 		        }
 		     });
+			
+			
+		
 			// 입력한 비밀번호끼리 맞는지 확인 (이중체크)  
 			$("#repw").on("keyup", function() {
 				if ($("#u_pwd").val() == $("#repw").val()) {
 					$(".repw").html("비밀번호가 일치합니다");
-					$(".repw").css("color", "red");
+					$(".repw").css("color", "pink");
 				} else if($("#u_pwd").val() != $("#repw").val()) {
 					$(".repw").html("비밀번호가 일치하지않습니다");
 					$(".repw").css("color", "red");
@@ -192,7 +197,8 @@ label {
 					$(".repw").html("");
 				}
 			});
-
+			
+			
 			//이름 유효성검사 진행중 10/08
 			$("#u_nickName").on("input", function() {
 				var regex = /[가-힣]{2,}/;
@@ -200,7 +206,7 @@ label {
 
 				if (result != null) {
 					$(".u_nickName").html("좋은 이름이네요!");
-					$(".u_nickName").css("color", "red");
+					$(".u_nickName").css("color", "pink");
 				} else if(result == null) {
 					$(".u_nickName").html("한글로 2글자 이상 작성해주세요.");
 					$(".u_nickName").css("color", "red");
