@@ -7,9 +7,9 @@
 		INSERT INTO TRIL_NOUSERRESERVATION(res_seq, RES_PWD, PD_SEQ, PD_NAME, PD_STARTDATE, PD_ENDDATE,
 		 ADULT_NUM, TEENAGER_NUM, PET_NUM, ADULT_PRICE, TEENAGER_PRICE, PET_PRICE, RES_PRICE, RES_PEOPLE,
 		 RES_NAME, RES_BIRTH, RES_EMAIL, RES_COMMENT, RES_PHONE)
-		values(RES_SEQ.nextVal,#{RES_PWD},#{PD_SEQ},#{PD_NAME},#{PD_STARTDATE},#{PD_ENDDATE},
-		#{ADULT_NUM},#{TEENAGER_NUM},#{PET_NUM},#{ADULT_PRICE},#{TEENAGER_PRICE},#{PET_PRICE},#{RES_PRICE},#{RES_PEOPLE},
-		#{RES_NAME},#{RES_BIRTH},#{RES_EMAIL},#{RES_COMMENT},#{RES_PHONE})
+		values(RES_SEQ.nextVal,#{res_pwd},#{pd_seq},#{pd_name},#{pd_startDate},#{pd_endDate},
+		#{adult_num},#{teenager_num},#{pet_num},#{adult_price},#{teenager_price},#{pet_price},#{res_price},#{res_people},
+		#{res_name},#{res_birth},#{res_email},#{res_comment},#{res_phone})
 		]]>	
 	</insert>
 	

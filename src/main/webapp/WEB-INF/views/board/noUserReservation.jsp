@@ -81,10 +81,11 @@
 				</tr>
 				<tr>
 					<td><div>예약자 아이디</div></td>
-					<td id="u_id"><div>${param.u_id}</div></td>
+					<td><div>비회원</div></td>
 					<td><div>총 가격</div></td>
 					<td><div>${total_price_won}원</div></td>
 					<input type="hidden" id="total_price" value="${param.total_price}" />
+					<input type="hidden" id = "defaultPeople" value = "${dto.pd_people}"/>
 				</tr>
 			</tbody>		
 		</table>
@@ -95,6 +96,14 @@
 			<tr>
 				<td><div><span class="essential_write">** </span>성 함</div></td>
 				<td><div><input type="text" id = "bookerName" placeholder="여행자 명을 작성 해주세요"/></div></td>
+			</tr>
+			<tr>
+				<td><div><span class="essential_write">** </span>비밀번호</div></td>
+				<td><div><input type="text" id = "bookerPwd" placeholder="비밀번호를 작성 해주세요 "/></div></td>
+			</tr>
+			<tr>
+				<td><div><span class="essential_write">** </span>비밀번호 중복확인</div></td>
+				<td><div><input type="text" id = "rePwd" placeholder="비밀번호를 다시 작성 해주세요 "/></div></td>
 			</tr>
 			<tr>
 				<td><div><span class="essential_write">** </span>생년월일</div></td>
@@ -133,23 +142,13 @@
 		<h1 style="color: red; text-align: center;">${total_price_won}원</h1>
 	</div>
 	<div class="resDiv01" style="text-align: center;">
-		<button id="item_pay">결제하기</button><button id="item_pay_success" onclick="payFinished()">결제완료</button><button onclick="location.href='http://localhost:8088/trip/board/detail.do?pd_seq=${param.pd_seq}' "  style="border-right:0;">취소하기</button>
-		<button id = "test0101">여행자 정보 불러오기</button>
+		<button id="item_pay">결제하기</button><button id="item_pay_success" onClick = "payFinished()">결제완료</button><button onclick="location.href='http://localhost:8088/trip/board/detail.do?pd_seq=${param.pd_seq}' "  style="border-right:0;">취소하기</button>
 	</div>
 </div>
 <jsp:include page="../include/footer.jsp"></jsp:include>
 <script type="text/javascript"> //===================================================================== [ script ] 결제 AIP
 
 
-
-
-
-
-/* $("#item_pay_success").click(function(){
-	//location.href="./success.do?pd_seq=" + pd_seq+"&u_id="+u_id;
-    location.href="../userRes/list.do?pd_seq=" + pd_seq+"&u_id="+u_id; //결제 완료되면 완료페이지로 이동
-
-}); //item_pay_success 함수(끝) */
 
 $(function() { //이메일 입력
     $('#select').change(function() {
@@ -167,14 +166,11 @@ $(function() { //이메일 입력
 	const total_price=$("#total_price").val(); //총 금액 가져오기
 	const pd_name=$("#pd_name").text(); //상품이름
 	const pd_seq=$("#pd_seq").text();
-	const u_id=$("#u_id").text();
 
 	
-	//console.log(pd_name);
-
-
+	//console.log($("#defaultPeople").val());
 	
-	//2021. 10. 11 15:50 현성 userReservation - 회원 예약하기 insert 구현
+	//2021. 10. 11 19:40 현성 userReservation - 비회원 예약하기 insert 구현
 	function payFinished(){
 		
 		const bookerEmail = $("#bookerEmail").val()+"@"+$('#textEmail').val();
@@ -185,6 +181,7 @@ $(function() { //이메일 입력
 
 		var bookerData = {
 				pd_seq : "${dto.pd_seq }",
+				res_pwd : $("#bookerPwd").val(),
 				pd_name : "${dto.pd_name }",
 				pd_startDate : "${dto.pd_startDate}", 
 				pd_endDate : "${dto.pd_endDate }",	
@@ -201,17 +198,16 @@ $(function() { //이메일 입력
 				res_email : bookerEmail,
 				res_comment : $("#bookerComment").val(),
 				res_phone : $("#bookerPhone").val(),
-				u_id : "${param.u_id}",
 				
 		}
 		
 		$.ajax({
 			type : 'POST',
 			data : bookerData,
-			url : "http://localhost:8088/trip/userRes/finished.do",
+			url : "http://localhost:8088/trip/noUserRes/finished.do",
 			success : function(data){
 				console.log('데이터 처리 완료')
-				location.href = "http://localhost:8088/trip/userRes/list.do";
+				location.href = "http://localhost:8088/trip/noUserRes/list.do";
 			},
 			error : function(request, status){
 				alert('실패');
@@ -221,7 +217,7 @@ $(function() { //이메일 입력
 	} // 현성 insert 구현 끝
 	
 	
-//2021. 10. 11 16:35 현성 - 회원 예약자 정보 유효성 검사 확인
+
 $(document).ready(function(){
 	$("#item_pay").click(function(){//===========================================결제하기 버튼 눌렀을 때 이벤트!			
 		var birthValue = $("#bookerBirth").val();
@@ -239,8 +235,10 @@ $(document).ready(function(){
 		}else if($("#bookerName").val()==""){
 			alert('예약자명을 확인해주세요!')
 			return;
-		
-		}else if(birthValue=="" ) {
+		}else if($("#bookerPwd").val()==""){
+			alert()
+		}
+		else if(birthValue=="" ) {
 			alert('생년월일을 다시 한번 확인해주세요!');
 			return;
 		}else if(birthCheck == null){
@@ -253,9 +251,11 @@ $(document).ready(function(){
 			alert('이메일의 양식을 확인해주세요! (ex : oneTrillion@gmail.com)');
 			return;
 		}else if($("#bookerPhone").val() == ""){
-			alert('핸드폰 번호를 확인해주세요!')
+			alert('핸드폰 번호를 확인해주세요!');
+			return;
 		}else if(phoneCheck == null){
-			alert('핸드폰 번호의 양식을 확인해주세요!(ex : 010-0000-0000)')
+			alert('핸드폰 번호의 양식을 확인해주세요!(ex : 010-0000-0000)');
+			return;
 		}
 		else { //약관 체크가 되어있을 경우 BootPay 실행!
 		
@@ -288,12 +288,10 @@ $(document).ready(function(){
              // 결제가 실패했을 때 호출되는 함수입니다.
              var msg = "결제 에러입니다. ";
              alert(msg);
-             //console.log(data);
          }).cancel(function (data) {
              // 결제창에서 결제 진행을 하다가 취소버튼을 눌렀을때 호출되는 함수입니다.
              var msg = "결제를 취소하셨습니다. ";
              alert(msg);
-             //console.log(data);
          }).confirm(function (data) {
              // 결제가 진행되고 나서 승인 이전에 호출되는 함수입니다.
              // 일부 결제는 이 함수가 호출되지 않을 수 있습니다. ex) 가상계좌 및 카드 수기결제는 호출되지 않습니다.        
@@ -311,7 +309,7 @@ $(document).ready(function(){
          }).done(function (data) {
              // 결제가 모두 완료되었을 때 호출되는 함수입니다.
              alert("결제가 완료되었습니다.");
-             location.href="../userRes/list.do?pd_seq=" + pd_seq+"&u_id="+u_id; //결제 완료되면 완료페이지로 이동
+             location.href="../noUserRes/list.do"; //결제 완료되면 완료페이지로 이동
              //console.log(data);
          }).ready(function (data) {
              // 가상계좌 번호가 체번(발급) 되었을 때 호출되는 함수입니다.
@@ -325,6 +323,7 @@ $(document).ready(function(){
          
     });//item_pay 클릭 함수 끝
 });//document 끝
+
 </script>	
 </body>
 </html>

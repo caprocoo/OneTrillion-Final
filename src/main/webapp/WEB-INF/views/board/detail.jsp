@@ -6,13 +6,14 @@
 <head>
 <meta charset="utf-8">
 <title>키워드로 장소검색하기</title>
-      <script src="//code.jquery.com/jquery.min.js"></script>
+<script src="//code.jquery.com/jquery.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca25fe0ce664caec60cfd9ff98deb904&libraries=services"></script>
-		<link rel="stylesheet"
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca25fe0ce664caec60cfd9ff98deb904&libraries=services"></script>
+<link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
 </head>
 <style>
 #detailDiv001>div {
@@ -69,12 +70,16 @@
 	z-index: 2;
 }
 
-.swiper-container {width: 1100px;}
+.swiper-container {
+	width: 1100px;
+}
+
 .swiper-slide>img {
 	width: 1100px;
-	height:700px;
+	height: 700px;
 	object-fit: cover;
 }
+
 .swiper-slide {
 	display: flex; /* 내용을 중앙정렬 하기위해 flex 사용 */
 	align-items: center; /* 위아래 기준 중앙정렬 */
@@ -87,29 +92,94 @@
 }
 
 /* 모달창(관리자 삭제/수정) css----------------------------------------------------------------------------------------------------------------------------------- */
-#conBox>table>tbody>tr>td>input{border:0; width:100%; height: 100%; background-color: #FcFcFc; text-align: center; }
-#conBox>table>tbody>tr>td{background-color: #F7F7F7; text-align: center}
-#conBox>table>tbody>tr>td>button{border:0; width:18%; height:100%; background-color: black; color: white;}
-#conBox>table>tbody>tr>td>button:hover{ cursor: pointer; color: red; }
-/* 모달창 css 끝----------------------------------------------------------------------------------------------------------------------------------- */
-#detailDivCon001 table:nth-child(2) td, #detailDivCon001 table:nth-child(3) td{ width: 25%; height: 50px; border-bottom:1px solid #ededed;}
-#detailDivCon001 table:nth-child(2) td:nth-child(1){background-color: #ededed;}
-#detailDivCon001 table:nth-child(2) tr:nth-child(1) td{border-top: 2px solid black;}
-#detailDivCon001 table:nth-child(2) div{margin-left:10px;}
-#detailDivCon001 table:nth-child(3) tr:nth-child(1) td{background-color: #ededed; border-top: 2px solid black;}
-#detailDivCon001 table:nth-child(5) td:nth-child(1) {height:150px;; width: 2%; background-color: #ededed;}
-#detailDivCon001 table:nth-child(5) td:nth-child(2) {width: 23%; border-right: 1px solid #ededed; text-align: center;}
-#detailDivCon001 table:nth-child(5) div{margin:10px;}
-#detailDivCon001 table:nth-child(5) td{border-bottom:1px solid #ededed;}
-#detailDivCon001 table:nth-child(5) tr:nth-child(1) td{border-top:2px solid black;}
-#detailDivCon001 table:nth-child(7) div{margin:10px; margin-left:50px;}
-#detailDivCon001 table:nth-child(9) div{margin:10px; margin-left:50px;}
+#conBox>table>tbody>tr>td>input {
+	border: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #FcFcFc;
+	text-align: center;
+}
 
+#conBox>table>tbody>tr>td {
+	background-color: #F7F7F7;
+	text-align: center
+}
+
+#conBox>table>tbody>tr>td>button {
+	border: 0;
+	width: 18%;
+	height: 100%;
+	background-color: black;
+	color: white;
+}
+
+#conBox>table>tbody>tr>td>button:hover {
+	cursor: pointer;
+	color: red;
+}
+/* 모달창 css 끝----------------------------------------------------------------------------------------------------------------------------------- */
+#detailDivCon001 table:nth-child(2) td, #detailDivCon001 table:nth-child(3) td
+	{
+	width: 25%;
+	height: 50px;
+	border-bottom: 1px solid #ededed;
+}
+
+#detailDivCon001 table:nth-child(2) td:nth-child(1) {
+	background-color: #ededed;
+}
+
+#detailDivCon001 table:nth-child(2) tr:nth-child(1) td {
+	border-top: 2px solid black;
+}
+
+#detailDivCon001 table:nth-child(2) div {
+	margin-left: 10px;
+}
+
+#detailDivCon001 table:nth-child(3) tr:nth-child(1) td {
+	background-color: #ededed;
+	border-top: 2px solid black;
+}
+
+#detailDivCon001 table:nth-child(5) td:nth-child(1) {
+	height: 150px;;
+	width: 2%;
+	background-color: #ededed;
+}
+
+#detailDivCon001 table:nth-child(5) td:nth-child(2) {
+	width: 23%;
+	border-right: 1px solid #ededed;
+	text-align: center;
+}
+
+#detailDivCon001 table:nth-child(5) div {
+	margin: 10px;
+}
+
+#detailDivCon001 table:nth-child(5) td {
+	border-bottom: 1px solid #ededed;
+}
+
+#detailDivCon001 table:nth-child(5) tr:nth-child(1) td {
+	border-top: 2px solid black;
+}
+
+#detailDivCon001 table:nth-child(7) div {
+	margin: 10px;
+	margin-left: 50px;
+}
+
+#detailDivCon001 table:nth-child(9) div {
+	margin: 10px;
+	margin-left: 50px;
+}
 </style>
 
-<body >
+<body>
 	<jsp:include page="../include/header2.jsp"></jsp:include>
-	<div style="margin:auto; width:1100px">
+	<div style="margin: auto; width: 1100px">
 		<h1 style="margin-top: 30px;">[오늘의 여행] ${dto.pd_name }</h1>
 		<input type="hidden" id="u_id" value="${member.u_id }">
 	</div>
@@ -142,7 +212,7 @@
 					<span style="font-size: 120%">￦ ${dto.pd_price } </span>
 				</div>
 			</div>
-<!-- 			<div>
+			<!-- 			<div>
 				<input id = "dateChange" type="button" value="날짜 변경" />
 			</div> -->
 			<hr />
@@ -159,7 +229,8 @@
 				</div>
 			</div>
 			<div class="detailDiv002" id="detailDiv003"
-				style="height: 0; margin: 0; line-height: 0px; margin-left: 15px; margin-top: -10px;">￦ ${dto.adult_price }</div>
+				style="height: 0; margin: 0; line-height: 0px; margin-left: 15px; margin-top: -10px;">￦
+				${dto.adult_price }</div>
 			<div>
 				18세미만 :
 				<div id="detailDiv008">
@@ -173,7 +244,8 @@
 				</div>
 			</div>
 			<div class="detailDiv002" id="detailDiv004"
-				style="height: 0; margin: 0; line-height: 0; margin-left: 15px; margin-top: -10px">￦ ${dto.teenager_price}</div>
+				style="height: 0; margin: 0; line-height: 0; margin-left: 15px; margin-top: -10px">￦
+				${dto.teenager_price}</div>
 			<div>
 				반려동물 :
 				<div id="detailDiv009">
@@ -187,65 +259,91 @@
 				</div>
 			</div>
 			<div class="detailDiv002" id="detailDiv005"
-				style="height: 0; margin: 0; line-height: 0; margin-left: 15px; margin-top: -10px">￦ &nbsp;${dto.pet_price }</div>
+				style="height: 0; margin: 0; line-height: 0; margin-left: 15px; margin-top: -10px">￦
+				&nbsp;${dto.pet_price }</div>
 			<hr style="margin-top: 15px;" />
 			<div>
-				추가인원 : 
+				추가인원 :
 				<div id="detailDiv006_1">
 					<span style="color: red">0</span>
 				</div>
 			</div>
 			<div>
-				추가금액 : &nbsp;&nbsp;<span style="color:red;">￦</span>
+				추가금액 : &nbsp;&nbsp;<span style="color: red;">￦</span>
 				<div id="detailDiv006">
 					<span style="color: red"></span>
 				</div>
 			</div>
 			<div>
-				총 &nbsp;&nbsp;합계 : &nbsp;&nbsp;<span style="color:red;">￦</span>
+				총 &nbsp;&nbsp;합계 : &nbsp;&nbsp;<span style="color: red;">￦</span>
 				<div id="detailDiv006_2">
 					<span style="color: red">${dto.pd_price }</span>
 				</div>
 			</div>
 			<div>
-				<input type="button" onclick="If_User()"  value="예약하기" />
+				<input type="button" onclick="If_User()" value="예약하기" />
 			</div>
 			<div>
-				<input type="button" onclick="Like_click()"   value="찜" />
+				<input type="button" onclick="Like_click()" value="찜" />
 			</div>
+			<div>
+				<input type="button" onclick="If_NoUser()" value="비회원으로 예약하기" />
+			</div>
+			
 		</div>
 	</div>
-	
-	<div style="margin: 10px auto; width: 1100px;">			
-		<div style="float:left;">상품번호 : ${dto.pd_seq }</div><div style="float:right;">조회수 : ${dto.pd_cnt}회 | 리뷰 : 0 | 평점 : <span style="font-size: 110%; color: red;">☆☆☆☆☆</span></div>			
+
+	<div style="margin: 10px auto; width: 1100px;">
+		<div style="float: left;">상품번호 : ${dto.pd_seq }</div>
+		<div style="float: right;">
+			조회수 : ${dto.pd_cnt}회 | 리뷰 : 0 | 평점 : <span
+				style="font-size: 110%; color: red;">☆☆☆☆☆</span>
+		</div>
 	</div>
-	
+
 	<!-- swiper 부분-->
-	<div style="margin:auto; width: 1100px;">
+	<div style="margin: auto; width: 1100px;">
 		<div class="swiper-container">
-			<div class="swiper-wrapper"  style="margin-top:10px">
-				<div class="swiper-slide"><img src="${image.image01 }"></div>
-				<div class="swiper-slide"><img src="${image.image02 }"></div>
-				<div class="swiper-slide"><img src="${image.image03 }"></div>
-				<div class="swiper-slide"><img src="${image.image04 }"></div>
-				<div class="swiper-slide"><img src="${image.image05 }"></div> 
+			<div class="swiper-wrapper" style="margin-top: 10px">
+				<div class="swiper-slide">
+					<img src="${image.image01 }">
+				</div>
+				<div class="swiper-slide">
+					<img src="${image.image02 }">
+				</div>
+				<div class="swiper-slide">
+					<img src="${image.image03 }">
+				</div>
+				<div class="swiper-slide">
+					<img src="${image.image04 }">
+				</div>
+				<div class="swiper-slide">
+					<img src="${image.image05 }">
+				</div>
 			</div>
-				<!-- 네비게이션 버튼 지정 -->
-			<div class="swiper-button-next"></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->
-			<div class="swiper-button-prev"></div><!-- 이전 버튼 -->
+			<!-- 네비게이션 버튼 지정 -->
+			<div class="swiper-button-next"></div>
+			<!-- 다음 버튼 (오른쪽에 있는 버튼) -->
+			<div class="swiper-button-prev"></div>
+			<!-- 이전 버튼 -->
 		</div>
 	</div>
 	<!-- swiper 부분끝-->
-	
-	<div id="map"style="margin: auto; margin-top:10px; width: 1100px; height: 500px; background-color: #F7F7F7">여기는지도에요</div>    <!-- 지  도 -->
-	
-<!-- 컨텐츠 -------------------------------------------------------------------------------------------------------------------------------------->
-	<div id="detailDivCon001" style="margin: auto; width: 1100px; height: 100%;"> 						  
- 		<img src="http://jjcom0214.cafe24.com/web/OneTrillion/covid.jpg"  style="width:1100px; margin-top: 10px;" /> 					
-		<table style="width:1100px; margin-top:10px;">
+
+	<div id="map"
+		style="margin: auto; margin-top: 10px; width: 1100px; height: 500px; background-color: #F7F7F7">여기는지도에요</div>
+	<!-- 지  도 -->
+
+	<!-- 컨텐츠 -------------------------------------------------------------------------------------------------------------------------------------->
+	<div id="detailDivCon001"
+		style="margin: auto; width: 1100px; height: 100%;">
+		<img src="http://jjcom0214.cafe24.com/web/OneTrillion/covid.jpg"
+			style="width: 1100px; margin-top: 10px;" />
+		<table style="width: 1100px; margin-top: 10px;">
 			<tr>
 				<td><div>여행기간</div></td>
-				<td colspan="3"><div>${dto.pd_startDate } ~ ${dto.pd_endDate } (${period}박 ${period2}일)</div></td>
+				<td colspan="3"><div>${dto.pd_startDate }~
+						${dto.pd_endDate } (${period}박 ${period2}일)</div></td>
 			</tr>
 			<tr>
 				<td><div>이용교통</div></td>
@@ -255,10 +353,10 @@
 			</tr>
 			<tr>
 				<td><div>최소인원</div></td>
-				<td colspan="3"><div>${dto.pd_people } 추가인원 가능</div></td>
+				<td colspan="3"><div>${dto.pd_people }추가인원 가능</div></td>
 			</tr>
 		</table>
-		<table style="width:1100px; margin-top:10px; text-align: center;">
+		<table style="width: 1100px; margin-top: 10px; text-align: center;">
 			<tr>
 				<td>구분</td>
 				<td>성인</td>
@@ -272,8 +370,8 @@
 				<td>${dto.pet_price }원</td>
 			</tr>
 		</table>
-		<h3 style="margin-top:30px;margin-left:10px;">중요사항</h3>
-		<table style="width:1100px; margin-top:10px;">
+		<h3 style="margin-top: 30px; margin-left: 10px;">중요사항</h3>
+		<table style="width: 1100px; margin-top: 10px;">
 			<tr>
 				<td></td>
 				<td>전달사항</td>
@@ -298,8 +396,9 @@
 				</td>
 			</tr>
 		</table>
-		<h3 style="margin-top:30px;margin-left:10px;">약관/취소수수료</h3>
-		<table style="width:1100px; margin-top:10px; border-bottom:1px solid #ededed; border-top:2px solid black;">
+		<h3 style="margin-top: 30px; margin-left: 10px;">약관/취소수수료</h3>
+		<table
+			style="width: 1100px; margin-top: 10px; border-bottom: 1px solid #ededed; border-top: 2px solid black;">
 			<tr>
 				<td>
 					<div>&nbsp</div>
@@ -324,13 +423,15 @@
 				</td>
 			</tr>
 		</table>
-		<h3 style="margin-top:30px;margin-left:10px;">여행일정</h3>
-		<table style="width:1100px; margin-top:10px; border-bottom:1px solid #ededed; border-top:2px solid black;">
+		<h3 style="margin-top: 30px; margin-left: 10px;">여행일정</h3>
+		<table
+			style="width: 1100px; margin-top: 10px; border-bottom: 1px solid #ededed; border-top: 2px solid black;">
 			<tr>
 				<td>
 					<div>&nbsp</div>
 					<div>★ ${dto.pd_name }</div>
-					<div>${dto.pd_name }의 사계절과 문화유산을 담은 곳으로 보문호수를 배경으로 진정한 휴식과 쉼을 주는 호텔</div>
+					<div>${dto.pd_name }의사계절과 문화유산을 담은 곳으로 보문호수를 배경으로 진정한 휴식과 쉼을
+						주는 호텔</div>
 					<div>부대시설: F&B 레스토랑, 실내외 수영장, 키즈라운지 등</div>
 					<div>&nbsp</div>
 					<div>★ ${dto.pd_name } 시티투어</div>
@@ -340,99 +441,124 @@
 					<div>*소요시간: 7~8시간</div>
 					<div>*최소출발인원: 15명 (인원미달로 취소시 전날 15시까지 연락드립니다)</div>
 					<div>*픽업시간: 호텔앞 오전 09:50 셔틀버스 출발 예정</div>
-					<div>&nbsp</div>
-					<img style="width:1050px;" src="http://jjcom0214.cafe24.com/web/OneTrillion/detail01.png" alt="" />
+					<div>&nbsp</div> <img style="width: 1050px;"
+					src="http://jjcom0214.cafe24.com/web/OneTrillion/detail01.png"
+					alt="" />
 					<div>&nbsp</div>
 					<div>2, ${dto.pd_name } 야간투어</div>
-					<div>코스: 승차-동궁과 월지-첨성대-계림-교촌마을-월정교-하차</div>	
+					<div>코스: 승차-동궁과 월지-첨성대-계림-교촌마을-월정교-하차</div>
 					<div>*운행일: 매일</div>
 					<div>*시간: 18:30~22:00</div>
 					<div>*최소출발인원: 15명 (인원미달로 취소시 전날 16시 이후 연락드립니다)</div>
-					<div>*픽업시간: 호텔앞 오전 19:15 셔틀버스 출발 예정</div>		
-					<div>&nbsp</div>
-					<img style="width:1050px;" src="http://jjcom0214.cafe24.com/web/OneTrillion/detail02.png" alt="" />
+					<div>*픽업시간: 호텔앞 오전 19:15 셔틀버스 출발 예정</div>
+					<div>&nbsp</div> <img style="width: 1050px;"
+					src="http://jjcom0214.cafe24.com/web/OneTrillion/detail02.png"
+					alt="" />
 					<div>&nbsp</div>
 				</td>
 			</tr>
 		</table>
 	</div>
-	
 
-	<div id="modal_body"><!-- 수정 및 삭제 -->
-				<div id="conBox">
-				<table style="margin: 100px auto; background-color: white; height: 700px; box-shadow: 0 0 20px; border-radius: 20px;" border="1px solid black">
-					<tr>
-						<th width="200px" style="border-radius:20px 0 0 0; ">번호</th>
-						<td colspan="2" style="border-radius:0 20px 0 0; ">
-							${dto.pd_seq}<input type="hidden" id="pd_seq"  value="${dto.pd_seq }">
-						</td>		
-					</tr>
-					<tr>
-						<th>상품이름</th>
-						<td width="300px" > ${dto.pd_name}</td> <!--  상단노출 -->
-						<td width="300px"><input class="inputBox" id="pd_name" value="${dto.pd_name}"></td>
-					</tr>
-					<tr>
-						<th>가격</th>
-						<td> ${dto.pd_price}</td> <!--  상단노출 -->
-						<td ><input class="inputBox"  id="pd_price" value="${dto.pd_price}"></td>
-					</tr>
-					<tr>
-						<th>지도키워드</th>
-						<td> ${dto.pd_keyword}</td> <!--  비노출 -->
-						<td ><input class="inputBox"  id="pd_keyword" value="${dto.pd_keyword}"></td>
-					</tr>
-					<tr>
-						<th>여행 시작일</th>
-						<td> ${dto.pd_startDate}</td> <!-- 우측 배너 -->
-						<td > <input class="inputBox"  type="date" id="pd_startDate" value="${dto.pd_startDate}"></td>
-					</tr>
-					<tr>
-						<th >여행 완료일</th>
-						<td> ${dto.pd_endDate}</td> <!--  우측 배너 -->
-						<td><input class="inputBox"   type="date" id="pd_endDate" value="${dto.pd_endDate}"></td>
-					</tr>
-					<tr>
-						<th>조회수</th>
-						<td> ${dto.pd_cnt}</td> <!--  상단노출 -->
-						<td ><input class="inputBox"  id="pd_cnt" value="${dto.pd_cnt}"></td>
-					</tr>
-					<tr>
-						<th>상품 테마</th>
-						<td> ${dto.pd_theme}</td><!--  상단노출 -->
-						<td > <input class="inputBox"  id="pd_theme" value="${dto.pd_theme}"></td>
-					</tr>
-					<tr>
-						<th>예약 사람</th>
-						<td> ${dto.pd_people}</td><!--  우측배너 -->
-						<td ><input class="inputBox"  id="pd_people" value="${dto.pd_people}"></td>
-					</tr>
-					<tr>
-						<th>이미지 사진</th>
-						<td> ${dto.pd_image}</td><!--  상단노출 -->
-						<td ><input class="inputBox"  id="pd_image" value="${dto.pd_image}"></td>
-					</tr>
 
-					<tr >
-						<th>상품내용</th>
-						<td> ${dto.pd_content1}</td><!--  하단노출 -->
-						<td ><input class="inputBox"  id="pd_content1" value="${dto.pd_content1}"></td>
-					</tr>
-					<tr>
-						<td colspan="3" style="border-radius:0 0 20px 20px; ">
-							<button  onclick="location.href='modify.do?pd_seq=${dto.pd_seq }' ">수정페이지</button>			
-							<button  id="btn_modify"  >수정하기</button>
-							<button  id="btn_modifyokay" >수정완료</button>
-							<button  class="btn_delete" >삭제</button>
-							<button id="btn_close">닫기</button>							
-						</td>
-					</tr>
-				</table>
-			</div>
+	<div id="modal_body">
+		<!-- 수정 및 삭제 -->
+		<div id="conBox">
+			<table
+				style="margin: 100px auto; background-color: white; height: 700px; box-shadow: 0 0 20px; border-radius: 20px;"
+				border="1px solid black">
+				<tr>
+					<th width="200px" style="border-radius: 20px 0 0 0;">번호</th>
+					<td colspan="2" style="border-radius: 0 20px 0 0;">
+						${dto.pd_seq}<input type="hidden" id="pd_seq"
+						value="${dto.pd_seq }">
+					</td>
+				</tr>
+				<tr>
+					<th>상품이름</th>
+					<td width="300px">${dto.pd_name}</td>
+					<!--  상단노출 -->
+					<td width="300px"><input class="inputBox" id="pd_name"
+						value="${dto.pd_name}"></td>
+				</tr>
+				<tr>
+					<th>가격</th>
+					<td>${dto.pd_price}</td>
+					<!--  상단노출 -->
+					<td><input class="inputBox" id="pd_price"
+						value="${dto.pd_price}"></td>
+				</tr>
+				<tr>
+					<th>지도키워드</th>
+					<td>${dto.pd_keyword}</td>
+					<!--  비노출 -->
+					<td><input class="inputBox" id="pd_keyword"
+						value="${dto.pd_keyword}"></td>
+				</tr>
+				<tr>
+					<th>여행 시작일</th>
+					<td>${dto.pd_startDate}</td>
+					<!-- 우측 배너 -->
+					<td><input class="inputBox" type="date" id="pd_startDate"
+						value="${dto.pd_startDate}"></td>
+				</tr>
+				<tr>
+					<th>여행 완료일</th>
+					<td>${dto.pd_endDate}</td>
+					<!--  우측 배너 -->
+					<td><input class="inputBox" type="date" id="pd_endDate"
+						value="${dto.pd_endDate}"></td>
+				</tr>
+				<tr>
+					<th>조회수</th>
+					<td>${dto.pd_cnt}</td>
+					<!--  상단노출 -->
+					<td><input class="inputBox" id="pd_cnt" value="${dto.pd_cnt}"></td>
+				</tr>
+				<tr>
+					<th>상품 테마</th>
+					<td>${dto.pd_theme}</td>
+					<!--  상단노출 -->
+					<td><input class="inputBox" id="pd_theme"
+						value="${dto.pd_theme}"></td>
+				</tr>
+				<tr>
+					<th>예약 사람</th>
+					<td>${dto.pd_people}</td>
+					<!--  우측배너 -->
+					<td><input class="inputBox" id="pd_people"
+						value="${dto.pd_people}"></td>
+				</tr>
+				<tr>
+					<th>이미지 사진</th>
+					<td>${dto.pd_image}</td>
+					<!--  상단노출 -->
+					<td><input class="inputBox" id="pd_image"
+						value="${dto.pd_image}"></td>
+				</tr>
+
+				<tr>
+					<th>상품내용</th>
+					<td>${dto.pd_content1}</td>
+					<!--  하단노출 -->
+					<td><input class="inputBox" id="pd_content1"
+						value="${dto.pd_content1}"></td>
+				</tr>
+				<tr>
+					<td colspan="3" style="border-radius: 0 0 20px 20px;">
+						<button onclick="location.href='modify.do?pd_seq=${dto.pd_seq }' ">수정페이지</button>
+						<button id="btn_modify">수정하기</button>
+						<button id="btn_modifyokay">수정완료</button>
+						<button class="btn_delete">삭제</button>
+						<button id="btn_close">닫기</button>
+					</td>
+				</tr>
+			</table>
+		</div>
 	</div>
-<!-- 모달창 끝----------------------------------------------------------------------------------------------------------------------------------------------->
+	<!-- 모달창 끝----------------------------------------------------------------------------------------------------------------------------------------------->
 
-<script> //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-= [Front_script]
+	<script> //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-= [Front_script]
 		$(document).ready(function() {
 
 					var option03 = $('#detailDiv007 select').val();
@@ -575,6 +701,39 @@
     });//btn_delete 함수 끝 =======================================================================(끝)	    	
     
     
+    //2021. 10. 11 19:00 현성 - 비회원으로 예약하기 임시로 만들어놨습니다
+    function If_NoUser(){  
+
+    	const pd_seq = $("#pd_seq").val().trim();
+    	const pd_name = $("#pd_name").val().trim();  	
+    	//값 예약 페이지로 넘기기 
+    	var sel_adault =$("#sel_adault option:selected").val();
+    	var sel_young =$("#sel_young option:selected").val();
+    	var sel_pet =$("#sel_pet option:selected").val();
+    	var total_price=$("#detailDiv006_2").text();
+    	var allData ={"pd_seq":pd_seq,"sel_adault":sel_adault,"sel_young":sel_young,"sel_pet":sel_pet,"total_price":total_price}; 
+    	//console.log(allData);
+
+        $.ajax({
+           url:"noUserReservation.do",	            
+           type:'GET',
+           data: allData,
+           success:function(){
+           	var confirmRSV = confirm(pd_seq+'번 [ '+pd_name+' ] 상품을 예약시겠습니까?');
+           	
+           	if(!confirmRSV){
+           		return false;
+           	}else{
+  	                location.href = "./noUserReservation.do?pd_seq="+pd_seq+"&sel_adault="+sel_adault+
+  	                		"&sel_young="+sel_young+"&sel_pet="+sel_pet+"&total_price="+total_price;  
+           	}   
+           },
+           error:function(jqXHR, textStatus, errorThrown){
+               alert("에러 발생~~ \n" + textStatus + " : " + errorThrown);
+           }
+       });	
+    	    		
+	}//비회원예약하기 끝
     
     function If_User(){  
 
@@ -593,21 +752,9 @@
     	else{
 	    	//값 예약 페이지로 넘기기 
  	    	var sel_adault =$("#sel_adault option:selected").val();
-	    	//console.log(sel_adault);
  	    	var sel_young =$("#sel_young option:selected").val();
-	    	//console.log(sel_young);
  	    	var sel_pet =$("#sel_pet option:selected").val();
-	    	//console.log(sel_pet);
 	    	var total_price=$("#detailDiv006_2").text();
-	    	//console.log(total_price);
-	    	
-
-/* 	    	var checkbox_values=[];    	    	
-	    	checkbox_values.push(sel_adault); //성인 수
-	    	checkbox_values.push(sel_young); //아동 수
-	    	checkbox_values.push(sel_pet);  //펫 수
-	    	console.log(checkbox_values); //출력 ,,, 배열로 넘기는거 실패*/
-	    	
 	    	var allData ={"pd_seq":pd_seq,"u_id":u_id,"sel_adault":sel_adault,"sel_young":sel_young,"sel_pet":sel_pet,"total_price":total_price}; //아이디랑 인원 담고
 	    	//console.log(allData);
 
@@ -635,7 +782,7 @@
     	    	
     	    	
     	    		
-}//If_User 함수 끝 =======================================================================(끝)9/12 추가
+}//If_User 함수 끝 
    
    
 
@@ -679,7 +826,7 @@ function Like_click(){
     
     
     
-	</script>  
+	</script>
 	<script>
 	/* --------------------------다음 지도 api-------------------------------------------------------------- */
 	var infowindow = new kakao.maps.InfoWindow({
@@ -756,6 +903,6 @@ function Like_click(){
 	
 	
 	</script>
-		<jsp:include page="../include/footer.jsp"></jsp:include>
+	<jsp:include page="../include/footer.jsp"></jsp:include>
 </body>
 </html>

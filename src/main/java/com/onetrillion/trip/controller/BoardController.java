@@ -187,7 +187,7 @@ public class BoardController {
 	}
 	
 	
-	//예약하기 페이지 이동
+	//회원 예약하기 페이지 이동
 	@RequestMapping(value = "reservation.do", method = RequestMethod.GET)
 	public String rsv_Get(@RequestParam("pd_seq") int pd_seq, Model model,
 			@RequestParam("sel_adault") int sel_adault, // 성인
@@ -216,6 +216,36 @@ public class BoardController {
 
 		return "board/reservation";
 	}
+	
+	//예약하기 페이지 이동
+	@RequestMapping(value = "noUserReservation.do", method = RequestMethod.GET)
+	public String noUserRsv_Get(@RequestParam("pd_seq") int pd_seq, Model model,
+			@RequestParam("sel_adault") int sel_adault, // 성인
+			@RequestParam("sel_young") int sel_young, // 18세 미만
+			@RequestParam("sel_pet") int sel_pet, // 반려동물
+			@RequestParam("total_price") int total_price // 총 금액
+	) {
+		BoardDTO dto = service.detail(pd_seq); // seq에 대한 정보들 detail
+		model.addAttribute("dto", dto);
+		// 1박 2일 구하기
+		LocalDate start_date = dto.getPd_startDate();
+		LocalDate last_date = dto.getPd_endDate();
+		Period period = Period.between(start_date, last_date);
+		Period period2 = period.plusDays(1);
+		model.addAttribute("period", period.getDays()); // 6박
+		model.addAttribute("period2", period2.getDays()); // 7일
+		// 원 단위
+		DecimalFormat fomatter = new DecimalFormat("###,###,###");
+		String total_price_won = fomatter.format(total_price); // 150000
+		model.addAttribute("total_price_won", total_price_won); // 150,000
+		// 총 인원 (명) - 아직 사용 안함
+		int total = sel_adault + sel_young + sel_pet;
+		model.addAttribute("total", total);
+		
+
+		return "board/noUserReservation";
+	}
+	
 	
 	//확인필요!!
 	@RequestMapping(value = "reservation.do", method = RequestMethod.POST)
