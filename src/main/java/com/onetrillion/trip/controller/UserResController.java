@@ -26,7 +26,7 @@ public class UserResController {
 	public UserResService service;
 	
 	
-
+	//2021. 10. 11 15:50 현성 userReservation -회원 예약하기 전체 리스트
 	@RequestMapping(value = "/list.do", method = RequestMethod.GET)
 	public String userSelectAll(Model model, UserResDTO dto){
 		
@@ -37,6 +37,7 @@ public class UserResController {
 		return "userRes/list";
 	}
 	
+	//2021. 10. 11 15:50 현성 userReservation - 회원 예약하기 insert 구현
 	@RequestMapping(value = "/finished.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String userResInsert(UserResDTO dto){

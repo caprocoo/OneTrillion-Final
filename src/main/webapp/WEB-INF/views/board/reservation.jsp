@@ -169,12 +169,10 @@ $(function() { //이메일 입력
 	const pd_seq=$("#pd_seq").text();
 	const u_id=$("#u_id").text();
 
-	
-	//console.log(pd_name);
 
 
 	
-	
+	//2021. 10. 11 15:50 현성 userReservation - 회원 예약하기 insert 구현
 	function payFinished(){
 		
 		const bookerEmail = $("#bookerEmail").val()+"@"+$('#select').val();
@@ -204,7 +202,7 @@ $(function() { //이메일 입력
 				u_id : "${param.u_id}",
 				
 		}
-		//console.log(bookerData)
+		
 		$.ajax({
 			type : 'POST',
 			data : bookerData,
@@ -218,7 +216,7 @@ $(function() { //이메일 입력
 				console.log(status);
 			}
 		});
-	}
+	} // 현성 insert 구현 끝
 	
 	
 
