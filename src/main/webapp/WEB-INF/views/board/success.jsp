@@ -16,8 +16,8 @@
 		<br/>
 		상품번호 - > ${pd_seq} <br>
 		상품이름 -> ${dto.pd_name}<br>
-		예약자 이름 -> ${member.u_name}<br>
-		예약자 전화번호 -> ${member.u_tel }<br>
+		예약자 이름 -> ${member.u_nickName}<br>
+
 		예약자 이메일 -> ${member.u_email}<br>
 		
 		<button id="RSV_check">예약 확인하러 가기</button>

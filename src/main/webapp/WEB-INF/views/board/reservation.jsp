@@ -142,7 +142,9 @@
 
 
 $("#item_pay_success").click(function(){
-	location.href="./success.do?pd_seq=" + pd_seq+"&u_id="+u_id;	
+	//location.href="./success.do?pd_seq=" + pd_seq+"&u_id="+u_id;	
+    location.href="../userRes/list.do?pd_seq=" + pd_seq+"&u_id="+u_id; //결제 완료되면 완료페이지로 이동
+
 }); //item_pay_success 함수(끝)
 
 $(function() { //이메일 입력
@@ -224,7 +226,7 @@ $(document).ready(function(){
          }).done(function (data) {
              // 결제가 모두 완료되었을 때 호출되는 함수입니다.
              alert("결제가 완료되었습니다.");
-             location.href="./success.do?pd_seq=" + pd_seq+"&u_id="+u_id;
+             location.href="../userRes/list.do?pd_seq=" + pd_seq+"&u_id="+u_id; //결제 완료되면 완료페이지로 이동
              //console.log(data);
          }).ready(function (data) {
              // 가상계좌 번호가 체번(발급) 되었을 때 호출되는 함수입니다.
