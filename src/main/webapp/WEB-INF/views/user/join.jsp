@@ -75,7 +75,7 @@ label {
 			<%-- <form:input path="u_pwd" id="u_pwd" name="u_pwd" type="password"/>
 			<form:errors path="u_pwd" /> --%>
 			<!-- 비밀번호 확인 입력 칸 --------------------------------------------------------------------->
-			<input type="password" id="repw" placeholder="비밀번호를 다시한번 입력하세요" readonly>
+			<input type="password" id="repw" placeholder="비밀번호를 다시한번 입력하세요">
 			<div class="repw regex"></div>
 			<div class="joinLine"></div>
 			<!-- 이름 입력 칸 --------------------------------------------------------------------->
@@ -111,25 +111,20 @@ label {
 				$.get(sendUrl, function(data, status) {
 					if(status == 'success') {
 						if(result == null || data == 'impossible') {
-							console.log('if',data);
-							console.log('if',result);
 							$(".email").html("이메일 양식이 아니거나 존재하는 이메일 입니다.");
 							$(".email").css("color", "red");
 						} else if(result != null && data == 'possible'){
-							console.log('else if',data);
-							console.log('else if',result);
 							$(".email").html("사용 가능한 이메일입니다.");
 							$(".email").css("color", "pink");
-						} else if($("input#email").val() == "" ){
-							$(".email").html("");
 						} else {
-							$(".email").html("");
-						}
+							$(".email").html("");						
+						 }
 					}else{
 						alert("오류가 생겼습니다!")
 					}
 				});
 		});// keyup 종료
+						
 		
 		 
 		
@@ -166,6 +161,7 @@ label {
 		$(function() {
 
 			//비밀번호 유효성검사
+			$("#repw").prop("readonly", true)
 			$("#u_pwd").keyup(function() {
 		        var regex = /^[A-Za-z\d]{8,15}$/;
 		        var result_blank = regex.exec($("#u_pwd").val())
@@ -174,10 +170,12 @@ label {
 		        if (result == null && $("#u_pwd").val() != "") {
 		           $(".u_pwd").html("영어 대소문자와 숫자를 혼합하여 8-15자리로 입력하세요.");
 		           $(".u_pwd").css("color", "red")
-		        } else {
+		           $("#repw").prop("readonly", true)
+		        } else{
 		           $(".u_pwd").html("");
-		           $(".repw").attr("readonly","");
-		           $(".repw").removeAttr("");
+		           $("#repw").prop("readonly", false)
+		           
+
 		        }
 		     });
 			
@@ -203,16 +201,15 @@ label {
 			$("#u_nickName").on("input", function() {
 				var regex = /[가-힣]{2,}/;
 				var result = regex.exec($("#u_nickName").val());
-
+				var result_empty = $("#u_nickName").val() == "";
 				if (result != null) {
 					$(".u_nickName").html("좋은 이름이네요!");
 					$(".u_nickName").css("color", "pink");
+				} else if(result_empty) {
+					$(".u_nickName").html("");
 				} else if(result == null) {
 					$(".u_nickName").html("한글로 2글자 이상 작성해주세요.");
 					$(".u_nickName").css("color", "red");
-				} else  {
-					 /* $("#u_nickName").val() == "" */
-					$(".u_nickName").html("");
 				}
 			});
 
