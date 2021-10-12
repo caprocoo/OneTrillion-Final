@@ -24,4 +24,9 @@ public class UserResServiceImpl implements UserResService{
 		return userResMapper.userSelectAll();
 	}
 
+	@Override
+	public UserResDTO userResDetail(int pd_seq) {
+		return userResMapper.userResDetail(pd_seq);
+	}
+
 }

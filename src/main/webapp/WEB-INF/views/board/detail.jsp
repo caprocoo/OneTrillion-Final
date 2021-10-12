@@ -758,6 +758,9 @@
     		alert("로그인이 필요합니다.");
     		location.href = "./../user/login.do";
     	    		
+    	}else if (u_id == "${userDTO.u_id}"){
+    		alert('이미 예약한 상품입니다!');
+    		location.href = "http://localhost:8088/trip/userRes/list.do";
     	}
     	//else if(u_id.equals('admin')){ //만약 아이디가 admin 이면 (관리자)    	    
     	//}

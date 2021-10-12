@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.onetrillion.trip.noUserRes.NoUserResDTO;
 import com.onetrillion.trip.service.mapper.NoUserResMapper;
+import com.onetrillion.trip.userRes.UserResDTO;
 
 @Service
 public class NoUserResServiceImpl implements NoUserResService{
@@ -23,5 +24,6 @@ public class NoUserResServiceImpl implements NoUserResService{
 	public List<NoUserResDTO> noUserSelectAll() {
 		return noUserResMapper.noUserSelectAll();
 	}
+
 
 }

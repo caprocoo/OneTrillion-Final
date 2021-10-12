@@ -19,6 +19,10 @@
 		]]>
 	</select>
 	
+<select resultType="com.onetrillion.trip.userRes.UserResDTO" id="userResDetail">
 
+<![CDATA[
+      select * from Tril_USERRESERVATION where pd_seq=#{pd_seq}]]>
+</select>
 
 </mapper>

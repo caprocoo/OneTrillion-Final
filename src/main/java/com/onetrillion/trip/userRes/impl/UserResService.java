@@ -8,5 +8,5 @@ public interface UserResService {
 	
 	int userResInsert(UserResDTO dto);
 	List<UserResDTO> userSelectAll();
-	
+	UserResDTO userResDetail(int pd_seq);
 }

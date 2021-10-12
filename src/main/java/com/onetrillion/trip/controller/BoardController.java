@@ -27,6 +27,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.onetrillion.trip.board.BoardDTO;
 import com.onetrillion.trip.board.ImageDTO;
 import com.onetrillion.trip.board.impl.BoardService;
+import com.onetrillion.trip.userRes.UserResDTO;
+import com.onetrillion.trip.userRes.impl.UserResService;
 
 @Controller
 @RequestMapping(value = "/board")
@@ -38,7 +40,9 @@ public class BoardController {
 
 	@Autowired
 	public BoardService service;
-
+	
+	@Autowired
+	public UserResService userResService;
 
 	@RequestMapping(value = "/search.do", method = RequestMethod.GET)
 	public String search(Model model) {
@@ -47,11 +51,11 @@ public class BoardController {
 		return "board/search";
 	}
 
-	@RequestMapping(value = "/detail.do", method = RequestMethod.GET) //// ========================================추가
-	//// 9/11
+	@RequestMapping(value = "/detail.do", method = RequestMethod.GET) 
 	public String detail(Model model, int pd_seq) {
 		BoardDTO dto = service.detail(pd_seq);
-
+		UserResDTO userDTO = userResService.userResDetail(pd_seq);
+		
 		//1박 2일 구하기
 		LocalDate start_date = dto.getPd_startDate();
 		LocalDate last_date = dto.getPd_endDate();
@@ -66,9 +70,9 @@ public class BoardController {
 		dto.setPd_cnt(dto.getPd_cnt() + 1);
 		service.cntUp(dto); // 조회수 증가
 
-		//디테일 이미지 5개
 		ImageDTO image = service.detailImage(pd_seq);
 		model.addAttribute("dto", dto);
+		model.addAttribute("userDTO", userDTO);
 		model.addAttribute("image", image);
 
 		return "board/detail";
