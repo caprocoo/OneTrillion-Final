@@ -19,4 +19,10 @@
 		]]>
 	</select>
 	
+	<select resultType="com.onetrillion.trip.noUserRes.NoUserResDTO" id="noUserDetail">
+		<![CDATA[
+	      select * from Tril_NOUSERRESERVATION where res_name=#{res_name} AND res_pwd=#{res_pwd}]]>
+	</select>
+	
+	
 </mapper>

@@ -18,6 +18,9 @@
 	           <p>res_name : ${board.res_name }, res_birth : ${board.res_birth }, res_email : ${board.res_email }, res_comment : ${board.res_comment }</p>
 	           <hr />
       </c:forEach> 
+      
+                  <a href="<%=request.getContextPath() %>/noUserRes/check.do">비회원으로 예약조회하기</a>
+      
    </div>
 </body>
 </html>

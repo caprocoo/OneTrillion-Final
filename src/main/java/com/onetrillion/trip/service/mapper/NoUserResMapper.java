@@ -11,6 +11,7 @@ public interface NoUserResMapper {
 	public int noUserResInsert(NoUserResDTO dto);
 	
 	public List<NoUserResDTO> noUserSelectAll();
+	public NoUserResDTO noUserDetail(NoUserResDTO dto);
 	
 	
 }

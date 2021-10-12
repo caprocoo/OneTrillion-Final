@@ -25,5 +25,10 @@ public class NoUserResServiceImpl implements NoUserResService{
 		return noUserResMapper.noUserSelectAll();
 	}
 
+	@Override
+	public NoUserResDTO noUserDetail(NoUserResDTO dto) {
+		return noUserResMapper.noUserDetail(dto);
+	}
+
 
 }
