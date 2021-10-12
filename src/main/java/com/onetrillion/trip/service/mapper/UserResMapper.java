@@ -10,5 +10,6 @@ import com.onetrillion.trip.userRes.UserResDTO;
 public interface UserResMapper {
 	public int userResInsert(UserResDTO dto);
 	public List<UserResDTO> userSelectAll();
-	public UserResDTO userResDetail(int pd_seq);
+	public UserResDTO userResDetail(int ures_seq);
+	public List<UserResDTO> userSelectId(String u_id);
 }

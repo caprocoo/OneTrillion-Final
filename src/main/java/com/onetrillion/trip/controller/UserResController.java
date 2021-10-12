@@ -22,15 +22,15 @@ public class UserResController {
 	public UserResService service;
 	
 	
-	//2021. 10. 11 15:50 현성 userReservation -회원 예약하기 전체 리스트
+	//2021. 10. 12 15:30 현성 userReservation -회원 예약하기 아이디별로 전체 리스트 뽑기 구현
 	@RequestMapping(value = "/list.do", method = RequestMethod.GET)
-	public String userSelectAll(Model model, UserResDTO dto){
+	public String userSelectAll(Model model, String u_id){
 		
-		List<UserResDTO> userResList = service.userSelectAll();
+		List<UserResDTO> userResList = service.userSelectId(u_id);
 		model.addAttribute("userResList", userResList);
 
 
-		return "userRes/list";
+		return "userRes/resList";
 	}
 	
 	//2021. 10. 11 15:50 현성 userReservation - 회원 예약하기 insert 구현
@@ -42,4 +42,16 @@ public class UserResController {
 		
 		return "success";
 	}
+	
+	//
+	@RequestMapping(value = "/resDetail.do", method = RequestMethod.GET)
+	public String userResDetail(int ures_seq, Model model){
+
+		UserResDTO userResDetail = service.userResDetail(ures_seq);
+		model.addAttribute("userResDetail", userResDetail);
+
+		return "userRes/resDetail";
+	}
+	
+	
 }

@@ -19,9 +19,19 @@
 		]]>
 	</select>
 	
-	<select resultType="com.onetrillion.trip.noUserRes.NoUserResDTO" id="noUserDetail">
+	<select resultType="com.onetrillion.trip.noUserRes.NoUserResDTO" id="noUserSelectId">
 		<![CDATA[
-	      select * from Tril_NOUSERRESERVATION where res_name=#{res_name} AND res_pwd=#{res_pwd}]]>
+		SELECT * FROM Tril_NOUSERRESERVATION where res_email=#{res_email}
+		]]>
+	</select>
+	
+	
+	
+	<select resultType="com.onetrillion.trip.noUserRes.NoUserResDTO" id="noUserDetail"
+	parameterType="map"
+	>
+		<![CDATA[
+		select * from Tril_NOUSERRESERVATION where res_email=#{res_email} AND res_pwd=#{res_pwd}]]>
 	</select>
 	
 	
