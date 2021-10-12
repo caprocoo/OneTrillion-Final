@@ -106,15 +106,15 @@ public class UserServiceImpl implements UserService{
 
 
 	@Override
-	public ModelAndView find_Id(String u_email,HttpServletResponse resp) throws IOException {
+	public ModelAndView findId(String u_email,HttpServletResponse resp) throws IOException {
 		ModelAndView mav = new ModelAndView();
 		resp.setContentType("text/html; charset=utf-8");
 		PrintWriter out = resp.getWriter();
-		String email = mapper.find_Id(u_email);
+		String email = mapper.findId(u_email);
 		
 		if(email != null) {
 			mav.addObject("u_email",email);
-			mav.setViewName("user/find_id");
+			mav.setViewName("user/findIdSucc");
 		} else {
 			out.println("<script> alert('이메일을 다시 확인해주세요');");
 	        out.println("history.go(-1);</script>");

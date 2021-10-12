@@ -26,7 +26,7 @@ public interface UserMapper {
 
 	public void modifyUser(UserDTO dto);
 	
-	public String find_Id(String u_email);
+	public String findId(String u_email);
 	
 	public UserDTO selectMember(String u_email);
 	

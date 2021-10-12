@@ -36,7 +36,7 @@
 	<div id="deleteDiv11" style="width:520px; margin:auto;">
 		<input id="u_id" value="${member.u_id }" type="text" readonly>
 		<div class="deleteDiv12"></div>
-		<form action="delete.do"  method="post" id="form">
+		<form action="deleteInfo.do"  method="post" id="form">
 			<input id="u_pwd"  type="password">
 			<div class="deleteDiv12"></div>
 			<button type="button" id="submitbtn">회원 탈퇴</button>

@@ -53,9 +53,9 @@
                       </td>
                       <td >
                           <div style="margin: auto; width: 100%;  text-align: center;">
-                              <input type="button" value="회원정보 변경">
+                              <input type="button" value="회원정보 변경" onclick="location.href='<%=request.getContextPath() %>/user/modifyInfo.do'">
                               <input type="button" value="비밀번호 변경">
-                              <input type="button" value="회원탈퇴"  onclick="location.href='<%=request.getContextPath() %>/user/delete.do' ">
+                              <input type="button" value="회원탈퇴"  onclick="location.href='<%=request.getContextPath() %>/user/deleteInfo.do' ">
                           </div>
                       </td>
                   </tr>

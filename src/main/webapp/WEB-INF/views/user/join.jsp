@@ -131,15 +131,17 @@ label {
 		
 		$('input#id').keyup(function() {
 			var inputId = $(this).val();
-			var regex = /^[A-Za-z\d]{8,15}$/;
-			var result = regex.exec(id);
+			var regex = /^[A-Za-z0-9\d]{8,15}$/;
+			var regexspc = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣~!@#$%^&*()_+|<>?:{}]/;
+			var result = regex.exec($("#id").val());
+			var resultspc = regexspc.exec($("#id").val());
 			var sendUrl = "http://localhost:8088/trip/user/idCheckAjax.do?id=" + inputId;
 				$.get(sendUrl, function(data, status) {
 					if(status === 'success') {
 						if(data === 'possible' && inputId !="") {
-							$(".id").html("영어 대소문자와 숫자를 혼합하여 8-15자리로 입력하세요.");
+							$(".id").html("영어 대소문자와 숫자를 혼합하여 8-15자리로 입력하세요 (특수문자 한글제외)");
 							$(".id").css("color", "red");
-							if(inputId.length > 7 && inputId.length < 16){
+							if(inputId.length > 7 && inputId.length < 16 && resultspc == null && result != null){
 								$(".id").html("사용가능한 아이디입니다!");
 								$(".id").css("color", "pink");								
 							}
@@ -156,6 +158,39 @@ label {
 				});
 
 		});// keyup 종료
+		
+		/* $('input#id').keyup(function() {
+			var inputId = $(this).val();
+			var regex = /^[A-Za-z\d]{8,15}$/;
+			var result = regex.exec(id);
+			var sendUrl = "http://localhost:8088/trip/user/idCheckAjax.do?id=" + inputId;
+				$.get(sendUrl, function(data, status) {
+					if(status === 'success') {
+						console.log(result)
+						if(data === 'possible' && inputId !="") {
+							console.log('data if',result)
+							$(".id").html("영어 대소문자와 숫자를 혼합하여 8-15자리로 입력하세요.");
+							$(".id").css("color", "red");
+							if(inputId.length > 7 && inputId.length < 16){
+								console.log('result if',result)
+								$(".id").html("사용가능한 아이디입니다!");
+								$(".id").css("color", "pink");								
+							}
+						} else if(data === "impossible"){
+							$(".id").html("이미 존재하는 아이디입니다!");
+							$(".id").css("color", "red");
+							console.log('else if',result)
+						} else {
+							console.log('else',result)
+							$(".id").html("");
+						}
+
+					}else{
+						alert("오류가 생겼습니다!")
+					}
+				});
+
+		});// keyup 종료 */
 
 		// 실행함수 ----------------------------------------------------------------------
 		$(function() {
@@ -163,12 +198,13 @@ label {
 			//비밀번호 유효성검사
 			$("#repw").prop("readonly", true)
 			$("#u_pwd").keyup(function() {
-		        var regex = /^[A-Za-z\d]{8,15}$/;
-		        var result_blank = regex.exec($("#u_pwd").val())
-		        var result = regex.exec($("#u_pwd").val())
+		        var regex = /^[a-zA-Z0-9\d]{8,15}$/;
+		        var regexspc = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣~!@#$%^&*()_+|<>?:{}]/;
+		        var result = regex.exec($("#u_pwd").val());
+		        var resultspc = regexspc.exec($("#u_pwd").val());
 
 		        if (result == null && $("#u_pwd").val() != "") {
-		           $(".u_pwd").html("영어 대소문자와 숫자를 혼합하여 8-15자리로 입력하세요.");
+		           $(".u_pwd").html("영어와 숫자를 혼합하여 8-15자리로 입력하세요");
 		           $(".u_pwd").css("color", "red")
 		           $("#repw").prop("readonly", true)
 		        } else{

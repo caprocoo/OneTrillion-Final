@@ -85,7 +85,7 @@
 
    <!-- 아이디 찾기 select u_id from tril_member where u_email = 'cording@coco.com'; 
       쿼리문확인완료 -->
-   <select resultType="String" id="find_Id" parameterType="String">
+   <select resultType="String" id="findId" parameterType="String">
       select u_id from tril_member where u_email = #{u_email} 
    </select>
 

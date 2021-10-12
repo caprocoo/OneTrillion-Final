@@ -100,6 +100,13 @@ public class UserController {
 		// 회원가입 성공 시 로그인 페이지로 이동~
 		return "redirect:login.do";
 	}
+	
+	
+// 회원가입 성공페이지  10-12 17:26 용상현	
+//	@RequestMapping(value = "/user/joinSucc.do", method = RequestMethod.GET)
+//	public String joinSuccPage() {
+//		return "user/joinSucc";
+//	}
 
 // 로그인 관련 페이지 ============================================================================================
 
@@ -133,30 +140,29 @@ public class UserController {
 // 아이디 찾기 ============================================================================================
 
 	// 아이디 찾기 페이지로 이동
-	@RequestMapping(value = "/user/findMyId.do")
-	public String findMyId() {
-		// logger.info(">>>> user/findMyId");
-		return "user/findMyId";
+	@RequestMapping(value = "/user/findId.do")
+	public String findId() {
+		return "user/findId";
 	}
 
 	// 아이디 찾기 실행
-	@RequestMapping(value = "/user/find_id.do", method = RequestMethod.POST)
-	public ModelAndView find_id(HttpServletResponse resp, @RequestParam(value = "u_email") String u_email) throws IOException {
+	@RequestMapping(value = "/user/findIdSucc.do", method = RequestMethod.POST)
+	public ModelAndView findIdSucc(HttpServletResponse resp, @RequestParam(value = "u_email") String u_email) throws IOException {
 		ModelAndView mav = new ModelAndView();
 		
-		mav = userService.find_Id(u_email, resp);
+		mav = userService.findId(u_email, resp);
 		return mav;
 	}
 	
 
 	// ============================================================================================
-	@RequestMapping(value = "/user/pw-find", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/findPw", method = RequestMethod.GET)
 	public ModelAndView findPw() {
-		return new ModelAndView("/user/pw-find");
+		return new ModelAndView("/user/findPw");
 	}
 
 
-	@RequestMapping(value = "/user/pw-find", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/findPw", method = RequestMethod.POST)
 	@ResponseBody
 	public ModelAndView findPwd(UserDTO dto, ModelAndView mav,HttpServletResponse resp) throws IOException {
 		ModelAndView findpw = userService.findPw(dto,resp);
@@ -165,7 +171,7 @@ public class UserController {
 		
 
 		if(findpw == null) {
-			mav.setViewName("redirect:/user/pw-find");
+			mav.setViewName("redirect:/user/findPw");
 		} else {
 			out.println("<script> alert('임시비밀번호를 전송하였습니다 가입하신 이메일을 확인해주세요');");
 	        out.println("location.href='http://localhost:8088/trip/user/login.do'</script>");
@@ -173,6 +179,13 @@ public class UserController {
 		}
 		return mav;
 	}
+	
+	// 회원정보 수정전 인증페이지
+	@RequestMapping(value = "/user/modifyInfoPass", method = RequestMethod.GET)
+	public String modifyInfoPassPage() {
+		return "user/modifyInfoPass";
+	}
+	
 	
 	
 	// 회원정보 수정 페이지 이동
@@ -195,24 +208,24 @@ public class UserController {
 	}
 
 
-	@RequestMapping(value = "/user/myPage.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/myPageInfo.do", method = RequestMethod.GET)
 	public String myPage_page(@RequestParam("u_id") String u_id, @ModelAttribute UserDTO dto, HttpServletRequest req) {
 		// logger.info(">>>> user/myPage_page ");
 		UserDTO userDto = userService.readMember(u_id);
 		//System.out.println(userDto);
 		req.setAttribute("userDto", userDto);
-		return "user/myPage";
+		return "user/myPageInfo";
 	}
 
 
 
-	@RequestMapping(value = "/user/delete.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/deleteInfo.do", method = RequestMethod.GET)
 	public void delete_page() throws Exception {
 		logger.info(">>>> user/delete 들ㅇㅓ왔어 ㅎㅎㅎㅎ");
 	}
 
 	
-	  @RequestMapping(value = "/user/delete.do", method = RequestMethod.POST)
+	  @RequestMapping(value = "/user/deleteInfo.do", method = RequestMethod.POST)
 	  public String delete_page(HttpSession session, UserDTO dto, RedirectAttributes rttr) throws Exception{ 
 		   logger.info(">>>> user/delete_page 이제 삭제 하면 돼,,,, "); 
 		  UserDTO member = (UserDTO) session.getAttribute("member"); 

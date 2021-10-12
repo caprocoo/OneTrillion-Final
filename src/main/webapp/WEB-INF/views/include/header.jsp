@@ -227,7 +227,7 @@
 		            // 미로그인 시,
 		            if(u_id == null) { %>
 		            <a href="<%=request.getContextPath()%>/user/login.do">로그인 &nbsp;</a>
-		            <a href="<%=request.getContextPath()%>/user/myPage.do?u_id=${member.u_id}">회원정보 &nbsp;</a>
+		            <a href="<%=request.getContextPath()%>/user/myPageInfo.do?u_id=${member.u_id}">회원정보 &nbsp;</a>
 					<a href="<%=request.getContextPath()%>/user/cs.do">고객센터&nbsp;</a> 
 					<a href="<%=request.getContextPath()%>/user/wishlist.do">찜&nbsp;</a> 
 					<a href="<%=request.getContextPath()%>/user/reserveCheck.do">예약조회&nbsp;</a> 
@@ -236,7 +236,7 @@
 		            // 로그인 성공 시,
 		            else{%> 
 		              <a onclick="logout()">&nbsp;로그아웃 &nbsp;</a>
-		            <a href="<%=request.getContextPath() %>/user/myPage.do?u_id=${member.u_id}">회원정보 &nbsp;</a>
+		            <a href="<%=request.getContextPath() %>/user/myPageInfo.do?u_id=${member.u_id}">회원정보 &nbsp;</a>
 					<a href="<%=request.getContextPath()%>/user/cs.do">고객센터&nbsp;</a> 
 					<a href="<%=request.getContextPath()%>/user/wishlist.do">찜&nbsp;</a> 
 					<a href="<%=request.getContextPath()%>/user/reserveCheck.do">예약조회&nbsp;</a> 
