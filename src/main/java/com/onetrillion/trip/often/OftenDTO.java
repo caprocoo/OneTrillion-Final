@@ -1,13 +1,14 @@
-package com.onetrillion.trip.board;
+package com.onetrillion.trip.often;
 
 public class OftenDTO {
-                                             // @@ 자주하는질문   [10/11 월 한보영]
-
+                                             
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 자주하는질문 [10/11 월 한보영]
 //	CREATE TABLE Tril_Often(
 //	of_seq number(5) NOT NULL PRIMARY KEY,
 //	of_title varchar2(100)  ,
 //	of_content varchar2(2000) 
 //	);
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	
 	private int of_seq ; //자주묻는 질문 seq
 	private String of_title ; //제목

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.onetrillion.trip.service.mapper.ClientQueMapper">
+
+
+                                                      <!-- @@ 1:1문의 CRUD   [10/12 화 한보영]  -->
+
+
+<!-- @@ 리스트 -->
+<select resultType="com.onetrillion.trip.clientque.ClientqueDTO" id="selectAll">
+<![CDATA[ SELECT * FROM Tril_ClientQue ORDER BY cl_seq  ASC  ]]>
+</select>
+
+
+<!-- @@ 입력 -->
+<insert id="insert">
+<![CDATA[
+	INSERT INTO Tril_ClientQue(cl_seq, u_id, u_nickName, cl_title, cl_content, cl_Date) 
+	VALUES ((select nvl(max(cl_seq), 0)+1 from Tril_ClientQue)
+	,#{u_id} ,#{u_nickName} ,#{cl_title} ,#{cl_content} , to_char(sysdate,'yyyy.mm.dd hh24:mi')); 
+]]>		
+</insert>
+
+<!-- @@ 디테일 -->
+<select resultType="com.onetrillion.trip.clientque.ClientqueDTO" id="detail">
+<![CDATA[
+      select * from Tril_ClientQue where cl_seq=#{cl_seq}]]>
+</select>
+
+
+
+
+
+</mapper>

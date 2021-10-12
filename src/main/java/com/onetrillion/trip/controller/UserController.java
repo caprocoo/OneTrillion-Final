@@ -2,7 +2,6 @@ package com.onetrillion.trip.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,9 +22,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.onetrillion.trip.board.CsnoticeDTO;
-import com.onetrillion.trip.board.OftenDTO;
+import com.onetrillion.trip.notice.CsnoticeDTO;
 import com.onetrillion.trip.notice.Impl.NoticeService;
+import com.onetrillion.trip.often.OftenDTO;
 import com.onetrillion.trip.user.UserDTO;
 import com.onetrillion.trip.user.Impl.UserService;
 import com.onetrillion.trip.user.Impl.UserServiceImpl;
@@ -223,8 +222,8 @@ public class UserController {
 	  return "redirect:../"; 
 	  }
 	  
-	// 미구현 ============================================================================================	  
 
+	  //공지사항 & 자주하는 질문 목록으로 이동
 	  @RequestMapping(value = "/user/cs.do", method = RequestMethod.GET)
 		public String cs_page(Model model) {
 			//@@ 공지사항 목록 [10/11 월 한보영]
@@ -238,6 +237,9 @@ public class UserController {
 			
 			return "user/cs";
 		}
+	  
+// 미구현 ============================================================================================	  
+
 
 	@RequestMapping(value = "/user/wishlist.do", method = RequestMethod.GET)
 	public String wishlist_page() {

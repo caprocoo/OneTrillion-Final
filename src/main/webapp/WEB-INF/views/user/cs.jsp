@@ -38,53 +38,78 @@
           <div class="introMenu" id="introQuediv1">자주하는질문</div>
           <div class="introMenu" id="introWishdiv1" onclick="location.href='<%=request.getContextPath() %>/user/myPage.do?u_id=${member.u_id}'">1대1문의</div>
       </div>
-      <div style="float:right; width:915px; height: auto;">
-          <div class="introMenu2" id="introinfo1">
+      
+      
+      <div style="float:right; width:915px; height: auto;">         
+          
+    <!-- ============================================================================@@ 공지사항 10/11 한보영 -->             
+          
+         <div class="introMenu2" id="introinfo1">
               <h3 style="margin-left:10px; margin-top:50px; margin-bottom:10px;">공지사항</h3>
+           <!-- @@ 검색 -->   
+              <select  class="serach">
+				<option value="title">제목</option>
+				<option value="content">내용</option>
+			 </select>
+			 <input class="keyword" type="text" /> 	
               
-               <!-- @@ 공지사항 10/11 한보영-->
-              <table>
+               
+           <!-- @@ list --> 
+              <table class="A">
                     <tr>
                         <th>No</th>
-                        <th>제목</th>
+                        <th>제목</th>                        
                     </tr>                    
-                 <c:forEach var="notice" items="${noticeList }">                    
-                    <tr>
+                 <c:forEach var="notice" items="${noticeList }">   
+                 <tbody>                 
+                    <tr class="tr01" >
                         <td class="introInfotd3" >${notice.no_seq }</td>
                         <td class="introInfotd2" > ${notice.no_title }</td>
                     </tr>
-                    <tr>
+                    <tr class="tr02">
                         <td class="introInfotd1" colspan="2"> ${notice.no_content } </td>
                     </tr>                    
                  </c:forEach>    
+                 </tbody>
               </table>
-          </div>
+          </div>       
           
+  <!-- ===============================================================================@@ 자주하는 질문 10/11 한보영 -->       
           
-          <!-- @@ 자주하는 질문 10/11 한보영 -->
           <div class="introMenu2" id="introQue1">
               <h3 style="margin-left:10px; margin-top:50px; margin-bottom:10px;">자주하는질문</h3>
-              <table>
+              
+              <!-- @@ 검색 -->
+              <select  class="serach">
+				<option value="title">제목</option>
+				<option value="content">내용</option>
+			 </select>
+			 <input class="keyword" type="text" /> 
+              
+              
+              <!-- @@ list --> 
+              <table class="A">
                 <tr>
                     <th>No</th>
                     <th>제목</th>
                 </tr>
                 
-             <c:forEach var="often" items="${oftenList }">       
-                <tr>
+             <c:forEach var="often" items="${oftenList }">    
+              <tbody>      
+                <tr class="tr01">
                     <td class="introInfotd3" >${often.of_seq }</td>
                     <td class="introInfotd2" >${often.of_title }</td>
                 </tr>
-                <tr>
-                    <td class="introInfotd1" colspan="2">
-                       ${often.of_content }
-                    </td>
+                <tr class="tr02">
+                    <td class="introInfotd1" colspan="2"> ${often.of_content } </td>
                 </tr>
-              </c:forEach>     
+              </c:forEach> 
+              </tbody>       
           </table>
           </div>
           
-          
+    <!-- ========================================================================================================== -->     
+            
           <div class="introMenu2" id="introQue2">
               <h3 style="margin-left:10px; margin-top:50px; margin-bottom:10px;">1대1문의</h3>
           </div>
@@ -122,6 +147,46 @@
         //메인 --------------------------------------------------------------------
 
 	})
+	
+	
+	       
+    	 //공지사항 & 자주묻는질문 검색 ---------------------------------------------------
+    	
+    	$(document).ready(function(){
+    		$(".keyword").keyup(function(){
+    			$(".tr01").hide();
+    			if($(".serach").val() == "title"){
+    				//console.log('제목')
+    				 $(".A>tbody>tr>td:nth-child(2):contains(" + $(this).val() + ")").parent().show();
+    				$(".A>tbody>tr>td:nth-child(2):contains(" + $(this).val() + ")").parent().prev().show();
+    				$(".tr02"). css("display", "table-row") 
+    			}else {
+    				//console.log('내용')
+     				$(".A>tbody>tr:nth-child(2)>td:contains(" + $(this).val() + ")").parent().show();
+    				$(".A>tbody>tr:nth-child(2)>td:contains(" + $(this).val() + ")").parent().prev().show();
+    				$(".tr02"). css("display", "table-row") 
+    			}
+    		});
+    	});
+          
+           
+   		//공지사항 & 자주묻는질문 검색 ---------------------------------------------------
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
  </script>	
 	
 	
