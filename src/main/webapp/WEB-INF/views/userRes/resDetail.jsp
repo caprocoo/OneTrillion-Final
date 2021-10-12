@@ -153,6 +153,10 @@
               <div style="text-align: right;">
                 <a class="btn btn-secondary" href="http://localhost:8088/trip/userRes/list.do" role="button"
                   style="margin-top:10px; height: 40px; margin-bottom: 10px;">돌아가기</a>
+                  <a class="btn btn-secondary" href="http://localhost:8088/trip/reply/list.do" role="button"
+                  style="margin-top:10px; height: 40px; margin-bottom: 10px;">댓글 전체보기</a>
+                  <a class="btn btn-secondary" href="http://localhost:8088/trip/reply/detail.do" role="button"
+                  style="margin-top:10px; height: 40px; margin-bottom: 10px;">댓글 쓰기</a>
               </div>
             </div>
           </div>
