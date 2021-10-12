@@ -1,11 +1,7 @@
 package com.onetrillion.trip.controller;
 
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
-
-import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +25,7 @@ public class NoUserResController {
 	@Autowired
 	public NoUserResService service;
 	
-	//2021. 10. 11 19:35 현성 noUserReservation -회원 예약하기 전체 리스트
+	//2021. 10. 11 19:35 현성 noUserReservation -비회원 예약 전체 리스트
 	@RequestMapping(value = "/list.do", method = RequestMethod.GET)
 	public String noUserSelectAll(Model model){
 		
@@ -38,7 +34,18 @@ public class NoUserResController {
 		
 		return "noUserRes/list";
 	}
-	//2021. 10. 11 19:35 현성 noUserReservation -비회원 예약하기 insert 구현
+	
+	//2021. 10. 12 17:30 현성 noUserReservation -비회원 상세예약확인 페이지
+	@RequestMapping(value = "/selectId.do", method = RequestMethod.GET)
+	public String noUserSelectId(Model model, String res_email){
+		
+		NoUserResDTO noUserSelectId = service.noUserSelectId(res_email);
+		model.addAttribute("noUserSelectId", noUserSelectId);
+		
+		return "noUserRes/resDetNoMem";
+	}
+	
+	//2021. 10. 11 19:35 현성 noUserReservation -비회원 예약 insert 구현
 	@RequestMapping(value = "/finished.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String noUserResInsert(NoUserResDTO dto){
@@ -47,36 +54,28 @@ public class NoUserResController {
 		return null;
 	}
 	
-	
-	//2021.10.12 11:00 현성 noUserReservation -비회원 예약하기 detail 구현1
-	@RequestMapping(value = "/check.do", method = RequestMethod.GET)
+	//2021.10.12 11:00 현성 noUserReservation -비회원 예약 조회 로그인 페이지로 이동
+	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 	public String noUserCheck(){
-		
-		
-		return "noUserRes/check";
+		return "noUserRes/resDetNoMemLog";
 	}
 	
-	//2021.10.12 11:00 현성 noUserReservation -비회원 예약하기 detail 구현2
-	@RequestMapping(value = "/detail.do", method = RequestMethod.POST)
-	public String noUserDetail(@RequestParam("res_name")String res_name, @RequestParam("res_pwd")String res_pwd, 
-			HttpServletResponse resp, Model model) throws IOException{
-		resp.setContentType("text/html; charset=utf-8");
-	    PrintWriter out = resp.getWriter();
-		NoUserResDTO dto = new NoUserResDTO();
-		dto.setRes_name(res_name);
-		dto.setRes_pwd(res_pwd);
-		NoUserResDTO result = service.noUserDetail(dto);
-		if(result == null) {
-			out.println("<script> alert('예약자명 또는 비밀번호가 맞지 않습니다'); ");
-			out.println("location.href= 'http://localhost:8088/trip/noUserRes/check.do' </script>");
-	        out.close();
-	        
-		}else 
-			model.addAttribute("board", result);
+	//2021.10.12 17:00 현성비회원 예약조회관련 이메일 및 비밀번호 값 불러오기(Ajax)
+	@RequestMapping(value = "/resDetail.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String resDetail(@RequestParam("res_email") String res_email, @RequestParam("res_pwd")String res_pwd, Model model){
+		//System.out.println(res_email);
+		//System.out.println(res_pwd);
+		NoUserResDTO dto = service.noUserDetail(res_email, res_pwd);
+		if(dto==null) {
+			return "안녕";
+		}else {
+			model.addAttribute("noUserEmailPwd", dto);
+		}
 		
-		
-		return "noUserRes/detail";
+		return null;
 	}
+
 	
 	
 }

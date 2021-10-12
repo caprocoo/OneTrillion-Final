@@ -14,7 +14,7 @@ import com.onetrillion.trip.clientque.Impl.ClientqueService;
 
 
 @Controller
-@RequestMapping(value = "/user/myPage")
+@RequestMapping(value = "/myPage")
 public class ClientQueController {
 
 	@Autowired

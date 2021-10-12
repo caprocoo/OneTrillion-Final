@@ -35,7 +35,7 @@ public interface UserService {
 
 	public void modifyUser(UserDTO dto);
 
-	public ModelAndView find_Id(String u_email, HttpServletResponse resp) throws IOException;
+	public ModelAndView findId(String u_email, HttpServletResponse resp) throws IOException;
 	
 	public UserDTO selectMember(String u_email);
 	

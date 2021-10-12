@@ -9,6 +9,6 @@ public interface NoUserResService {
 	
 	int noUserResInsert(NoUserResDTO dto);
 	List<NoUserResDTO> noUserSelectAll();
-	NoUserResDTO noUserDetail(NoUserResDTO dto);
-	
+	NoUserResDTO noUserDetail(String res_email, String res_pwd);
+	NoUserResDTO noUserSelectId(String res_email);
 }
