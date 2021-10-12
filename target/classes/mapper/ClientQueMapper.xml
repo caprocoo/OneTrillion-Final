@@ -16,9 +16,9 @@
 <!-- @@ 입력 -->
 <insert id="insert">
 <![CDATA[
-	INSERT INTO Tril_ClientQue(cl_seq, u_id, u_nickName, cl_title, cl_content, cl_Date) 
+	INSERT INTO Tril_ClientQue(cl_seq, u_id, u_nickName, cl_title, cl_content, cl_Date, cl_type ) 
 	VALUES ((select nvl(max(cl_seq), 0)+1 from Tril_ClientQue)
-	,#{u_id} ,#{u_nickName} ,#{cl_title} ,#{cl_content} , to_char(sysdate,'yyyy.mm.dd hh24:mi')); 
+	,#{u_id} ,#{u_nickName} ,#{cl_title} ,#{cl_content} , to_char(sysdate,'yyyy.mm.dd hh24:mi'), #{cl_type }); 
 ]]>		
 </insert>
 

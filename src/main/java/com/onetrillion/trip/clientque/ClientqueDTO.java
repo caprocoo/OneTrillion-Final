@@ -29,12 +29,20 @@ public class ClientqueDTO {
 	private String cl_title; //제목
 	private String cl_content; //내용
 	private String cl_Date; //작성일
+	private String cl_type ; //작성일
 	
 	public ClientqueDTO() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public ClientqueDTO(int cl_seq, String u_id, String u_nickName, String cl_title, String cl_content, String cl_Date) {
+		
+	@Override
+	public String toString() {
+		return "ClientqueDTO [cl_seq=" + cl_seq + ", u_id=" + u_id + ", u_nickName=" + u_nickName + ", cl_title="
+				+ cl_title + ", cl_content=" + cl_content + ", cl_Date=" + cl_Date + ", cl_type=" + cl_type + "]";
+	}
+
+	public ClientqueDTO(int cl_seq, String u_id, String u_nickName, String cl_title, String cl_content, String cl_Date,
+			String cl_type) {
 		super();
 		this.cl_seq = cl_seq;
 		this.u_id = u_id;
@@ -42,12 +50,7 @@ public class ClientqueDTO {
 		this.cl_title = cl_title;
 		this.cl_content = cl_content;
 		this.cl_Date = cl_Date;
-	}
-
-	@Override
-	public String toString() {
-		return "ClientqueDTO [cl_seq=" + cl_seq + ", u_id=" + u_id + ", u_nickName=" + u_nickName + ", cl_title="
-				+ cl_title + ", cl_content=" + cl_content + ", cl_Date=" + cl_Date + "]";
+		this.cl_type = cl_type;
 	}
 
 	public int getCl_seq() {
@@ -85,6 +88,12 @@ public class ClientqueDTO {
 	}
 	public void setCl_Date(String cl_Date) {
 		this.cl_Date = cl_Date;
+	}
+	public String getCl_type() {
+		return cl_type;
+	}
+	public void setCl_type(String cl_type) {
+		this.cl_type = cl_type;
 	}
 	
 	

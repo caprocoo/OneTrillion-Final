@@ -8,5 +8,6 @@ public interface UserResService {
 	
 	int userResInsert(UserResDTO dto);
 	List<UserResDTO> userSelectAll();
-	UserResDTO userResDetail(int pd_seq);
+	UserResDTO userResDetail(int ures_seq);
+	List<UserResDTO> userSelectId(String u_id);
 }
