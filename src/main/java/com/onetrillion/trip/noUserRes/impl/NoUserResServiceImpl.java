@@ -26,9 +26,17 @@ public class NoUserResServiceImpl implements NoUserResService{
 	}
 
 	@Override
-	public NoUserResDTO noUserDetail(NoUserResDTO dto) {
-		return noUserResMapper.noUserDetail(dto);
+	public NoUserResDTO noUserDetail(String res_email, String res_pwd) {
+		return noUserResMapper.noUserDetail(res_email, res_pwd);
 	}
+
+	@Override
+	public NoUserResDTO noUserSelectId(String res_email) {
+		return noUserResMapper.noUserSelectId(res_email);
+	}
+
+
+
 
 
 }
