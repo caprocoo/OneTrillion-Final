@@ -211,7 +211,7 @@ $(function() { //이메일 입력
 			url : "http://localhost:8088/trip/userRes/finished.do",
 			success : function(data){
 				console.log('데이터 처리 완료')
-				location.href = "http://localhost:8088/trip/userRes/list.do";
+				location.href = "http://localhost:8088/trip/userRes/list.do?u_id="+u_id;
 			},
 			error : function(request, status){
 				alert('실패');
