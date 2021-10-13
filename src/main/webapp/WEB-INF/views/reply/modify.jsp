@@ -17,6 +17,7 @@
                  <th>아이디</th>
                  <td>
                 	  <input type="text" name = "u_id" value = "${replyDetail.u_id }"/>
+                	  <input type="hidden" name = "reply_seq" value = "${replyDetail.reply_seq }"/>
                  </td>
              </tr>
              <tr>

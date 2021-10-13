@@ -156,11 +156,11 @@
 							        type:'POST',
 							        data: seqdata,
 							        success:function(data){
-							            alert("완료!");
+							            alert("삭제되었습니다.");
 							            location.href = "./list.do";							            	            
 							        },
 							        error:function(){
-							            alert("에러 발생");
+							            alert("에러");
 							        }
 							    });	//ajax 끝
 						    	}//if끌						    	

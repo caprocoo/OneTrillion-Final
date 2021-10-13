@@ -142,6 +142,8 @@
 				$("#introinfo1").css("display", "block")
 			}else if(thisAttr == "introQuediv1"){
 				$("#introQue1").css("display", "block")
+			}else{
+				   location.href = "http://localhost:8088/trip/myPage/list.do"
 			}
 		})
         //메인 --------------------------------------------------------------------
