@@ -39,7 +39,7 @@ public class ReplyController {
 	@RequestMapping(value = "insert.do", method = RequestMethod.POST)
 	public String replyInsertCommit(Model model, ReplyDTO dto) {
 		
-		//System.out.println(dto);
+		System.out.println(dto);
 		service.replyInsert(dto);
 
 		return "redirect:list.do";

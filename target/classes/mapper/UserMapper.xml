@@ -80,6 +80,11 @@
    <select resultType="com.onetrillion.trip.user.UserDTO" id="member_Login">
       SELECT u_id, u_pwd, u_nickName, u_email FROM Tril_Member WHERE u_id = #{u_id} AND u_pwd = #{u_pwd} 
    </select>
+   
+    <!-- 마이페이지 회원정보변경 인증 10/13 -->
+   <select resultType="com.onetrillion.trip.user.UserDTO" id="modify_pass">
+      SELECT u_id, u_pwd, u_nickName, u_email FROM Tril_Member WHERE u_pwd = #{u_pwd} 
+   </select>
 
 
 

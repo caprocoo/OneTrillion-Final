@@ -27,8 +27,9 @@ public interface UserService {
 
 // ==============================================	
 	
+	public ModelAndView modify_pass(UserDTO dto , HttpServletResponse resp) throws IOException;
 	
-	
+// ==============================================	
 	public int joinUser(UserDTO dto);
 
 	public void deleteUser(UserDTO dto) throws Exception;

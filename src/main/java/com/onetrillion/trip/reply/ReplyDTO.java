@@ -1,8 +1,5 @@
 package com.onetrillion.trip.reply;
 
-import java.time.LocalDate;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 public class ReplyDTO {
 	
@@ -10,13 +7,12 @@ public class ReplyDTO {
 	private String u_id;
 	private int pd_seq;
 	private String reply_title;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate reply_date;
+	private String reply_date;
 	private String reply_content;
 	private int reply_rate;
 	
 	public ReplyDTO() {}
-	public ReplyDTO(int reply_seq, String u_id, int pd_seq, String reply_title, LocalDate reply_date,
+	public ReplyDTO(int reply_seq, String u_id, int pd_seq, String reply_title, String reply_date,
 			String reply_content, int reply_rate) {
 		this.reply_seq = reply_seq;
 		this.u_id = u_id;
@@ -52,10 +48,10 @@ public class ReplyDTO {
 		this.pd_seq = pd_seq;
 	}
 
-	public LocalDate getReply_date() {
+	public String getReply_date() {
 		return reply_date;
 	}
-	public void setReply_date(LocalDate reply_date) {
+	public void setReply_date(String reply_date) {
 		this.reply_date = reply_date;
 	}
 	public String getReply_content() {
