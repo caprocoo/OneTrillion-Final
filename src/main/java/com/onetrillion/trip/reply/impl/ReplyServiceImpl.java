@@ -12,11 +12,31 @@ import com.onetrillion.trip.service.mapper.ReplyMapper;
 public class ReplyServiceImpl implements ReplyService{
 	
 	@Autowired
-	public ReplyMapper replyMaper;
+	public ReplyMapper replyMapper;
 
 	@Override
 	public List<ReplyDTO> replySelectAll() {
-		return replyMaper.replySelectAll();
+		return replyMapper.replySelectAll();
+	}
+
+	@Override
+	public int replyInsert(ReplyDTO dto) {
+		return replyMapper.replyInsert(dto);
+	}
+
+	@Override
+	public ReplyDTO replyDetail(int reply_seq) {
+		return replyMapper.replyDetail(reply_seq);
+	}
+
+	@Override
+	public int replyModify(ReplyDTO dto) {
+		return replyMapper.replyModify(dto);
+	}
+
+	@Override
+	public int replyDelete(int reply_seq) {
+		return replyMapper.replyDelete(reply_seq);
 	}
 	
 	

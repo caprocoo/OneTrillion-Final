@@ -31,10 +31,32 @@ public class ReplyController {
 	
 	
 	@RequestMapping(value = "insert.do", method = RequestMethod.GET)
-	public String reply_insert(Model model) {
-		
-
+	public String replyInsertPage() {
 		return "reply/insert";
+	}
+	
+	@RequestMapping(value = "insert.do", method = RequestMethod.POST)
+	public String replyInsertCommit(Model model, ReplyDTO dto) {
+		
+		//System.out.println(dto);
+		service.replyInsert(dto);
+
+		return "redirect:list.do";
+	}
+	
+	@RequestMapping(value = "modify.do", method = RequestMethod.GET)
+	public String replyModifyPage(Model model, int reply_seq) {
+		ReplyDTO dto= service.replyDetail(reply_seq);
+		//System.out.println(dto);
+		model.addAttribute("replyDetail", dto);
+		return "reply/modify";
+	}
+	@RequestMapping(value = "modify.do", method = RequestMethod.POST)
+	public String replyModifyCommit(Model model, ReplyDTO dto) {
+		//System.out.println(dto);
+		service.replyModify(dto);
+		
+		return "redirect:list.do";
 	}
 	
 	

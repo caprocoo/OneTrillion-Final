@@ -18,6 +18,9 @@
                   <th>댓글 쓴 날짜</th>
                   <th>내용</th>
                   <th>별점</th>
+                  <th>수정</th>
+                  <th>삭제</th>
+                  
                 </tr>
                 <!---------forEach 시작-------------------------------------------------------------------------------------------------------------------------->
                 <!--아래 onclick 회원 예약 상세 보기 페이지로 설정 해주세요-->
@@ -26,10 +29,13 @@
                   <td>${board.reply_seq }</td>
                   <td>${board.u_id}</td>
                   <td>${board.pd_seq}</td>
-                  <td>${board.pd_name}</td>
+                  <td>${board.reply_title}</td>
                   <td>${board.reply_date}</td>
                   <td>${board.reply_content}</td>
                   <td>${board.reply_rate}</td>
+                  <td><button onClick = "location.href='<%=request.getContextPath() %>/reply/modify.do?reply_seq=${board.reply_seq}' ">수정</button></td>
+                  <td></td>
+                  
                 </tr>
                 </c:forEach> 
                 <!---------forEach 끝-------------------------------------------------------------------------------------------------------------------------->
