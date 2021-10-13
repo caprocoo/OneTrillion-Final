@@ -18,27 +18,27 @@
     #myPageinfoTab2 input:hover{background-color:white; cursor: pointer;}
 
 </style>
-</head>	
+</head>   
 <body>
 <script type="text/javascript">
 
 </script>
 <c:if test="${sessionScope.u_id != null }">
-		<jsp:include page="../include/header2.jsp"></jsp:include>
-	</c:if>
+      <jsp:include page="../include/header2.jsp"></jsp:include>
+   </c:if>
 <%
-	// 로그인 처리 -> 로그인 x (로그인페이지 이동)
-	String u_id = (String) session.getAttribute("u_id");
-	if( u_id != null){
-	}else{%>
-		<script> alert('로그인이 필요합니다.'); window.location.href="http://localhost:8088/trip/user/login.do"; </script>
+   // 로그인 처리 -> 로그인 x (로그인페이지 이동)
+   String u_id = (String) session.getAttribute("u_id");
+   if( u_id != null){
+   }else{%>
+      <script> alert('로그인이 필요합니다.'); window.location.href="http://localhost:8088/trip/user/login.do"; </script>
 <%}%>
 
 <div style="margin:auto; width:1100px; height:800px;">
       <div style="float:left;width:180px; height:600px; ">
           <h2 style="margin-left:10px; margin-top:30px; margin-bottom:10px;">마이페이지</h2>
           <div class="myPageMenu" id="myPageInfodiv1" style="border-top:2px solid black;">개인정보</div>
-          <div class="myPageMenu" id="myPageQuediv1">1대1문의</div>
+          <div class="myPageMenu" id="myPageQuediv1"><a href='<%=request.getContextPath() %>/myPage/Que/list.do'>1대1문의</a></div>
           <div class="myPageMenu" id="myPageWishdiv1">찜 내역</div>
           <div class="myPageMenu" id="myPageResdiv1">예약내역</div>
       </div>
@@ -90,29 +90,29 @@
 
 
 
-	$(document).ready(function(){
-		function mypageModifyDelete(){
-			
-			if(confirm("탈퇴하시겠습니까?")){
-				location.href="./delete.do";								
-			}
-		}
-		
-		
-		$(".myPageMenu").on("click", function(){
-			$(".myPageMenu2").css("display", "none")
-			var thisAttr = $(this).attr("id");
-			if(thisAttr == "myPageInfodiv1"){
-				$("#myPageinfo1").css("display", "block")
-			}else if(thisAttr == "myPageQuediv1"){
-				$("#myPageQue1").css("display", "block")
-			}else if(thisAttr == "myPageWishdiv1"){
-				$("#myPageWish1").css("display", "block")
-			}else if(thisAttr == "myPageResdiv1"){
-				$("#myPageRes1").css("display", "block")
-			}
-		})
-	})
+   $(document).ready(function(){
+      function mypageModifyDelete(){
+         
+         if(confirm("탈퇴하시겠습니까?")){
+            location.href="./delete.do";                        
+         }
+      }
+      
+      
+      $(".myPageMenu").on("click", function(){
+         $(".myPageMenu2").css("display", "none")
+         var thisAttr = $(this).attr("id");
+         if(thisAttr == "myPageInfodiv1"){
+            $("#myPageinfo1").css("display", "block")
+         }else if(thisAttr == "myPageQuediv1"){
+            $("#myPageQue1").css("display", "block")
+         }else if(thisAttr == "myPageWishdiv1"){
+            $("#myPageWish1").css("display", "block")
+         }else if(thisAttr == "myPageResdiv1"){
+            $("#myPageRes1").css("display", "block")
+         }
+      })
+   })
  </script>
 
 <jsp:include page="../include/footer.jsp"></jsp:include>

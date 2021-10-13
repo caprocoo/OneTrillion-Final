@@ -4,11 +4,9 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.onetrillion.trip.admin.AdminDTO;
-import com.onetrillion.trip.board.BoardDTO;
-import com.onetrillion.trip.board.CsnoticeDTO;
-import com.onetrillion.trip.board.ImageDTO;
-import com.onetrillion.trip.board.OftenDTO;
+
+import com.onetrillion.trip.notice.CsnoticeDTO;
+import com.onetrillion.trip.often.OftenDTO;
 
 @Mapper 
 public interface NoticeMapper { 

@@ -5,7 +5,7 @@
 
         <head>
             <meta charset="UTF-8">
-            <title>1대1문의 등록</title>
+            <title>1대1문의 수정</title>
             <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -66,21 +66,18 @@
                                     style="margin-top:40px; height: 50px; line-height: 40px;">
                                     <a class="navbar-brand" style="font-size: 100%; margin-left: 20px;"
                                         href="#">1대1문의</a><span class="navbar-brand" style="font-size: 100%;">/</span><a
-                                        class="navbar-brand" style="font-size: 100%;" href="#">문의등록</a>
+                                        class="navbar-brand" style="font-size: 100%;" href="#">수정</a>
                                 </nav>
                             </div>
-       <!-- input _ form @한보영 12/12 06:01   -->                     
-                         <form action="Que/input.do" method="post" >   
                             <table id="priQueTab1"
                                 style="margin-top:40px;width: 100%; border-top: 2px solid #343a40; text-align: center;">
                                 <tr>
                                     <th style="width: 30%;">아이디</th>
-                                    <td style="width: 70%;">${member.u_id}<input type="hidden" value="${member.u_id}" name="u_id"></td>
+                                    <td style="width: 70%;">${아이디}<input type="hidden" value="${아이디}"></td>
                                 </tr>
                                 <tr>
-                                    <th>닉네임</th>
-                                    <td>${member.u_nickName}<input type="hidden" value="${member.u_nickName}" name="u_nickName">
-                                    <input type="hidden" name="cl_seq"></td>
+                                    <th>닉네입</th>
+                                    <td>${닉네임}<input type="hidden" value="${닉네임}"></td>
                                 </tr>
                                 <tr>
                                     <th>문의유형</th>
@@ -88,18 +85,18 @@
                                         <select class="form-control" id="exampleFormControlSelect1"
                                             style="border: 0; height: 60px;">
                                             <option>문의유형을 선택하세요</option>
-                                            <option  value="국내여행">국내여행</option>
-                                            <option value="테마여행">테마여행</option>
-                                            <option value="자유여행">자유여행</option>
-                                            <option value="예약조회">예약조회</option>
-                                            <option value="기타">기타</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
                                         </select>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>제목</th>
                                     <td>
-                                        <input type="text" class="form-control" placeholder="제목을 입력하세요"
+                                        <input type="text" class="form-control" value="${문의제목}"
                                             style="border: 0; height: 60px;">
                                     </td>
                                 </tr>
@@ -107,26 +104,23 @@
                                     <th>내용</th>
                                     <td>
                                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"
-                                            style="border: 0;" placeholder="내용을 입력하세요"></textarea>
+                                            style="border: 0;">${문의내용}</textarea>
                                     </td>
                                 </tr>
                             </table>
                             <div style="text-align: right;">
                                 <a class="btn btn-secondary" href="#" role="button"
                                     style="margin-top:10px; height: 40px;">취소</a>
-                                <input class="btn btn-secondary" type="button" value="등록완료"
+                                <a class="btn btn-secondary" href="#" role="button"
+                                    style="margin-top:10px; height: 40px;">삭제</a>
+                                <input class="btn btn-secondary" type="button" value="수정완료"
                                     style="margin-top:10px; height: 40px;">
-                            </div>  
-                        </form>
-          <!-- form _ input 끝 -->      
+                            </div>
                         </div>
-                      
-                        
                     </div>
                     <script>
                         $(document).ready(function () {
                         })
-                        
                     </script>
                     <jsp:include page="../include/footer.jsp"></jsp:include>
         </body>

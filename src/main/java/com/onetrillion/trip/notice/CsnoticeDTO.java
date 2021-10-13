@@ -1,9 +1,9 @@
-package com.onetrillion.trip.board;
+package com.onetrillion.trip.notice;
 
 import java.sql.Date;
-                                                           //@@ 공지사항  [10/11 월 한보영]
+                                                           
 public class CsnoticeDTO {
-
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 공지사항 [10/11 월 한보영]
 //	CREATE TABLE Tril_Notice(
 //			no_seq number(5) NOT NULL PRIMARY KEY,
 //			ad_id varchar2(20) NOT NULL UNIQUE,
@@ -13,6 +13,7 @@ public class CsnoticeDTO {
 //			CONSTRAINT "fk_ad_id" FOREIGN KEY(ad_id) REFERENCES tril_admin(ad_id)
 //			);
 // 	CREATE SEQUENCE no_seq START WITH 1 INCREMENT BY 1;
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	
 	private int no_seq ; //seq
 	private String ad_id ; //외래키 관리자 아이디
