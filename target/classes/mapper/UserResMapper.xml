@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.onetrillion.trip.service.mapper.UserResMapper">
 
-<insert id="userResInsert">
+	<insert id="userResInsert">
 		<![CDATA[
 			INSERT INTO TRIL_USERRESERVATION(URES_SEQ, PD_SEQ, PD_NAME, PD_STARTDATE, PD_ENDDATE,
 				 ADULT_NUM, TEENAGER_NUM, PET_NUM, ADULT_PRICE, TEENAGER_PRICE, PET_PRICE, RES_PRICE, RES_PEOPLE,
@@ -11,7 +11,7 @@
 				#{adult_num},#{teenager_num},#{pet_num},#{adult_price},#{teenager_price},#{pet_price},#{res_price},#{res_people},
 				#{res_name},#{res_birth},#{res_email},#{res_comment},#{u_id},#{res_phone})
 		]]>
-</insert>
+	</insert>
 
 	<select resultType="com.onetrillion.trip.userRes.UserResDTO" id="userSelectAll">
 		<![CDATA[
@@ -19,11 +19,11 @@
 		]]>
 	</select>
 	
-<select resultType="com.onetrillion.trip.userRes.UserResDTO" id="userResDetail">
-
-<![CDATA[
-      select * from Tril_USERRESERVATION where ures_seq=#{ures_seq}]]>
-</select>
+	<select resultType="com.onetrillion.trip.userRes.UserResDTO" id="userResDetail">
+	
+	<![CDATA[
+	      select * from Tril_USERRESERVATION where ures_seq=#{ures_seq}]]>
+	</select>
 
 	<select resultType="com.onetrillion.trip.userRes.UserResDTO" id="userSelectId">
 		<![CDATA[

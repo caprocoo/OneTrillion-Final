@@ -94,10 +94,10 @@
                 <!--아래 onclick 회원 예약 상세 보기 페이지로 설정 해주세요-->
                 <c:forEach var="board" items="${userResList }">
                 <tr class="risListTr1"
-                  style="height:70px; border-bottom:1px solid #ededed; text-align: center; cursor: pointer;" onclick="location.href='<%=request.getContextPath() %>/userRes/resDetail.do?ures_seq=${board.ures_seq}' ">
+                  style="height:70px; border-bottom:1px solid #ededed; text-align: center; cursor: pointer;" >
                   <td>${board.ures_seq }</td>
                   <td>${board.pd_startDate } ~ ${board.pd_endDate }</td>
-                  <td>${board.pd_name }</td>
+                  <td onclick="location.href='<%=request.getContextPath() %>/userRes/resDetail.do?ures_seq=${board.ures_seq}' ">${board.pd_name }</td>
                   <td>${board.res_price }</td>
                   <td>${board.res_people }</td>
                   <td>${board.pd_startDate }</td>
@@ -126,7 +126,7 @@
                   <table id="resListTab2" style="width:100%; text-align: center;">
                     <tr style="height: 70px; border-top: 2px solid #343a40">
                       <th>제목</th>
-                      <td><input type="text" class="form-control" placeholder="제목을 입력하세요"
+                      <td><input type="text" id = "reply_title" class="form-control" placeholder="제목을 입력하세요"
                           style="height: 60px; border:0;"></td>
                     </tr>
                     <tr>
@@ -144,26 +144,28 @@
                       <th>별로</th>
                       <th>최악</th>
                     </tr>
-                    <tr style="height: 70px; border-bottom: 1px solid #ededed;">
-                      <td><input type="radio" name="review1" checked> ★★★★★</td>
-                      <td><input type="radio" name="review1"> ★★★★☆</td>
-                      <td><input type="radio" name="review1"> ★★★☆☆</td>
-                      <td><input type="radio" name="review1"> ★★☆☆☆</td>
-                      <td style="border-right: 0;"><input type="radio" name="review1"> ★☆☆☆☆</td>
+                    <tr style="height: 70px; border-bottom: 1px solid #ededed;" id = "star">
+                      <td><input type="radio" name="review1" checked id = "fiveStar"> ★★★★★</td>
+                      <td><input type="radio" name="review1" id = "fourStar"> ★★★★☆</td>
+                      <td><input type="radio" name="review1" id = "threeStar"> ★★★☆☆</td>
+                      <td><input type="radio" name="review1" id = "twoStar"> ★★☆☆☆</td>
+                      <td style="border-right: 0;"><input type="radio" name="review1" id = "oneStar"> ★☆☆☆☆</td>
                     </tr>
                   </table>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-                  <button type="button" class="btn btn-secondary">작성완료</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick = "replyInsert()" >작성완료</button>
                 </div>
               </div>
             </div>
           </div>
           <!-- Modal 끝---------------------------------------------------------------------------------------------------------------------------------------->
           <script>
-          $(document).ready(function () {
-          })
+         	function replyInsert(){
+         		
+
+         	}
           </script>
           <jsp:include page="../include/footer.jsp"></jsp:include>
     </body>
