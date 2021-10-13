@@ -1,7 +1,5 @@
 package com.onetrillion.trip.controller;
 
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.onetrillion.trip.adminAnswer.AdminAnsDTO;
 import com.onetrillion.trip.adminAnswer.Impl.AdminAnsService;
-import com.onetrillion.trip.board.BoardDTO;
-import com.onetrillion.trip.board.ImageDTO;
 import com.onetrillion.trip.clientque.ClientqueDTO;
 import com.onetrillion.trip.clientque.Impl.ClientqueService;
-import com.onetrillion.trip.userRes.UserResDTO;
 
 
 
@@ -81,7 +76,7 @@ public class AdminAnsController {
 	
 	
 //	
-//	//1:1 문의 게시글 수정 페이지 이동
+//	//수정 페이지 이동
 //	@RequestMapping(value = "/modify.do", method = RequestMethod.GET)
 //	public String adminAns_modify(@RequestParam("cl_seq") int cl_seq, Model model) {
 //		AdminAnsDTO dto = adminAns_service.detail(cl_seq);
@@ -97,7 +92,7 @@ public class AdminAnsController {
 //
 //	}
 //
-//	//삭제 완료(Ajax)
+//	//삭제 완료
 //	@RequestMapping(value = "/delete.do", method = RequestMethod.POST)
 //	public String adminAns_delete_post(AdminAnsDTO dto) {
 //		adminAns_service.delete(dto);
