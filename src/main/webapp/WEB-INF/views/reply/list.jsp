@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -34,11 +35,36 @@
                   <td>${board.reply_content}</td>
                   <td>${board.reply_rate}</td>
                   <td><button onClick = "location.href='<%=request.getContextPath() %>/reply/modify.do?reply_seq=${board.reply_seq}' ">수정</button></td>
-                  <td></td>
+                  <td><button onClick = "replyDelete(${board.reply_seq})">삭제</button></td>
                   
                 </tr>
                 </c:forEach> 
                 <!---------forEach 끝-------------------------------------------------------------------------------------------------------------------------->
               </table>
+              <script type="text/javascript">
+              	function replyDelete(reply_seq){
+              		var reply_confirm = confirm('댓글을 삭제하시겠습니까?');
+              		if(!reply_confirm){
+              			return false;
+              		}else{
+              			var replyData = {"reply_seq" : reply_seq}
+              			console.log(reply_seq)
+              			$.ajax({
+					        url:"delete.do",
+					        type:'POST',
+					        data: replyData,
+					        success:function(data){
+					            alert("삭제가 완료되었습니다!");
+					            location.href = "./list.do";							            	            
+					        },
+					        error:function(){
+					            alert("에러 발생");
+					        }
+					    });
+              		}
+              	}
+              	
+              	
+              </script>
 </body>
 </html>

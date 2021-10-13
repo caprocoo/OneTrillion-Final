@@ -12,7 +12,13 @@
 	
 		 <form action="modify.do" method="post"  id="form">   
          <table>
-
+	  		
+             <tr>
+                 <td>
+                	 <input type="hidden" name = "reply_seq" value = "${replyDetail.reply_seq }"/>
+                 </td>
+             </tr>
+             <tr>
              <tr>
                  <th>아이디</th>
                  <td>
