@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: sic66
+=======
+Built-By: BONG
+>>>>>>> 8b27033a563b4a19db41eeb59f9827fc2aa9dca6
 Build-Jdk: 15.0.1
 Created-By: Maven Integration for Eclipse
 

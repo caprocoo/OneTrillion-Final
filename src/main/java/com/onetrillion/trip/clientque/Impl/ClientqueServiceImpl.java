@@ -7,8 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-
+import com.onetrillion.trip.board.BoardDTO;
 import com.onetrillion.trip.clientque.ClientqueDTO;
 import com.onetrillion.trip.service.mapper.ClientQueMapper;
 
@@ -25,6 +24,11 @@ public class ClientqueServiceImpl implements ClientqueService{
 	public List<ClientqueDTO> selectAll() {
 		return client_mapper.selectAll();
 	}
+	//한명만
+	@Override
+	public List<ClientqueDTO> selectOne(String u_id) {
+		return client_mapper.selectOne(u_id);
+	}
 	//디테일
 	@Override
 	public ClientqueDTO detail(int cl_seq) {
@@ -35,6 +39,18 @@ public class ClientqueServiceImpl implements ClientqueService{
 	public int insert(ClientqueDTO dto) {
 		return client_mapper.insert(dto);
 	}
+	//수정
+	@Override
+	public int modify(ClientqueDTO dto) {
+		return client_mapper.modify(dto);
+	}
+	
+	//삭제
+	@Override
+	public int delete(ClientqueDTO dto) {
+		return client_mapper.delete(dto);
+	}
+	
 	
 	
 	
