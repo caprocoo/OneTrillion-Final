@@ -20,6 +20,8 @@
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
                 integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
                 crossorigin="anonymous"></script>
+                <script src="//code.jquery.com/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
             <style>
                 #priQueTab1 tr {
                     height: 70px;
@@ -69,8 +71,8 @@
                                         class="navbar-brand" style="font-size: 100%;" href="#">문의등록</a>
                                 </nav>
                             </div>
-       <!-- input _ form @한보영 12/12 06:01   -->                     
-                         <form action="Que/input.do" method="post" >   
+       <!--@@ input form @@ 한보영 12/12 06:01   ------------------------------------------------------------------------------------>                     
+                         <form action="input.do" method="post"  id="form">   
                             <table id="priQueTab1"
                                 style="margin-top:40px;width: 100%; border-top: 2px solid #343a40; text-align: center;">
                                 <tr>
@@ -80,15 +82,16 @@
                                 <tr>
                                     <th>닉네임</th>
                                     <td>${member.u_nickName}<input type="hidden" value="${member.u_nickName}" name="u_nickName">
-                                    <input type="hidden" name="cl_seq"></td>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>문의유형</th>
                                     <td>
+                                   	  <input type="hidden"  name="cl_type" id="cl_type">
                                         <select class="form-control" id="exampleFormControlSelect1"
                                             style="border: 0; height: 60px;">
                                             <option>문의유형을 선택하세요</option>
-                                            <option  value="국내여행">국내여행</option>
+                                            <option value="국내여행">국내여행</option>
                                             <option value="테마여행">테마여행</option>
                                             <option value="자유여행">자유여행</option>
                                             <option value="예약조회">예약조회</option>
@@ -100,33 +103,42 @@
                                     <th>제목</th>
                                     <td>
                                         <input type="text" class="form-control" placeholder="제목을 입력하세요"
-                                            style="border: 0; height: 60px;">
+                                            style="border: 0; height: 60px;" name="cl_title">
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>내용</th>
                                     <td>
                                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"
-                                            style="border: 0;" placeholder="내용을 입력하세요"></textarea>
+                                            style="border: 0;" placeholder="내용을 입력하세요" name="cl_content"></textarea>
                                     </td>
                                 </tr>
                             </table>
                             <div style="text-align: right;">
-                                <a class="btn btn-secondary" href="#" role="button"
+                                <a class="btn btn-secondary" href="#" role="button" onclick="location.href='http://localhost:8088/trip/myPage/list.do' "
                                     style="margin-top:10px; height: 40px;">취소</a>
                                 <input class="btn btn-secondary" type="button" value="등록완료"
-                                    style="margin-top:10px; height: 40px;">
+                                    style="margin-top:10px; height: 40px;" id="submitbtn">
                             </div>  
                         </form>
-          <!-- form _ input 끝 -->      
-                        </div>
-                      
-                        
+          <!--@@ input form _ 끝 @@------------------------------------------------------------------------------------>      
+                        </div>   
                     </div>
+                    
+                    
+                    
+                    
                     <script>
-                        $(document).ready(function () {
-                        })
-                        
+                        $(document).ready(function () {                        	
+                        	//========================================================================@한보영 입력하기 구현 12/12 08:16
+                        	document.getElementById('submitbtn').onclick = function() {                        	
+                        		 document.getElementById('form').submit();                        	
+                        	};//submitbtn눌렀을 때 form을 submit 함!
+                        	
+                        	 $('#exampleFormControlSelect1').change(function() { //select box에 있는 문의 유형을 hidden inputbox에 넣고 submit 할 때 가져갈거얌
+                        		 $('#cl_type').val($('#exampleFormControlSelect1').val());                        		 
+                        	 })
+                        })                        
                     </script>
                     <jsp:include page="../include/footer.jsp"></jsp:include>
         </body>
