@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.onetrillion.trip.reply.ReplyDTO;
 import com.onetrillion.trip.reply.impl.ReplyService;
@@ -59,6 +60,13 @@ public class ReplyController {
 		return "redirect:list.do";
 	}
 	
+	@RequestMapping(value = "delete.do", method = RequestMethod.POST)
+	public String replyDeleteCommit(Model model, int reply_seq) {
+		
+		service.replyDelete(reply_seq);
+		
+		return "redirect:list.do";
+	}
 	
 	
 }

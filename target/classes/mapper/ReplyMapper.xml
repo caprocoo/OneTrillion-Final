@@ -28,7 +28,6 @@
 		where reply_seq=#{reply_seq}]]>
 	</update>
 	
-	<!-- @@ 삭제 @@-->
 	<delete id="replyDelete">
 		<![CDATA[
 			delete from TRIL_REPLY where reply_seq=#{reply_seq}]]>
