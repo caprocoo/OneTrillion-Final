@@ -109,7 +109,7 @@ h1, #logdiv001{text-align: center;}
 			</div>
 			<div></div>
 			<div>
-				<input type="submit" value="로그인"><input type="button" value="회원가입" onclick="location.href='join.do'">
+				<input type="submit" value="로그인"><input type="button" value="회원가입" onclick="location.href='joinagree.do'">
 			</div>
 			<div></div>
 			<div>

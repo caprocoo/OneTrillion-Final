@@ -17,39 +17,37 @@ import com.onetrillion.trip.service.mapper.UserMapper;
 import com.onetrillion.trip.user.UserDTO;
 
 @Service
-public class UserServiceImpl implements UserService{
-	
+public class UserServiceImpl implements UserService {
+
 	@Autowired
 	public UserMapper mapper;
 	@Autowired
 	public HttpSession session;
-	
-	
-	
+
 	@Override
-	public List<UserDTO> AlluserList(){
+	public List<UserDTO> AlluserList() {
 		return mapper.AlluserList();
 	}
 
 	// ==============================================
 	@Override
 	public UserDTO oneUser_id(String u_id) {
-		//System.out.println("::::: oneUser ::::::");
+		// System.out.println("::::: oneUser ::::::");
 		UserDTO user = mapper.oneUser_id(u_id);
-		//System.out.println(user);
+		// System.out.println(user);
 		return user;
 	}
-	
+
 	@Override
 	public UserDTO user_email(String u_email) {
-		
+
 		UserDTO user = mapper.user_email(u_email);
-		
+
 		return user;
-		
+
 	}
 	// ==============================================
-	
+
 	@Override
 	public UserDTO oneUser_email(UserDTO dto) {
 
@@ -67,35 +65,34 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void modifyUser(UserDTO dto) {		
+	public void modifyUser(UserDTO dto) {
 		mapper.modifyUser(dto);
 	}
-	
 
-	@Override 
-	   public ModelAndView member_Login(UserDTO dto,HttpServletResponse resp) throws IOException {
-	      ModelAndView mav = new ModelAndView();
-	      resp.setContentType("text/html; charset=utf-8");
-	      PrintWriter out = resp.getWriter();
-	      UserDTO member = mapper.member_Login(dto);
+	@Override
+	public ModelAndView member_Login(UserDTO dto, HttpServletResponse resp) throws IOException {
+		ModelAndView mav = new ModelAndView();
+		resp.setContentType("text/html; charset=utf-8");
+		PrintWriter out = resp.getWriter();
+		UserDTO member = mapper.member_Login(dto);
 
-	      if (member != null) {
-	         session.setAttribute("u_id", dto.getU_id());
-	         session.setAttribute("member", member);
-	         mav.addObject("member", member);
+		if (member != null) {
+			session.setAttribute("u_id", dto.getU_id());
+			session.setAttribute("member", member);
+			mav.addObject("member", member);
 
-	         mav.setViewName("redirect:../");
+			mav.setViewName("redirect:../");
 
-	         session.setMaxInactiveInterval(-1);
+			session.setMaxInactiveInterval(-1);
 
-	      } else {
-	         out.println("<script> alert('아이디 또는 비밀번호를 다시 확인해주세요');");
-	         out.println("history.go(-1);</script>");
-	         out.close();
-	         
-	      }
-	      return mav;
-	   }
+		} else {
+			out.println("<script> alert('아이디 또는 비밀번호를 다시 확인해주세요');");
+			out.println("history.go(-1);</script>");
+			out.close();
+
+		}
+		return mav;
+	}
 
 	@Override
 	public UserDTO selectMember(String u_email) {
@@ -103,34 +100,31 @@ public class UserServiceImpl implements UserService{
 		return mapper.selectMember(u_email);
 	}
 
-
-
 	@Override
-	public ModelAndView findId(String u_email,HttpServletResponse resp) throws IOException {
+	public ModelAndView findId(String u_email, HttpServletResponse resp) throws IOException {
 		ModelAndView mav = new ModelAndView();
 		resp.setContentType("text/html; charset=utf-8");
 		PrintWriter out = resp.getWriter();
 		String email = mapper.findId(u_email);
-		
-		if(email != null) {
-			mav.addObject("u_email",email);
+
+		if (email != null) {
+			mav.addObject("u_email", email);
 			mav.setViewName("user/findIdSucc");
 		} else {
 			out.println("<script> alert('이메일을 다시 확인해주세요');");
-	        out.println("history.go(-1);</script>");
-	        out.close();
+			out.println("history.go(-1);</script>");
+			out.close();
 		}
 		return mav;
 	}
-	
-	
+
 	// 메일로 비밀번호찾기
 	@Override
 	public ModelAndView findPw(UserDTO dto, HttpServletResponse resp) throws IOException {
 		PrintWriter out = resp.getWriter();
 		ModelAndView mav = new ModelAndView();
 		resp.setContentType("text/html; charset=utf-8");
-		
+
 		// 회원정보 불러오기
 		UserDTO user = mapper.oneUser_email(dto);
 
@@ -148,22 +142,21 @@ public class UserServiceImpl implements UserService{
 			mail.sendMail(user);
 
 			mapper.update_pw(user);
-			
+
 		} else {
 			out.println("<script> alert('이메일을 다시 확인해주세요');");
-	        out.println("history.go(-1);</script>");
-	        out.close();
+			out.println("history.go(-1);</script>");
+			out.close();
 		}
 		return mav;
 	}
-	
+
 	@Override
 	public int update_pw(UserDTO dto) {
 		return mapper.update_pw(dto);
 	}
 	// 메일로 비밀번호찾기
-	
-	
+
 	@Override // 회원정보보기
 	public UserDTO readMember(String u_id) {
 		UserDTO dto = null;
@@ -174,5 +167,25 @@ public class UserServiceImpl implements UserService{
 			e.printStackTrace();
 		}
 		return dto;
+	}
+
+	@Override
+	public ModelAndView modify_pass(UserDTO dto, HttpServletResponse resp) throws IOException {
+		ModelAndView mav = new ModelAndView();
+		PrintWriter out = resp.getWriter();
+		resp.setContentType("text/html; charset=utf-8");
+		UserDTO member = mapper.modify_pass(dto);
+
+		if (member != null) {
+			mav.addObject("member", member);
+			mav.setViewName("redirect:modifyInfo.do");
+
+		} else {
+			out.println("<script> alert('비밀번호를 다시 확인해주세요');");
+			out.println("history.go(-1);</script>");
+			out.close();
+
+		}
+		return mav;
 	}
 }

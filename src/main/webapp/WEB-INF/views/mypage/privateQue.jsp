@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <!DOCTYPE html>
         <html>
 
@@ -81,9 +81,9 @@
                                      <c:forEach var="client" items="${clientQueList }"> 
                                     <tr class="priQueTr1"
                                         style="text-align: center; height: 70px; border-top:1px solid #ededed; cursor: pointer;">
-                                        <td>${client.cl_seq  }</td>
+                                        <td id="cl_seq">${client.cl_seq  }</td>
                                         <td>${client.cl_title  }</td>
-                                        <td>문의유형</td>
+                                        <td>${client.cl_type   }</td>
                                         <td>${client.cl_Date  }</td>
                                     </tr>
                                     <tr class="priQueTr2"
@@ -91,14 +91,14 @@
                                         <td colspan="3" style="height: auto; word-break: break-all;">
                                             <ul>
                                                 <li>
-                                                    ${client.cl_content   }
+                                                    ${client.cl_content  }
                                                 </li>
                                             </ul>
                                         </td>
                                         <td style="text-align: center;">
-                                            <a class="btn btn-secondary" href="#" role="button"
-                                                style="height: 40px;">삭제</a>
-                                            <a class="btn btn-secondary" href="#" role="button"
+                                            <a class="btn btn-secondary" href="#" role="button" onclick="cl_btn_delete(${client.cl_seq})"
+                                                style="height: 40px;">삭제</a>     
+                                            <a class="btn btn-secondary" role="button" href="modify.do?cl_seq=${client.cl_seq}" 
                                                 style="height: 40px;">수정</a>
                                         </td>
                                     </tr>
@@ -121,7 +121,7 @@
                                 </table>
                                 <div style="text-align: right;">
                                     <input class="btn btn-secondary" type="button" value="문의등록"
-                                    onclick="location.href='<%=request.getContextPath() %>/user/myPage/Que/input.do' "
+                                    onclick="location.href='<%=request.getContextPath() %>/myPage/input.do' "
                                         style="margin-top:10px; height: 40px;">
                                 </div>
                             </div>
@@ -141,8 +141,31 @@
                                     $(this).next().css("display", "none")
                                     $(this).next().next().css("display", "none")
                                 }
-                            })
-                        })
+                            })           
+                        });	 //document 끝
+                        
+                    	//========================================================================@한보영 삭제하기 구현 10/12 12:01
+                        function cl_btn_delete(cl_seq){  
+						    	var cl_delete = confirm('문의글을 삭제하시겠습니까?');						    	
+						    	if(!cl_delete){
+						    		return false;
+						    	}else{
+						    	var seqdata ={"cl_seq":cl_seq};
+							    $.ajax({
+							        url:"delete.do",
+							        type:'POST',
+							        data: seqdata,
+							        success:function(data){
+							            alert("완료!");
+							            location.href = "./list.do";							            	            
+							        },
+							        error:function(){
+							            alert("에러 발생");
+							        }
+							    });	//ajax 끝
+						    	}//if끌						    	
+						    };//cl_btn_delete  끝=============================================@삭제하기 	
+                        
                     </script>
 
                     <jsp:include page="../include/footer.jsp"></jsp:include>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.onetrillion.trip.service.mapper.ReplyMapper">
+
+	<select resultType="com.onetrillion.trip.reply.ReplyDTO" id="replySelectAll">
+		<![CDATA[
+		 SELECT * FROM TRIL_REPLY ORDER BY REPLY_SEQ ASC
+		]]>
+	</select>
+	
+	<insert id="replyInsert">
+		<![CDATA[
+			INSERT INTO TRIL_REPLY (reply_seq, u_id, pd_seq , reply_title, reply_date, reply_content, reply_rate)
+			values(reply_seq.nextVal,#{u_id},#{pd_seq},#{reply_title},sysdate,#{reply_content},#{reply_rate})
+		]]>		
+	</insert>
+	
+	<select resultType="com.onetrillion.trip.reply.ReplyDTO" id="replyDetail">
+		<![CDATA[
+		      select * from TRIL_REPLY where reply_seq=#{reply_seq}]]>
+	</select>
+	
+	<update id="replyModify">
+		<![CDATA[
+		update TRIL_REPLY set
+		reply_seq =#{reply_seq }, u_id =#{u_id }, pd_seq =#{pd_seq }
+		, reply_title =#{reply_title }, reply_date =sysdate, reply_content =#{reply_content } , reply_rate=#{reply_rate }
+		where reply_seq=#{reply_seq}]]>
+	</update>
+	
+	<!-- @@ 삭제 @@-->
+	<delete id="replyDelete">
+		<![CDATA[
+			delete from TRIL_REPLY where reply_seq=#{reply_seq}]]>
+	</delete>
+	
+	
+</mapper>

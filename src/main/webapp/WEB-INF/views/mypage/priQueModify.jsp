@@ -65,62 +65,106 @@
                                 <nav class="navbar-dark bg-dark"
                                     style="margin-top:40px; height: 50px; line-height: 40px;">
                                     <a class="navbar-brand" style="font-size: 100%; margin-left: 20px;"
-                                        href="#">1대1문의</a><span class="navbar-brand" style="font-size: 100%;">/</span><a
+                                        href="list.do" >1대1문의</a><span class="navbar-brand" style="font-size: 100%;">/</span><a
                                         class="navbar-brand" style="font-size: 100%;" href="#">수정</a>
                                 </nav>
                             </div>
+          <!--@@ modify _ form @@ 한보영 12/12 09:01   ------------------------------------------------------------------------------------>                     
+                         <form action="modify.do" method="post"  id="form">   
                             <table id="priQueTab1"
                                 style="margin-top:40px;width: 100%; border-top: 2px solid #343a40; text-align: center;">
                                 <tr>
                                     <th style="width: 30%;">아이디</th>
-                                    <td style="width: 70%;">${아이디}<input type="hidden" value="${아이디}"></td>
+                                    <td style="width: 70%;">${dto.u_id }<input type="hidden" value="${dto.u_id }" name="u_id">
+                                    <input type="hidden" value="${dto.cl_seq }" name="cl_seq"></td>
                                 </tr>
                                 <tr>
-                                    <th>닉네입</th>
-                                    <td>${닉네임}<input type="hidden" value="${닉네임}"></td>
+                                    <th>닉네임</th>
+                                    <td>${dto.u_nickName  }<input type="hidden" value="${dto.u_nickName  }" name="u_nickName"></td>
                                 </tr>
                                 <tr>
                                     <th>문의유형</th>
                                     <td>
+                                   	    <input type="hidden"  name="cl_type" id="cl_type" value='${dto.cl_type }'>
                                         <select class="form-control" id="exampleFormControlSelect1"
                                             style="border: 0; height: 60px;">
                                             <option>문의유형을 선택하세요</option>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
+                                            <option value="국내여행">국내여행</option>
+                                            <option value="테마여행">테마여행</option>
+                                            <option value="자유여행">자유여행</option>
+                                            <option value="예약조회">예약조회</option>
+                                            <option value="기타">기타</option>
                                         </select>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>제목</th>
                                     <td>
-                                        <input type="text" class="form-control" value="${문의제목}"
+                                        <input type="text" class="form-control" value="${dto.cl_title  }" name="cl_title"
                                             style="border: 0; height: 60px;">
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>내용</th>
                                     <td>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"
-                                            style="border: 0;">${문의내용}</textarea>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" name="cl_content"
+                                            style="border: 0;">${dto.cl_content  }</textarea>
                                     </td>
                                 </tr>
                             </table>
                             <div style="text-align: right;">
-                                <a class="btn btn-secondary" href="#" role="button"
+                                <a class="btn btn-secondary"  href="list.do" role="button"
                                     style="margin-top:10px; height: 40px;">취소</a>
-                                <a class="btn btn-secondary" href="#" role="button"
+                                <a class="btn btn-secondary" href="#" role="button" onclick="cl_btn_delete(${dto.cl_seq})"
                                     style="margin-top:10px; height: 40px;">삭제</a>
                                 <input class="btn btn-secondary" type="button" value="수정완료"
-                                    style="margin-top:10px; height: 40px;">
+                                    style="margin-top:10px; height: 40px;" id="modi_submitbtn">
                             </div>
-                        </div>
+                        </form>
+          <!--@@ modify form  끝 @@------------------------------------------------------------------------------------>      
+                        </div>   
                     </div>
+                    
                     <script>
-                        $(document).ready(function () {
-                        })
+                        $(document).ready(function () {                        	
+                       //========================================================================@한보영 입력하기 구현 12/12 08:16
+                        	document.getElementById('modi_submitbtn').onclick = function() {                        	
+                        		 document.getElementById('form').submit();                        	
+                        	};//submitbtn눌렀을 때 form을 submit 함!
+                        	
+                        	 $('#exampleFormControlSelect1').change(function() { //select box에 있는 문의 유형을 hidden inputbox에 넣고 submit 할 때 가져갈거얌
+                        		 $('#cl_type').val($('#exampleFormControlSelect1').val());                        		 
+                        	 })                        	 
+                        	 
+                        	 $("#exampleFormControlSelect1").val($('#cl_type').val());     
+                        	 
+                        })//document 끝
+                        
+                    	//========================================================================@한보영 삭제하기 구현 10/13 08:01
+                        function cl_btn_delete(cl_seq){  
+						    	var cl_delete = confirm('문의글을 삭제하시겠습니까?');						    	
+						    	if(!cl_delete){
+						    		return false;
+						    	}else{
+						    	var seqdata ={"cl_seq":cl_seq};
+							    $.ajax({
+							        url:"delete.do",
+							        type:'POST',
+							        data: seqdata,
+							        success:function(data){
+							            alert("완료!");
+							            location.href = "./list.do";							            	            
+							        },
+							        error:function(){
+							            alert("에러 발생");
+							        }
+							    });	//ajax 끝
+						    	}//if끌						    	
+						    };//cl_btn_delete  끝=============================================@삭제하기 	
+                        
+                        
+                        
+                        
                     </script>
                     <jsp:include page="../include/footer.jsp"></jsp:include>
         </body>
