@@ -18,7 +18,11 @@ public interface UserMapper {
 	public UserDTO user_email(String u_email);
 // =========================================
 
-
+	public UserDTO modify_pass(UserDTO dto);
+	
+// =========================================
+	
+	
 	public int joinUser(UserDTO dto);
 
 	public void deleteUser(UserDTO dto) throws Exception; //삭제

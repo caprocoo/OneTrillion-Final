@@ -36,7 +36,7 @@
           <div class="introMenu" id="introInfodiv1" style="border-top:2px solid black;">
           공지사항</div>
           <div class="introMenu" id="introQuediv1">자주하는질문</div>
-          <div class="introMenu" id="introWishdiv1" onclick="location.href='<%=request.getContextPath() %>/user/myPage.do?u_id=${member.u_id}'">1대1문의</div>
+          <div class="introMenu" id="introWishdiv1">1대1문의</div>
       </div>
       
       
