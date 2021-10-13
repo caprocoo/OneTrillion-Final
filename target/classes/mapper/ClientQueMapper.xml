@@ -25,7 +25,7 @@
 <![CDATA[
 	INSERT INTO Tril_ClientQue(cl_seq, u_id, u_nickName, cl_title, cl_content, cl_Date, cl_type ) 
 	VALUES ((select nvl(max(cl_seq), 0)+1 from Tril_ClientQue)
-	,#{u_id} ,#{u_nickName} ,#{cl_title} ,#{cl_content} , to_char(sysdate,'yyyy.mm.dd hh24:mi'), #{cl_type })
+	,#{u_id} ,#{u_nickName} ,#{cl_title} ,#{cl_content} , to_char(sysdate,'yyyy-mm-dd hh:mm'), #{cl_type })
 ]]>		
 </insert>
 
@@ -41,7 +41,7 @@
 <![CDATA[
 		update Tril_ClientQue set
 		cl_seq =#{cl_seq }, u_id =#{u_id }, u_nickName =#{u_nickName }
-		, cl_title =#{cl_title }, cl_content =#{cl_content }, cl_type =#{cl_type } , cl_Date=to_char(sysdate,'yyyy.mm.dd hh24:mi')
+		, cl_title =#{cl_title }, cl_content =#{cl_content }, cl_type =#{cl_type } , cl_Date=to_char(sysdate,'yyyy-mm-dd hh:mm')
 		where cl_seq=#{cl_seq}]]>
 </update>
 
