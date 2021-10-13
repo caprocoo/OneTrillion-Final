@@ -10,8 +10,9 @@
 	
 	
 	<!-- 찜 delete -->
-	<delete id="delete_wish">
-		DELETE FROM TRIL_WISHLIST WHERE W_SEQ=#{W_SEQ}
+	<delete id="delete_wish" >
+	<![CDATA[
+		DELETE FROM TRIL_WISHLIST WHERE w_seq = #{w_seq}]]>
 	</delete>
 	
 	
@@ -23,6 +24,13 @@
 	<!-- 찜 리스트 출력 -->
 	<select id="wishListSelectID" resultType="com.onetrillion.trip.wishlist.WishlistDTO">
 		SELECT * FROM TRIL_WISHLIST where u_id = #{u_id} ORDER BY W_SEQ DESC
+	</select>
+	
+	
+	<select resultType="com.onetrillion.trip.wishlist.WishlistDTO" id="wishlistDetail">
+	
+	<![CDATA[
+	      select * from TRIL_WISHLIST where w_seq=#{w_seq}]]>
 	</select>
 
 </mapper>

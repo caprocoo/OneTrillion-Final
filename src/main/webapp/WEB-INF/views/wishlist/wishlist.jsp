@@ -79,6 +79,13 @@
                   </div>
                 </div>
                 
+               <c:forEach var="board" items="${wishList }">
+	           <p>w_seq : ${board.w_seq }, pd_seq : ${board.pd_seq }, pd_name : ${board.pd_name }, pd_name : ${board.pd_name }, pd_startDate : ${board.pd_startDate }</p>
+	           <p>pd_endDate : ${board.pd_endDate }, pd_price : ${board.pd_price }, pd_image : ${board.pd_image }, u_id : ${board.u_id }</p>
+
+	           <hr />
+      </c:forEach> 
+                
                 <!---------forEach 끝-------------------------------------------------------------------------------------------------------------------------->
               </div>
             </div>

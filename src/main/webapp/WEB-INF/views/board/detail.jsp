@@ -760,7 +760,7 @@
     	    		
     	}else if (u_id == "${userDTO.u_id}"){
     		alert('이미 예약한 상품입니다!');
-    		location.href = "http://localhost:8088/trip/userRes/list.do";
+    		location.href = "http://localhost:8088/trip/userRes/list.do?u_id="+u_id;
     	}
     	//else if(u_id.equals('admin')){ //만약 아이디가 admin 이면 (관리자)    	    
     	//}
@@ -819,12 +819,12 @@ function Wish_Click(){
 		
 		if(u_id == "" ){ 
    		alert("찜 하기위해서 로그인이 필요합니다.");
-   		location.href = "./../user/login.do";
+   		location.href = "http://localhost:8088/trip/user/login.do";
 		}
 			else{	
 			
 			$.ajax({
-				url : "../wishlist/wishlist.do",
+				url : "http://localhost:8088/trip/wishlist/wishlist.do",
 				type : "GET",
 				data : { "pd_seq":pd_seq, 
 						"u_id":u_id, 
