@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.onetrillion.trip.service.mapper.WishlistMapper">
+
+	<!-- 찜 insert -->
+	<insert id="insert_wish" parameterType="com.onetrillion.trip.wishlist.WishlistDTO">
+		INSERT INTO TRIL_WISHLIST(w_seq, pd_seq, pd_name, pd_startDate, pd_endDate, pd_price, pd_image, u_id) VALUES((select nvl(max(W_SEQ), 0)+1 from TRIL_WISHLIST), #{pd_seq}, #{pd_name}, #{pd_startDate}, #{pd_endDate}, #{pd_price}, #{pd_image}, #{u_id})
+	</insert>
+	
+	
+	<!-- 찜 delete -->
+	<delete id="delete_wish">
+		DELETE FROM TRIL_WISHLIST WHERE W_SEQ=#{W_SEQ}
+	</delete>
+	
+	
+	<!-- 찜 리스트 출력 -->
+	<select id="allWishlist" resultType="com.onetrillion.trip.wishlist.WishlistDTO">
+		SELECT * FROM TRIL_WISHLIST ORDER BY W_SEQ ASC
+	</select>
+
+	<!-- 찜 리스트 출력 -->
+	<select id="wishListSelectID" resultType="com.onetrillion.trip.wishlist.WishlistDTO">
+		SELECT * FROM TRIL_WISHLIST where u_id = #{u_id} ORDER BY W_SEQ DESC
+	</select>
+
+</mapper>

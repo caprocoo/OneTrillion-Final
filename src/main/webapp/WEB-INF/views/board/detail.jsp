@@ -291,7 +291,7 @@
 				<input type="button" onclick="If_User()" value="예약하기" />
 			</div>
 			<div>
-				<input type="button" onclick="Like_click()" value="찜" />
+				<input type="button" onclick="Wish_Click()" value="찜" />
 			</div>
 			<div>
 				<input type="button" onclick="If_NoUser()" value="비회원으로 예약하기" />
@@ -801,10 +801,15 @@
    
    
 
-function Like_click(){  
+function Wish_Click(){  
+	
 	const pd_seq = $("#pd_seq").val().trim();
 	const pd_name = $("#pd_name").val().trim();
-	var u_id=$("#u_id").val();
+	const u_id = $("#u_id").val();
+	const pd_price = $("#pd_price").val().trim();
+	const pd_startDate = $("#pd_startDate").val();
+	const pd_endDate = $("#pd_endDate").val();
+	const pd_image = $("#pd_image").val().trim();
 	
 	var Like_confirm = confirm(pd_seq+'번 [ '+pd_name+' ] 상품을 찜하시겠습니까?');
 	
@@ -812,28 +817,47 @@ function Like_click(){
 		return false; //아니오 눌렀을 때  돌아감
 	}else{   //예 눌렀을때
 		
-		
 		if(u_id == "" ){ 
-    		alert("찜 하기위해서 로그인이 필요합니다.");
-    		location.href = "./../user/login.do";
-		}else{
+   		alert("찜 하기위해서 로그인이 필요합니다.");
+   		location.href = "./../user/login.do";
+		}
+			else{	
 			
-			
-			var confirm_again = confirm('찜 목록에 담겼습니다! 찜 목록으로 이동하시겠습니까?');
-			if(!confirm_again){ //아니오
-				return false;
-			}else{
-				location.href = "../user/wishlist.do?u_id="+u_id; 				
-			}//내부(2) if문 - 찜목록 이동? 안이동?
-			
+			$.ajax({
+				url : "../wishlist/wishlist.do",
+				type : "GET",
+				data : { "pd_seq":pd_seq, 
+						"u_id":u_id, 
+						"pd_name":pd_name,
+						"pd_startDate" : pd_startDate,
+						"pd_endDate" : pd_endDate,
+						"pd_price" : pd_price,
+						"pd_image" : pd_image
+				},
+				success : function(data, status){
+					if(status == 'success'){
+						var confirm_again = confirm('찜 목록에 담겼습니다. 찜 목록으로 이동하시겠습니까?');
+						if(!confirm_again){ //아니오
+							return false;
+						}else{
+							location.href = "http://localhost:8088/trip/wishlist/list.do?u_id="+u_id; 	
+							console.log('db갓다와유')
+						}//내부(2) if문 - 찜목록 이동? 안이동?
+								
+					}else{
+						alert("이미 찜에 등록된 상품입니다.")
+					}
+					
+				}
+			})
 					 
 		}//내부(1) if문  - 로그인이 되었을때/ 안되었을 때
-	
 		
 	}  //외부 if문 - 찜하기? 안짐하기?
 
-}//Like_click 함수(끝) =================================================================(끝)9/13
-    
+}//Like_click 함수(끝) =================================================================(끝)9/13 
+
+
 		//트위터, 카카오톡, 페이스북 공유하기 [10-11 한보영]
 		const pd_seq = $("#pd_seq").val().trim();
 		const pd_name = $("#pd_name").val().trim();

@@ -99,12 +99,12 @@ h1, #logdiv001{text-align: center;}
 		<div id="logdiv001">
 			<div></div>
 			<div>
-				<input type="text" id="u_id" name="u_id" placeholder="아이디를 입력하세요">
+				<input type="text" id="u_id" name="u_id" placeholder="아이디를 입력하세요" value = "heeyeon123">
 				<div class="u_id regex"></div>
 			</div>
 			<div></div>
 			<div>
-				<input type="password" id="u_pwd" name="u_pwd" placeholder="비밀번호를 입력하세요">
+				<input type="password" id="u_pwd" name="u_pwd" placeholder="비밀번호를 입력하세요" value = "heeyeon123">
 				<div class="u_pwd regex"></div>
 			</div>
 			<div></div>
