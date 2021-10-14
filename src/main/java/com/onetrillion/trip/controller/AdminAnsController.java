@@ -112,5 +112,15 @@ public class AdminAnsController {
 		return "redirect:/admin/list.do";	
 	}
 	
+	//삭제 완료2(관리자페이지에서 문의글 삭제하기)
+	@RequestMapping(value = "/delete2.do", method = RequestMethod.POST)
+	public String clientQue_delete_post(ClientqueDTO dto, AdminAnsDTO adto) {
+		
+		adminAns_service.delete(adto);
+		client_service.delete(dto);
+		return "redirect:/admin/list.do";
+	}
+	
+	
 	
 }

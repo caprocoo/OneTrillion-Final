@@ -76,24 +76,36 @@
                                     <tr style="text-align: center; height: 70px; background-color: #ededed;">
                                         <th style="width: 10%;">No</th>
                                         <th style="width: 50%;">제목</th>
-                                        <th style="width: 20%">문의유형</th>
+                                        <th style="width: 20%">문의 유형</th>
+                                        <th style="width: 20%">문의 상태</th>
                                         <th style="width: 20%">등록일</th>
                                     </tr>
-                                    <!------------여기에 forEach 시작 설정------------------------------------------------------------------------------------------------------------------>
+<!------------여기에 forEach 시작 설정------------------------------------------------------------------------------------------------------------------>
                                      <c:forEach var="client" items="${clientQueList }"> 
                                     <tr class="priQueTr1"
                                         style="text-align: center; height: 70px; border-top:1px solid #ededed; cursor: pointer;">
                                         <td id="cl_seq">${client.cl_seq  }</td>
                                         <td>${client.cl_title  }</td>
                                         <td>${client.cl_type   }</td>
+                                        <td>
+	                                        <c:set var="ans" value="${client.ans_content  }" />
+											<c:choose>		
+											 	<c:when test="${ans ne null}">	
+												   <a style="color: #3232FF; font-weight: bold;">답변 완료</a>
+												</c:when>	
+												<c:otherwise>
+	     											<a style="color: gray">답변 대기</a>
+	   										    </c:otherwise>
+											 </c:choose>  	
+                                        </td>
                                         <td>${client.cl_Date  }</td>
                                     </tr>
                                     <tr class="priQueTr2"
                                         style="height: 70px; border-top: 1px solid #ededed; border-left: 5px solid #343a40;">
-                                        <td colspan="3" style="height: auto; word-break: break-all;">
+                                        <td colspan="4" style="height: auto; word-break: break-all;">
                                             <ul>
                                                 <li>
-                                                    ${client.cl_content  }
+                                                   <span id="cl_content">${client.cl_content  }</span> 
                                                 </li>
                                             </ul>
                                         </td>
@@ -104,21 +116,29 @@
                                                 style="height: 40px;">수정</a>
                                         </td>
                                     </tr>
-                                    <tr class="priQueTr2" style="height: 70px; border-left: 5px solid #343a40;">
-                                        <td style="text-align: right;">▶</td>
-                                        <td colspan="2"
-                                            style="border-top: 1px solid #ededed;height: auto; word-break: break-all;">
-                                            <ul>
-                                                <li>${client.ans_content  }
-                                                </li>
-                                            </ul>
-                                        </td>
-                                        <td style="border-top: 1px solid #ededed ; text-align: center;">답변날짜</td>
-                                    </tr>
+							<!-- 답변 창 -->
+                                    <c:set var="ans" value="${client.ans_content  }" />
+											<c:choose>		
+											 	<c:when test="${ans ne null}">	<!-- 만약 답변 내용이 있으면 tr이 보이게 하고 -->
+													<tr class="priQueTr2" style="height: 70px; border-left: 5px solid #343a40;">
+				                                        <td style="text-align: right;">▶</td>
+				                                        <td colspan="4"
+				                                            style="border-top: 1px solid #ededed;height: auto; word-break: break-all;">
+				                                            <ul>
+				                                                <li><span class="ans_content">${client.ans_content  }</span></li>
+				                                            </ul>
+				                                        </td>
+				                                    </tr>	
+												</c:when>	
+												<c:otherwise><!-- 없으면 tr이 안보이게 하고 -->
+													<tr style="display: none;"></tr>		     											
+	   										    </c:otherwise>
+									</c:choose>  	
+                            <!-- 답변 창 -->
                                     </c:forEach>   
-                                    <!------------여기에 forEach 끝 설정------------------------------------------------------------------------------------------------------------------>
+<!------------여기에 forEach 끝 설정------------------------------------------------------------------------------------------------------------------>
                                     <tr style="height: 10px; background-color: #ededed;">
-                                        <td colspan="4"></td>
+                                        <td colspan="5"></td>
                                     </tr>
                                 </table>
                                 <div style="text-align: right;">
@@ -127,7 +147,7 @@
                                         style="margin-top:10px; height: 40px;">
                                         
                                         
-                                        <!-- 임시 관리자 CRUD 버튼입니다 @@1013 한보영 -->
+										<!-- 임시 관리자 CRUD 버튼입니다 @@1013 한보영 -->
                                         <br><button onclick="location.href='<%=request.getContextPath() %>/admin/list.do' ">관리자 CRUD 임시버튼</button>
                                 </div>
                             </div>
@@ -147,10 +167,10 @@
                                     $(this).next().css("display", "none")
                                     $(this).next().next().css("display", "none")
                                 }
-                            })           
+                            })  
                         });	 //document 끝
                         
-                    	//========================================================================@한보영 삭제하기 구현 10/12 12:01
+                    	//========================================================================@ 삭제하기 
                         function cl_btn_delete(cl_seq){  
 						    	var cl_delete = confirm('문의글을 삭제하시겠습니까?');						    	
 						    	if(!cl_delete){
@@ -171,7 +191,7 @@
 							    });	//ajax 끝
 						    	}//if끌						    	
 						    };//cl_btn_delete  끝=============================================@삭제하기 	
-                        
+                            
                     </script>
 
                     <jsp:include page="../include/footer.jsp"></jsp:include>
