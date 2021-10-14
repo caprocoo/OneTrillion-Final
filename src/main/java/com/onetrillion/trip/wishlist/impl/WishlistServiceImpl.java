@@ -28,8 +28,8 @@ public class WishlistServiceImpl implements WishlistService{
 	}
 	
 	@Override
-	public void delete_wish(WishlistDTO dto) {
-		mapper.delete_wish(dto);
+	public void delete_wish(int w_seq) {
+		mapper.delete_wish(w_seq);
 	}
 
 	@Override

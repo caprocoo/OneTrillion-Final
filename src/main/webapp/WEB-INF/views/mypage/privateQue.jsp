@@ -123,6 +123,8 @@
                                     <input class="btn btn-secondary" type="button" value="문의등록"
                                     onclick="location.href='<%=request.getContextPath() %>/myPage/input.do' "
                                         style="margin-top:10px; height: 40px;">
+                                        <!-- 임시 관리자 CRUD 버튼입니다 @@1013 한보영 -->
+                                        <br><button onclick="location.href='<%=request.getContextPath() %>/admin/list.do' ">관리자 CRUD 임시버튼</button>
                                 </div>
                             </div>
                         </div>
@@ -156,11 +158,11 @@
 							        type:'POST',
 							        data: seqdata,
 							        success:function(data){
-							            alert("완료!");
+							            alert("삭제되었습니다.");
 							            location.href = "./list.do";							            	            
 							        },
 							        error:function(){
-							            alert("에러 발생");
+							            alert("에러");
 							        }
 							    });	//ajax 끝
 						    	}//if끌						    	

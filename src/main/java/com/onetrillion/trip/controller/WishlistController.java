@@ -2,14 +2,18 @@ package com.onetrillion.trip.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.onetrillion.trip.board.BoardDTO;
@@ -23,43 +27,37 @@ import com.onetrillion.trip.wishlist.impl.WishlistService;
 @Controller
 @RequestMapping(value = "/wishlist")
 public class WishlistController {
-	private static final Logger logger = LoggerFactory.getLogger(WishlistController.class);
 
+	// 10/14 이희연 찜 목록 구현 중
 	@Autowired
 	public WishlistService service;
-	
 	@Autowired
 	public BoardService boardService;
 	  
-	
-	// 10.11 12:00 이희연 wishlist 구현 중
+	// 찜 Ajax
 	@RequestMapping(value = "/wishlist.do", method = RequestMethod.GET)
 	@ResponseBody
-	public String wishlist_page(Model model, WishlistDTO dto) {
-		// dto 담은 데이터 insert 쿼리문 실행
-		service.insert_wish(dto);
-		
-		
+	public String wishlist(Model model, WishlistDTO dto) {
+		service.insert_wish(dto); // insert 쿼리문 실행
 		return "wishlist/wishlist";
 	}
 	
+	// 찜 목록 출력
 	@RequestMapping(value = "/list.do", method = RequestMethod.GET)
-	public String total_wishList_page(String u_id, Model model) {
-		
+	public String wishList_page(String u_id, Model model) {
 		List<WishlistDTO> wishList = service.wishListSelectID(u_id);
 		model.addAttribute("wishList", wishList);
-		
 		return "wishlist/list";
 	}
-
-	//관리자가 상품 삭제 완료(Ajax)
-	@RequestMapping(value = "/delete.do", method = RequestMethod.POST)
-	public void deletePost(WishlistDTO dto) {
-		service.delete_wish(dto);
-		
+	
+	// 찜 삭제
+	@RequestMapping(value = "/delete.do", method = RequestMethod.GET)
+	public String delete(@RequestParam("w_seq") int w_seq, HttpSession session) {
+		service.delete_wish(w_seq);
+		String u_id = (String) session.getAttribute("u_id");
+		return "redirect:/wishlist/list.do?u_id="+u_id;
 	}
 	
-
 	
 
 

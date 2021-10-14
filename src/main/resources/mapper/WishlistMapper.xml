@@ -10,7 +10,7 @@
 	
 	
 	<!-- 찜 delete -->
-	<delete id="delete_wish" >
+	<delete id="delete_wish" parameterType="int">
 	<![CDATA[
 		DELETE FROM TRIL_WISHLIST WHERE w_seq = #{w_seq}]]>
 	</delete>
@@ -30,7 +30,16 @@
 	<select resultType="com.onetrillion.trip.wishlist.WishlistDTO" id="wishlistDetail">
 	
 	<![CDATA[
-	      select * from TRIL_WISHLIST where w_seq=#{w_seq}]]>
+	      select * from TRIL_WISHLIST where pd_seq=#{pd_seq}]]>
 	</select>
+	
+
+	
+	
+	
+	
+	
+	
+	
 
 </mapper>

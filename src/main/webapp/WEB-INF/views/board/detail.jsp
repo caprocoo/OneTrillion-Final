@@ -801,8 +801,8 @@
    
    
 
+// 10/14 이희연 찜기능 구현 완료
 function Wish_Click(){  
-	
 	const pd_seq = $("#pd_seq").val().trim();
 	const pd_name = $("#pd_name").val().trim();
 	const u_id = $("#u_id").val();
@@ -814,15 +814,15 @@ function Wish_Click(){
 	var Like_confirm = confirm(pd_seq+'번 [ '+pd_name+' ] 상품을 찜하시겠습니까?');
 	
 	if(!Like_confirm){
-		return false; //아니오 눌렀을 때  돌아감
-	}else{   //예 눌렀을때
-		
-		if(u_id == "" ){ 
+		return false; // 아니오
+	}else{ // 예
+		if(u_id == "" ){ // 미로그인 시
    		alert("찜 하기위해서 로그인이 필요합니다.");
    		location.href = "http://localhost:8088/trip/user/login.do";
-		}
-			else{	
-			
+		 } else if (u_id == "${wDto.u_id}"){ // wishlist 상품 중복여부 판단
+    		alert('이미 찜 한 상품입니다!');
+    		location.href = "http://localhost:8088/trip/wishlist/list.do?u_id="+u_id;
+    	} else{	
 			$.ajax({
 				url : "http://localhost:8088/trip/wishlist/wishlist.do",
 				type : "GET",
@@ -841,21 +841,16 @@ function Wish_Click(){
 							return false;
 						}else{
 							location.href = "http://localhost:8088/trip/wishlist/list.do?u_id="+u_id; 	
-							console.log('db갓다와유')
 						}//내부(2) if문 - 찜목록 이동? 안이동?
 								
 					}else{
-						alert("이미 찜에 등록된 상품입니다.")
+						alert("이미 찜에 등록된 상품입니다.");
 					}
-					
 				}
-			})
-					 
-		}//내부(1) if문  - 로그인이 되었을때/ 안되었을 때
-		
-	}  //외부 if문 - 찜하기? 안짐하기?
-
-}//Like_click 함수(끝) =================================================================(끝)9/13 
+			})			 
+		}//내부(1) if문  - 로그인여부 판단
+	}  //외부 if문 - 찜하기? 안찜하기?
+}//Like_click 함수 종료
 
 
 		//트위터, 카카오톡, 페이스북 공유하기 [10-11 한보영]
