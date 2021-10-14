@@ -49,7 +49,12 @@ public class AdminAnsServiceImpl implements AdminAnsService {
 		return adminAns_mapper.delete(dto);
 	}
 	
+	//seq찾기
+	@Override
+	public int findseq(int cl_seq ) {
+		return adminAns_mapper.findseq(cl_seq);
+	}
 	
-	
+
 	
 }

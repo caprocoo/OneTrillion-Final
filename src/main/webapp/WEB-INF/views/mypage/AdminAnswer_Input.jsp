@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>답변완료</h1>
+<h1>관리자 1:1문의 입력 페이지 입니다</h1>
 
 <h2>문의 내용</h2>
 <table style="undefined;table-layout: fixed; width: 853px" border="1px">
@@ -44,9 +44,9 @@
 
 
 <br><br><br>
-<h2>${cl_dto.cl_seq  }번 관리자 답변</h2>
+<h2>답변하기</h2>
 
-
+<form action="input.do" method="post"  id="form">  
 <table style="undefined;table-layout: fixed; width: 853px" border="1px">
 <colgroup>
 <col style="width: 344px">
@@ -56,33 +56,22 @@
 <tbody>
   <tr>
     <td>관리자 아이디</td>
-    <td>${ans_dto.ad_id } </td>
+    <td>
+     <input type="text"  style="border: 0; width: 500px" name="ad_id" value="TrillionAdmin1">
+     <input type="hidden" value="${cl_dto.cl_seq  }" name="cl_seq">
+     
+    </td>
   </tr>
-  <tr  >
-    <td  style=" height:200px" >답변 내용</td>
-    <td>${ans_dto.ans_content  }</td>
+  <tr>
+    <td>답변 내용</td>
+    <td>
+    <textarea rows="10"   style="border: 0; width: 500px" placeholder="내용을 입력하세요" name="ans_content"></textarea>
+    
+    </td>
   </tr>
-    <tr>
-    <td>답변 작성 날짜</td>
-    <td>${ans_dto.ans_Date }</td>
-  </tr>
-  
 </tbody>
 </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-			
-
+ <input type="submit" value="답변 등록" id="submitbtn">
+ </form>
 </body>
 </html>

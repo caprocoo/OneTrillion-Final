@@ -25,4 +25,7 @@ public interface AdminAnsService {
 	//삭제
 	int delete(AdminAnsDTO dto);
 
+	//seq찾기
+	int findseq(int cl_seq);
+
 }

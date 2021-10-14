@@ -37,7 +37,7 @@
   </tr>
 </thead>
 <tbody>
-<c:forEach var="client" items="${clientQueList }" varStatus="status"> 
+<c:forEach var="client" items="${clientQueList }" varStatus="status"> <!-- 바깥 for문***************************** -->
   <tr>
     <td>${client.cl_seq  }</td>
     <td>
@@ -57,44 +57,24 @@
     <td>${client.cl_Date  }</td>
     <td>
    			
-   	    <c:forEach var="adAns" items="${adminAnsList }" > <!-- for문~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~` -->    	
-	   	    <c:set var="admin" value="${adAns.cl_seq  }" /> 
+   	    <c:forEach var="adAns" items="${adminAnsList }" > <!-- for문-->    	
+	   	    <c:set var="admin" value="${adAns.cl_seq  }" />
 			<c:choose>		
 			 	<c:when test="${admin eq client.cl_seq}">
 				    <div id="btn_div_suc">       	 
-				    	<button onclick="location.href='detail.do?cl_seq=${client.cl_seq}' ">답변 완료</button><br/> 
+				    	<button id="btn_forDel" onclick="location.href='detail.do?cl_seq=${client.cl_seq}' ">답변 완료</button><br/> 				    	
 				  	</div>
 				</c:when>	 
 			 </c:choose>  	
-  		</c:forEach>
+  		</c:forEach>                                     <!-- for문 -->   
     </td>
     <td>
-    	<button onclick="location.href='<%=request.getContextPath() %>/admin/input.do?cl_seq=${client.cl_seq}' ">답글 입력</button><br/>
-		<button>답글 수정</button><br/>
-		<button>답글 삭제</button><br/>
+    	<button onclick="location.href='input.do?cl_seq=${client.cl_seq}' ">답글 입력</button><br/>
+		<button onclick="location.href='modify.do?cl_seq=${client.cl_seq}' ">답글 수정</button><br/>		
     </td>
   </tr>
- </c:forEach> 
+ </c:forEach> <!-- 바깥 for문***************************************************************************************** -->
 </tbody>
 </table>
-
-
-<script>
-
-$(document).ready(function () {    
-	var list=$(".cl_seqoo").val();
-	console.log(list);
-	var list3=$(".cl_seqoo").text();
-	console.log(list3);
-	var list4=$(".cl_seqoo").html();
-	console.log(list4);
-	
-	var list2=$("#cl_seqoo").val();
-	console.log(list2);
-})           
-
-
-
-</script>
 </body>
 </html>

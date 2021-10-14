@@ -19,5 +19,7 @@ public interface AdminAnsMapper {
 	public int insert(AdminAnsDTO dto);
 	public int delete(AdminAnsDTO dto);
 	public int modify(AdminAnsDTO dto);	
+	public int findseq(int cl_seq );	//cl_seq에 맞는 ans_seq를 찾을거야!
+
 	
 }

@@ -52,6 +52,12 @@
 </delete>
 
 
+<!-- @@ 문의글seq에 맞는 관리자seq @@-->
+<select resultType="int" id="findseq">
+<![CDATA[
+		SELECT ans_seq FROM Tril_ClientAnswer where cl_seq=#{cl_seq}]]>
+</select>
+
 
 
 
