@@ -21,7 +21,8 @@
                 integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
                 crossorigin="anonymous"></script>
                 <script src="//code.jquery.com/jquery.min.js"></script>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+			<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+			<!-- ============================================================================@@ 1:1 고객 문의 10/12 한보영 -->  
             <style>
                 #priQueTab1 tr {
                     height: 70px;
@@ -130,7 +131,7 @@
                     
                     <script>
                         $(document).ready(function () {                        	
-                        	//========================================================================@한보영 입력하기 구현 12/12 08:16
+                        	//========================================================================@한보영 입력하기 구현 10/12 08:16
                         	document.getElementById('submitbtn').onclick = function() {   
                         		
                         	   	 if($('#exampleFormControlSelect1').val() == '미선택'){ //문의 유형을 선택하지 않았을 경우

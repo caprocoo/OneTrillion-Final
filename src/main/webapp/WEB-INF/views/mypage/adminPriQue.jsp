@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,19 +20,18 @@
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
         integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>        
+            <!-- ============================================================================@@ 1:1 관리자 답변 10/14 한보영 -->             
         
     <style>
         * {
             margin: 0;
             padding: 0;
         }
-
         .list-group-item:hover {
             cursor: pointer;
             background-color: #f8f9fa;
         }
-
         .adminMainDiv1 p {
             margin-bottom: 0;
             line-height: 45px;
@@ -42,7 +40,6 @@
             background-color: #ededed;
             border-radius: 20px 20px 0 0;
         }
-
         #adminMemtable1 th {
             width: 25%;
             height: 40px;
@@ -50,7 +47,6 @@
             border-bottom: 1px solid white;
             text-align: center;
         }
-
         #adminMemtable1 td {
             border-bottom: 1px solid #ededed;
             padding-left: 20px;
@@ -78,7 +74,6 @@
                     <li class="list-group-item" onclick="">자주질문</li>
                     <li class="list-group-item" onclick="">로그기록</li>
                     <li class="list-group-item" onclick="">메모장</li>
-
                 </ul>
             </div>
         </div>
@@ -120,10 +115,8 @@
 										   <a style="color: #3232FF">답변 완료</a><br/> 	
 										</c:when>	 
 									 </c:choose>  	
-						  		</c:forEach>        
-                                
+						  		</c:forEach>    
                                 </td>
-                              
                                 <td>
                                     <a class="btn btn-secondary btn001" href="#" role="button"
                                         style="padding: 5px;">수정</a>
@@ -131,11 +124,11 @@
                                         style="padding: 5px;">삭제</a>
                                 </td>
                             </tr>
-                            </c:forEach> 
-                            
+                            </c:forEach>
                             <!-- forEach 문 끝--------------------------------------------------------------------------------------------------------------------------------------->
                         </tbody>
                     </table>
+		            
                     <div style="width: 100%;">
                         <!--페이징 tag 시작----------------------------------------------------------------------------------------------------------------------------------------->
                         <div style="float: left; margin-left: 10px;">
@@ -182,6 +175,7 @@
             </div>
         </div>
     </div>
+
     <!--Modal-----------------------------------------------------------------------------------------------------------------누르면 나오는 창 -->
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
         aria-hidden="true">
@@ -226,66 +220,31 @@
                         style="margin-top:10px; margin-bottom: 10px;">수정</a>
                     <a class="btn btn-secondary" href="#" role="button"
                         style="margin-top:10px; margin-bottom: 10px;">삭제</a>
-                    <a class="btn btn-primary" href="#" role="button"
-                        style="margin-top:10px; margin-bottom: 10px; margin-right: 10px;">답변등록</a>
-                </div>
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">답변</h5>
-                </div>
-                <table id="adminMemtable1" style="width: 100%; border-top: 2px solid #343a40;">
-                    <tr>
-                        <th>답변 번호</th>
-                        <td id="ans_seq"></td>
-                    </tr>
-                    <tr>
-                        <th>관리자 아이디</th>
-                        <td id="ad_id"></td>
-                    </tr>
-                    <tr>
-                        <th>답변 날짜</th>
-                        <td id="ans_Date"></td>
-                    </tr>
-                    <tr style="height: 100px;">
-                        <th>답변 내용</th>
-                        <td id="ans_content"></td>
-                    </tr>
-                </table>
-                <div style="text-align: right;">
-                    <a class="btn btn-primary" href="#" role="button"
-                        style="margin-top:10px; margin-bottom: 10px;">답변수정</a>
-                    <a class="btn btn-primary" href="#" role="button"
-                        style="margin-top:10px; margin-bottom: 10px; margin-right: 10px;">답변삭제</a>
+                    <a class="btn btn-primary" href="#" role="button" onclick="godetail()"
+                        style="margin-top:10px; margin-bottom: 10px; margin-right: 10px;">문의 답변</a>
                 </div>
             </div>
         </div>
     </div>
     <!--Modal 끝----------------------------------------------------------------------------------------------------------------->
     
-    <div>
-    <table>
-       	<c:forEach var="adminanswer" items="${adminAnsList }" varStatus="status"> 
-		    	<tr class="tr_info_admin">
-		    		<td>${adminanswer.ans_seq }</td>
-		    		<td>${adminanswer.ad_id }</td>
-		    		<td>${adminanswer.cl_seq}</td>
-		    		<td>${adminanswer.ans_Date }</td>
-		    		<td>${adminanswer.ans_content }</td>
-		    	</tr>
-    	</c:forEach>
-    </table>    
-    </div>
+  
     
 </body>
 
 <script type="text/javascript">
-	function findvalue(seq){ 		    		
-	}// 함수 끝 
 
+	var cl_seq =0;
+	function findvalue(seq){
+		cl_seq=seq
+	}//
+	
+	function godetail(){
+		//location.href = "http://localhost:8088/trip/userRes/list.do?u_id="+u_id;
+		location.href='detail.do?cl_seq='+cl_seq;
+	}//
 
-
-
-	$(document).ready(function(){
-       
+	$(document).ready(function(){       
         $(".tr_info").on("click", function(){
         	 var CL_SEQ = $(this).children("td:nth-child(1)").text();
         	 var U_ID = $(this).children("td:nth-child(2)").text();
@@ -307,32 +266,9 @@
         	 var ad_clseq= $(".tr_info_admin").children("td:nth-child(1)").text();
         	 console.log(ad_clseq)
         	 if(CL_SEQ == ad_clseq){
-        		 
+        		 console.log(ad_clseq)
         	 }
-        })//tr클릭
-        
-        
-        
-       // $(".tr_info_admin").on(function(){
-        //	 var ans_seq = $(this).children("td:nth-child(1)").text();
-   /*      	 var U_ID = $(this).children("td:nth-child(2)").text();
-        	 var U_NICKNAME = $(this).children("td:nth-child(3)").text();
-        	 var CL_TITLE = $(this).children("td:nth-child(4)").text();
-        	 var CL_DATE = $(this).children("td:nth-child(5)").text();
-        	 var CL_TYPE = $(this).children("td:nth-child(6)").text();
-        	 var CL_CONTENT = $(this).children("td:nth-child(7)").text();    */   	 
-        //	 console.log('ans_seq'+ans_seq);
-        	// $('#CL_SEQ').text(CL_SEQ);
-/*         	 $('#U_ID').text(U_ID);
-        	 $('#U_NICKNAME').text(U_NICKNAME);
-        	 $('#CL_TITLE').text(CL_TITLE);        	 
-        	 $('#CL_DATE').text(CL_TYPE); 
-        	 $('#CL_TYPE').text(CL_CONTENT); 
-        	 $('#CL_CONTENT').text(CL_DATE); */
-     
-       // })//tr클릭
-       
-
+        })//tr클릭     
 	})//document
 
 

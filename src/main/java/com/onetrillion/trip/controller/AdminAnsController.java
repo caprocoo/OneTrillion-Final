@@ -49,7 +49,7 @@ public class AdminAnsController {
 		
 		AdminAnsDTO ans_dto = adminAns_service.detail(cl_seq);	//답변 정보 detail 불러오기!!!		
 			if(ans_dto==null) {
-				return "mypage/AdminAnswer_Input"; //답변한게 없으면 입력창으로 이동
+				return "mypage/adminPriQueAnsInput"; //답변한게 없으면 입력창으로 이동
 			}else {			
 				response.setContentType("text/html; charset=UTF-8"); //있으면 리스트로 돌아감
 				PrintWriter out = response.getWriter();
@@ -77,7 +77,7 @@ public class AdminAnsController {
 		
 		ClientqueDTO cl_dto = client_service.detail(cl_seq); //문의글(seq에따른) 정보 detail 불러오기!!!
 		model.addAttribute("cl_dto", cl_dto);			
-			return "mypage/AdminAnswer_detail";
+			return "mypage/adminPriQueDetail";
 	}
 	
 	
@@ -89,7 +89,7 @@ public class AdminAnsController {
 		
 		AdminAnsDTO ans_dto = adminAns_service.detail(cl_seq);
 		model.addAttribute("ans_dto", ans_dto);
-			return "mypage/AdminAnswer_modify";
+			return "mypage/adminPriQueAnsModi";
 	}
 	
 	//수정 submit 완료 ====================================================================================
