@@ -7,9 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-<h1>모든 회원의 문의글에대한 답변 CRUD (임시)관리자페이지 입니다</h1>
+   <!-- @@ 1:1 문의 답변 CRUD   [10/13 수 한보영]  -->
+<h1>모든 회원의 문의글에대한 답변 CRUD (임시)관리자페이지 입니다</h1> 
 <h2>myPage/list.do에 반영되도록 할 것</h2>
 
 
@@ -34,7 +37,7 @@
   </tr>
 </thead>
 <tbody>
-<c:forEach var="client" items="${clientQueList }"> 
+<c:forEach var="client" items="${clientQueList }" varStatus="status"> 
   <tr>
     <td>${client.cl_seq  }</td>
     <td>
@@ -53,7 +56,17 @@
     </td>
     <td>${client.cl_Date  }</td>
     <td>
-    	<button onclick="location.href='detail.do?cl_seq=${client.cl_seq}' ">답변대기/완료</button><br/> 
+   			
+   	    <c:forEach var="adAns" items="${adminAnsList }" > <!-- for문~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~` -->    	
+	   	    <c:set var="admin" value="${adAns.cl_seq  }" /> 
+			<c:choose>		
+			 	<c:when test="${admin eq client.cl_seq}">
+				    <div id="btn_div_suc">       	 
+				    	<button onclick="location.href='detail.do?cl_seq=${client.cl_seq}' ">답변 완료</button><br/> 
+				  	</div>
+				</c:when>	 
+			 </c:choose>  	
+  		</c:forEach>
     </td>
     <td>
     	<button onclick="location.href='<%=request.getContextPath() %>/admin/input.do?cl_seq=${client.cl_seq}' ">답글 입력</button><br/>
@@ -66,25 +79,22 @@
 </table>
 
 
+<script>
+
+$(document).ready(function () {    
+	var list=$(".cl_seqoo").val();
+	console.log(list);
+	var list3=$(".cl_seqoo").text();
+	console.log(list3);
+	var list4=$(".cl_seqoo").html();
+	console.log(list4);
+	
+	var list2=$("#cl_seqoo").val();
+	console.log(list2);
+})           
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-			
-
+</script>
 </body>
 </html>
