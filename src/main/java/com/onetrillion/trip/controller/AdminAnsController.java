@@ -37,7 +37,7 @@ public class AdminAnsController {
 		List<AdminAnsDTO> adminAnsList =adminAns_service.selectAll(); //답변 리스트
 		model.addAttribute("adminAnsList", adminAnsList);
 	
-		 	return "mypage/AdminAnswer_list";
+		 	return "mypage/adminPriQue";
 	}
 
 
