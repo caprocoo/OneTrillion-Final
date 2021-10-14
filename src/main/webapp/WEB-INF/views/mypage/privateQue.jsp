@@ -109,7 +109,7 @@
                                         <td colspan="2"
                                             style="border-top: 1px solid #ededed;height: auto; word-break: break-all;">
                                             <ul>
-                                                <li>답변내용null 값일 경우 안보이게 설정 해야 합니닥
+                                                <li>${client.ans_content  }
                                                 </li>
                                             </ul>
                                         </td>

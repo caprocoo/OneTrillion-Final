@@ -30,19 +30,12 @@ public class ClientqueDTO {
 	private String cl_content; //내용
 	private String cl_Date; //작성일
 	private String cl_type ; //작성일
+	private String ans_content ;
 	
-	public ClientqueDTO() {
-		// TODO Auto-generated constructor stub
-	}
-		
-	@Override
-	public String toString() {
-		return "ClientqueDTO [cl_seq=" + cl_seq + ", u_id=" + u_id + ", u_nickName=" + u_nickName + ", cl_title="
-				+ cl_title + ", cl_content=" + cl_content + ", cl_Date=" + cl_Date + ", cl_type=" + cl_type + "]";
-	}
-
+	
+	
 	public ClientqueDTO(int cl_seq, String u_id, String u_nickName, String cl_title, String cl_content, String cl_Date,
-			String cl_type) {
+			String cl_type, String ans_content) {
 		super();
 		this.cl_seq = cl_seq;
 		this.u_id = u_id;
@@ -51,7 +44,37 @@ public class ClientqueDTO {
 		this.cl_content = cl_content;
 		this.cl_Date = cl_Date;
 		this.cl_type = cl_type;
+		this.ans_content = ans_content;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "ClientqueDTO [cl_seq=" + cl_seq + ", u_id=" + u_id + ", u_nickName=" + u_nickName + ", cl_title="
+				+ cl_title + ", cl_content=" + cl_content + ", cl_Date=" + cl_Date + ", cl_type=" + cl_type
+				+ ", ans_content=" + ans_content + "]";
+	}
+
+
+
+	public String getAns_content() {
+		return ans_content;
+	}
+
+
+
+	public void setAns_content(String ans_content) {
+		this.ans_content = ans_content;
+	}
+
+
+
+	public ClientqueDTO() {
+		// TODO Auto-generated constructor stub
+	}
+		
+	
 
 	public int getCl_seq() {
 		return cl_seq;

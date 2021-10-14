@@ -35,8 +35,7 @@ public class ClientQueController {
 	public String clientQue_List(Model model, HttpSession session) {
 		String u_id= (String) session.getAttribute("u_id");		
 		List<ClientqueDTO> clientQueList =client_service.selectOne(u_id); //문의한 리스트
-		model.addAttribute("clientQueList", clientQueList);
-		
+		model.addAttribute("clientQueList", clientQueList);		
 		
 		List<AdminAnsDTO> adminAnsList =adminAns_service.selectAll(); //답변 리스트
 		model.addAttribute("adminAnsList", adminAnsList);
@@ -78,32 +77,12 @@ public class ClientQueController {
 		return "redirect:/myPage/list.do";	
 
 	}
-	//1:1 문의 게시글 삭제 페이지 이동
-//	@RequestMapping(value = "/delete.do", method = RequestMethod.GET)
-//	public String clientQue_delete(@RequestParam("cl_seq") int cl_seq, Model model) {
-//		ClientqueDTO dto = client_service.detail(cl_seq);
-//		model.addAttribute("cl_seq", cl_seq);
-//		return "mypage/priQuedelte";
-//	}
 	//삭제 완료(Ajax)
 	@RequestMapping(value = "/delete.do", method = RequestMethod.POST)
 	public String clientQue_delete_post(ClientqueDTO dto) {
 		client_service.delete(dto);
 		return "redirect:/myPage/list.do";	
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 }

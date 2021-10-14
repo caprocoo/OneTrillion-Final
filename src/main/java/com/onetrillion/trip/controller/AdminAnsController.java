@@ -48,7 +48,7 @@ public class AdminAnsController {
 		model.addAttribute("cl_dto", cl_dto);	
 		
 		AdminAnsDTO ans_dto = adminAns_service.detail(cl_seq);	//답변 정보 detail 불러오기!!!		
-			if(ans_dto==null) {
+			if(ans_dto==null) {				
 				return "mypage/adminPriQueAnsInput"; //답변한게 없으면 입력창으로 이동
 			}else {			
 				response.setContentType("text/html; charset=UTF-8"); //있으면 리스트로 돌아감
@@ -64,8 +64,11 @@ public class AdminAnsController {
 	
 	//@@(관리자)입력 submit 완료!============================================================================
 	@RequestMapping(value = "/input.do", method = RequestMethod.POST)
-	public String adminAns_Insert_post(AdminAnsDTO dto) {		
-		adminAns_service.insert(dto);		
+	public String adminAns_Insert_post(AdminAnsDTO dto) {
+		adminAns_service.insert(dto);	
+		
+		int cl_seq =dto.getCl_seq();
+		client_service.getAdminAns(cl_seq); //답변가져와
 			return "redirect:/admin/list.do";		
 	}
 	
@@ -96,7 +99,8 @@ public class AdminAnsController {
 	@RequestMapping(value = "modify.do", method = RequestMethod.POST)
 	public String adminAns_modify_post( Model model, AdminAnsDTO dto) {		
 		adminAns_service.modify(dto);		
-		int cl_seq =dto.getCl_seq();		
+		int cl_seq =dto.getCl_seq();	
+		client_service.getAdminAns(cl_seq); //답변가져와
 			return "redirect:/admin/detail.do?cl_seq="+cl_seq;	
 
 	}

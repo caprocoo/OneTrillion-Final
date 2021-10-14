@@ -100,13 +100,13 @@
                             <!-- forEach 문 시작--------------------------------------------------------------------------------------------------------------------------------------->
                             <c:forEach var="client" items="${clientQueList }" varStatus="status"> 
                             <tr style="cursor: pointer;" onclick="findvalue(${client.cl_seq  })" class="tr_info">
-                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${client.cl_seq  }</td>
+                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${client.cl_seq  }  </td>
                                 <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${client.u_id  }</td>
                                 <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick=""> ${client.u_nickName  }</td>
                                 <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${client.cl_title  }</td>
                                 <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${client.cl_content  }</td>
                                 <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${client.cl_Date  }</td>
-                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${client.cl_type  }</td>
+                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${client.cl_type  }</td>                                
                                 <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">
                                 <c:forEach var="adAns" items="${adminAnsList }" > <!-- for문-->    	
 							   	    <c:set var="admin" value="${adAns.cl_seq  }" />
@@ -123,6 +123,7 @@
                                     <a class="btn btn-secondary btn001" href="#" role="button"
                                         style="padding: 5px;">삭제</a>
                                 </td>
+                                <td style="display: none">${client.ans_content  }</td>    
                             </tr>
                             </c:forEach>
                             <!-- forEach 문 끝--------------------------------------------------------------------------------------------------------------------------------------->
@@ -186,7 +187,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <table id="adminMemtable1" style="width: 100%; border-top: 2px solid #343a40;">
-                    <tr>
+                    <tr> 
                         <th>문의 번호</th>
                         <td id="CL_SEQ"></td>
                     </tr>
@@ -223,6 +224,18 @@
                     <a class="btn btn-primary" href="#" role="button" onclick="godetail()"
                         style="margin-top:10px; margin-bottom: 10px; margin-right: 10px;">문의 답변</a>
                 </div>
+          <!-- 관리자 답변 -->
+          <div id="adminMemtable2">
+                <div class="modal-header" >
+                    <h5 class="modal-title" id="exampleModalLabel">답변 완료</h5>
+                </div>
+                <table  style="width: 100%; border-top: 2px solid #343a40;">
+                    <tr style="height: 100px;">
+                        <th>답변 내용</th>
+                        <td id="ans_content"></td>
+                    </tr>
+                </table>
+           </div>     
             </div>
         </div>
     </div>
@@ -234,41 +247,45 @@
 
 <script type="text/javascript">
 
-	var cl_seq =0;
-	function findvalue(seq){
+	var cl_seq =0;//전역변수에 담기
+	function findvalue(seq){//매개변수로 받아온 seq를 전역변수로 만들어주기
 		cl_seq=seq
+	}	
+	function godetail(){		
+		location.href='detail.do?cl_seq='+cl_seq; //그럼여기에서도 쓸 수 있지!
 	}//
-	
-	function godetail(){
-		//location.href = "http://localhost:8088/trip/userRes/list.do?u_id="+u_id;
-		location.href='detail.do?cl_seq='+cl_seq;
-	}//
+
 
 	$(document).ready(function(){       
         $(".tr_info").on("click", function(){
-        	 var CL_SEQ = $(this).children("td:nth-child(1)").text();
+        	 var CL_SEQ = $(this).children("td:nth-child(1)").text();  //표에있는 것 뽑아서
         	 var U_ID = $(this).children("td:nth-child(2)").text();
         	 var U_NICKNAME = $(this).children("td:nth-child(3)").text();
         	 var CL_TITLE = $(this).children("td:nth-child(4)").text();
         	 var CL_DATE = $(this).children("td:nth-child(5)").text();
         	 var CL_TYPE = $(this).children("td:nth-child(6)").text();
-        	 var CL_CONTENT = $(this).children("td:nth-child(7)").text();      	 
+        	 var CL_CONTENT = $(this).children("td:nth-child(7)").text();     
+        	 var ans_content = $(this).children("td:nth-child(10)").text();        	 
         	 
-        	 $('#CL_SEQ').text(CL_SEQ);
+        	 $('#CL_SEQ').text(CL_SEQ); //Modal에 넣어줌
         	 $('#U_ID').text(U_ID);
         	 $('#U_NICKNAME').text(U_NICKNAME);
         	 $('#CL_TITLE').text(CL_TITLE);        	 
         	 $('#CL_DATE').text(CL_TYPE); 
         	 $('#CL_TYPE').text(CL_CONTENT); 
         	 $('#CL_CONTENT').text(CL_DATE);
+        	 $('#ans_content').text(ans_content); 
      	
         	 
-        	 var ad_clseq= $(".tr_info_admin").children("td:nth-child(1)").text();
-        	 console.log(ad_clseq)
-        	 if(CL_SEQ == ad_clseq){
-        		 console.log(ad_clseq)
-        	 }
-        })//tr클릭     
+        	 
+        	   	console.log($('#ans_content').text())
+        		if($('#ans_content').text() ==''){		
+        			$('#adminMemtable2').hide()
+        		}else{
+        			$('#adminMemtable2').show()
+        		}
+        })//==========================================tr클릭시 표 -> Modal창으로 값 넘기기
+                
 	})//document
 
 

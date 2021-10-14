@@ -17,6 +17,7 @@ public interface ClientQueMapper {
 	public int insert(ClientqueDTO dto);
 	public int delete(ClientqueDTO dto);
 	public int modify(ClientqueDTO dto);
+	public int getAdminAns(int cl_seq); //10/15
 	
 	
 	

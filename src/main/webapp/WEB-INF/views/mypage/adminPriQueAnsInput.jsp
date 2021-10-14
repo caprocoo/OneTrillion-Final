@@ -141,7 +141,7 @@
                     <tr>
                         <th>답변 내용</th>
                         <td><textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
-                                placeholder="ANS_CONTENT"
+                                placeholder="ANS_CONTENT" name="ans_content"
                                 style="border:0; resize: none; background-color: white;"></textarea></td>
                     </tr>
                 </table>
