@@ -10,6 +10,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -51,20 +52,25 @@ public class BoardController {
 
 	@Autowired
 	public WishlistService wishService;
-	
 	@RequestMapping(value = "/search.do", method = RequestMethod.GET)
-	public String search(Model model) {
+	public String search(Model model, HttpSession session) {
 		List<BoardDTO> searchList = service.selectAll();
 		model.addAttribute("searchList", searchList);
+		
+		String u_id = (String) session.getAttribute("u_id"); // 10/14 이희연 search.do 내 찜버튼 구현 시 추가함
+		List<WishlistDTO> wishList = wishService.wishListSelectID(u_id); // 10/14 이희연 search.do 내 찜버튼 구현 시 추가함
+		model.addAttribute("wishList", wishList); // 10/14 이희연 search.do 내 찜버튼 구현 시 추가함
+		System.out.println("search.do GET메소드에 들어왔어어어어어어 wishList : " + wishList); // 10/14 이희연 search.do 내 찜버튼 구현 시 추가함
+
 		return "board/search";
 	}
+
 
 	@RequestMapping(value = "/detail.do", method = RequestMethod.GET) 
 	public String detail(Model model, int pd_seq) {
 		BoardDTO dto = service.detail(pd_seq);
 		UserResDTO userDTO = userResService.userResDetail(pd_seq);
 		WishlistDTO wDto = wishService.wishlistDetail(pd_seq); // 10/14 이희연 찜목록 구현 시 추가함
-		System.out.println(userDTO);
 		
 		//1박 2일 구하기
 		LocalDate start_date = dto.getPd_startDate();
@@ -88,7 +94,6 @@ public class BoardController {
 
 		return "board/detail";
 	}
-
 	@RequestMapping(value = "/search.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String searchData(@RequestParam Map<String, Object> map) {
