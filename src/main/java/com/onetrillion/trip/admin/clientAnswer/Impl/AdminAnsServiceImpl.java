@@ -1,11 +1,11 @@
-package com.onetrillion.trip.adminAnswer.Impl;
+package com.onetrillion.trip.admin.clientAnswer.Impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.onetrillion.trip.adminAnswer.AdminAnsDTO;
+import com.onetrillion.trip.admin.clientAnswer.AdminAnsDTO;
 import com.onetrillion.trip.service.mapper.AdminAnsMapper;
 
 

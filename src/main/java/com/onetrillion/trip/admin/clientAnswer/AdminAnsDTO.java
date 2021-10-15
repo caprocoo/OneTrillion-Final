@@ -1,4 +1,4 @@
-package com.onetrillion.trip.adminAnswer;
+package com.onetrillion.trip.admin.clientAnswer;
 
                                                            
 public class AdminAnsDTO  {

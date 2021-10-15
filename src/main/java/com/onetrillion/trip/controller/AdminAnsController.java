@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.onetrillion.trip.adminAnswer.AdminAnsDTO;
-import com.onetrillion.trip.adminAnswer.Impl.AdminAnsService;
+import com.onetrillion.trip.admin.clientAnswer.AdminAnsDTO;
+import com.onetrillion.trip.admin.clientAnswer.Impl.AdminAnsService;
 import com.onetrillion.trip.clientque.ClientqueDTO;
 import com.onetrillion.trip.clientque.Impl.ClientqueService;
 
@@ -109,6 +109,8 @@ public class AdminAnsController {
 	@RequestMapping(value = "/delete.do", method = RequestMethod.POST)
 	public String adminAns_delete_post(AdminAnsDTO dto) {
 		adminAns_service.delete(dto);
+	
+		client_service.getAdminAns(	dto.getCl_seq()); //답변가져와
 		return "redirect:/admin/list.do";	
 	}
 	
