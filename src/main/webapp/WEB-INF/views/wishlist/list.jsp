@@ -54,7 +54,7 @@
                 <!-- <nav style="margin-top:15px; height: 50px; line-height: 40px; border-bottom: 2px solid #ededed;"> -->
                 <nav style="margin-top:15px; height: 50px; line-height: 40px; background-color: #ededed; ">
                   <a class="navbar-brand" style="font-size: 100%; margin-left: 20px; color: #343a40; font-weight: bold;"
-                    href="#">찜 내역</a>
+                    href="#">찜 내역@@@@@@@@</a>
                 </nav>
               </div>
               <div style="text-align: right; margin-top: 10px; margin-bottom: 10px;">
