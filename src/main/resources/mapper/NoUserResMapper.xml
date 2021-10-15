@@ -34,5 +34,30 @@
 		select * from Tril_NOUSERRESERVATION where res_email=#{res_email} AND res_pwd=#{res_pwd}]]>
 	</select>
 	
+	<select resultType="com.onetrillion.trip.noUserRes.NoUserResDTO" id="noUserResPaging">
+
+		<![CDATA[
+			SELECT res_seq,res_pwd, pd_seq, pd_name, pd_startDate, pd_endDate, adult_num, teenager_num, pet_num, adult_price, teenager_price, pet_price, res_price, res_people, res_name,
+			res_birth, res_email, res_comment, res_phone
+			FROM
+			(
+				SELECT res_seq, res_pwd, pd_seq, pd_name, pd_startDate, pd_endDate, adult_num, teenager_num, pet_num, adult_price, teenager_price, pet_price, res_price, res_people, res_name,
+				res_birth, res_email, res_comment, res_phone,
+				ROW_NUMBER() over(ORDER BY res_seq ASC) AS rn 
+				FROM Tril_NOUSERRESERVATION
+			) WHERE rn BETWEEN #{rowStart} AND #{rowEnd} ORDER  BY res_seq ASC 
+	      ]]>
+	</select>
+
+	<select resultType="int" id="noUserResCount">
+	
+		<![CDATA[
+		     select count(res_seq) from Tril_NOUSERRESERVATION where res_seq>0
+      	]]>
+	</select>
+
+	
+	
+	
 	
 </mapper>

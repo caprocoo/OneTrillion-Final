@@ -13,8 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.onetrillion.trip.noUserRes.NoUserResCriteria;
 import com.onetrillion.trip.noUserRes.NoUserResDTO;
 import com.onetrillion.trip.noUserRes.impl.NoUserResService;
+import com.onetrillion.trip.page.PageMaker;
+import com.onetrillion.trip.userRes.UserResCriteria;
+import com.onetrillion.trip.userRes.UserResDTO;
 
 @Controller
 @RequestMapping(value = "/noUserRes")
@@ -74,6 +78,22 @@ public class NoUserResController {
 		}
 		
 		return null;
+	}
+	
+	@RequestMapping(value = "/listPage.do", method = RequestMethod.GET)
+	public String noUserResListPage(Model model, NoUserResCriteria cri){
+		
+		List<NoUserResDTO> noUserResList = service.noUserResPaging(cri);
+		model.addAttribute("noUserResList", noUserResList);
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.noUserResCount());
+		
+		model.addAttribute("pageMaker", pageMaker);
+
+
+		return "noUserRes/listPage";
 	}
 
 	

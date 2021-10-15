@@ -3,6 +3,8 @@ package com.onetrillion.trip.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,11 +34,13 @@ public class ReplyController {
 //	}
 	
 	@RequestMapping(value = "list.do", method = RequestMethod.GET)
-	public String reply_List(Model model, String u_id) {
-		
-		//System.out.println(u_id);
+	public String reply_List(Model model,  HttpSession session) {
+		String u_id= (String) session.getAttribute("u_id");		
+
+		System.out.println(u_id);
 		List<ReplyDTO> replyList = service.replySelectId(u_id);
 		model.addAttribute("replyList", replyList);
+		
 
 		return "reply/list";
 	}
@@ -56,7 +60,7 @@ public class ReplyController {
 		
 		//System.out.println(dto);
 		service.replyInsert(dto);
-
+		//System.out.println(u_id);
 		return "redirect:list.do";
 	}
 	
@@ -67,6 +71,7 @@ public class ReplyController {
 		model.addAttribute("replyDetail", dto);
 		return "reply/modify";
 	}
+	
 	@RequestMapping(value = "modify.do", method = RequestMethod.POST)
 	public String replyModifyCommit(Model model, ReplyDTO dto) {
 		//System.out.println(dto);

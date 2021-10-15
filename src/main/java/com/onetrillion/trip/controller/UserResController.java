@@ -47,9 +47,9 @@ public class UserResController {
 	
 	//
 	@RequestMapping(value = "/resDetail.do", method = RequestMethod.GET)
-	public String userResDetail(int ures_seq, Model model){
+	public String userResDetail(int pd_seq, Model model){
 
-		UserResDTO userResDetail = service.userResDetail(ures_seq);
+		UserResDTO userResDetail = service.userResDetail(pd_seq);
 		model.addAttribute("userResDetail", userResDetail);
 
 		return "userRes/resDetail";

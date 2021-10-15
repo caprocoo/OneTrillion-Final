@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.onetrillion.trip.noUserRes.NoUserResDTO;
+import com.onetrillion.trip.page.Criteria;
 import com.onetrillion.trip.service.mapper.NoUserResMapper;
 import com.onetrillion.trip.userRes.UserResDTO;
 
@@ -33,6 +34,16 @@ public class NoUserResServiceImpl implements NoUserResService{
 	@Override
 	public NoUserResDTO noUserSelectId(String res_email) {
 		return noUserResMapper.noUserSelectId(res_email);
+	}
+
+	@Override
+	public List<NoUserResDTO> noUserResPaging(Criteria cri) {
+		return noUserResMapper.noUserResPaging(cri);
+	}
+
+	@Override
+	public int noUserResCount() {
+		return noUserResMapper.noUserResCount();
 	}
 
 
