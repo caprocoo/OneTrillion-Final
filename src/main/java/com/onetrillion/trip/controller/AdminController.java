@@ -21,12 +21,12 @@ public class AdminController {
 	@Autowired
 	AdminService adminService;
 
+	//관리자 로그인 페이지로 이동
 	@RequestMapping(value = "/admin/adminlogin.do", method = RequestMethod.GET)
 	public String AdminLoginPage() {
-
 		return "admin/adminlogin";
 	}
-
+	
 	@RequestMapping(value = "/admin/adminlogin.do", method = RequestMethod.POST)
 	public String AdminLoginAction(AdminDTO dto, HttpSession session, HttpServletRequest req,HttpServletResponse resp) throws IOException {
 
@@ -35,7 +35,7 @@ public class AdminController {
 		if (admin != null) { //어드민 로그인 되면!
 			session.setAttribute("AD_ID", dto.getAD_ID());
 			session.setAttribute("admin", admin);
-			return "admin/adminMain";
+			return "admin/adminMain";			
 		} else
 			resp.setContentType("text/html; charset=UTF-8"); //있으면 리스트로 돌아감
 			PrintWriter out = resp.getWriter();
@@ -47,13 +47,13 @@ public class AdminController {
 			return null;
 	}
 	
-		// 로그아웃 처리
-		@RequestMapping(value = "/admin/adminlogout.do", method = RequestMethod.GET)
-		public String logout(HttpServletRequest req) {
-			HttpSession session = req.getSession();
-			session.invalidate();
-			return "redirect:../user/login.do";
-		}
+	// 로그아웃 처리
+	@RequestMapping(value = "/admin/adminlogout.do", method = RequestMethod.GET)
+	public String logout(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		session.invalidate();
+		return "redirect:/"; //메인페이지로 이동
+	}
 	
 
 }

@@ -22,6 +22,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
         integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
         crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
     <style>
         * {
             margin: 0;
@@ -29,7 +30,7 @@
         }
 
         .list-group-item:hover {
-            cursor: pointer;
+        	cursor: pointer;
             background-color: #f8f9fa;
         }
 
@@ -58,7 +59,7 @@
         <div style="float: left; width: 250px; height: 100%; box-shadow: 0 0 20px #ededed; position: fixed;">
             <div style="margin:auto; width: 80%;"><img style="width: 100%; margin-top: 40px; margin-bottom: 40px;"
                     src="http://jjcom0214.cafe24.com/web/OneTrillion/logo02.png" alt="logo01"></div>
-            <div>
+            <div>            		
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item" onclick="">메인</li>
                     <li class="list-group-item" onclick="">회원예약</li>
@@ -76,9 +77,14 @@
 
                 </ul>
             </div>
+            <c:if test="${sessionScope.AD_ID != null }">
+				<a id="adminLogout" style="cursor: pointer; color: purple; padding: 30px;">${AD_ID } 로그아웃</a>
+			</c:if>
         </div>
         <div style="float:right; width: 1500px;height: 100%;">
             <div style="width: 1500px; column-count: 3;">
+            
+            
                 <div class="adminMainDiv1">
                     <p>예약</p>
                     <table class="table">
@@ -463,9 +469,18 @@
             </div>
         </div>
     </div>
-
-
-
 </body>
 
+
+<script type="text/javascript">
+$("#adminLogout").on("click", function(){
+    if(confirm("관리자 로그아웃 하시겠습니까?")){
+    location.href = "<%=request.getContextPath()%>/admin/adminlogout.do";
+    alert("로그아웃되었습니다.");
+    }
+ });
+
+
+
+</script>
 </html>
