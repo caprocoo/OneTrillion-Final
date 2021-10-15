@@ -54,7 +54,7 @@
                 <!-- <nav style="margin-top:15px; height: 50px; line-height: 40px; border-bottom: 2px solid #ededed;"> -->
                 <nav style="margin-top:15px; height: 50px; line-height: 40px; background-color: #ededed; ">
                   <a class="navbar-brand" style="font-size: 100%; margin-left: 20px; color: #343a40; font-weight: bold;"
-                    href="#">찜 내역@@@@@@@@</a>
+                    href="#">찜 내역</a>
                 </nav>
               </div>
               <div style="text-align: right; margin-top: 10px; margin-bottom: 10px;">
@@ -66,17 +66,17 @@
                 <div class="card" style="width: 18rem;margin-bottom: 15px; display: inline-block; margin-left:10px; ">
                   <img class="card-img-top" src="${board.pd_image }" alt="Card image cap">
                   <div style="padding: 10px;">
-                    <h5 style="margin: 0;">상품명 : ${board.pd_name }</h5>
+                    <h5 style="margin: 0;" id="pd_name">${board.pd_name }</h5>
                     <h5 style="margin: 0;">찜번호 : ${board.w_seq }</h5>
                     <p style="margin: 0;">${board.pd_startDate } ~ ${board.pd_endDate }</p>
                     <p style="margin: 0; margin-bottom: 10px;">금액 : ${board.pd_price }</p>
                     <input id="test" type="checkbox" name="checkbox_check"
                       style="position:absolute; top:10px; left:10px; width: 25px; height: 25px; cursor: pointer; opacity: 0.5;">
                     <a href="<%=request.getContextPath()%>/board/detail.do?pd_seq=${board.pd_seq }" class="btn btn-secondary">Detail</a>
-                    <a href="<%=request.getContextPath()%>/wishlist/delete.do?w_seq=${board.w_seq }" class="btn btn-secondary">삭제</a>
-                     <!--<a href="#" class="btn btn-secondary" onclick="del()">삭제</a> -->
+                    <a href="#" onclick="delBtn(${board.w_seq })" class="btn btn-secondary">삭제</a>
                     <a href="#" class="btn btn-secondary" style="position: absolute; top:10px; right: 10px;">찜</a>
                     <a href="#" class="btn btn-secondary" style="position: absolute; top:49px; right: 10px;">공</a>
+                    <p style="display: none"><span id="u_id">${member.u_id}</span> </p>
                   </div>
                 </div>
                       </c:forEach> 
@@ -88,6 +88,37 @@
           </div>
           
           <script>
+          
+		  // 삭제 버튼 클릭 시 실행되는 함수
+          function delBtn(w_seq){
+          	var pd_name =$("#pd_name").text();
+      		var del_con = confirm(pd_name+' 상품을 삭제하시겠습니까?');			
+          	var u_id = $("#u_id").text();
+          	if(!del_con){
+          		return false;
+          	}else{
+          	var seqdata ={"w_seq":w_seq};
+
+      	    $.ajax({
+      	        url:"delete.do",
+      	        type:'POST',
+      	        data: seqdata,
+      	        success:function(data){
+      	            alert(pd_name + " 상품이 삭제되었습니다.");
+      	          location.href = "http://localhost:8088/trip/wishlist/list.do?u_id="+u_id;  							            	            
+      	        }
+      	    });	//ajax 종료
+          	} //if문 종료					    	
+          }; //delBtn 함수 종료
+          
+          
+          
+          
+          
+          
+          
+          
+          
           
           
          // 10/14 12:00 이희연 체크박스 선택 삭제 구현 중(미완) 
