@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.onetrillion.trip.page.PageMaker;
+import com.onetrillion.trip.userRes.UserResCriteria;
 import com.onetrillion.trip.userRes.UserResDTO;
 import com.onetrillion.trip.userRes.impl.UserResService;
 
@@ -52,6 +54,24 @@ public class UserResController {
 
 		return "userRes/resDetail";
 	}
+	
+	
+	@RequestMapping(value = "/listPage.do", method = RequestMethod.GET)
+	public String userResListPage(Model model, UserResCriteria cri){
+		
+		List<UserResDTO> userResList = service.userResPaging(cri);
+		model.addAttribute("userResList", userResList);
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.userResCount());
+		
+		model.addAttribute("pageMaker", pageMaker);
+
+
+		return "userRes/listPage";
+	}
+	
 	
 	
 }

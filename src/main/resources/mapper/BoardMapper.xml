@@ -22,9 +22,6 @@ SELECT * FROM Tril_PRODUCT ORDER BY PD_SEQ ASC
       select * from Tril_PRODUCT where pd_seq=#{pd_seq}]]>
 </select>
 
-
-
-
 <!-- TRIL_IMAGE 이용한 쿼리문 -->
 <select resultType="com.onetrillion.trip.board.ImageDTO" id="detailImage">
 <![CDATA[
@@ -78,6 +75,28 @@ SELECT * FROM Tril_PRODUCT ORDER BY PD_SEQ ASC
 <![CDATA[
       SELECT * FROM TRIL_PRODUCT WHERE PD_THEME =#{pd_theme}
       ]]>
+</select>
+
+<select resultType="com.onetrillion.trip.board.BoardDTO" id="BoardPaging">
+
+<![CDATA[
+	SELECT pd_seq, pd_name, pd_price, pd_keyword, pd_startDate, pd_endDate, pd_cnt, pd_theme, pd_people, pd_image, pd_content1, pd_location, adult_num, teenager_num, pet_num, adult_price, 
+	teenager_price, pet_price
+	FROM
+	(
+		SELECT pd_seq, pd_name, pd_price, pd_keyword, pd_startDate, pd_endDate, pd_cnt, pd_theme, pd_people, pd_image, pd_content1, pd_location, adult_num, teenager_num, pet_num, adult_price, 
+		teenager_price, pet_price,
+		ROW_NUMBER() over(ORDER BY pd_seq ASC) AS rn 
+		FROM TRIL_PRODUCT 
+	) WHERE rn BETWEEN #{rowStart} AND #{rowEnd} ORDER BY PD_SEQ ASC 
+	      ]]>
+</select>
+
+<select resultType="int" id="BoardCount">
+
+	<![CDATA[
+	      select count(pd_seq) from Tril_PRODUCT where pd_seq>0
+	      ]]>
 </select>
 
 </mapper>

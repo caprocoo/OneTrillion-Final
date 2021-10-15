@@ -22,13 +22,35 @@
 	<select resultType="com.onetrillion.trip.userRes.UserResDTO" id="userResDetail">
 	
 	<![CDATA[
-	      select * from Tril_USERRESERVATION where ures_seq=#{ures_seq}]]>
+	      select * from Tril_USERRESERVATION where pd_seq=#{pd_seq}]]>
 	</select>
 
 	<select resultType="com.onetrillion.trip.userRes.UserResDTO" id="userSelectId">
 		<![CDATA[
 		SELECT * FROM Tril_USERRESERVATION where u_id=#{u_id} ORDER BY ures_seq ASC
 		]]>
+	</select>
+	
+	<select resultType="com.onetrillion.trip.userRes.UserResDTO" id="userResPaging">
+
+	<![CDATA[
+		SELECT ures_seq, pd_seq, pd_name, pd_startDate, pd_endDate, adult_num, teenager_num, pet_num, adult_price, teenager_price, pet_price, res_price, res_people, res_name,
+		res_birth, res_email, res_comment, u_id, res_phone
+		FROM
+		(
+			SELECT ures_seq, pd_seq, pd_name, pd_startDate, pd_endDate, adult_num, teenager_num, pet_num, adult_price, teenager_price, pet_price, res_price, res_people, res_name,
+			res_birth, res_email, res_comment, u_id, res_phone,
+			ROW_NUMBER() over(ORDER BY ures_seq ASC) AS rn 
+			FROM TRIL_USERRESERVATION
+		) WHERE rn BETWEEN #{rowStart} AND #{rowEnd} ORDER  BY ures_seq ASC 
+      ]]>
+	</select>
+
+	<select resultType="int" id="userResCount">
+	
+		<![CDATA[
+		      select count(ures_seq) from Tril_USERRESERVATION where pd_seq>0
+		      ]]>
 	</select>
 
 

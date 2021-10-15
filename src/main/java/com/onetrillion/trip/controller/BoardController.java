@@ -24,9 +24,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.onetrillion.trip.board.BoardCriteria;
 import com.onetrillion.trip.board.BoardDTO;
 import com.onetrillion.trip.board.ImageDTO;
 import com.onetrillion.trip.board.impl.BoardService;
+import com.onetrillion.trip.page.Criteria;
+import com.onetrillion.trip.page.PageMaker;
 import com.onetrillion.trip.userRes.UserResDTO;
 import com.onetrillion.trip.userRes.impl.UserResService;
 import com.onetrillion.trip.wishlist.WishlistDTO;
@@ -61,6 +64,7 @@ public class BoardController {
 		BoardDTO dto = service.detail(pd_seq);
 		UserResDTO userDTO = userResService.userResDetail(pd_seq);
 		WishlistDTO wDto = wishService.wishlistDetail(pd_seq); // 10/14 이희연 찜목록 구현 시 추가함
+		System.out.println(userDTO);
 		
 		//1박 2일 구하기
 		LocalDate start_date = dto.getPd_startDate();
@@ -312,6 +316,19 @@ public class BoardController {
 	public String introduce() {
 
 		return "compony/introduce";
+	}
+	
+	@RequestMapping(value = "/listPage.do", method = RequestMethod.GET)
+	public String listPage(BoardCriteria cri, Model model) {
+		
+		List<BoardDTO> list = service.BoardPaging(cri);
+		model.addAttribute("list", list);
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.BoardCount());
+		model.addAttribute("pageMaker", pageMaker);
+		
+		return "board/listPage";
 	}
 
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.onetrillion.trip.board.BoardDTO;
 import com.onetrillion.trip.board.ImageDTO;
+import com.onetrillion.trip.page.Criteria;
 import com.onetrillion.trip.service.mapper.BoardMapper;
 
 
@@ -62,12 +63,20 @@ public class BoardServiceImpl implements BoardService {
 		return boardMapper.theme(pd_theme);
 	}
 
-
-
 	@Override
 	public ImageDTO detailImage(int pd_seq) {
 		
 		return boardMapper.detailImage(pd_seq);
+	}
+
+	@Override
+	public List<BoardDTO> BoardPaging(Criteria cri) {
+		return boardMapper.BoardPaging(cri);
+	}
+
+	@Override
+	public int BoardCount() {
+		return boardMapper.BoardCount();
 	};
 	
 

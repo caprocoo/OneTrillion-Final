@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.onetrillion.trip.service.mapper.ReplyMapper">
-
+	
+	
+	<!-- 관리자용 댓글 전체 리스트 출력 (회원명 다나옴) -->
 	<select resultType="com.onetrillion.trip.reply.ReplyDTO" id="replySelectAll">
 		<![CDATA[
 		 SELECT * FROM TRIL_REPLY ORDER BY REPLY_SEQ ASC
 		]]>
 	</select>
 	
+	<!-- client 용 자신의 댓글만 출력하기 -->
+	<select resultType="com.onetrillion.trip.reply.ReplyDTO" id="replySelectId">
+		<![CDATA[
+		 SELECT * FROM TRIL_REPLY where u_id = #{u_id} ORDER BY REPLY_SEQ ASC
+		]]>
+	</select>
+	
 	<insert id="replyInsert">
 		<![CDATA[
 			INSERT INTO TRIL_REPLY (reply_seq, u_id, pd_seq , reply_title, reply_date, reply_content, reply_rate)
-			values(reply_seq.nextVal,#{u_id},#{pd_seq},#{reply_title},to_char(sysdate,'yyyy-mm-dd hh:mm'),#{reply_content},#{reply_rate})
+			values(reply_seq.nextVal,#{u_id},#{pd_seq},#{reply_title},to_char(sysdate,'yyyy-MM-dd HH24:mm'),#{reply_content},#{reply_rate})
 		]]>		
 	</insert>
 	
@@ -24,7 +33,7 @@
 		<![CDATA[
 		update TRIL_REPLY set
 		reply_seq =#{reply_seq }, u_id =#{u_id }, pd_seq =#{pd_seq }
-		, reply_title =#{reply_title }, reply_date =to_char(sysdate,'yyyy-mm-dd hh:mm'), reply_content =#{reply_content } , reply_rate=#{reply_rate }
+		, reply_title =#{reply_title }, reply_date =to_char(sysdate,'yyyy-MM-dd HH24:mm'), reply_content =#{reply_content } , reply_rate=#{reply_rate }
 		where reply_seq=#{reply_seq}]]>
 	</update>
 	

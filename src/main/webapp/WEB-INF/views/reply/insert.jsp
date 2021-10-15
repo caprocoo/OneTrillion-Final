@@ -16,13 +16,13 @@
              <tr>
                  <th>아이디</th>
                  <td>
-                	  <input type="text" name = "u_id" value = "dhgustjd10"/>
+                	  <input name = "u_id" value = "${replyInsertDto.u_id}"/>
                  </td>
              </tr>
              <tr>
                  <th>상품번호</th>
                  <td>
-                	  <input type="text" name = "pd_seq" value = "1"/>
+                	  <input name = "pd_seq" value = "${replyInsertDto.pd_seq}"/>
                  </td>
              </tr>
              <tr>

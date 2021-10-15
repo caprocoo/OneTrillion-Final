@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.onetrillion.trip.reply.ReplyDTO;
 import com.onetrillion.trip.reply.impl.ReplyService;
+import com.onetrillion.trip.userRes.UserResDTO;
 
 @Controller
 @RequestMapping(value = "/reply")
@@ -20,11 +21,21 @@ public class ReplyController {
 	@Autowired
 	public ReplyService service;
 	
-	//2021. 10. 12 21:00 현성 리뷰 전체 리스트 구현
+//	//2021. 10. 12 21:00 현성 리뷰 전체 리스트 구현(관리자용)
+//	@RequestMapping(value = "list.do", method = RequestMethod.GET)
+//	public String reply_List(Model model) {
+//		
+//		List<ReplyDTO> replyList = service.replySelectAll();
+//		model.addAttribute("replyList", replyList);
+//
+//		return "reply/list";
+//	}
+	
 	@RequestMapping(value = "list.do", method = RequestMethod.GET)
-	public String reply_List(Model model) {
+	public String reply_List(Model model, String u_id) {
 		
-		List<ReplyDTO> replyList = service.replySelectAll();
+		//System.out.println(u_id);
+		List<ReplyDTO> replyList = service.replySelectId(u_id);
 		model.addAttribute("replyList", replyList);
 
 		return "reply/list";
@@ -32,14 +43,18 @@ public class ReplyController {
 	
 	
 	@RequestMapping(value = "insert.do", method = RequestMethod.GET)
-	public String replyInsertPage() {
+	public String replyInsertPage(Model model, ReplyDTO dto) {
+		
+		//System.out.println(dto);
+		model.addAttribute("replyInsertDto", dto);
+		
 		return "reply/insert";
 	}
 	
 	@RequestMapping(value = "insert.do", method = RequestMethod.POST)
 	public String replyInsertCommit(Model model, ReplyDTO dto) {
 		
-		System.out.println(dto);
+		//System.out.println(dto);
 		service.replyInsert(dto);
 
 		return "redirect:list.do";
