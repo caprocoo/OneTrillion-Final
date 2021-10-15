@@ -19,7 +19,7 @@
     </div>
     <div style="margin:auto; width: 1000px; height: 280px;">
         <div id="footerDiv01" style="margin-top:20px;">
-        	<button>관리자 로그인</button>
+        	<button  onclick="location.href='<%=request.getContextPath() %>/admin/adminlogin.do' ">관리자 로그인</button>
             <p>One Trillion </p>
             <p>조장 : 오현성, 조원 : 한보영, 이희연, 김태현, 용상현, 장진광 </p>
             <p>사업자등록번호 000-00-000000 | 관광사업자등록증번호 제2021-0001000호</p>
