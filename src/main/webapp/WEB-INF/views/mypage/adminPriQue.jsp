@@ -120,7 +120,7 @@
                                 <td>
                                     <a class="btn btn-secondary btn001" role="button" onclick="location.href='<%=request.getContextPath() %>/admin/modify2.do?cl_seq=${client.cl_seq}' "
                                         style="padding: 5px;">수정</a>
-                                    <a class="btn btn-secondary btn001" role="button" onclick="cl_btn_delete(${client.cl_seq})"
+                                    <a class="btn btn-secondary btn001" role="button" onclick="cl_btn_delete2(${client.cl_seq  })"
                                         style="padding: 5px;">삭제</a>
                                 </td>
                                 <td style="display: none">${client.ans_content  }</td>    
@@ -172,7 +172,6 @@
                                 <button class="btn btn-outline-secondary" type="button" id="button-addon2"
                                     style="border:1px solid #ededed">검색</button>
                             </div>
-                            <a class="btn btn-secondary" href="#" role="button">등록</a>
                         </div>
                     </div>
                 </div>
@@ -229,7 +228,7 @@
                     <a class="btn btn-secondary" role="button" onclick="cl_btn_delete()"
                         style="margin-top:10px; margin-bottom: 10px;">삭제</a>
                     <a class="btn btn-primary" href="#" role="button" onclick="godetail()"
-                        style="margin-top:10px; margin-bottom: 10px; margin-right: 10px;">문의 답변</a>
+                        style="margin-top:10px; margin-bottom: 10px; margin-right: 10px;">상세보기</a>
                 </div>
           <!-- 관리자 답변 -->
           <div id="adminMemtable2">
@@ -263,10 +262,10 @@
 	}//
 	
 	
-	function cl_btn_delete(){  //====================@한보영 Modal창 안에서 삭제하기 10/15 		
+	function cl_btn_delete(){  //====================@Modal창 안에서 [문의글] 삭제하기 10/15 		
 		var cl_seq= $('#CL_SEQ').text();
 	
-		var cl_delete = confirm('문의글을 삭제하시겠습니까?');						    	
+		var cl_delete = confirm(cl_seq+'번 문의글을 삭제하시겠습니까?');						    	
     	if(!cl_delete){
     		return false;
     	}else{
@@ -286,10 +285,34 @@
 	        }
 	    });	//ajax 끝
     	}//if끌						    	
-    };//cl_btn_delete  끝=============================================@삭제하기 	
+    };//cl_btn_delete  끝=============================================@삭제1	
+    
+    function cl_btn_delete2(cl_seq){  //====================@ lsit에서 [문의글] 삭제하기 10/15 		
+
+		var cl_delete = confirm(cl_seq+'번 문의글을 삭제하시겠습니까?');						    	
+    	if(!cl_delete){
+    		return false;
+    	}else{
+    	var seqdata ={"cl_seq":cl_seq};
+    	console.log('삭제2 > '+cl_seq)		
+    	
+	    $.ajax({
+	        url:"delete2.do",
+	        type:'POST',
+	        data: seqdata,
+	        success:function(data){
+	            alert("삭제되었습니다.");
+	            location.href = "./list.do";							            	            
+	        },
+	        error:function(){
+	            alert("에러");
+	        }
+	    });	//ajax 끝
+    	}//if끌						    	
+    };//cl_btn_delete  끝=============================================@삭제2 	
     
 	
-    function cl_btn_modi(){  //====================@한보영 Modal창 안에서 수정하기 10/15 
+    function cl_btn_modi(){  //====================@한보영 Modal창 안에서 [문의글] 수정하기 10/15 
     	var cl_seq= $('#CL_SEQ').text();	    	
 		location.href = "./modify2.do?cl_seq="+cl_seq;	
 	};//cl_btn_delete  끝=============================================@수정하기 	    
@@ -319,7 +342,7 @@
         	 
         	 
        	   	//console.log($('#ans_content').text())
-       		if($('#ans_content').text() ==''){	 //답변내용이있으면 보이고 아님 안보이게	
+       		if($('#ans_content').text() ==''){	 // [답변] 내용이있으면 보이고 아님 안보이게	
        			$('#adminMemtable2').hide()
        		}else{
        			$('#adminMemtable2').show()

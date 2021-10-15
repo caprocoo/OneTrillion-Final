@@ -22,7 +22,7 @@
                 crossorigin="anonymous"></script>
                 <script src="//code.jquery.com/jquery.min.js"></script>
 			<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-			<!-- ============================================================================@@ 1:1 고객 문의 10/12 한보영 -->  
+			<!-- ============================================================================@@ 1:1 고객 [문의] 입력 10/12 한보영 -->  
             <style>
                 #priQueTab1 tr {
                     height: 70px;

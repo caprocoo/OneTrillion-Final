@@ -23,7 +23,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
         integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
         crossorigin="anonymous"></script>
-          <!-- ============================================================================@@ 1:1 관리자 답변 10/14 한보영 -->  
+          <!-- ============================================================================@@ 1:1 관리자 [답변] 수정 10/14 한보영 -->  
     <style>
         * {
             margin: 0;
@@ -165,16 +165,14 @@
 
 <script type="text/javascript">
 
-var cl_seq =$('#cl_seq').val();
-
-	document.getElementById('modi_submitbtn').onclick = function() {                        	
-	
+	var cl_seq =$('#cl_seq').val();
+	document.getElementById('modi_submitbtn').onclick = function() {  //수정버튼을 누르면     
 		   	 if($('#ans_content').val() == ''){   
 		  		 alert('문의 내용을 입력해주세요')
 		  	 }else{
 		  		 document.getElementById('form').submit(); //수정완료   			  		 
 		  	 }
-		};//modi_submitbtn 눌렀을 때 form을 submit!
+	};//==========================================================================
 
 
 </script>
