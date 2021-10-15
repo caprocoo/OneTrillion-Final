@@ -88,54 +88,93 @@
                 <div class="adminMainDiv1">
                     <p>1대1문의 수정</p>
                 </div>
+                
+<!--@@ modify _ form @@ 한보영 10/15 09:01   ------------------------------------------------------------------------------------>                     
+           <form action="modify2.do" method="post"  id="form">      
                 <table id="adminMemtable1" style="width: 100%; border-top: 2px solid #343a40;">
                     <tr>
                         <th>번호</th>
-                        <td><input type="text" class="form-control" placeholder="CL_SEQ"></td>
+                        <td>
+	                        <input type="hidden" value="${dto.cl_seq }" name="cl_seq">
+	                        ${dto.cl_seq }
+                        </td>
                     </tr>
                     <tr>
                         <th>회원 아이디</th>
-                        <td><input type="hidden" value="${dto.u_id }" name="u_id">${dto.u_id }</td>
+                        <td> 	                        
+	                        <input type="hidden" value="${dto.u_id }" name="u_id">
+	                         ${dto.u_id }
+	                    </td>
                     </tr>
                     <tr>
                         <th>닉네임</th>
-                        <td><input type="text" class="form-control" placeholder="U_NICKNAME"></td>
+                        <td>
+                        	<input type="hidden" value="${dto.u_nickName  }" name="u_nickName">
+                        	 ${dto.u_nickName }
+                        </td>
                     </tr>
                     <tr>
                         <th>문의 제목</th>
-                        <td><input type="text" class="form-control" placeholder="CL_TITLE"></td>
+                        <td><input type="text" class="form-control"  value="${dto.cl_title  }" name="cl_title" id="cl_title"></td>
                     </tr>
                     <tr>
-                        <th>문의 날</th>
-                        <td><input type="text" class="form-control" placeholder="CL_DATE"></td>
-                    </tr>
-                    <tr>
-                        <th>CL_TYPE</th>
+                        <th>문의 유형</th>
                         <td>
+                            <input type="hidden"  name="cl_type" id="cl_type" value='${dto.cl_type }'>                        
                             <select class="form-select" id="inputGroupSelect01" style="border:0;">
-                                <option selected>국내여행</option>
-                                <option value="1">테마여행</option>
-                                <option value="2">자유여행</option>
-                                <option value="3">예약조회</option>
-                                <option value="3">기타</option>
+                                <option value="미선택">문의유형을 선택하세요</option>
+                                <option value="국내여행">국내여행</option>
+                                <option value="테마여행">테마여행</option>
+                                <option value="자유여행">자유여행</option>
+                                <option value="예약조회">예약조회</option>
+                                <option value="기타">기타</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
-                        <th>CL_CONTENT</th>
+                        <th>문의 내용</th>
                         <td><textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
-                                placeholder="CL_CONTENT"
-                                style="border:0; resize: none; background-color: white;"></textarea></td>
+                                name="cl_content"
+                                style="border:0; resize: none; background-color: white;">${dto.cl_content  }</textarea>
+                        </td>
                     </tr>
                 </table>
                 <div style="text-align: right;">
-                    <a class="btn btn-secondary" href="#" role="button"
+                    <a class="btn btn-secondary"  href="list.do" role="button"
                         style="margin-top:10px; margin-bottom: 10px;">취소</a>
-                    <input class="btn btn-secondary" type="button" value="저장" style="margin-right: 10px;">
+                    <input class="btn btn-secondary" type="button" value="수정 완료" 
+                    	style="margin-right: 10px;" id="modi_submitbtn">
                 </div>
+      		</form>
+ <!--@@ modify form  끝 @@------------------------------------------------------------------------------------>    
+                
+                
             </div>
         </div>
     </div>
 </body>
 
+<script>
+                      $(document).ready(function () {                        	
+                     //========================================================================@한보영 수정하기 구현 12/12 08:16
+                      	document.getElementById('modi_submitbtn').onclick = function() {                        	
+
+                     	   	 if($('#inputGroupSelect01').val() == '미선택'){ //문의 유형을 선택하지 않았을 경우
+                         		 alert('문의 유형을 선택해주세요')
+                         	 }else if($('#cl_title').val() == ''){ //제목
+                         		 alert('제목을 입력해주세요')
+                         	 }else if($('#exampleFormControlTextarea1').val() == ''){
+                         		 alert('문의 내용을 입력해주세요')
+                         	 }else{
+                         		 document.getElementById('form').submit(); //수정완료   
+                         	 }
+                     	};//modi_submitbtn 눌렀을 때 form을 submit!
+                      	
+                      	 $('#inputGroupSelect01').change(function() { //select box에 있는 문의 유형을 hidden inputbox에 넣고 submit 할 때 가져갈거얌
+                      		 $('#cl_type').val($('#inputGroupSelect01').val());                        		 
+                      	 })                        	                         	 
+                      	 $("#inputGroupSelect01").val($('#cl_type').val());     
+                      	 
+                      })//document 끝            
+</script>
 </html>

@@ -148,9 +148,7 @@
                         <td>
                         	<textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
                                 placeholder="ANS_CONTENT"
-                                style="border:0; resize: none; background-color: white;" name="ans_content"  id="ans_content" > 
-                                ${ans_dto.ans_content  }
-                            </textarea>
+                                style="border:0; resize: none; background-color: white;" name="ans_content"  id="ans_content" >${ans_dto.ans_content  }</textarea>
                         </td>   
                     </tr>
                 </table>

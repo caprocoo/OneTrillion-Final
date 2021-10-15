@@ -71,7 +71,7 @@
                                         class="navbar-brand" style="font-size: 100%;" href="#">수정</a>
                                 </nav>
                             </div>
-          <!--@@ modify _ form @@ 한보영 12/12 09:01   ------------------------------------------------------------------------------------>                     
+          <!--@@ modify _ form @@ 한보영 10/12 09:01   ------------------------------------------------------------------------------------>                     
                          <form action="modify.do" method="post"  id="form">   
                             <table id="priQueTab1"
                                 style="margin-top:40px;width: 100%; border-top: 2px solid #343a40; text-align: center;">
@@ -129,7 +129,7 @@
                     
                     <script>
                         $(document).ready(function () {                        	
-                       //========================================================================@한보영 수정하기 구현 12/12 08:16
+                       //========================================================================@한보영 수정하기 구현 10/12 08:16
                         	document.getElementById('modi_submitbtn').onclick = function() {                        	
 
                        	   	 if($('#exampleFormControlSelect1').val() == '미선택'){ //문의 유형을 선택하지 않았을 경우
