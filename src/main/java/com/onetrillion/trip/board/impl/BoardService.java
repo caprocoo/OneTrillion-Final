@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.onetrillion.trip.board.BoardDTO;
 import com.onetrillion.trip.board.ImageDTO;
+import com.onetrillion.trip.page.Criteria;
 
 public interface BoardService {
 
@@ -24,5 +25,10 @@ public interface BoardService {
 	List<BoardDTO> theme(String pd_theme);
 
 	ImageDTO detailImage(int pd_seq);
+	
+	List<BoardDTO> BoardPaging(Criteria cri);
+	
+	int BoardCount();
+	
 
 }

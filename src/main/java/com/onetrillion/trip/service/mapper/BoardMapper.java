@@ -4,6 +4,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import com.onetrillion.trip.board.BoardDTO;
 import com.onetrillion.trip.board.ImageDTO;
+import com.onetrillion.trip.page.Criteria;
 
 @Mapper
 public interface BoardMapper {
@@ -17,5 +18,7 @@ public interface BoardMapper {
 	public int getCount(BoardDTO dto); 
 	public List<BoardDTO> theme(String pd_theme);
 	public ImageDTO detailImage(int pd_seq);
+	public List<BoardDTO> BoardPaging(Criteria cri);
+	public int BoardCount();
 	
 }
