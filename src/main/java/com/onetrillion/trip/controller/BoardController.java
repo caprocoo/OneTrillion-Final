@@ -64,6 +64,7 @@ public class BoardController {
 		BoardDTO dto = service.detail(pd_seq);
 		UserResDTO userDTO = userResService.userResDetail(pd_seq);
 		WishlistDTO wDto = wishService.wishlistDetail(pd_seq); // 10/14 이희연 찜목록 구현 시 추가함
+		System.out.println(userDTO);
 		
 		//1박 2일 구하기
 		LocalDate start_date = dto.getPd_startDate();

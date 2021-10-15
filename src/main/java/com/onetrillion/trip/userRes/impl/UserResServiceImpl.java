@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.onetrillion.trip.page.Criteria;
 import com.onetrillion.trip.service.mapper.UserResMapper;
 import com.onetrillion.trip.userRes.UserResDTO;
 
@@ -25,13 +26,23 @@ public class UserResServiceImpl implements UserResService{
 	}
 
 	@Override
-	public UserResDTO userResDetail(int ures_seq) {
-		return userResMapper.userResDetail(ures_seq);
+	public UserResDTO userResDetail(int pd_seq) {
+		return userResMapper.userResDetail(pd_seq);
 	}
 
 	@Override
 	public List<UserResDTO> userSelectId(String u_id) {
 		return userResMapper.userSelectId(u_id);
+	}
+
+	@Override
+	public List<UserResDTO> userResPaging(Criteria cri) {
+		return userResMapper.userResPaging(cri);
+	}
+
+	@Override
+	public int userResCount() {
+		return userResMapper.userResCount();
 	}
 
 }
