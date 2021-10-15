@@ -55,6 +55,13 @@
 		     select count(res_seq) from Tril_NOUSERRESERVATION where res_seq>0
       	]]>
 	</select>
+	
+	<delete id="noUserResDelete">
+
+		<![CDATA[
+			delete from Tril_NOUSERRESERVATION where res_seq=#{res_seq}]]>
+			
+	</delete>
 
 	
 	

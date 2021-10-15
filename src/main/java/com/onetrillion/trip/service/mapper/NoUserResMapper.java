@@ -17,6 +17,7 @@ public interface NoUserResMapper {
 	
 	public List<NoUserResDTO> noUserResPaging(Criteria cri);
 	public int noUserResCount();
+	public int noUserResDelete(int res_seq);
 	
 	
 	

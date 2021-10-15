@@ -80,6 +80,15 @@ public class NoUserResController {
 		return null;
 	}
 	
+	@RequestMapping(value = "/delete.do", method = RequestMethod.POST)
+	public String noUserDelete( Model model, int res_seq){
+		System.out.println(res_seq);
+		service.noUserResDelete(res_seq);
+
+		return "noUserRes/listPage";
+	}
+	
+	
 	@RequestMapping(value = "/listPage.do", method = RequestMethod.GET)
 	public String noUserResListPage(Model model, NoUserResCriteria cri){
 		

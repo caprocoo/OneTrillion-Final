@@ -22,7 +22,7 @@
 	<select resultType="com.onetrillion.trip.userRes.UserResDTO" id="userResDetail">
 	
 	<![CDATA[
-	      select * from Tril_USERRESERVATION where pd_seq=#{pd_seq}]]>
+	      select * from Tril_USERRESERVATION where ures_seq=#{ures_seq}]]>
 	</select>
 
 	<select resultType="com.onetrillion.trip.userRes.UserResDTO" id="userSelectId">
@@ -52,6 +52,13 @@
 		      select count(ures_seq) from Tril_USERRESERVATION where ures_seq>0
 		      ]]>
 	</select>
+	
+	<delete id="userResDelete">
+
+		<![CDATA[
+			delete from Tril_USERRESERVATION where ures_seq=#{ures_seq}]]>
+			
+	</delete>
 
 
 
