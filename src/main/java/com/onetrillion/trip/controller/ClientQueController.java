@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.onetrillion.trip.adminAnswer.AdminAnsDTO;
-import com.onetrillion.trip.adminAnswer.Impl.AdminAnsService;
+import com.onetrillion.trip.admin.clientAnswer.AdminAnsDTO;
+import com.onetrillion.trip.admin.clientAnswer.Impl.AdminAnsService;
 import com.onetrillion.trip.board.BoardDTO;
 import com.onetrillion.trip.clientque.ClientqueDTO;
 import com.onetrillion.trip.clientque.Impl.ClientqueService;

@@ -1,8 +1,8 @@
-package com.onetrillion.trip.adminAnswer.Impl;
+package com.onetrillion.trip.admin.clientAnswer.Impl;
 
 import java.util.List;
 
-import com.onetrillion.trip.adminAnswer.AdminAnsDTO;
+import com.onetrillion.trip.admin.clientAnswer.AdminAnsDTO;
 
 public interface AdminAnsService {
 	// 1:1문의 관리자 답변 CRUD   [10/13 한보영] 

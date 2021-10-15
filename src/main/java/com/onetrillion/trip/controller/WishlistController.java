@@ -51,7 +51,7 @@ public class WishlistController {
 	}
 	
 	// 찜 삭제
-	@RequestMapping(value = "/delete.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/delete.do", method = RequestMethod.POST)
 	public String delete(@RequestParam("w_seq") int w_seq, HttpSession session) {
 		service.delete_wish(w_seq);
 		String u_id = (String) session.getAttribute("u_id");

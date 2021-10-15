@@ -7,13 +7,13 @@
                                                       <!-- @@ 1:1 문의 답변 CRUD   [10/13 수 한보영]  -->
 
 
-<!-- @@ 리스트 @@-->
-<select resultType="com.onetrillion.trip.adminAnswer.AdminAnsDTO" id="selectAll">
+<!-- @@ 리스트 @@--> 
+<select resultType="com.onetrillion.trip.admin.clientAnswer.AdminAnsDTO" id="selectAll">
 <![CDATA[ SELECT * FROM Tril_ClientAnswer ORDER BY ans_seq desc ]]>
 </select>
 
 <!-- @@ 한명만 가져오기 @@-->
-<select resultType="com.onetrillion.trip.adminAnswer.AdminAnsDTO"  id="selectOne">
+<select resultType="com.onetrillion.trip.admin.clientAnswer.AdminAnsDTO"  id="selectOne">
 <![CDATA[
 		SELECT * FROM Tril_ClientAnswer where cl_seq=#{cl_seq} ORDER BY ans_seq desc
 ]]>
@@ -30,7 +30,7 @@
 </insert>
 
 <!-- @@ 디테일 @@-->
-<select resultType="com.onetrillion.trip.adminAnswer.AdminAnsDTO" id="detail">
+<select resultType="com.onetrillion.trip.admin.clientAnswer.AdminAnsDTO" id="detail">
 <![CDATA[
       select * from Tril_ClientAnswer where cl_seq=#{cl_seq}]]>
 </select>
