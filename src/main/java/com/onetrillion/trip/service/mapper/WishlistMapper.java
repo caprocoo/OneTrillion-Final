@@ -16,7 +16,6 @@ public interface WishlistMapper {
 	public void delete_wish(int w_seq);
 	public List<WishlistDTO> allWishlist(String u_id);
 	public List<WishlistDTO> wishListSelectID(String u_id);
-	public WishlistDTO wishlistDetail(int w_seq);
-
-
+	public WishlistDTO wishlistDetail(int pd_seq);
+	public WishlistDTO wishlistDetail2(@Param("u_id") String u_id, @Param("pd_seq") int pd_seq);
 }

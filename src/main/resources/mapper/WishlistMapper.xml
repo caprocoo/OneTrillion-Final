@@ -34,7 +34,10 @@
 	</select>
 	
 
-	
+	<select resultType="com.onetrillion.trip.wishlist.WishlistDTO" id="wishlistDetail2">
+	<![CDATA[
+	      select * from TRIL_WISHLIST where u_id = #{u_id} and pd_seq = #{pd_seq}]]>
+	</select>
 	
 	
 	

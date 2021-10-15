@@ -25,12 +25,10 @@
 @media (max-width:1400px){#searchDiv001{margin-left:15px; margin-right:15px;}}
 @media (max-width:1100px){#searchDiv001{width:1050px;}}
 #searchInput001:hover{cursor: pointer; color: red;}
-
 </style>
    	<jsp:include page="../include/header.jsp"></jsp:include>
 </head>
 <body>
-
    	<div id="searchDiv001">
       <c:forEach var="board" items="${searchList }">
          <figure>
@@ -48,18 +46,16 @@
          </figure>
       </c:forEach> 
    </div>
-   
    <div id="searchDiv002" style="display:none">
       <c:forEach var="board" items="${wishList }">
  	           <p><span id="u_id2">${board.pd_seq}</span> </p>
       </c:forEach> 
    </div>
-
+   
+   
 <script>
 
 var searchImg01Over=function(){
-	//console.log("searchImg01Over...");
-	//console.dir(event.target);
 	$($(event.target).prev()).css("visibility", "visible");
 	$($(event.target).next()).css("visibility", "visible");
 	$(event.target).css("filter", "brightness(60%)");
@@ -109,9 +105,8 @@ $(document).ready(function(){
 
 
 
-//10/14 이희연 찜기능 구현 중(미완) 
+//10/14 이희연 찜기능 구현완료(10/15)
 $(".searchImgModal").on("click", function(){
-	//console.log("log찍어써여", $(this).next().next().next().find("#pd_name").text())
 	const pd_seq = $(this).next().next().next().find("#pd_seq").text();
 	const pd_name = $(this).next().next().next().find("#pd_name").text();
 	const u_id = $("#u_id").text();
@@ -121,112 +116,45 @@ $(".searchImgModal").on("click", function(){
 	const pd_image = $(this).next().prop("src");	
 
   	var Like_confirm = confirm(pd_seq+'번 [ '+pd_name+' ] 상품을 찜하시겠습니까?');
-	
+  	var sendUrl = "http://localhost:8088/trip/wishlist/checkAjax.do";
+
   	
-  	
-	 /*  10/15 이희연 찜 중복 구현 중이었음 ㅠㅠ
-	 136 라인에 있는 ajax를 이용한 중복 방지가 안먹힘!! 
-	 
-	if(!Like_confirm){
-		return false; // 아니오
-	}else{ // 예
-		if(u_id == ""){ // 미로그인 시
-			alert("찜 하기위해서 로그인이 필요합니다.");
-			location.href = "http://localhost:8088/trip/user/login.do";
- 		} else if(
- 				  
- 				  //pd_seq == $("#u_id2").text()
- 					$.ajax({
-						url : "http://localhost:8088/trip/wishlist/wishlist.do",
-						type : "GET",
-						data : {"pd_seq" : pd_seq},
-						success : function(data, status){
-							console.log(data, status, pd_seq) 
-							if(staus == "success"){
-								alert('이미 찜 한 상품입니다!');
-						 		location.href = "http://localhost:8088/trip/wishlist/list.do?u_id="+u_id;  
-							}
-						}
-					}) 				  
- 		  
- 		  
- 		  			){ // wishlist 상품 중복여부 판단
-		 		
-				 	 } else{	
-							$.ajax({
-								url : "http://localhost:8088/trip/wishlist/wishlist.do",
-								type : "GET",
-								data : {"pd_seq" : pd_seq, 
-										"u_id" : u_id, 
-										"pd_name" : pd_name,
-										"pd_startDate" : pd_startDate,
-										"pd_endDate" : pd_endDate,
-										"pd_price" : pd_price,
-										"pd_image" : pd_image 
-								},
-								success : function(data, status){
-									if(data == 'success'){
-										console.log("data",data);
-										console.log("status",status);
-										  console.log(pd_seq, $("#u_id2").text())
-										var confirm_again = confirm('찜 목록에 담겼습니다. 찜 목록으로 이동하시겠습니까?');
-										if(!confirm_again){ //아니오
-											return false;
-										}else{
-											location.href = "http://localhost:8088/trip/wishlist/list.do?u_id="+u_id; 	
-											console.log("찜목록에 담겼어!!! 여기까지 잘 들어왔어?????", u_id);
-										}//내부(2) if문 - 찜목록 이동? 안이동?
-									}else{
-										alert("이미 찜에 등록된 상품입니다.");
-									}
-								}
-							})			 
-						}//내부(1) if문  - 로그인여부 판단
-		}  //외부 if문 - 찜하기? 안찜하기?   */
-				
-				
-				
-		// 임시로 오류 안나도록 만들어둔 코드입니다~
 		if(!Like_confirm){
 			return false; // 아니오
 		}else{ // 예
 			if(u_id == "" ){ // 미로그인 시
-			alert("찜 하기위해서 로그인이 필요합니다.");
-			location.href = "http://localhost:8088/trip/user/login.do";
-			  } else if (pd_seq == $("#u_id2").text()){ // wishlist 상품 중복여부 판단
-			  		alert('이미 찜 한 상품입니다!');
-	 		location.href = "http://localhost:8088/trip/wishlist/list.do?u_id="+u_id; 
-	 	} else{	
-				$.ajax({
-					url : "http://localhost:8088/trip/wishlist/wishlist.do",
-					type : "GET",
-					data : {"pd_seq" : pd_seq, 
-							"u_id" : u_id, 
-							"pd_name" : pd_name,
+				alert("찜 하기위해서 로그인이 필요합니다.");
+				location.href = "http://localhost:8088/trip/user/login.do";
+			}else { // wishlist 상품 중복여부 판단
+					$.ajax({
+						url : sendUrl,
+						type:"POST",
+						data: {"u_id" : u_id, "pd_seq" : pd_seq, "pd_name" : pd_name,
 							"pd_startDate" : pd_startDate,
 							"pd_endDate" : pd_endDate,
 							"pd_price" : pd_price,
-							"pd_image" : pd_image 
-					},
+							"pd_image" : pd_image },
 					success : function(data, status){
-						if(status == 'success'){
-							var confirm_again = confirm('찜 목록에 담겼습니다. 찜 목록으로 이동하시겠습니까?');
-							if(!confirm_again){ //아니오
-								return false;
-							}else{
-								location.href = "http://localhost:8088/trip/wishlist/list.do?u_id="+u_id; 	
-							}//내부(2) if문 - 찜목록 이동? 안이동?
-									
+						if(status === 'success') {
+							if(data === 'possible') {
+								var confirm_again = confirm('찜 목록에 담겼습니다. 찜 목록으로 이동하시겠습니까?');
+								if(!confirm_again){ //아니오
+									return false;
+								}else{
+									location.href = "http://localhost:8088/trip/wishlist/list.do?u_id="+u_id; 	
+								}//내부(2) if문 - 찜목록 이동? 안이동?
+							}else if(data === "impossible"){
+								alert("이미 찜에 등록된 상품입니다.");
 						}else{
-							alert("이미 찜에 등록된 상품입니다.");
-						}
-					}
-				})			 
-			}//내부(1) if문  - 로그인여부 판단
-		}  //외부 if문 - 찜하기? 안찜하기?  
-})//(.searchImgModal").on("click") 종료
+							alert("오류가 생겼습니다!")
+					} // 마지막 else문 종료
+				} 
+	 		} 
+		})  // ajax 종료 
+	  } // wishlist 상품 중복여부 판단 else문 종료
+	} // 로그인 여부 판단 if문 종료
+}); // onClick 함수 종료
 
 </script>
-
 </body>
 </html>

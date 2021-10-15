@@ -60,8 +60,7 @@ public class BoardController {
 		String u_id = (String) session.getAttribute("u_id"); // 10/14 이희연 search.do 내 찜버튼 구현 시 추가함
 		List<WishlistDTO> wishList = wishService.wishListSelectID(u_id); // 10/14 이희연 search.do 내 찜버튼 구현 시 추가함
 		model.addAttribute("wishList", wishList); // 10/14 이희연 search.do 내 찜버튼 구현 시 추가함
-		System.out.println("search.do GET메소드에 들어왔어어어어어어 wishList : " + wishList); // 10/14 이희연 search.do 내 찜버튼 구현 시 추가함
-
+		
 		return "board/search";
 	}
 

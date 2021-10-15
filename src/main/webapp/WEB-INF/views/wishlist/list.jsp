@@ -2,7 +2,6 @@
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <!DOCTYPE html>
     <html>
-
     <head>
       <meta charset="UTF-8">
       <title>회원 찜 내역</title>
@@ -24,10 +23,7 @@
         }
       </style>
     </head>
-
     <body>
-
-
       <c:if test="${sessionScope.u_id != null }">
         <jsp:include page="../include/header2.jsp"></jsp:include>
       </c:if>
@@ -51,7 +47,6 @@
             </div>
             <div style="float:right;width:915px;">
               <div>
-                <!-- <nav style="margin-top:15px; height: 50px; line-height: 40px; border-bottom: 2px solid #ededed;"> -->
                 <nav style="margin-top:15px; height: 50px; line-height: 40px; background-color: #ededed; ">
                   <a class="navbar-brand" style="font-size: 100%; margin-left: 20px; color: #343a40; font-weight: bold;"
                     href="#">찜 내역</a>
@@ -80,19 +75,16 @@
                   </div>
                 </div>
                       </c:forEach> 
-
-                
                 <!---------forEach 끝-------------------------------------------------------------------------------------------------------------------------->
               </div>
             </div>
           </div>
           
           <script>
-          
 		  // 삭제 버튼 클릭 시 실행되는 함수
           function delBtn(w_seq){
           	var pd_name =$("#pd_name").text();
-      		var del_con = confirm(pd_name+' 상품을 삭제하시겠습니까?');			
+      		var del_con = confirm('해당 상품을 삭제하시겠습니까?');			
           	var u_id = $("#u_id").text();
           	if(!del_con){
           		return false;
@@ -104,24 +96,15 @@
       	        type:'POST',
       	        data: seqdata,
       	        success:function(data){
-      	            alert(pd_name + " 상품이 삭제되었습니다.");
+      	            alert("해당 상품이 삭제되었습니다.");
       	          location.href = "http://localhost:8088/trip/wishlist/list.do?u_id="+u_id;  							            	            
       	        }
       	    });	//ajax 종료
           	} //if문 종료					    	
           }; //delBtn 함수 종료
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-         // 10/14 12:00 이희연 체크박스 선택 삭제 구현 중(미완) 
+
+
+          // 10/14 12:00 이희연 체크박스 선택 삭제 구현 중(미완) 
           function DeleteClick(){
         	  alert("체크박스 눌려씀!!!!");
           	  var checkBoxArr = []; 
@@ -169,49 +152,9 @@
                 }
               })//scroll 함수끝				
             })
-            
-            
-/*         function del(w_seq) {
-			var chk = confirm("정말 삭제하시겠습니까?");
-			var w_seq = $(this).val();
-			console.log("w_seq값~", w_seq);
-			if (chk) {
-				location.href='delete.do?w_seq='+w_seq;
-			}
-	}	 */
-            
-            /*function click_delete(){
-            	var wish_delete = confirm('찜을 삭제하시겠습니까?');
-            	var w_seq = ${board.pd_seq};
-            	var seqdata ={"pd_seq":pd_seq};
-            	console.log(pd_seq);
-            	console.log(seqdata);
-            	
-            	if(!wish_delete){ // 아니오를 누르면~
-            		return false;
-            	}else{
-            	console.log(seqdata);
-        	    $.ajax({
-        	        url:"http://localhost:8088/trip/wishlist/delete.do",
-        	        type:'POST',
-        	        data: seqdata,
-        	        success:function(data){
-        	            alert("완료!");
-        	            location.href = "http://localhost:8088/trip/wishlist/list.do?u_id="+u_id;       	            	            
-        	        },
-        	        error:function(){
-        	            alert("에러 발생!! \n" );
-        	        }
-        	    });	//ajax end
-            	}//if else문 
-            };// click_delete 함수 종료 */
-            
 
-            
-            
             
           </script>
           <jsp:include page="../include/footer.jsp"></jsp:include>
     </body>
-
     </html>

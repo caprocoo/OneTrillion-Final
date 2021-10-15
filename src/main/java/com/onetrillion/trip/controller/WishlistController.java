@@ -18,8 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.onetrillion.trip.board.BoardDTO;
 import com.onetrillion.trip.board.impl.BoardService;
-
-
+import com.onetrillion.trip.user.UserDTO;
 import com.onetrillion.trip.wishlist.WishlistDTO;
 import com.onetrillion.trip.wishlist.impl.WishlistService;
 
@@ -28,13 +27,14 @@ import com.onetrillion.trip.wishlist.impl.WishlistService;
 @RequestMapping(value = "/wishlist")
 public class WishlistController {
 
-	// 10/14 이희연 찜 목록 구현 중
+	// 10/14 이희연 찜 목록 구현 완료
 	@Autowired
 	public WishlistService service;
 	@Autowired
 	public BoardService boardService;
 	  
-	// 찜 Ajax
+	
+	// detail.do 내 찜 Ajax
 	@RequestMapping(value = "/wishlist.do", method = RequestMethod.GET)
 	@ResponseBody
 	public String wishlist(Model model, WishlistDTO dto) {
@@ -58,6 +58,21 @@ public class WishlistController {
 		return "redirect:/wishlist/list.do?u_id="+u_id;
 	}
 	
+	// search.do 내 찜버튼 ajax
+	@RequestMapping(value = "/checkAjax.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String checkAjax(@RequestParam("pd_seq") int pd_seq, HttpSession session, WishlistDTO dto) {
+		String result = "impossible";
+		String u_id = (String) session.getAttribute("u_id");
+		WishlistDTO wish = service.wishlistDetail2(u_id, pd_seq);
+
+		// DB에 u_id값과 pd_seq가 없으면
+		if (wish == null) {
+			result = "possible";
+			service.insert_wish(dto); //insert
+		}
+		return result;
+	}
 	
 
 
