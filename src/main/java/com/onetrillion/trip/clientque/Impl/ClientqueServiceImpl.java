@@ -52,6 +52,10 @@ public class ClientqueServiceImpl implements ClientqueService{
 	}
 	
 	
-	
+	//답변달리면 update
+	@Override
+	public int getAdminAns(int cl_seq ) {
+		return client_mapper.getAdminAns( cl_seq);
+	}
 	
 }

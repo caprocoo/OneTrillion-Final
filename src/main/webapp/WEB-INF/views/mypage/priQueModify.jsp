@@ -20,6 +20,8 @@
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
                 integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
                 crossorigin="anonymous"></script>
+            <!-- ============================================================================@@ 1:1 고객 문의 10/12 한보영 -->  
+                
             <style>
                 #priQueTab1 tr {
                     height: 70px;
@@ -88,7 +90,7 @@
                                    	    <input type="hidden"  name="cl_type" id="cl_type" value='${dto.cl_type }'>
                                         <select class="form-control" id="exampleFormControlSelect1"
                                             style="border: 0; height: 60px;">
-                                            <option>문의유형을 선택하세요</option>
+                                            <option value="미선택">문의유형을 선택하세요</option>
                                             <option value="국내여행">국내여행</option>
                                             <option value="테마여행">테마여행</option>
                                             <option value="자유여행">자유여행</option>
@@ -100,7 +102,7 @@
                                 <tr>
                                     <th>제목</th>
                                     <td>
-                                        <input type="text" class="form-control" value="${dto.cl_title  }" name="cl_title"
+                                        <input type="text" class="form-control" value="${dto.cl_title  }" name="cl_title" id="cl_title"
                                             style="border: 0; height: 60px;">
                                     </td>
                                 </tr>
@@ -127,15 +129,23 @@
                     
                     <script>
                         $(document).ready(function () {                        	
-                       //========================================================================@한보영 입력하기 구현 12/12 08:16
+                       //========================================================================@한보영 수정하기 구현 12/12 08:16
                         	document.getElementById('modi_submitbtn').onclick = function() {                        	
-                        		 document.getElementById('form').submit();                        	
-                        	};//submitbtn눌렀을 때 form을 submit 함!
+
+                       	   	 if($('#exampleFormControlSelect1').val() == '미선택'){ //문의 유형을 선택하지 않았을 경우
+                           		 alert('문의 유형을 선택해주세요')
+                           	 }else if($('#cl_title').val() == ''){ //제목
+                           		 alert('제목을 입력해주세요')
+                           	 }else if($('#exampleFormControlTextarea1').val() == ''){
+                           		 alert('문의 내용을 입력해주세요')
+                           	 }else{
+                           		 document.getElementById('form').submit(); //수정완료   
+                           	 }
+                       	};//modi_submitbtn 눌렀을 때 form을 submit!
                         	
                         	 $('#exampleFormControlSelect1').change(function() { //select box에 있는 문의 유형을 hidden inputbox에 넣고 submit 할 때 가져갈거얌
                         		 $('#cl_type').val($('#exampleFormControlSelect1').val());                        		 
-                        	 })                        	 
-                        	 
+                        	 })                        	                         	 
                         	 $("#exampleFormControlSelect1").val($('#cl_type').val());     
                         	 
                         })//document 끝
@@ -152,11 +162,11 @@
 							        type:'POST',
 							        data: seqdata,
 							        success:function(data){
-							            alert("완료!");
+							            alert("삭제되었습니다.");
 							            location.href = "./list.do";							            	            
 							        },
 							        error:function(){
-							            alert("에러 발생");
+							            alert("에러");
 							        }
 							    });	//ajax 끝
 						    	}//if끌						    	

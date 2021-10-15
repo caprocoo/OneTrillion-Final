@@ -254,11 +254,7 @@ public class UserController {
 
 // 미구현 ============================================================================================	  
 
-	@RequestMapping(value = "/user/wishlist.do", method = RequestMethod.GET)
-	public String wishlist_page() {
-		// logger.info(">>>> user/wishlist_page");
-		return "user/wishlist";
-	}
+
 
 	@RequestMapping(value = "/user/reserveCheck.do", method = RequestMethod.GET)
 	public String reserveCheck_page() {

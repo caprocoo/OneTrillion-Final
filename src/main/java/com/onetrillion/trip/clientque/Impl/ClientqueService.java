@@ -17,6 +17,8 @@ public interface ClientqueService {
 	int modify(ClientqueDTO dto);
 	//삭제
 	int delete(ClientqueDTO dto);
+	//답변달리면 update
+	int getAdminAns(int cl_seq );
 
 
 	

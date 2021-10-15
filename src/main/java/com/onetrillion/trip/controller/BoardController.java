@@ -29,6 +29,8 @@ import com.onetrillion.trip.board.ImageDTO;
 import com.onetrillion.trip.board.impl.BoardService;
 import com.onetrillion.trip.userRes.UserResDTO;
 import com.onetrillion.trip.userRes.impl.UserResService;
+import com.onetrillion.trip.wishlist.WishlistDTO;
+import com.onetrillion.trip.wishlist.impl.WishlistService;
 
 @Controller
 @RequestMapping(value = "/board")
@@ -44,6 +46,9 @@ public class BoardController {
 	@Autowired
 	public UserResService userResService;
 
+	@Autowired
+	public WishlistService wishService;
+	
 	@RequestMapping(value = "/search.do", method = RequestMethod.GET)
 	public String search(Model model) {
 		List<BoardDTO> searchList = service.selectAll();
@@ -55,6 +60,7 @@ public class BoardController {
 	public String detail(Model model, int pd_seq) {
 		BoardDTO dto = service.detail(pd_seq);
 		UserResDTO userDTO = userResService.userResDetail(pd_seq);
+		WishlistDTO wDto = wishService.wishlistDetail(pd_seq); // 10/14 이희연 찜목록 구현 시 추가함
 		
 		//1박 2일 구하기
 		LocalDate start_date = dto.getPd_startDate();
@@ -74,6 +80,7 @@ public class BoardController {
 		model.addAttribute("dto", dto);
 		model.addAttribute("userDTO", userDTO);
 		model.addAttribute("image", image);
+		model.addAttribute("wDto", wDto); // 10/14 이희연 찜목록 구현 시 추가함
 
 		return "board/detail";
 	}
