@@ -163,7 +163,7 @@
           </div>
           <script>
         	function userResDelete(ures_seq){
-          		var res_confirm = confirm('댓글을 삭제하시겠습니까?');
+          		var res_confirm = confirm('예약을 취소하시겠습니까?');
           		if(!res_confirm){
           			return false;
           		}else{
@@ -174,7 +174,7 @@
 				        type:'POST',
 				        data: uresData,
 				        success:function(data){
-				            alert("삭제가 완료되었습니다!");
+				            alert("취소되었습니다!");
 				            location.href = "http://localhost:8088/trip/userRes/list.do";						            	            
 				        },
 				        error:function(){

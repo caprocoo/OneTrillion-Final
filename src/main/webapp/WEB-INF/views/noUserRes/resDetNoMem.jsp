@@ -135,7 +135,7 @@
           </div>
           <script>
       	function noUserResDelete(res_seq){
-      		var res_confirm = confirm('댓글을 삭제하시겠습니까?');
+      		var res_confirm = confirm('예약을 취소하시겠습니까?');
       		if(!res_confirm){
       			return false;
       		}else{
@@ -146,7 +146,7 @@
 			        type:'POST',
 			        data: noResData,
 			        success:function(data){
-			            alert("삭제가 완료되었습니다!");
+			            alert("취소되었습니다!");
 			            location.href = "http://localhost:8088/trip/";						            	            
 			        },
 			        error:function(){
