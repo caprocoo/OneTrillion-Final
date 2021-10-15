@@ -38,6 +38,11 @@ public class ReplyServiceImpl implements ReplyService{
 	public int replyDelete(int reply_seq) {
 		return replyMapper.replyDelete(reply_seq);
 	}
+
+	@Override
+	public List<ReplyDTO> replySelectId(String u_id) {
+		return replyMapper.replySelectId(u_id);
+	}
 	
 	
 	

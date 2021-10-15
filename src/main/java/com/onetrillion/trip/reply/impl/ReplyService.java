@@ -10,4 +10,5 @@ public interface ReplyService {
 	ReplyDTO replyDetail(int reply_seq);
 	int replyModify(ReplyDTO dto);
 	int replyDelete(int reply_seq);
+	List<ReplyDTO> replySelectId(String u_id);
 }

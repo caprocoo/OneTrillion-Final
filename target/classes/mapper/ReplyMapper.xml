@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.onetrillion.trip.service.mapper.ReplyMapper">
-
+	
+	
+	<!-- 관리자용 댓글 전체 리스트 출력 (회원명 다나옴) -->
 	<select resultType="com.onetrillion.trip.reply.ReplyDTO" id="replySelectAll">
 		<![CDATA[
 		 SELECT * FROM TRIL_REPLY ORDER BY REPLY_SEQ ASC
+		]]>
+	</select>
+	
+	<!-- client 용 자신의 댓글만 출력하기 -->
+	<select resultType="com.onetrillion.trip.reply.ReplyDTO" id="replySelectId">
+		<![CDATA[
+		 SELECT * FROM TRIL_REPLY where u_id = #{u_id} ORDER BY REPLY_SEQ ASC
 		]]>
 	</select>
 	
