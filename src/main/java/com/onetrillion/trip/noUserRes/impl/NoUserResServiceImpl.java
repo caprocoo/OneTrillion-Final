@@ -46,6 +46,11 @@ public class NoUserResServiceImpl implements NoUserResService{
 		return noUserResMapper.noUserResCount();
 	}
 
+	@Override
+	public int noUserResDelete(int res_seq) {
+		return noUserResMapper.noUserResDelete(res_seq);
+	}
+
 
 
 

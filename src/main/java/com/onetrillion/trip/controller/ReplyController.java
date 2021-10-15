@@ -34,7 +34,7 @@ public class ReplyController {
 //	}
 	
 	@RequestMapping(value = "list.do", method = RequestMethod.GET)
-	public String reply_List(Model model,  HttpSession session) {
+	public String reply_List(Model model, HttpSession session) {
 		String u_id= (String) session.getAttribute("u_id");		
 
 		System.out.println(u_id);

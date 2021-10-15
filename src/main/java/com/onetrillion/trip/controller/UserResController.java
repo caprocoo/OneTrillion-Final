@@ -1,6 +1,9 @@
 package com.onetrillion.trip.controller;
 
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +29,9 @@ public class UserResController {
 	
 	//2021. 10. 12 15:30 현성 userReservation -회원 예약하기 아이디별로 전체 리스트 뽑기 구현
 	@RequestMapping(value = "/list.do", method = RequestMethod.GET)
-	public String userSelectAll(Model model, String u_id){
+	public String userSelectAll(Model model, HttpSession session){
 		
+		String u_id= (String) session.getAttribute("u_id");	
 		List<UserResDTO> userResList = service.userSelectId(u_id);
 		model.addAttribute("userResList", userResList);
 
@@ -47,12 +51,20 @@ public class UserResController {
 	
 	//
 	@RequestMapping(value = "/resDetail.do", method = RequestMethod.GET)
-	public String userResDetail(int pd_seq, Model model){
+	public String userResDetail(int ures_seq, Model model){
 
-		UserResDTO userResDetail = service.userResDetail(pd_seq);
+		UserResDTO userResDetail = service.userResDetail(ures_seq);
 		model.addAttribute("userResDetail", userResDetail);
 
 		return "userRes/resDetail";
+	}
+	
+	@RequestMapping(value = "/delete.do", method = RequestMethod.POST)
+	public String userResDelete(int ures_seq){
+		System.out.println(ures_seq);
+		service.userResDelete(ures_seq);
+
+		return "redirect:list.do";
 	}
 	
 	

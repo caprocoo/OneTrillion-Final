@@ -235,7 +235,7 @@
                 <div class="modal-header" >
                     <h5 class="modal-title" id="exampleModalLabel">답변 완료</h5>
                 </div>
-                <table  style="width: 100%; border-top: 2px solid #343a40;">
+                <table id="adminMemtable1"  style="width: 100%; border-top: 2px solid #343a40;">
                     <tr style="height: 100px;">
                         <th>답변 내용</th>
                         <td id="ans_content"></td>

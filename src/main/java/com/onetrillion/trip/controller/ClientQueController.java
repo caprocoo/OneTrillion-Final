@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.onetrillion.trip.adminAnswer.AdminAnsDTO;
-import com.onetrillion.trip.adminAnswer.Impl.AdminAnsService;
 import com.onetrillion.trip.board.BoardDTO;
+import com.onetrillion.trip.clientAnswer.ClientAnsDTO;
+import com.onetrillion.trip.clientAnswer.Impl.ClientAnsService;
 import com.onetrillion.trip.clientque.ClientqueDTO;
 import com.onetrillion.trip.clientque.Impl.ClientqueService;
 
@@ -27,7 +27,7 @@ public class ClientQueController {
 	@Autowired
 	ClientqueService client_service;
 	@Autowired
-	AdminAnsService adminAns_service; //답변service
+	ClientAnsService adminAns_service; //답변service
 
 
 	//1:1문의 목록으로 이동
@@ -37,7 +37,7 @@ public class ClientQueController {
 		List<ClientqueDTO> clientQueList =client_service.selectOne(u_id); //문의한 리스트
 		model.addAttribute("clientQueList", clientQueList);		
 		
-		List<AdminAnsDTO> adminAnsList =adminAns_service.selectAll(); //답변 리스트
+		List<ClientAnsDTO> adminAnsList =adminAns_service.selectAll(); //답변 리스트
 		model.addAttribute("adminAnsList", adminAnsList);
 
 		return "mypage/privateQue";
@@ -72,6 +72,7 @@ public class ClientQueController {
 	public String clientQue_modify_post(@RequestParam("cl_seq") int cl_seq, Model model, ClientqueDTO dto) {
 		model.addAttribute("cl_seq", cl_seq);
 		client_service.modify(dto);
+		client_service.getAdminAns(cl_seq); //답변가져와
 		return "redirect:/myPage/list.do";	
 
 	}

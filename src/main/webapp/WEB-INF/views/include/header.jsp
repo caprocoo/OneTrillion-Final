@@ -230,7 +230,7 @@
 		            <a href="<%=request.getContextPath()%>/user/myPageInfo.do?u_id=${member.u_id}">회원정보 &nbsp;</a>
 					<a href="<%=request.getContextPath()%>/user/cs.do">고객센터&nbsp;</a> 
 					<a href="<%=request.getContextPath()%>/wishlist/list.do?u_id=${member.u_id }">찜&nbsp;</a> 
-					<a href="<%=request.getContextPath()%>/userRes/list.do?u_id=${member.u_id}">예약조회&nbsp;</a> 
+					<a href="<%=request.getContextPath()%>/userRes/list.do">예약조회&nbsp;</a> 
 					<a href="<%=request.getContextPath()%>/board/search.do">리스트 &nbsp;</a>
 		            <%}
 		            // 로그인 성공 시,
@@ -239,7 +239,7 @@
 		            <a href="<%=request.getContextPath() %>/user/myPageInfo.do?u_id=${member.u_id}">회원정보 &nbsp;</a>
 					<a href="<%=request.getContextPath()%>/user/cs.do">고객센터&nbsp;</a> 
 					<a href="<%=request.getContextPath()%>/wishlist/list.do?u_id=${member.u_id }">찜&nbsp;</a> 
-					<a href="<%=request.getContextPath()%>/userRes/list.do?u_id=${member.u_id}">예약조회&nbsp;</a> 
+					<a href="<%=request.getContextPath()%>/userRes/list.do">예약조회&nbsp;</a> 
 					<a href="<%=request.getContextPath()%>/board/search.do">리스트 &nbsp;</a>
            		    <a style="color: green;"> " ${member.u_id} 님 환영합니다. "</a>
          	   <%}%>

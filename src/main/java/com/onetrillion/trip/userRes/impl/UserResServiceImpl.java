@@ -26,8 +26,8 @@ public class UserResServiceImpl implements UserResService{
 	}
 
 	@Override
-	public UserResDTO userResDetail(int pd_seq) {
-		return userResMapper.userResDetail(pd_seq);
+	public UserResDTO userResDetail(int ures_seq) {
+		return userResMapper.userResDetail(ures_seq);
 	}
 
 	@Override
@@ -43,6 +43,11 @@ public class UserResServiceImpl implements UserResService{
 	@Override
 	public int userResCount() {
 		return userResMapper.userResCount();
+	}
+
+	@Override
+	public int userResDelete(int ures_seq) {
+		return userResMapper.userResDelete(ures_seq);
 	}
 
 }

@@ -28,6 +28,7 @@
                     text-indent: 15px;
                     margin-bottom: 10px;
                     margin-top: 10px;
+                    padding-left:20px;
                 }
 
                 .priQueTr1:hover {
@@ -74,11 +75,11 @@
                                 <table
                                     style="margin-top:40px; width: 100%; border-top: 2px solid #343a40;table-layout: fixed;">
                                     <tr style="text-align: center; height: 70px; background-color: #ededed;">
-                                        <th style="width: 10%;">No</th>
+                                        <th style="width: 5%;">No</th>
                                         <th style="width: 50%;">제목</th>
-                                        <th style="width: 20%">문의 유형</th>
-                                        <th style="width: 20%">문의 상태</th>
-                                        <th style="width: 20%">등록일</th>
+                                        <th style="width: 15%">문의 유형</th>
+                                        <th style="width: 15%">문의 상태</th>
+                                        <th style="width: 15%">등록일</th>
                                     </tr>
 <!------------여기에 forEach 시작 설정------------------------------------------------------------------------------------------------------------------>
                                      <c:forEach var="client" items="${clientQueList }"> 
@@ -104,8 +105,8 @@
                                         style="height: 70px; border-top: 1px solid #ededed; border-left: 5px solid #343a40;">
                                         <td colspan="4" style="height: auto; word-break: break-all;">
                                             <ul>
-                                                <li>
-                                                   <span id="cl_content">${client.cl_content  }</span> 
+                                                <li id="cl_content">
+                                                   ${client.cl_content  }
                                                 </li>
                                             </ul>
                                         </td>
@@ -121,7 +122,7 @@
 											<c:choose>		
 											 	<c:when test="${ans ne null}">	<!-- 만약 답변 내용이 있으면 tr이 보이게 하고 -->
 													<tr class="priQueTr2" style="height: 70px; border-left: 5px solid #343a40;">
-				                                        <td style="text-align: right;">▶</td>
+				                                        <td style="text-align: right;">&raquo;</td>
 				                                        <td colspan="4"
 				                                            style="border-top: 1px solid #ededed;height: auto; word-break: break-all;">
 				                                            <ul>

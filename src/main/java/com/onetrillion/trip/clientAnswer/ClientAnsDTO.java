@@ -1,7 +1,7 @@
-package com.onetrillion.trip.adminAnswer;
+package com.onetrillion.trip.clientAnswer;
 
                                                            
-public class AdminAnsDTO  {
+public class ClientAnsDTO  {
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 1:1 답변 [10/13 수 한보영]
 //	CREATE TABLE Tril_ClientAnswer(
 //	ans_seq number(5) NOT NULL PRIMARY KEY, 
@@ -23,11 +23,11 @@ public class AdminAnsDTO  {
 	private String ans_content; //답글 내용
 	
 	
-	public AdminAnsDTO() {
+	public ClientAnsDTO() {
 		// TODO Auto-generated constructor stub
 	}	
 	
-	public AdminAnsDTO(int ans_seq, String ad_id, int cl_seq, String ans_Date, String ans_content) {
+	public ClientAnsDTO(int ans_seq, String ad_id, int cl_seq, String ans_Date, String ans_content) {
 		super();
 		this.ans_seq = ans_seq;
 		this.ad_id = ad_id;

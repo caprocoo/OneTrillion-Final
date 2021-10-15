@@ -98,7 +98,7 @@
                   
                   <td>${board.ures_seq }</td>
                   <td>${board.pd_startDate } ~ ${board.pd_endDate }</td>
-                  <td onclick="location.href='<%=request.getContextPath() %>/userRes/resDetail.do?pd_seq=${board.pd_seq}' ">${board.pd_name }</td>
+                  <td onclick="location.href='<%=request.getContextPath() %>/userRes/resDetail.do?ures_seq=${board.ures_seq}' ">${board.pd_name }</td>
                   <td>${board.res_price }</td>
                   <td>${board.res_people }</td>
                   <td>${board.pd_startDate }</td>
