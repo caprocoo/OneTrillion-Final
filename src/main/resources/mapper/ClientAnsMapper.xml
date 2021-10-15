@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.onetrillion.trip.service.mapper.AdminAnsMapper">
+<mapper namespace="com.onetrillion.trip.service.mapper.ClientAnsMapper">
 
 
                                                       <!-- @@ 1:1 문의 답변 CRUD   [10/13 수 한보영]  -->
 
 
 <!-- @@ 리스트 @@--> 
-<select resultType="com.onetrillion.trip.admin.clientAnswer.AdminAnsDTO" id="selectAll">
+<select resultType="com.onetrillion.trip.clientAnswer.ClientAnsDTO" id="selectAll">
 <![CDATA[ SELECT * FROM Tril_ClientAnswer ORDER BY ans_seq desc ]]>
 </select>
 
 <!-- @@ 한명만 가져오기 @@-->
-<select resultType="com.onetrillion.trip.admin.clientAnswer.AdminAnsDTO"  id="selectOne">
+<select resultType="com.onetrillion.trip.clientAnswer.ClientAnsDTO"  id="selectOne">
 <![CDATA[
 		SELECT * FROM Tril_ClientAnswer where cl_seq=#{cl_seq} ORDER BY ans_seq desc
 ]]>
@@ -30,7 +30,7 @@
 </insert>
 
 <!-- @@ 디테일 @@-->
-<select resultType="com.onetrillion.trip.admin.clientAnswer.AdminAnsDTO" id="detail">
+<select resultType="com.onetrillion.trip.clientAnswer.ClientAnsDTO" id="detail">
 <![CDATA[
       select * from Tril_ClientAnswer where cl_seq=#{cl_seq}]]>
 </select>

@@ -55,6 +55,12 @@
 </head>
 
 <body>
+	<script type="text/javascript">
+		function userResList(){
+			location.href = "http://localhost:8088/trip/adminUserRes/list.do"
+		}
+	</script>
+
     <div style="width: 1800px; height: 100vh;">
         <div style="float: left; width: 250px; height: 100%; box-shadow: 0 0 20px #ededed; position: fixed;">
             <div style="margin:auto; width: 80%;"><img style="width: 100%; margin-top: 40px; margin-bottom: 40px;"
@@ -62,7 +68,7 @@
             <div>            		
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item" onclick="">메인</li>
-                    <li class="list-group-item" onclick="">회원예약</li>
+                    <li class="list-group-item" onClick="userResList()">회원예약리스트</li>
                     <li class="list-group-item" onclick="">비회원예약</li>
                     <li class="list-group-item" onclick="">문의</li>
                     <li class="list-group-item" onclick="">리뷰</li>
@@ -475,7 +481,7 @@
 <script type="text/javascript">
 $("#adminLogout").on("click", function(){
     if(confirm("관리자 로그아웃 하시겠습니까?")){
-    location.href = "<%=request.getContextPath()%>/admin/adminlogout.do";
+    location.href = "<%=request.getContextPath()%>/adminLogin/logout.do";
     alert("로그아웃되었습니다.");
     }
  });

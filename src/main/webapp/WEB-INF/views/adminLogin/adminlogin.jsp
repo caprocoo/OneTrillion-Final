@@ -92,7 +92,7 @@
 
 
 	
-	<form name="f1" action="adminlogin.do" method="post" id="adminLoginForm">
+	<form name="f1" action="login.do" method="post" id="adminLoginForm">
 		<div id="logdiv001">
 			<div><h1>관리자 로그인</h1></div>
 			<div>

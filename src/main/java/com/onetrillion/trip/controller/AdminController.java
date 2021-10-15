@@ -16,18 +16,19 @@ import com.onetrillion.trip.admin.AdminDTO;
 import com.onetrillion.trip.admin.impl.AdminService;
 
 @Controller
+@RequestMapping(value = "/adminLogin")
 public class AdminController {
 
 	@Autowired
 	AdminService adminService;
 
 	//관리자 로그인 페이지로 이동
-	@RequestMapping(value = "/admin/adminlogin.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 	public String AdminLoginPage() {
-		return "admin/adminlogin";
+		return "adminLogin/adminlogin";
 	}
 	
-	@RequestMapping(value = "/admin/adminlogin.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String AdminLoginAction(AdminDTO dto, HttpSession session, HttpServletRequest req,HttpServletResponse resp) throws IOException {
 
 		AdminDTO admin = adminService.admin_Login(dto);
@@ -35,7 +36,7 @@ public class AdminController {
 		if (admin != null) { //어드민 로그인 되면!
 			session.setAttribute("AD_ID", dto.getAD_ID());
 			session.setAttribute("admin", admin);
-			return "admin/adminMain";			
+			return "adminLogin/adminMain";			
 		} else
 			resp.setContentType("text/html; charset=UTF-8"); //있으면 리스트로 돌아감
 			PrintWriter out = resp.getWriter();
@@ -48,7 +49,7 @@ public class AdminController {
 	}
 	
 	// 로그아웃 처리
-	@RequestMapping(value = "/admin/adminlogout.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
 	public String logout(HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		session.invalidate();
