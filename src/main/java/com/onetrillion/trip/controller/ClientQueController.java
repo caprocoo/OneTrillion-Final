@@ -72,6 +72,7 @@ public class ClientQueController {
 	public String clientQue_modify_post(@RequestParam("cl_seq") int cl_seq, Model model, ClientqueDTO dto) {
 		model.addAttribute("cl_seq", cl_seq);
 		client_service.modify(dto);
+		client_service.getAdminAns(cl_seq); //답변가져와
 		return "redirect:/myPage/list.do";	
 
 	}
