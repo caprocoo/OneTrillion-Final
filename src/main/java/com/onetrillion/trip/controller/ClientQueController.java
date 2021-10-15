@@ -52,9 +52,7 @@ public class ClientQueController {
 	
 	//입력 submit 완료
 	@RequestMapping(value = "/input.do", method = RequestMethod.POST)
-	public String clientQue_Insert_post(ClientqueDTO dto) {
-		
-		System.out.println(dto);
+	public String clientQue_Insert_post(ClientqueDTO dto) {		
 		int cnt = client_service.insert(dto);		
 		if (cnt > 0) {
 			return "redirect:/myPage/list.do";	

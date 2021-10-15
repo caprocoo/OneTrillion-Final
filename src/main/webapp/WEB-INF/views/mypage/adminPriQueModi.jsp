@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -87,23 +90,23 @@
                 </div>
                 <table id="adminMemtable1" style="width: 100%; border-top: 2px solid #343a40;">
                     <tr>
-                        <th>CL_SEQ</th>
+                        <th>번호</th>
                         <td><input type="text" class="form-control" placeholder="CL_SEQ"></td>
                     </tr>
                     <tr>
-                        <th>U_ID</th>
-                        <td><input type="text" class="form-control" placeholder="U_ID"></td>
+                        <th>회원 아이디</th>
+                        <td><input type="hidden" value="${dto.u_id }" name="u_id">${dto.u_id }</td>
                     </tr>
                     <tr>
-                        <th>U_NICKNAME</th>
+                        <th>닉네임</th>
                         <td><input type="text" class="form-control" placeholder="U_NICKNAME"></td>
                     </tr>
                     <tr>
-                        <th>CL_TITLE</th>
+                        <th>문의 제목</th>
                         <td><input type="text" class="form-control" placeholder="CL_TITLE"></td>
                     </tr>
                     <tr>
-                        <th>CL_DATE</th>
+                        <th>문의 날</th>
                         <td><input type="text" class="form-control" placeholder="CL_DATE"></td>
                     </tr>
                     <tr>

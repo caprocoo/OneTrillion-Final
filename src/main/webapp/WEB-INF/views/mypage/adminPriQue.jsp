@@ -118,7 +118,7 @@
 						  		</c:forEach>    
                                 </td>
                                 <td>
-                                    <a class="btn btn-secondary btn001" role="button" onclick="location.href='<%=request.getContextPath() %>/myPage/modify.do?cl_seq=${client.cl_seq}' "
+                                    <a class="btn btn-secondary btn001" role="button" onclick="location.href='<%=request.getContextPath() %>/admin/modify2.do?cl_seq=${client.cl_seq}' "
                                         style="padding: 5px;">수정</a>
                                     <a class="btn btn-secondary btn001" role="button" onclick="cl_btn_delete(${client.cl_seq})"
                                         style="padding: 5px;">삭제</a>
@@ -224,9 +224,9 @@
                     </tr>
                 </table>
                 <div style="text-align: right;">
-                    <a class="btn btn-secondary" href="#" role="button"
+                    <a class="btn btn-secondary"  role="button" onclick="location.href='<%=request.getContextPath() %>/admin/modify2.do?cl_seq=${client.cl_seq}' "
                         style="margin-top:10px; margin-bottom: 10px;">수정</a>
-                    <a class="btn btn-secondary" href="#" role="button"
+                    <a class="btn btn-secondary" href="#" role="button" onclick="cl_btn_delete(${client.cl_seq})"
                         style="margin-top:10px; margin-bottom: 10px;">삭제</a>
                     <a class="btn btn-primary" href="#" role="button" onclick="godetail()"
                         style="margin-top:10px; margin-bottom: 10px; margin-right: 10px;">문의 답변</a>
