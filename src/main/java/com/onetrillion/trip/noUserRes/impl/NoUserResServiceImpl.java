@@ -51,6 +51,16 @@ public class NoUserResServiceImpl implements NoUserResService{
 		return noUserResMapper.noUserResDelete(res_seq);
 	}
 
+	@Override
+	public NoUserResDTO adminNoUserDetail(int res_seq) {
+		return noUserResMapper.adminNoUserDetail(res_seq);
+	}
+
+	@Override
+	public int noUserResModify(NoUserResDTO dto) {
+		return noUserResMapper.noUserResModify(dto);
+	}
+
 
 
 

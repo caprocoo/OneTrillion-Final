@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>회원 예약관리 리스트 페이지</title>
+<title>비회원 예약관리 리스트 페이지</title>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link
@@ -74,20 +74,20 @@
 
 <body>
 	<script type="text/javascript">
-		function deleteUserRes(ures_seq){
+		function deleteNoUserRes(res_seq){
       		var res_confirm = confirm('회원 예약을 삭제하시겠습니까?');
       		if(!res_confirm){
       			return false;
       		}else{
-      			var uresData = {"ures_seq" : ures_seq}
+      			var resData = {"res_seq" : res_seq}
       			//console.log(uresData)
       			$.ajax({
-			        url:"http://localhost:8088/trip/adminUserRes/delete.do",
+			        url:"http://localhost:8088/trip/adminNoUserRes/delete.do",
 			        type:'POST',
-			        data: uresData,
+			        data: resData,
 			        success:function(data){
 			            alert("삭제되었습니다!");
-			            location.href = "http://localhost:8088/trip/adminUserRes/list.do";						            	            
+			            location.href = "http://localhost:8088/trip/adminNoUserRes/list.do";						            	            
 			        },
 			        error:function(){
 			            alert("에러 발생");
@@ -134,7 +134,8 @@
 					<table class="table table-hover">
 						<thead>
 							<tr>
-								<th scope="col">URES_SEQ</th>
+								<th scope="col">RES_SEQ</th>
+								<th scope="col">RES_PWD</th>
 								<th scope="col">PD_SEQ</th>
 								<th scope="col">PD_NAME</th>
 								<th scope="col">PD_STARTDATE</th>
@@ -151,17 +152,18 @@
 								<th scope="col">RES_BIRTH</th>
 								<th scope="col">RES_EMAIL</th>
 								<th scope="col">RES_COMMENT</th>
-								<th scope="col">U_ID</th>
 								<th scope="col">RES_PHONE</th>
 								<th scope="col">수정/삭제</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="board" items="${userResList }">
+							<c:forEach var="board" items="${noUserResList }">
 								<!-- forEach 문 시작--------------------------------------------------------------------------------------------------------------------------------------->
 								<tr style="cursor: pointer;" onclick="">
 									<td data-bs-toggle="modal"
-										data-bs-target=".bd-example-modal-lg" onclick="">${board.ures_seq }</td>
+										data-bs-target=".bd-example-modal-lg" onclick="">${board.res_seq }</td>
+									<td data-bs-toggle="modal"
+										data-bs-target=".bd-example-modal-lg" onclick="">${board.res_pwd}</td>
 									<td data-bs-toggle="modal"
 										data-bs-target=".bd-example-modal-lg" onclick="">${board.pd_seq }</td>
 									<td data-bs-toggle="modal"
@@ -195,14 +197,12 @@
 									<td data-bs-toggle="modal"
 										data-bs-target=".bd-example-modal-lg" onclick="">${board.res_comment }</td>
 									<td data-bs-toggle="modal"
-										data-bs-target=".bd-example-modal-lg" onclick="">${board.u_id }</td>
-									<td data-bs-toggle="modal"
 										data-bs-target=".bd-example-modal-lg" onclick="">${board.res_phone }</td>
 
 									<td><a class="btn btn-secondary btn001"
-										onclick="location.href='http://localhost:8088/trip/adminUserRes/modify.do?ures_seq=${board.ures_seq }'"
+										onclick="location.href='http://localhost:8088/trip/adminNoUserRes/modify.do?res_seq=${board.res_seq }'"
 										role="button" style="padding: 5px;">수정</a> <a
-										class="btn btn-secondary btn001" onclick="deleteUserRes(${board.ures_seq })" role="button"
+										class="btn btn-secondary btn001" onclick="deleteNoUserRes(${board.res_seq })" role="button"
 										style="padding: 5px;">삭제</a></td>
 								</tr>
 							</c:forEach>

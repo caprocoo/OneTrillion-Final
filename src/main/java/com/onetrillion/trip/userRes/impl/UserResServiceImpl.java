@@ -50,4 +50,9 @@ public class UserResServiceImpl implements UserResService{
 		return userResMapper.userResDelete(ures_seq);
 	}
 
+	@Override
+	public int userResModify(UserResDTO dto) {
+		return userResMapper.userResModify(dto);
+	}
+
 }

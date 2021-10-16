@@ -14,4 +14,5 @@ public interface UserResService {
 	List<UserResDTO> userResPaging(Criteria cri);
 	int userResCount();
 	int userResDelete(int ures_seq);
+	int userResModify(UserResDTO dto);
 }
