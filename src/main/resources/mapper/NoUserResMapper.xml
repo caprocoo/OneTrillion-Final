@@ -13,6 +13,17 @@
 		]]>	
 	</insert>
 	
+		<!-- 관리자용 수정 -->
+	<update id="noUserResModify">
+		<![CDATA[
+		update TRIL_NOUSERRESERVATION set
+		RES_SEQ =#{res_seq }, res_pwd =#{res_pwd }, pd_seq =#{pd_seq }, pd_name =#{pd_name }
+		, pd_startDate =#{pd_startDate }, pd_endDate =#{pd_endDate } , adult_num=#{adult_num },teenager_num=#{teenager_num },pet_num=#{pet_num },
+		adult_price=#{adult_price },teenager_price=#{teenager_price },pet_price=#{pet_price },res_price=#{res_price },res_people=#{res_people },
+		res_name=#{res_name },res_birth=#{res_birth },res_email=#{res_email },res_comment=#{res_comment },res_phone=#{res_phone }
+		where res_seq=#{res_seq}]]>
+	</update>
+	
 	<select resultType="com.onetrillion.trip.noUserRes.NoUserResDTO" id="noUserSelectAll">
 		<![CDATA[
 		 SELECT * FROM Tril_NOUSERRESERVATION ORDER BY res_seq ASC
@@ -33,6 +44,14 @@
 		<![CDATA[
 		select * from Tril_NOUSERRESERVATION where res_email=#{res_email} AND res_pwd=#{res_pwd}]]>
 	</select>
+	
+		
+	<select resultType="com.onetrillion.trip.noUserRes.NoUserResDTO" id="adminNoUserDetail">
+		<![CDATA[
+		select * from Tril_NOUSERRESERVATION where res_seq=#{res_seq}]]>
+	</select>
+	
+	
 	
 	<select resultType="com.onetrillion.trip.noUserRes.NoUserResDTO" id="noUserResPaging">
 

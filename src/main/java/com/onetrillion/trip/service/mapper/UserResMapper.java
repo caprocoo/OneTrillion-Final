@@ -17,5 +17,6 @@ public interface UserResMapper {
 	public List<UserResDTO> userResPaging(Criteria cri);
 	public int userResCount();
 	public int userResDelete(int ures_seq);
+	public int userResModify(UserResDTO dto);
 	
 }

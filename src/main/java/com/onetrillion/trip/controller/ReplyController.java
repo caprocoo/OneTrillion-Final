@@ -10,11 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.onetrillion.trip.reply.ReplyDTO;
 import com.onetrillion.trip.reply.impl.ReplyService;
-import com.onetrillion.trip.userRes.UserResDTO;
 
 @Controller
 @RequestMapping(value = "/reply")
@@ -56,7 +54,7 @@ public class ReplyController {
 	}
 	
 	@RequestMapping(value = "insert.do", method = RequestMethod.POST)
-	public String replyInsertCommit(Model model, ReplyDTO dto) {
+	public String replyInsertCommit(ReplyDTO dto) {
 		
 		//System.out.println(dto);
 		service.replyInsert(dto);
