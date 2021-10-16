@@ -18,17 +18,19 @@
 
 <!-- [관리자] 입력 -->
 <insert id="insert">
-<![CDATA[ insert into
-		TRIL_OFTEN(of_seq, of_title, of_content)
-		values(
-		(select nvl(max(of_seq), 0)+1 from TRIL_OFTEN),#{of_title},#{of_content}]]>		
+<![CDATA[ 
+INSERT INTO TRIL_OFTEN(of_seq, of_title, of_content) 
+	VALUES ((select nvl(max(of_seq), 0)+1 from TRIL_OFTEN)
+	,#{of_title} ,#{of_content})
+
+]]>		
 </insert>
 
 <!-- [관리자] 수정 -->
 <update id="modify">
 <![CDATA[
 		update TRIL_OFTEN set
-		pd_seq=#{of_seq}, of_title=#{of_title}, of_content=#{of_content}
+		of_seq=#{of_seq}, of_title=#{of_title}, of_content=#{of_content}
 		where of_seq=#{of_seq}]]>
 </update>
 

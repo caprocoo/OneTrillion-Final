@@ -128,8 +128,9 @@
                 style="background-color: #ededed; color: #343a40; font-weight: bold;">고객센터</a>
             <a href="#" class="list-group-item list-group-item-action">공지사항</a>
             <a href="#" class="list-group-item list-group-item-action">자주하는질문</a>
-            <a href="#" class="list-group-item list-group-item-action">1대1문의</a>
-            <a href="#" class="list-group-item list-group-item-action">Contact Us</a>
+            <a href="http://localhost:8088/trip/myPage/list.do" class="list-group-item list-group-item-action">1대1문의</a>
+            <a href="http://localhost:8088/trip/user/contactUs.do" class="list-group-item list-group-item-action" >Contact Us</a>
+     
         </div>
         <div style="float:right; width:915px; height: auto;">
             <!-- ============================================================================@@ 공지사항 10/11 한보영 -->

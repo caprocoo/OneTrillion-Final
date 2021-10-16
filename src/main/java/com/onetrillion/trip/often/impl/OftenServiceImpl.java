@@ -26,9 +26,9 @@ public class OftenServiceImpl implements OftenService   { //10/16 한보영 CRUD
 	}
 	
 	@Override
-	public OftenDTO detail(int pd_seq) {
+	public OftenDTO detail(int of_seq) {
 
-		return Often_mapper.detail(pd_seq);
+		return Often_mapper.detail(of_seq);
 	}
 
 	@Override

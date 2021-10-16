@@ -88,31 +88,45 @@
                 <div class="adminMainDiv1">
                     <p>자주하는질문 입력</p>
                 </div>
+                
+           <form action="input.do" method="post"  id="form">     
                 <table id="adminMemtable1" style="width: 100%; border-top: 2px solid #343a40;">
                     <tr>
-                        <th>OF_SEQ</th>
-                        <td><input type="text" class="form-control" placeholder="OF_SEQ"></td>
+                        <th>제목</th>
+                        <td><input type="text" class="form-control" placeholder="OF_TITLE" name="of_title" id="of_title">
+                        <input type="hidden" name="cl_seq"></td>
                     </tr>
                     <tr>
-                        <th>OF_TITLE</th>
-                        <td><input type="text" class="form-control" placeholder="OF_TITLE"></td>
-                    </tr>
-                    <tr>
-                        <th>OF_CONTENT</th>
+                        <th>내용</th>
                         <td><textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
-                                placeholder="OF_CONTENT"
+                                placeholder="OF_CONTENT" name="of_content"
                                 style="border:0; resize: none; background-color: white;"></textarea></td>
                     </tr>
                 </table>
                 <div style="text-align: right;">
                     <a class="btn btn-secondary" href="#" role="button"
                         style="margin-top:10px; margin-bottom: 10px;">취소</a>
-                    <input class="btn btn-secondary" type="button" value="저장" style="margin-right: 10px;">
+                    <input class="btn btn-secondary" type="button" 
+                    	value="저장" style="margin-right: 10px;" id="submitbtn" name="submitbtn">
                 </div>
-
+		</form>
             </div>
         </div>
     </div>
 </body>
-
+ <script>
+       $(document).ready(function () {                        	
+       	//========================================================================@한보영 입력하기 구현 10/12 08:16
+       	document.getElementById('submitbtn').onclick = function() {   
+       		
+       	   	 if($('#of_title').val() == ''){ //제목
+           		 alert('제목을 입력해주세요')
+           	 }else if($('#exampleFormControlTextarea1').val() == ''){
+           		 alert('내용을 입력해주세요')
+           	 }else{
+           		 document.getElementById('form').submit(); //입력완료   
+           	 }
+       	};//submitbtn눌렀을 때 form을 submit!
+       });
+</script>
 </html>

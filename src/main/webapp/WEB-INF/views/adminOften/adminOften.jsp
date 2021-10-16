@@ -89,22 +89,22 @@
                         <thead>
                             <tr>
                                 <th scope="col">NO</th>
-                                <th scope="col">OF_TITLE</th>
-                                <th scope="col">OF_CONTENT</th>
+                                <th scope="col">제목</th>
+                                <th scope="col">내용</th>
                                 <th scope="col">수정/삭제</th>
                             </tr>
                         </thead>
                         <tbody>
                 <!-- forEach 문 시작--------------------------------------------------------------------------------------------------------------------------------------->
                 <c:forEach var="often" items="${oftenList }">   
-                            <tr style="cursor: pointer;">                               
+                            <tr style="cursor: pointer;"  onclick="findvalue(${often.of_seq  })" class="tr_info">                               
                                 <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${often.of_seq }</td>
                                 <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${often.of_title }</td>
                                 <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${often.of_content }</td>
                                 <td>
-                                    <a class="btn btn-secondary btn001" href="#" role="button"
+                                    <a class="btn btn-secondary btn001" href="#" role="button" onclick="location.href='<%=request.getContextPath() %>/adminOften/modify.do?of_seq=${often.of_seq}' "
                                         style="padding: 5px;">수정</a>
-                                    <a class="btn btn-secondary btn001" href="#" role="button"
+                                    <a class="btn btn-secondary btn001" href="#" role="button" onclick="btn_delete2(${often.of_seq  })"
                                         style="padding: 5px;">삭제</a>
                                 </td>
                             </tr>
@@ -151,7 +151,8 @@
                                 <button class="btn btn-outline-secondary" type="button" id="button-addon2"
                                     style="border:1px solid #ededed">검색</button>
                             </div>
-                            <a class="btn btn-secondary" href="#" role="button">등록</a>
+                            <a class="btn btn-secondary"  role="button"
+                            	onclick="location.href='<%=request.getContextPath() %>/adminOften/input.do' ">등록</a>
                         </div>
                     </div>
                 </div>
@@ -169,26 +170,22 @@
                 </div>
                 <table id="adminMemtable1" style="width: 100%; border-top: 2px solid #343a40;">
                     <tr>
-                        <th>순번</th>
-                        <td>1 [db에서 가져오는것이 아닌 뷰페이지에서 자동으로 순번 설정되게]</td>
+                        <th>NO</th>
+                        <td id="OF_SEQ"></td>
                     </tr>
                     <tr>
-                        <th>OF_SEQ</th>
-                        <td>OF_SEQ</td>
-                    </tr>
-                    <tr>
-                        <th>OF_TITLE</th>
-                        <td>OF_TITLE</td>
+                        <th>제목</th>
+                        <td id="OF_TITLE"></td>
                     </tr>
                     <tr style="height: 300px;">
-                        <th>NO_CONTENT</th>
-                        <td>NO_CONTENT</td>
+                        <th>내용</th>
+                        <td id="OF_CONTENT"></td>
                     </tr>
                 </table>
                 <div style="text-align: right;">
-                    <a class="btn btn-secondary" href="#" role="button"
+                    <a class="btn btn-secondary" href="#" role="button" onclick="btn_modi()"
                         style="margin-top:10px; margin-bottom: 10px;">수정</a>
-                    <a class="btn btn-secondary" href="#" role="button"
+                    <a class="btn btn-secondary" href="#" role="button" onclick="btn_delete()"
                         style="margin-top:10px; margin-bottom: 10px; margin-right: 10px;">삭제</a>
                 </div>
             </div>
@@ -196,5 +193,99 @@
     </div>
     <!--Modal 끝----------------------------------------------------------------------------------------------------------------->
 </body>
+<script type="text/javascript">
 
+var of_seq =0;//전역변수에 담기
+function findvalue(seq){//매개변수로 받아온 seq를 전역변수로 만들어주기
+	of_seq=seq
+}	
+
+
+function btn_delete(){  //====================@Modal창 안에서 삭제하기 
+	var of_seq= $('#OF_SEQ').text();
+	console.log(of_seq)
+ 	var deleteQ = confirm(of_seq+'번 질문을 삭제하시겠습니까?');						    	
+	if(!deleteQ){
+		return false;
+	}else{
+	var seqdata ={"of_seq":of_seq};
+	console.log('삭제2 > '+of_seq)		
+	
+    $.ajax({
+        url:"delete.do",
+        type:'POST',
+        data: seqdata,
+        success:function(data){
+            alert("삭제되었습니다.");
+            location.href = "./list.do";							            	            
+        },
+        error:function(){
+            alert("에러");
+        }
+    });	//ajax 끝
+	}//if끌		 
+	
+};//btn_delete  끝=============================================@삭제1	
+
+function btn_delete2(of_seq){  //====================@ lsit에서 삭제하기 	
+	//console.log(of_seq)
+	 var deleteQ = confirm(of_seq+'번 질문을 삭제하시겠습니까?');						    	
+	if(!deleteQ){
+		return false;
+	}
+	else{
+	var seqdata ={"of_seq":of_seq};		
+	
+    $.ajax({
+        url:"delete.do",
+        type:'POST',
+        data: seqdata,
+        success:function(data){
+            alert("삭제되었습니다.");
+            location.href = "./list.do";							            	            
+        },
+        error:function(){
+            alert("에러");
+        }
+    });	//ajax 끝
+	}//if끌				 		    	
+};//btn_delete  끝=============================================@삭제2 	
+
+
+function btn_modi(){  //====================@한보영 Modal창 안에서 [문의글] 수정하기 10/15 
+ 	var of_seq= $('#OF_SEQ').text();	    	
+	location.href = "./modify.do?of_seq="+of_seq;	 
+};//btn_modi  끝=============================================@수정하기 	    
+
+
+
+$(document).ready(function(){       
+    $(".tr_info").on("click", function(){//---------------------------------------- [tr클릭시 표 -> Modal창으로 값 넘기기]
+    	 var OF_SEQ = $(this).children("td:nth-child(1)").text();  //표에있는 것 뽑아서
+    	 var OF_TITLE = $(this).children("td:nth-child(2)").text();
+    	 var OF_CONTENT = $(this).children("td:nth-child(3)").text();
+    	
+    	 
+    	 $('#OF_SEQ').text(OF_SEQ); //Modal에 넣어줌
+    	 $('#OF_TITLE').text(OF_TITLE);
+    	 $('#OF_CONTENT').text(OF_CONTENT);
+
+    })//tr_onclick끝
+            
+})//document_ready 끝
+
+//======================================================== nav바
+function adminMain(){
+	location.href = "http://localhost:8088/trip/adminLogin/adminMain.do"
+}
+function userResList(){
+	location.href = "http://localhost:8088/trip/adminUserRes/list.do"
+}
+
+
+
+
+
+
+</script>
 </html>

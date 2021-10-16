@@ -255,6 +255,10 @@ public class UserController {
 
 		return "user/cs";
 	}
+	@RequestMapping(value = "/user/contactUs.do", method = RequestMethod.GET)
+	public String cs_contact_page(Model model) {
+		return "user/contactUs";
+	}
 
 // 미구현 ============================================================================================	  
 

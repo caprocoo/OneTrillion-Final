@@ -351,21 +351,14 @@
                 
 	})//document_ready 끝
 	
-	
-	
 	//======================================================== nav바
-		function adminMain(){
-			location.href = "http://localhost:8088/trip/adminLogin/adminMain.do"
-		}
-		function userResList(){
-			location.href = "http://localhost:8088/trip/adminUserRes/list.do"
-		}
+	function adminMain(){
+		location.href = "http://localhost:8088/trip/adminLogin/adminMain.do"
+	}
+	function userResList(){
+		location.href = "http://localhost:8088/trip/adminUserRes/list.do"
+	}
 
-	
-	
-    
-	    
-	    
 
 
 </script>

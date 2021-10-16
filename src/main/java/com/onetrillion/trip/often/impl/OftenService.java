@@ -8,7 +8,7 @@ public interface OftenService {
 
 	List<OftenDTO> selectAll_often();
 
-	OftenDTO detail(int pd_seq);
+	OftenDTO detail(int of_seq);
 
 	int insert(OftenDTO dto);
 

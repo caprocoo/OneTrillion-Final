@@ -88,30 +88,46 @@
                 <div class="adminMainDiv1">
                     <p>자주하는질문 수정</p>
                 </div>
+          <form action="modify.do" method="post" id="form" >                            
                 <table id="adminMemtable1" style="width: 100%; border-top: 2px solid #343a40;">
                     <tr>
-                        <th>OF_SEQ</th>
-                        <td><input type="text" class="form-control" placeholder="OF_SEQ"></td>
+                        <th>순번</th>
+                        <td><input type="hidden" value="${dto.of_seq  }" name="of_seq" id="of_seq">
+                        	${dto.of_seq  }
+                        </td>
                     </tr>
                     <tr>
-                        <th>OF_TITLE</th>
-                        <td><input type="text" class="form-control" placeholder="OF_TITLE"></td>
+                        <th>제목</th>
+                        <td><input type="text" class="form-control"  name="of_title" value="${dto.of_title  }" ></td>
                     </tr>
                     <tr>
-                        <th>OF_CONTENT</th>
-                        <td><textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
-                                placeholder="OF_CONTENT"
-                                style="border:0; resize: none; background-color: white;"></textarea></td>
+                        <th>내용</th>
+                        <td><textarea class="form-control" id="exampleFormControlTextarea1" rows="20"
+                                name="of_content"
+                                style="border:0; resize: none; background-color: white;">${dto.of_content  }</textarea></td>
                     </tr>
                 </table>
                 <div style="text-align: right;">
                     <a class="btn btn-secondary" href="#" role="button"
                         style="margin-top:10px; margin-bottom: 10px;">취소</a>
-                    <input class="btn btn-secondary" type="button" value="저장" style="margin-right: 10px;">
+                    <input class="btn btn-secondary" type="button" value="저장"  id="modi_submitbtn" style="margin-right: 10px;">
                 </div>
+         </form>     
             </div>
         </div>
     </div>
 </body>
+<script type="text/javascript">
 
+	var of_seq =$('#of_seq').val();
+	document.getElementById('modi_submitbtn').onclick = function() {  //수정버튼을 누르면     
+		   	 if($('#exampleFormControlTextarea1').val() == ''){   
+		  		 alert('문의 내용을 입력해주세요')
+		  	 }else{
+		  		 document.getElementById('form').submit(); //수정완료   			  		 
+		  	 }
+	};//==========================================================================
+
+
+</script>
 </html>
