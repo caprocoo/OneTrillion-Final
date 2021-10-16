@@ -14,8 +14,10 @@ public interface WishlistMapper {
 	// 10/11 15:30 이희연 찜 구현
 	public void insert_wish(WishlistDTO dto);
 	public void delete_wish(int w_seq);
+	public void delete_wish2(int w_seq);
 	public List<WishlistDTO> allWishlist(String u_id);
 	public List<WishlistDTO> wishListSelectID(String u_id);
 	public WishlistDTO wishlistDetail(int pd_seq);
 	public WishlistDTO wishlistDetail2(@Param("u_id") String u_id, @Param("pd_seq") int pd_seq);
+	
 }

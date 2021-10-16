@@ -289,11 +289,15 @@ public class BoardController {
 	
 	//테마 더보기 클릭시 페이지 이동
 	@RequestMapping(value = "/searchTheme.do", method = RequestMethod.GET)
-	public String searchTheme(@RequestParam("pd_theme") String pd_theme, Model model) {
+	public String searchTheme(@RequestParam("pd_theme") String pd_theme, Model model, HttpSession session) {
 		// System.out.println(pd_theme);
 		List<BoardDTO> searchThemeList = service.theme(pd_theme);
 		model.addAttribute("searchThemeList", searchThemeList);
 		// System.out.println(searchThemeList);
+		
+		String u_id = (String) session.getAttribute("u_id"); // 10/14 이희연 search.do 내 찜버튼 구현 시 추가함
+		List<WishlistDTO> wishList = wishService.wishListSelectID(u_id); // 10/14 이희연 search.do 내 찜버튼 구현 시 추가함
+		model.addAttribute("wishList", wishList); // 10/14 이희연 search.do 내 찜버튼 구현 시 추가함
 
 		return "board/searchList";
 	}
