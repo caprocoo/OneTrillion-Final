@@ -40,19 +40,16 @@
                 text-align: center;
             }
 
-            .btn-primary {
+            .btn-dark {
                 height: 80px;
-                width: 250px;
-                margin-bottom: 5px;
-                background: linear-gradient(125deg, #81ecec, #6c5ce7, #81ecec);
+                width: 195px;
+
             }
 
-            .btn-success {
+            .btn-secondary {
                 height: 80px;
-                width: 250px;
-                margin-bottom: 5px;
+                width: 195px;
                 margin-right: 10px;
-                background: linear-gradient(125deg, #a8ec81, #2ec75c, #a8ec81);
             }
         </style>
 
@@ -65,13 +62,14 @@
 
                                 <div><img style="width: 400px; margin-bottom: 40px;"
                                         src="http://jjcom0214.cafe24.com/web/OneTrillion/logo02.png" alt="logo01"></div>
-                                <!--<div><img style="width: 300px; margin-bottom: 40px;" src="http://jjcom0214.cafe24.com/web/OneTrillion/logo03.png" alt="logo01"></div>-->
-                                <h2 style="margin-bottom: 20px;">회원가입이 <strong>완료</strong>되었습니다.</h2>
-                                <p style="margin-bottom: 10px;"><strong>회원</strong>님의 회원가입을 축하합니다</p>
-                                <p style="margin-bottom: 20px;">좋은 서비스로 보답하겠습니다</p>
-                                <hr style="width: 600px;margin-left: 100px; ">
-                                <button type="button" class="btn btn-success" onClick="location.href='/trip/'">홈으로</button><button type="button"
-                                    class="btn btn-primary" onClick="location.href='login.do'">로그인</button>
+                                <h2 style="margin-bottom: 20px;">회원가입이 <br>
+                                    <strong>완료</strong>되었습니다.
+                                </h2>
+                                <p style="margin-bottom: 20px;"><strong>${u_id}</strong>님의 회원가입을 축하합니다<br>
+                                    좋은 서비스로 보답하겠습니다</p>
+                                <button type="button" class="btn btn-secondary"
+                                    onClick="location.href='/trip/'">홈으로</button><button type="button"
+                                    class="btn btn-dark" onClick="location.href='login.do'">로그인</button>
                             </div>
                         </td>
                     </tr>

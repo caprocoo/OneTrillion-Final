@@ -61,8 +61,8 @@
                     src="http://jjcom0214.cafe24.com/web/OneTrillion/logo02.png" alt="logo01"></div>
             <div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item" onclick="">메인</li>
-                    <li class="list-group-item" onclick="">회원예약</li>
+                    <li class="list-group-item" onClick="adminMain()">메인</li>
+                    <li class="list-group-item" onClick="userResList()">회원예약</li>
                     <li class="list-group-item" onclick="">비회원예약</li>
                     <li class="list-group-item" onclick="">문의</li>
                     <li class="list-group-item" onclick="">리뷰</li>
@@ -351,11 +351,14 @@
                 
 	})//document_ready 끝
 	
-	
-	
-    
-	    
-	    
+	//======================================================== nav바
+	function adminMain(){
+		location.href = "http://localhost:8088/trip/adminLogin/adminMain.do"
+	}
+	function userResList(){
+		location.href = "http://localhost:8088/trip/adminUserRes/list.do"
+	}
+
 
 
 </script>

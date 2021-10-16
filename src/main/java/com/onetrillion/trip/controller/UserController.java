@@ -25,6 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.onetrillion.trip.notice.CsnoticeDTO;
 import com.onetrillion.trip.notice.Impl.NoticeService;
 import com.onetrillion.trip.often.OftenDTO;
+import com.onetrillion.trip.often.impl.OftenService;
 import com.onetrillion.trip.user.UserDTO;
 import com.onetrillion.trip.user.Impl.UserService;
 import com.onetrillion.trip.user.Impl.UserServiceImpl;
@@ -40,7 +41,10 @@ public class UserController {
 	public UserServiceImpl service;
 
 	@Autowired
-	NoticeService noticeService; // @@ 공지사항&자주하는질문 [10/11 월 한보영]
+	public NoticeService noticeService; // @@ 공지사항&자주하는질문 [10/11 월 한보영]
+	@Autowired
+	public OftenService oftenService;
+	
 
 // 회원가입 관련 페이지 ============================================================================================
 
@@ -73,10 +77,10 @@ public class UserController {
 
 	// 3. 회원가입 페이지로 이동
 
-	@RequestMapping(value = "/user/joinagree.do", method = RequestMethod.GET)
-	public String joinAgreePage() {
-		return "user/joinagree";
-	}
+//	@RequestMapping(value = "/user/joinagree.do", method = RequestMethod.GET)
+//	public String joinAgreePage() {
+//		return "user/joinagree";
+//	}
 
 	@RequestMapping(value = "/user/join.do", method = RequestMethod.GET)
 	public String join_page(@ModelAttribute UserDTO dto) {
@@ -246,10 +250,14 @@ public class UserController {
 		model.addAttribute("noticeList", noticeList);
 
 		// @@ 자주하는 질문 목록 [10/11 월 한보영]
-		List<OftenDTO> oftenList = noticeService.selectAll_often();
+		List<OftenDTO> oftenList = oftenService.selectAll_often();
 		model.addAttribute("oftenList", oftenList);
 
 		return "user/cs";
+	}
+	@RequestMapping(value = "/user/contactUs.do", method = RequestMethod.GET)
+	public String cs_contact_page(Model model) {
+		return "user/contactUs";
 	}
 
 // 미구현 ============================================================================================	  

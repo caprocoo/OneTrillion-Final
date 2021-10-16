@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 
 import com.onetrillion.trip.notice.CsnoticeDTO;
-import com.onetrillion.trip.often.OftenDTO;
+
 
 @Mapper 
 public interface NoticeMapper { 
@@ -14,7 +14,7 @@ public interface NoticeMapper {
 	public List<CsnoticeDTO> selectAll();
 	public CsnoticeDTO detail(int no_seq);
 	public int insert(CsnoticeDTO dto);
+	public int delete(CsnoticeDTO dto);
+	public int modify(CsnoticeDTO dto);
 
-	// 자주하는 질문 CRUD   [10/11 한보영] 
-	public List<OftenDTO> selectAll_often();
 }

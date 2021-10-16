@@ -27,9 +27,14 @@ public class AdminController {
 	public String AdminLoginPage() {
 		return "adminLogin/adminlogin";
 	}
+	//메인페이지로 이동
+	@RequestMapping(value = "/adminMain.do", method = RequestMethod.GET)
+	public String Admin_main_get()  {
+		return "adminLogin/adminMain";	
+	}	
 	
-	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
-	public String AdminLoginAction(AdminDTO dto, HttpSession session, HttpServletRequest req,HttpServletResponse resp) throws IOException {
+	@RequestMapping(value = "/adminMain.do", method = RequestMethod.POST)
+	public String Admin_main_post(AdminDTO dto, HttpSession session, HttpServletRequest req,HttpServletResponse resp) throws IOException {
 
 		AdminDTO admin = adminService.admin_Login(dto);
 
@@ -41,7 +46,7 @@ public class AdminController {
 			resp.setContentType("text/html; charset=UTF-8"); //있으면 리스트로 돌아감
 			PrintWriter out = resp.getWriter();
 			out.println("<script language='javascript'>");
-			out.println("alert('관리자가 아닙니다!')");
+			out.println("alert('관리자만 로그인 가능합니다!')");
 			out.println("location.href='javascript:history.back();'");
 			out.println("</script>");
 			out.flush();

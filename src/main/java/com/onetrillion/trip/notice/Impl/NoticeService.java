@@ -2,9 +2,7 @@ package com.onetrillion.trip.notice.Impl;
 
 import java.util.List;
 
-import com.onetrillion.trip.board.BoardDTO;
 import com.onetrillion.trip.notice.CsnoticeDTO;
-import com.onetrillion.trip.often.OftenDTO;
 
 public interface NoticeService {
 
@@ -14,6 +12,8 @@ public interface NoticeService {
 
 	int insert(CsnoticeDTO dto);
 
-	List<OftenDTO> selectAll_often(); //[자주하는 질문] 리스트
+	int delete(CsnoticeDTO dto);
+
+	int modify(CsnoticeDTO dto);
 
 }

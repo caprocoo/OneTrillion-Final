@@ -1,71 +1,74 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<!-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> -->
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<style type="text/css">
-.id_ok {
-	color: #fff;
-	display: none;
-}
 
-.id_already {
-	color: #6A82FB;
-	display: none;
-}
-</style>
-<title>비밀번호 찾기</title>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>비밀번호 찾기 페이지</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+		integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+		integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+		crossorigin="anonymous"></script>
 </head>
-<jsp:include page="../include/header2.jsp"></jsp:include>
+<style>
+	#findIdDiv001 button,
+	#findIdDiv001 input {
+		width: 100%;
+		height: 45px;
+		margin-bottom: 10px;
+	}
+</style>
+
 <body>
-	<div style="height: 900px;">
-		<div style="height: 300px;"></div>
-		<div class="w3-content w3-container w3-margin-top">
-			<div class="w3-container w3-card-4">
-				<form action="findPw.do" method="post">
-					<div class="w3-center w3-large w3-margin-top">
-						<h3>비밀번호 찾기</h3>
+	<div style="height: 95vh;">
+		<table style="margin: auto; height: 100%; width: 400px;">
+			<tr>
+				<td>
+					<!--컨텐츠--------------------------------------------------------------------------->
+					<div id="findIdDiv001">
+						<div style="text-align: center;"><img style="width: 300px; margin-bottom: 40px;"
+								src="http://jjcom0214.cafe24.com/web/OneTrillion/logo02.png" alt="logo01">
+						</div>
+						<form action="findPw.do" method="post">
+							<div class="">
+								<label for="formGroupExampleInput" class="form-label">가입하신 이메일을 입력하여 주세요.</label>
+								<span class="id regex" style="float: right;"></span>
+								<input type="email" id="u_email" name="u_email" class="form-control" required
+									id="formGroupExampleInput" placeholder="ex)abcd1234@OneTrillion.com">
+							</div>
+							<div class="u_email regex"></div>
+							<button type="submit" class="btn btn-dark" name="signup" id="findBtn">찾기</button>
+							<button type="button" class="btn btn-secondary" onclick="history.go(-1);">취소</button>
+						</form>
 					</div>
-					<div>
-						<p>
-							<label>가입하신 이메일을 입력하여 주세요.</label> <input class="w3-input"
-								type="email" id="u_email" name="u_email" required>
-						</p>
-						<div class="u_email regex"></div>
-						<p class="w3-center">
-							<button type="submit" id=findBtn
-								class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">찾기</button>
-							<button type="button" onclick="history.go(-1);"
-								class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">취소</button>
-						</p>
-					</div>
-				</form>
-			</div>
-		</div>
+					<!--컨텐츠 끝--------------------------------------------------------------------------->
+				</td>
+			</tr>
+		</table>
 	</div>
+
 	<script type="text/javascript">
-	
-	$("#u_email").keyup(function() {
-        var regex = /.+@[a-z]+(\.[a-z]+){1,2}$/;
-        var result = regex.exec($("#u_email").val());
-        if (result == null && $("#u_email").val() != "") {
-           $(".u_email").html("올바른 이메일 형식으로 입력해주세요");
-           $(".u_email").css("color", "red")
-        } else{
-           $(".u_email").html("");
-        }
-     });
-	
-	
-	
-</script>
+		$("#u_email").keyup(function () {
+			var regex = /.+@[a-z]+(\.[a-z]+){1,2}$/;
+			var result = regex.exec($("#u_email").val());
+			if (result == null && $("#u_email").val() != "") {
+				$(".u_email").html("올바른 이메일 형식으로 입력해주세요");
+				$(".u_email").css("color", "red")
+			} else {
+				$(".u_email").html("");
+			}
+		});
+	</script>
 </body>
-<jsp:include page="../include/footer.jsp"></jsp:include>
+
 </html>

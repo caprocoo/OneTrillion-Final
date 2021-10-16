@@ -38,7 +38,7 @@
       <div style="float:left;width:180px; height:600px; ">
           <h2 style="margin-left:10px; margin-top:30px; margin-bottom:10px;">마이페이지</h2>
           <div class="myPageMenu" id="myPageInfodiv1" style="border-top:2px solid black;">개인정보</div>
-          <div class="myPageMenu" id="myPageQuediv1"><a href='<%=request.getContextPath() %>/myPage/list.do'>1대1문의</a></div>
+          <div class="myPageMenu" id="myPageQuediv1"  onclick="location.href='<%=request.getContextPath() %>/myPage/list.do'">1대1문의</div>
           <div class="myPageMenu" id="myPageWishdiv1"><a href="<%=request.getContextPath() %>/wishlist/list.do?u_id=${member.u_id}">찜 내역</a></div>
           <div class="myPageMenu" id="myPageResdiv1">예약내역</div>
       </div>
@@ -103,8 +103,6 @@
          var thisAttr = $(this).attr("id");
          if(thisAttr == "myPageInfodiv1"){
             $("#myPageinfo1").css("display", "block")
-         }else if(thisAttr == "myPageQuediv1"){
-            $("#myPageQue1").css("display", "block")
          }else if(thisAttr == "myPageWishdiv1"){
             $("#myPageWish1").css("display", "block")
          }else if(thisAttr == "myPageResdiv1"){
