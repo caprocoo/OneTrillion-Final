@@ -58,6 +58,9 @@
 	<script type="text/javascript">
 		function userResList(){ //회원예약
 			location.href = "http://localhost:8088/trip/adminUserRes/list.do"
+		}		
+		function userManagement(){ // 회원관리
+			location.href = "http://localhost:8088/trip/adminUserManagement/userList"
 		}
 		function priQueList(){ //1:1문의
 			location.href = "http://localhost:8088/trip/admin/list.do"
@@ -69,6 +72,7 @@
 			location.href = "http://localhost:8088/trip/adminOften/list.do"
 		}
 	
+>>>>>>> cf9ad493eb8776f56cd9a5906d2bef327e19e787
 	</script>
 
     <div style="width: 1800px; height: 100vh;">
@@ -82,7 +86,7 @@
                     <li class="list-group-item" onclick="">비회원예약</li>
                     <li class="list-group-item" onclick="priQueList()">문의</li>
                     <li class="list-group-item" onclick="">리뷰</li>
-                    <li class="list-group-item" onclick="">회원</li>
+                    <li class="list-group-item" onclick="userManagement()">회원</li>
                     <li class="list-group-item" onclick="">상품</li>
                     <li class="list-group-item" onclick="">관리자</li>
                     <li class="list-group-item" onclick="">찜</li>

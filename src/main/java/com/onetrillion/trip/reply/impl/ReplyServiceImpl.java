@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.onetrillion.trip.page.Criteria;
 import com.onetrillion.trip.reply.ReplyDTO;
 import com.onetrillion.trip.service.mapper.ReplyMapper;
 
@@ -42,6 +43,16 @@ public class ReplyServiceImpl implements ReplyService{
 	@Override
 	public List<ReplyDTO> replySelectId(String u_id) {
 		return replyMapper.replySelectId(u_id);
+	}
+
+	@Override
+	public List<ReplyDTO> replyPaging(Criteria cri) {
+		return replyMapper.replyPaging(cri);
+	}
+
+	@Override
+	public int replyCount() {
+		return replyMapper.replyCount();
 	}
 	
 	

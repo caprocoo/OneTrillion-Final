@@ -7,6 +7,8 @@ import com.onetrillion.trip.user.UserDTO;
 
 public interface UserMapper {
 
+
+
 	public UserDTO member_Login(UserDTO dto);
 	
 	
@@ -38,7 +40,10 @@ public interface UserMapper {
 
 	public UserDTO oneUser_email(UserDTO dto);
 	
+	
+	// 디테일 불러오기 유저 + 어드민유저
 	public UserDTO readMember(String u_id);
-
+	public UserDTO adminReadUser(String u_id);
+	// 끝
 	
 }
