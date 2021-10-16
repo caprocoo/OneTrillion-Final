@@ -77,10 +77,10 @@ public class UserController {
 
 	// 3. 회원가입 페이지로 이동
 
-	@RequestMapping(value = "/user/joinagree.do", method = RequestMethod.GET)
-	public String joinAgreePage() {
-		return "user/joinagree";
-	}
+//	@RequestMapping(value = "/user/joinagree.do", method = RequestMethod.GET)
+//	public String joinAgreePage() {
+//		return "user/joinagree";
+//	}
 
 	@RequestMapping(value = "/user/join.do", method = RequestMethod.GET)
 	public String join_page(@ModelAttribute UserDTO dto) {

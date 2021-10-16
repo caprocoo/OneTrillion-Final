@@ -133,7 +133,7 @@
 												style="margin-bottom: 10px; margin-top: 40px; font-size: 80%;  color: gray;">
 												회원이 아니세요? </div>
 											<button type="button" class="btn btn-secondary"
-												onclick="location.href='joinagree.do'">Join</button>
+												onclick="location.href='join.do'">Join</button>
 										</form>
 									</div>
 								</td>
