@@ -159,7 +159,7 @@
                     <tr>
                         <th>RES_COMMENT</th>
                         <td><textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
-                                name="res_comment" style="border:0; resize: none;" value = "${userResDetail.res_comment}"></textarea></td>
+                                name="res_comment" style="border:0; resize: none;">${userResDetail.res_comment}</textarea></td>
                     </tr>
                     <tr>
                         <th>U_ID</th>
