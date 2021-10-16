@@ -5,18 +5,17 @@
 
                                                       <!-- @@ 공지사항 CRUD   [10/11 월 한보영]  -->
 
-
 <!-- @@ 리스트 -->
 <select resultType="com.onetrillion.trip.notice.CsnoticeDTO" id="selectAll">
 <![CDATA[ SELECT * FROM TRIL_NOTICE ORDER BY NO_SEQ ASC  ]]>
 </select>
 
-<!-- 상세보기 나중에 admin하고 나서 할 예정-->
+<!--[관리자] 상세보기-->
 <select resultType="com.onetrillion.trip.notice.CsnoticeDTO" id="detail">
 <![CDATA[   select * from TRIL_NOTICE where NO_SEQ=#{NO_SEQ} ]]> 
 </select>
 
-<!-- 입력 나중에 admin하고 나서 할 예정-->
+<!-- [관리자] 입력 -->
 <insert id="insert">
 <![CDATA[ insert into
 		TRIL_NOTICE(no_seq, ad_id, no_title, no_content, no_Date)
@@ -25,12 +24,22 @@
 		,#{ad_id},#{no_title},#{no_content},sysdate)]]>		
 </insert>
 
+<!-- [관리자] 수정 -->
+<update id="modify">
+<![CDATA[
+		update Tril_PRODUCT set
+		pd_seq=#{pd_seq}, pd_name=#{pd_name}, pd_price=#{pd_price}
+		, pd_keyword=#{pd_keyword}, pd_startDate=#{pd_startDate}, pd_endDate=#{pd_endDate}
+		, pd_cnt=#{pd_cnt}, pd_theme=#{pd_theme}, pd_people=#{pd_people}
+		, pd_image=#{pd_image}, pd_content1=#{pd_content1}
+		where pd_seq=#{pd_seq}]]>
+</update>
 
-<!-- @@ 자주하는 질문 CRUD   [10/11 한보영]  -->
-<!-- @@ 리스트 -->
-<select resultType="com.onetrillion.trip.often.OftenDTO" id="selectAll_often">
-<![CDATA[ SELECT * FROM TRIL_OFTEN ORDER BY OF_SEQ ASC  ]]>
-</select>
+<!-- [관리자] 삭제 -->
+<delete id="delete">
+<![CDATA[
+		delete from Tril_PRODUCT where pd_seq=#{pd_seq}]]>
+</delete>
 
 
 </mapper>

@@ -56,9 +56,19 @@
 
 <body>
 	<script type="text/javascript">
-		function userResList(){
+		function userResList(){ //회원예약
 			location.href = "http://localhost:8088/trip/adminUserRes/list.do"
 		}
+		function priQueList(){ //1:1문의
+			location.href = "http://localhost:8088/trip/admin/list.do"
+		}
+		function noticeList(){ //공지사항
+			location.href = "http://localhost:8088/trip/adminNotice/list.do"
+		}
+		function oftenList(){ //자주묻는질문
+			location.href = "http://localhost:8088/trip/adminOften/list.do"
+		}
+	
 	</script>
 
     <div style="width: 1800px; height: 100vh;">
@@ -70,14 +80,14 @@
                     <li class="list-group-item" onclick="">메인</li>
                     <li class="list-group-item" onClick="userResList()">회원예약리스트</li>
                     <li class="list-group-item" onclick="">비회원예약</li>
-                    <li class="list-group-item" onclick="">문의</li>
+                    <li class="list-group-item" onclick="priQueList()">문의</li>
                     <li class="list-group-item" onclick="">리뷰</li>
                     <li class="list-group-item" onclick="">회원</li>
                     <li class="list-group-item" onclick="">상품</li>
                     <li class="list-group-item" onclick="">관리자</li>
                     <li class="list-group-item" onclick="">찜</li>
-                    <li class="list-group-item" onclick="">공지사항</li>
-                    <li class="list-group-item" onclick="">자주질문</li>
+                    <li class="list-group-item" onclick="noticeList()">공지사항</li>
+                    <li class="list-group-item" onclick="oftenList()">자주질문</li>
                     <li class="list-group-item" onclick="">로그기록</li>
                     <li class="list-group-item" onclick="">메모장</li>
 
