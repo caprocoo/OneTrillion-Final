@@ -16,12 +16,20 @@
    </select>
       
       
-   <!-- 회원정보가져오기 -->
+   <!-- 회원정보가져오기 유저 , 어드민유저 -->
    <select id="readMember" resultType="com.onetrillion.trip.user.UserDTO">
       select *
       from tril_member
       where u_id=#{u_id}
    </select>
+   
+   <select id="adminReadUser" resultType="com.onetrillion.trip.user.UserDTO">
+      select *
+      from tril_member
+      where u_id=#{u_id}
+   </select>
+   
+   <!-- 회원정보가져오기 끝 -->
 
 
  <!-- 아이디 이메일 중복체크 에이젝스용 Mapper -->  

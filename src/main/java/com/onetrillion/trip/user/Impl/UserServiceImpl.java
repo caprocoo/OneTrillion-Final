@@ -157,7 +157,8 @@ public class UserServiceImpl implements UserService {
 	}
 	// 메일로 비밀번호찾기
 
-	@Override // 회원정보보기
+	// 회원정보 ( 디테일 뽑기 )
+	@Override // 회원정보보기 이메일 
 	public UserDTO readMember(String u_id) {
 		UserDTO dto = null;
 
@@ -168,7 +169,13 @@ public class UserServiceImpl implements UserService {
 		}
 		return dto;
 	}
-
+	
+	@Override
+	public UserDTO adminReadUser(String u_id) {
+		return mapper.adminReadUser(u_id);
+	}
+	
+	// 끝
 	@Override
 	public ModelAndView modify_pass(UserDTO dto, HttpServletResponse resp) throws IOException {
 		ModelAndView mav = new ModelAndView();

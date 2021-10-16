@@ -46,6 +46,8 @@ public interface UserService {
 	
 	public UserDTO oneUser_email(UserDTO dto);
 	
-	
+	// 회원디테일 , 어드민유저 디테일
+	public UserDTO adminReadUser(String u_id);
 	public UserDTO readMember(String u_id);
+	// 끝
 }

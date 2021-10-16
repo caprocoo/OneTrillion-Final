@@ -59,6 +59,10 @@
 		function userResList(){
 			location.href = "http://localhost:8088/trip/adminUserRes/list.do"
 		}
+		
+		function userManagement(){
+			location.href = "http://localhost:8088/trip/adminUserManagement/userList"
+		}
 	</script>
 
     <div style="width: 1800px; height: 100vh;">
@@ -72,7 +76,7 @@
                     <li class="list-group-item" onclick="">비회원예약</li>
                     <li class="list-group-item" onclick="">문의</li>
                     <li class="list-group-item" onclick="">리뷰</li>
-                    <li class="list-group-item" onclick="">회원</li>
+                    <li class="list-group-item" onclick="userManagement()">회원</li>
                     <li class="list-group-item" onclick="">상품</li>
                     <li class="list-group-item" onclick="">관리자</li>
                     <li class="list-group-item" onclick="">찜</li>
