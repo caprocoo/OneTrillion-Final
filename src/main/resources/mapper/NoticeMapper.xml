@@ -7,12 +7,12 @@
 
 <!-- @@ 리스트 -->
 <select resultType="com.onetrillion.trip.notice.CsnoticeDTO" id="selectAll">
-<![CDATA[ SELECT * FROM TRIL_NOTICE ORDER BY NO_SEQ ASC  ]]>
+<![CDATA[ SELECT * FROM TRIL_NOTICE ORDER BY no_seq desc ]]>
 </select>
 
 <!--[관리자] 상세보기-->
 <select resultType="com.onetrillion.trip.notice.CsnoticeDTO" id="detail">
-<![CDATA[   select * from TRIL_NOTICE where NO_SEQ=#{NO_SEQ} ]]> 
+<![CDATA[   select * from TRIL_NOTICE where no_seq=#{no_seq} ]]> 
 </select>
 
 <!-- [관리자] 입력 -->
@@ -27,18 +27,16 @@
 <!-- [관리자] 수정 -->
 <update id="modify">
 <![CDATA[
-		update Tril_PRODUCT set
-		pd_seq=#{pd_seq}, pd_name=#{pd_name}, pd_price=#{pd_price}
-		, pd_keyword=#{pd_keyword}, pd_startDate=#{pd_startDate}, pd_endDate=#{pd_endDate}
-		, pd_cnt=#{pd_cnt}, pd_theme=#{pd_theme}, pd_people=#{pd_people}
-		, pd_image=#{pd_image}, pd_content1=#{pd_content1}
-		where pd_seq=#{pd_seq}]]>
+		update TRIL_NOTICE set
+		no_seq=#{no_seq}, ad_id=#{ad_id}, no_title=#{no_title}
+		, no_content=#{no_content},no_date=sysdate
+		where no_seq=#{no_seq}]]>
 </update>
 
 <!-- [관리자] 삭제 -->
 <delete id="delete">
 <![CDATA[
-		delete from Tril_PRODUCT where pd_seq=#{pd_seq}]]>
+		delete from TRIL_NOTICE where no_seq=#{no_seq}]]>
 </delete>
 
 

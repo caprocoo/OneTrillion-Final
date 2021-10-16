@@ -36,6 +36,15 @@ public class AdminUserResController {
 		return "adminUserRes/adminRes";
 	}
 	
+	@RequestMapping(value = "/listMini.do", method = RequestMethod.GET)
+	public String AdminUserResMini(Model model){
+		
+		List<UserResDTO> userResList = service.userSelectAll();
+		model.addAttribute("userResList", userResList);
+		
+		return "adminUserRes/adminResMini";
+	}
+	
 	@RequestMapping(value = "/modify.do", method = RequestMethod.GET)
 	public String AdminUserResModify(Model model, int ures_seq){
 		//System.out.println(ures_seq);

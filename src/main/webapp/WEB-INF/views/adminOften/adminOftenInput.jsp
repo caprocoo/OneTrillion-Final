@@ -104,8 +104,8 @@
                     </tr>
                 </table>
                 <div style="text-align: right;">
-                    <a class="btn btn-secondary" href="#" role="button"
-                        style="margin-top:10px; margin-bottom: 10px;">취소</a>
+                    <a class="btn btn-secondary"  role="button"
+                        style="margin-top:10px; margin-bottom: 10px;"  href="javascript:history.back()">취소</a>
                     <input class="btn btn-secondary" type="button" 
                     	value="저장" style="margin-right: 10px;" id="submitbtn" name="submitbtn">
                 </div>

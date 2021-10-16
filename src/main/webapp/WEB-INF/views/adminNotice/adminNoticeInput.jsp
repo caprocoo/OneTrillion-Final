@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -85,39 +88,51 @@
                 <div class="adminMainDiv1">
                     <p>공지사항 입력</p>
                 </div>
+        <form action="input.do" method="post"  id="form">     
+                
                 <table id="adminMemtable1" style="width: 100%; border-top: 2px solid #343a40;">
                     <tr>
-                        <th>NO_SEQ</th>
-                        <td><input type="text" class="form-control" placeholder="NO_SEQ"></td>
+                        <th>관리자 아이디</th>
+                        <td><input type="hidden" name="ad_id" value="${AD_ID }">
+                        	${AD_ID }</td>
+                        
                     </tr>
                     <tr>
-                        <th>AD_ID</th>
-                        <td><input type="text" class="form-control" placeholder="AD_ID"></td>
+                        <th>제목</th>
+                        <td><input type="text" class="form-control" placeholder="NO_TITLE" name="no_title" id="no_title"></td>
                     </tr>
                     <tr>
-                        <th>NO_TITLE</th>
-                        <td><input type="text" class="form-control" placeholder="NO_TITLE"></td>
-                    </tr>
-                    <tr>
-                        <th>NO_CONTENT</th>
+                        <th>내용</th>
                         <td><textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
-                                placeholder="NO_CONTENT"
+                                placeholder="NO_CONTENT" name="no_content"
                                 style="border:0; resize: none; background-color: white;"></textarea></td>
-                    </tr>
-                    <tr>
-                        <th>NO_DATE</th>
-                        <td><input type="text" class="form-control" placeholder="NO_DATE"></td>
                     </tr>
                 </table>
                 <div style="text-align: right;">
-                    <a class="btn btn-secondary" href="#" role="button"
+                    <a class="btn btn-secondary"  role="button"  href="javascript:history.back()"
                         style="margin-top:10px; margin-bottom: 10px;">취소</a>
-                    <input class="btn btn-secondary" type="button" value="저장" style="margin-right: 10px;">
+                    <input class="btn btn-secondary" type="button" value="저장" style="margin-right: 10px;"  id="submitbtn" name="submitbtn">
                 </div>
-
+			</form>
+	
             </div>
         </div>
     </div>
 </body>
+ <script>
+       $(document).ready(function () {                        	
+       	//========================================================================@한보영 입력하기 구현 10/12 08:16
+       	document.getElementById('submitbtn').onclick = function() {   
+       		
+       	   	 if($('#no_title').val() == ''){ //제목
+           		 alert('제목을 입력해주세요')
+           	 }else if($('#exampleFormControlTextarea1').val() == ''){
+           		 alert('내용을 입력해주세요')
+           	 }else{
+           		 document.getElementById('form').submit(); //입력완료   
+           	 }
+       	};//submitbtn눌렀을 때 form을 submit!
+       });
+</script>
 
 </html>

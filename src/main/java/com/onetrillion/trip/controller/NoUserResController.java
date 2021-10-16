@@ -17,8 +17,7 @@ import com.onetrillion.trip.noUserRes.NoUserResCriteria;
 import com.onetrillion.trip.noUserRes.NoUserResDTO;
 import com.onetrillion.trip.noUserRes.impl.NoUserResService;
 import com.onetrillion.trip.page.PageMaker;
-import com.onetrillion.trip.userRes.UserResCriteria;
-import com.onetrillion.trip.userRes.UserResDTO;
+
 
 @Controller
 @RequestMapping(value = "/noUserRes")

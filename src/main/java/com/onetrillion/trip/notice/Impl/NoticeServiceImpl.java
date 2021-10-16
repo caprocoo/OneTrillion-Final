@@ -1,21 +1,15 @@
 package com.onetrillion.trip.notice.Impl;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
-import java.util.UUID;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.onetrillion.trip.board.BoardDTO;
+
+
 import com.onetrillion.trip.notice.CsnoticeDTO;
-import com.onetrillion.trip.often.OftenDTO;
-import com.onetrillion.trip.service.mail.MailUtil;
 import com.onetrillion.trip.service.mapper.NoticeMapper;
 
 
@@ -41,7 +35,19 @@ public class NoticeServiceImpl implements NoticeService  {
 	public int insert(CsnoticeDTO dto) {
 
 		return Notice_mapper.insert(dto);
-	}		
+	}
+
+	@Override
+	public int delete(CsnoticeDTO dto) {
+
+		return Notice_mapper.delete(dto);
+	}
+
+	@Override
+	public int modify(CsnoticeDTO dto) {
+
+		return Notice_mapper.modify(dto);
+	}	
 	
 	
 	

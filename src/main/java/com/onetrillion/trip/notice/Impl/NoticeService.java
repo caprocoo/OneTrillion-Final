@@ -2,9 +2,7 @@ package com.onetrillion.trip.notice.Impl;
 
 import java.util.List;
 
-import com.onetrillion.trip.board.BoardDTO;
 import com.onetrillion.trip.notice.CsnoticeDTO;
-import com.onetrillion.trip.often.OftenDTO;
 
 public interface NoticeService {
 
@@ -13,5 +11,9 @@ public interface NoticeService {
 	CsnoticeDTO detail(int no_seq);
 
 	int insert(CsnoticeDTO dto);
+
+	int delete(CsnoticeDTO dto);
+
+	int modify(CsnoticeDTO dto);
 
 }

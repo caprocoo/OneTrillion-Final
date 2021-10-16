@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -85,38 +88,50 @@
                 <div class="adminMainDiv1">
                     <p>공지사항 수정</p>
                 </div>
+            <form action="modify.do" method="post" id="form" >           
                 <table id="adminMemtable1" style="width: 100%; border-top: 2px solid #343a40;">
                     <tr>
-                        <th>NO_SEQ</th>
-                        <td><input type="text" class="form-control" placeholder="NO_SEQ"></td>
+                        <th>NO</th>
+                        <td><input type="hidden" value="${dto.no_seq  }" name="no_seq" id="no_seq">     
+                        	<input type="hidden" value="${dto.no_Date }" name="no_Date" id="no_Date">                     
+                        	${dto.no_seq  }</td>
                     </tr>
                     <tr>
-                        <th>AD_ID</th>
-                        <td><input type="text" class="form-control" placeholder="AD_ID"></td>
+                        <th>관리자 아이디</th>
+                        <td><input type="text" class="form-control" name="ad_id" id="ad_id" value="${dto.ad_id }"></td>
                     </tr>
                     <tr>
-                        <th>NO_TITLE</th>
-                        <td><input type="text" class="form-control" placeholder="NO_TITLE"></td>
+                        <th>제목</th>
+                        <td><input type="text" class="form-control"  name="no_title" id="no_title" value="${dto.no_title }"></td>
                     </tr>
                     <tr>
-                        <th>NO_CONTENT</th>
+                        <th>내용</th>
                         <td><textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
-                                placeholder="NO_CONTENT"
-                                style="border:0; resize: none; background-color: white;"></textarea></td>
-                    </tr>
-                    <tr>
-                        <th>NO_DATE</th>
-                        <td><input type="text" class="form-control" placeholder="NO_DATE"></td>
+                                placeholder="NO_CONTENT"  name="no_content"
+                                style="border:0; resize: none; background-color: white;">${dto.no_content }</textarea></td>
                     </tr>
                 </table>
                 <div style="text-align: right;">
-                    <a class="btn btn-secondary" href="#" role="button"
+                    <a class="btn btn-secondary"role="button" href="javascript:history.back()"
                         style="margin-top:10px; margin-bottom: 10px;">취소</a>
-                    <input class="btn btn-secondary" type="button" value="저장" style="margin-right: 10px;">
+                    <input class="btn btn-secondary" type="button" value="저장" id="modi_submitbtn" style="margin-right: 10px;">
                 </div>
+                   </form>      
             </div>
         </div>
     </div>
 </body>
+<script type="text/javascript">
 
+	var no_seq =$('#no_seq').val();
+	document.getElementById('modi_submitbtn').onclick = function() {  //수정버튼을 누르면     
+		   	 if($('#exampleFormControlTextarea1').val() == ''){   
+		  		 alert('수정할 내용을 입력해주세요')
+		  	 }else{
+		  		 document.getElementById('form').submit(); //수정완료   			  		 
+		  	 }
+	};//==========================================================================
+
+
+</script>
 </html>

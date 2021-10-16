@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.onetrillion.trip.board.BoardDTO;
 import com.onetrillion.trip.clientAnswer.ClientAnsDTO;
 import com.onetrillion.trip.clientAnswer.Impl.ClientAnsService;
 import com.onetrillion.trip.clientque.ClientqueDTO;

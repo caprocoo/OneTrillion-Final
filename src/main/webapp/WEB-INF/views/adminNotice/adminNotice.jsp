@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>자주하는질문 리스트 페이지</title>
+    <title>공지사항 리스트 페이지</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <style>
@@ -64,32 +64,37 @@
             <div
                 style="margin-top: 40px; width: 1500px; height: 90%; border-radius: 20px; box-shadow: 0 0 20px #ededed;">
                 <div class="adminMainDiv1">
-                    <p>자주하는질문 리스트</p>
+                    <p>공지사항 리스트</p>
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col" style="width:10%;">NO</th>
-                                <th scope="col" style="width:20%;">제목</th>
-                                <th scope="col" style="width:50%;">내용</th>
-                                <th scope="col" style="width:20%;">수정/삭제</th>
+                                <th scope="col">NO</th>
+                                <th scope="col">관리자 아이디</th>
+                                <th scope="col">제목</th>
+                                <th scope="col">내용</th>
+                                <th scope="col">작성 날짜</th>
+                                <th scope="col">수정/삭제</th>
                             </tr>
                         </thead>
                         <tbody>
-                <!-- forEach 문 시작--------------------------------------------------------------------------------------------------------------------------------------->
-                <c:forEach var="often" items="${oftenList }">   
-                            <tr style="cursor: pointer;"  onclick="findvalue(${often.of_seq  })" class="tr_info">                               
-                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${often.of_seq }</td>
-                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${often.of_title }</td>
-                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${often.of_content } </td>
+             <!-- forEach 문 시작--------------------------------------------------------------------------------------------------------------------------------------->
+               <c:forEach var="notice" items="${noticeList }" varStatus="status"> 
+                            <tr style="cursor: pointer;"  onclick="findvalue(${often.of_seq  })" class="tr_info">   
+                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${notice.no_seq }</td>
+                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${notice.ad_id}</td>
+                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${notice.no_title }</td>
+                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${notice.no_content }</td>
+                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${notice.no_Date }</td>
+
                                 <td>
-                                    <a class="btn btn-secondary btn001" href="#" role="button" onclick="location.href='<%=request.getContextPath() %>/adminOften/modify.do?of_seq=${often.of_seq}' "
+                                    <a class="btn btn-secondary btn001"  role="button"  onclick="location.href='<%=request.getContextPath() %>/adminNotice/modify.do?no_seq=${notice.no_seq}' "
                                         style="padding: 5px;">수정</a>
-                                    <a class="btn btn-secondary btn001" href="#" role="button" onclick="btn_delete2(${often.of_seq  })"
+                                    <a class="btn btn-secondary btn001"  role="button"  onclick="btn_delete2(${notice.no_seq })"
                                         style="padding: 5px;">삭제</a>
                                 </td>
                             </tr>
-               </c:forEach> 
-               <!-- forEach 문 끝--------------------------------------------------------------------------------------------------------------------------------------->
+              </c:forEach>
+             <!-- forEach 문 끝--------------------------------------------------------------------------------------------------------------------------------------->
                         </tbody>
                     </table>
                     <div style="width: 100%;">
@@ -132,7 +137,7 @@
                                     style="border:1px solid #ededed">검색</button>
                             </div>
                             <a class="btn btn-secondary"  role="button"
-                            	onclick="location.href='<%=request.getContextPath() %>/adminOften/input.do' ">등록</a>
+                            	onclick="location.href='<%=request.getContextPath() %>/adminNotice/input.do' ">등록</a>
                         </div>
                     </div>
                 </div>
@@ -150,16 +155,24 @@
                 </div>
                 <table id="adminMemtable1" style="width: 100%; border-top: 2px solid #343a40;">
                     <tr>
-                        <th style="width:25%;">NO</th>
-                        <td id="OF_SEQ"></td>
+                        <th>순번</th>
+                        <td id="NO_SEQ"></td>
+                    </tr>
+                    <tr>
+                        <th>관리자 아이디</th>
+                        <td id="AD_ID"></td>
                     </tr>
                     <tr>
                         <th>제목</th>
-                        <td id="OF_TITLE"></td>
+                        <td id="NO_TITLE"></td>
                     </tr>
                     <tr style="height: 300px;">
                         <th>내용</th>
-                        <td id="OF_CONTENT"></td>
+                        <td id="NO_CONTENT"></td>
+                    </tr>
+                    <tr>
+                        <th>작성 날짜</th>
+                        <td id="NO_DATE"></td>
                     </tr>
                 </table>
                 <div style="text-align: right;">
@@ -175,21 +188,22 @@
 </body>
 <script type="text/javascript">
 
-var of_seq =0;//전역변수에 담기
+var no_seq =0;//전역변수에 담기
 function findvalue(seq){//매개변수로 받아온 seq를 전역변수로 만들어주기
-	of_seq=seq
+	no_seq=seq
+	console.log('findvalue'+no_seq)
 }	
 
 
 function btn_delete(){  //====================@Modal창 안에서 삭제하기 
-	var of_seq= $('#OF_SEQ').text();
-	console.log(of_seq)
- 	var deleteQ = confirm(of_seq+'번 질문을 삭제하시겠습니까?');						    	
+	var no_seq= $('#NO_SEQ').text();
+	console.log('Modal'+no_seq)
+ 	var deleteQ = confirm(no_seq+'번 공지를 삭제하시겠습니까?');						    	
 	if(!deleteQ){
 		return false;
 	}else{
-	var seqdata ={"of_seq":of_seq};
-	console.log('삭제2 > '+of_seq)		
+	var seqdata ={"no_seq":no_seq};
+	console.log('삭제Modal > '+no_seq)		
 	
     $.ajax({
         url:"delete.do",
@@ -199,23 +213,23 @@ function btn_delete(){  //====================@Modal창 안에서 삭제하기
             alert("삭제되었습니다.");
             location.href = "./list.do";							            	            
         },
-        error:function(){
-            alert("에러");
+        error:function(request, status, error){
+        	alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
         }
     });	//ajax 끝
 	}//if끌		 
 	
 };//btn_delete  끝=============================================@삭제1	
 
-function btn_delete2(of_seq){  //====================@ lsit에서 삭제하기 	
-	//console.log(of_seq)
-	 var deleteQ = confirm(of_seq+'번 질문을 삭제하시겠습니까?');						    	
+function btn_delete2(no_seq){  //====================@ lsit에서 삭제하기 	
+	console.log('리스트에서'+no_seq)
+	 var deleteQ = confirm(no_seq+'번 공지를 삭제하시겠습니까?');						    	
 	if(!deleteQ){
 		return false;
 	}
 	else{
-	var seqdata ={"of_seq":of_seq};		
-	
+	var seqdata ={"no_seq":no_seq};		
+	console.log('리스트에서seqdata'+seqdata, no_seq)
     $.ajax({
         url:"delete.do",
         type:'POST',
@@ -224,8 +238,8 @@ function btn_delete2(of_seq){  //====================@ lsit에서 삭제하기
             alert("삭제되었습니다.");
             location.href = "./list.do";							            	            
         },
-        error:function(){
-            alert("에러");
+        error:function(request, status, error){
+        	alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
         }
     });	//ajax 끝
 	}//if끌				 		    	
@@ -233,39 +247,35 @@ function btn_delete2(of_seq){  //====================@ lsit에서 삭제하기
 
 
 function btn_modi(){  //====================@한보영 Modal창 안에서 [문의글] 수정하기 10/15 
- 	var of_seq= $('#OF_SEQ').text();	    	
-	location.href = "./modify.do?of_seq="+of_seq;	 
+ 	var no_seq= $('#NO_SEQ').text();	    	
+	location.href = "./modify.do?no_seq="+no_seq;	 
 };//btn_modi  끝=============================================@수정하기 	    
 
 
 
 $(document).ready(function(){       
     $(".tr_info").on("click", function(){//---------------------------------------- [tr클릭시 표 -> Modal창으로 값 넘기기]
-    	 var OF_SEQ = $(this).children("td:nth-child(1)").text();  //표에있는 것 뽑아서
-    	 var OF_TITLE = $(this).children("td:nth-child(2)").text();
-    	 var OF_CONTENT = $(this).children("td:nth-child(3)").text();
+    	 var NO_SEQ = $(this).children("td:nth-child(1)").text();  //표에있는 것 뽑아서
+    	 var AD_ID = $(this).children("td:nth-child(2)").text();
+    	 var NO_TITLE = $(this).children("td:nth-child(3)").text();
+    	 var NO_CONTENT = $(this).children("td:nth-child(4)").text();  //표에있는 것 뽑아서
+    	 var NO_DATE = $(this).children("td:nth-child(5)").text();  //표에있는 것 뽑아서
+
     	
     	 
-    	 $('#OF_SEQ').text(OF_SEQ); //Modal에 넣어줌
-    	 $('#OF_TITLE').text(OF_TITLE);
-    	 $('#OF_CONTENT').text(OF_CONTENT);
+    	 $('#NO_SEQ').text(NO_SEQ); //Modal에 넣어줌
+    	 $('#AD_ID').text(AD_ID);
+    	 $('#NO_TITLE').text(NO_TITLE);
+    	 $('#NO_CONTENT').text(NO_CONTENT);
+    	 $('#NO_DATE').text(NO_DATE);
 
     })//tr_onclick끝
             
 })//document_ready 끝
 
-//======================================================== nav바
-function adminMain(){
-	location.href = "http://localhost:8088/trip/adminLogin/adminMain.do"
-}
-function userResList(){
-	location.href = "http://localhost:8088/trip/adminUserRes/list.do"
-}
-
-
-
 
 
 
 </script>
+
 </html>

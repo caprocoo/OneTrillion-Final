@@ -26,7 +26,7 @@
 	
 	<select resultType="com.onetrillion.trip.noUserRes.NoUserResDTO" id="noUserSelectAll">
 		<![CDATA[
-		 SELECT * FROM Tril_NOUSERRESERVATION ORDER BY res_seq ASC
+		 SELECT * FROM Tril_NOUSERRESERVATION ORDER BY res_seq DESC
 		]]>
 	</select>
 	
