@@ -92,11 +92,11 @@
 
 
 	
-	<form name="f1" action="login.do" method="post" id="adminLoginForm">
+	<form name="f1" action="adminMain.do" method="post" id="adminLoginForm">
 		<div id="logdiv001">
 			<div><h1>관리자 로그인</h1></div>
 			<div>
-				<input type="text" id="AD_ID" name="AD_ID" placeholder="아이디를 입력하세요">
+				<input type="text" id="AD_ID" name="AD_ID" placeholder="아이디를 입력하세요" value="TrillionAdmin1">
 			</div>
 			<div></div>
 			<div>
@@ -110,14 +110,6 @@
 
 		</div>
 	</form>
-
-<script>
-$(function() {
-$("#adminLoginForm").submit();
-	alert("관리자님 안녕하세요.");
-}
-</script>
-
 </body>
 </html>
 

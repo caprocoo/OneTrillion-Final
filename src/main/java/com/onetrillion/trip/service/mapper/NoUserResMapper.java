@@ -14,10 +14,14 @@ public interface NoUserResMapper {
 	public List<NoUserResDTO> noUserSelectAll();
 	public NoUserResDTO noUserDetail(@Param("res_email") String res_email, @Param("res_pwd") String res_pwd);
 	public NoUserResDTO noUserSelectId(String res_email);
+	public NoUserResDTO adminNoUserDetail(int res_seq);
+
 	
 	public List<NoUserResDTO> noUserResPaging(Criteria cri);
 	public int noUserResCount();
 	public int noUserResDelete(int res_seq);
+	public int noUserResModify(NoUserResDTO dto);
+	
 	
 	
 	

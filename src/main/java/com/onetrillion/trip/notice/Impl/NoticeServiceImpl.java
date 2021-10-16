@@ -43,10 +43,6 @@ public class NoticeServiceImpl implements NoticeService  {
 		return Notice_mapper.insert(dto);
 	}		
 	
-	@Override//자주하는질문 
-	public List<OftenDTO> selectAll_often() { 
-		return Notice_mapper.selectAll_often();
-	}
 	
 	
 	

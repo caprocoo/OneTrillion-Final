@@ -15,6 +15,4 @@ public interface NoticeMapper {
 	public CsnoticeDTO detail(int no_seq);
 	public int insert(CsnoticeDTO dto);
 
-	// 자주하는 질문 CRUD   [10/11 한보영] 
-	public List<OftenDTO> selectAll_often();
 }

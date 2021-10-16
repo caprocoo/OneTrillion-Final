@@ -14,6 +14,4 @@ public interface NoticeService {
 
 	int insert(CsnoticeDTO dto);
 
-	List<OftenDTO> selectAll_often(); //[자주하는 질문] 리스트
-
 }

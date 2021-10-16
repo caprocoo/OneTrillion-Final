@@ -24,6 +24,26 @@
 		]]>		
 	</insert>
 	
+	<select resultType="com.onetrillion.trip.reply.ReplyDTO" id="replyPaging">
+		<![CDATA[
+			SELECT reply_seq, u_id, pd_seq , reply_title, reply_date, reply_content, reply_rate
+			FROM
+			(
+				SELECT reply_seq, u_id, pd_seq , reply_title, reply_date, reply_content, reply_rate,
+				ROW_NUMBER() over(ORDER BY reply_seq ASC) AS rn 
+				FROM TRIL_REPLY
+			) WHERE rn BETWEEN #{rowStart} AND #{rowEnd} ORDER  BY reply_seq ASC 
+	      ]]>
+	</select>
+	
+	<select resultType="int" id="replyCount">
+	
+		<![CDATA[
+		      select count(reply_seq) from TRIL_REPLY where reply_seq>0
+		      ]]>
+	</select>
+	
+	
 	<select resultType="com.onetrillion.trip.reply.ReplyDTO" id="replyDetail">
 		<![CDATA[
 		      select * from TRIL_REPLY where reply_seq=#{reply_seq}]]>
@@ -34,7 +54,8 @@
 		update TRIL_REPLY set
 		reply_seq =#{reply_seq }, u_id =#{u_id }, pd_seq =#{pd_seq }
 		, reply_title =#{reply_title }, reply_date =to_char(sysdate,'yyyy-MM-dd HH24:mm'), reply_content =#{reply_content } , reply_rate=#{reply_rate }
-		where reply_seq=#{reply_seq}]]>
+		where reply_seq=#{reply_seq}
+		]]>
 	</update>
 	
 	<delete id="replyDelete">
@@ -42,5 +63,6 @@
 			delete from TRIL_REPLY where reply_seq=#{reply_seq}]]>
 	</delete>
 	
+
 	
 </mapper>

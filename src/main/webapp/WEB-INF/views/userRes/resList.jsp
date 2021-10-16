@@ -69,7 +69,7 @@
               <a href="#" class="list-group-item list-group-item-action"
                 style="background-color: #343a40; color: white;">마이페이지</a>
               <a href="#" class="list-group-item list-group-item-action">개인정보</a>
-              <a href="#" class="list-group-item list-group-item-action">1대1문의</a>
+              <a href="<%=request.getContextPath() %>/myPage/list.do" class="list-group-item list-group-item-action">1대1문의</a>  
               <a href="#" class="list-group-item list-group-item-action">찜 내역</a>
               <a href="#" class="list-group-item list-group-item-action">예약내역</a>
               <a href="#" class="list-group-item list-group-item-action">Contact Us</a>
