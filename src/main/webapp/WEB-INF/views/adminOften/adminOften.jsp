@@ -10,27 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>자주하는질문 리스트 페이지</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
-        crossorigin="anonymous"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
 
-        .list-group-item:hover {
-            cursor: pointer;
-            background-color: #f8f9fa;
-        }
+    <style>
+
 
         .adminMainDiv1 p {
             margin-bottom: 0;
@@ -42,7 +24,6 @@
         }
 
         #adminMemtable1 th {
-            width: 25%;
             height: 40px;
             background-color: #ededed;
             border-bottom: 1px solid white;
@@ -53,33 +34,32 @@
             border-bottom: 1px solid #ededed;
             padding-left: 20px;
         }
+        table {
+            table-layout: fixed;
+            word-break: break-all;
+            
+
+        }
+
+        .table td {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .table th, .table td{
+        text-align:center;
+        }
+
+
+        
     </style>
 </head>
 
 <body>
     <div style="width: 1800px; height: 100vh;">
-        <div style="float: left; width: 250px; height: 100%; box-shadow: 0 0 20px #ededed; position: fixed;">
-            <div style="margin:auto; width: 80%;"><img style="width: 100%; margin-top: 40px; margin-bottom: 40px;"
-                    src="http://jjcom0214.cafe24.com/web/OneTrillion/logo02.png" alt="logo01"></div>
-            <div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" onclick="">메인</li>
-                    <li class="list-group-item" onclick="">회원예약</li>
-                    <li class="list-group-item" onclick="">비회원예약</li>
-                    <li class="list-group-item" onclick="">문의</li>
-                    <li class="list-group-item" onclick="">리뷰</li>
-                    <li class="list-group-item" onclick="">회원</li>
-                    <li class="list-group-item" onclick="">상품</li>
-                    <li class="list-group-item" onclick="">관리자</li>
-                    <li class="list-group-item" onclick="">찜</li>
-                    <li class="list-group-item" onclick="">공지사항</li>
-                    <li class="list-group-item" onclick="">자주질문</li>
-                    <li class="list-group-item" onclick="">로그기록</li>
-                    <li class="list-group-item" onclick="">메모장</li>
 
-                </ul>
-            </div>
-        </div>
+<jsp:include page="../include/adminInclude.jsp"></jsp:include>
+
         <div style="float:right; width: 1500px;height: 100%;">
             <div
                 style="margin-top: 40px; width: 1500px; height: 90%; border-radius: 20px; box-shadow: 0 0 20px #ededed;">
@@ -88,10 +68,10 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">NO</th>
-                                <th scope="col">제목</th>
-                                <th scope="col">내용</th>
-                                <th scope="col">수정/삭제</th>
+                                <th scope="col" style="width:10%;">NO</th>
+                                <th scope="col" style="width:20%;">제목</th>
+                                <th scope="col" style="width:50%;">내용</th>
+                                <th scope="col" style="width:20%;">수정/삭제</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -100,7 +80,7 @@
                             <tr style="cursor: pointer;"  onclick="findvalue(${often.of_seq  })" class="tr_info">                               
                                 <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${often.of_seq }</td>
                                 <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${often.of_title }</td>
-                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${often.of_content }</td>
+                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${often.of_content } <input type="hidden" value="${often.of_content }"></td>
                                 <td>
                                     <a class="btn btn-secondary btn001" href="#" role="button" onclick="location.href='<%=request.getContextPath() %>/adminOften/modify.do?of_seq=${often.of_seq}' "
                                         style="padding: 5px;">수정</a>
@@ -170,7 +150,7 @@
                 </div>
                 <table id="adminMemtable1" style="width: 100%; border-top: 2px solid #343a40;">
                     <tr>
-                        <th>NO</th>
+                        <th style="width:25%;">NO</th>
                         <td id="OF_SEQ"></td>
                     </tr>
                     <tr>

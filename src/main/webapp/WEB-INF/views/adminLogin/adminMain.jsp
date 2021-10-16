@@ -71,8 +71,7 @@
 		function oftenList(){ //자주묻는질문
 			location.href = "http://localhost:8088/trip/adminOften/list.do"
 		}
-	
->>>>>>> cf9ad493eb8776f56cd9a5906d2bef327e19e787
+
 	</script>
 
     <div style="width: 1800px; height: 100vh;">
