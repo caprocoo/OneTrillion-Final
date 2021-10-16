@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.onetrillion.trip.noUserRes.NoUserResDTO;
 import com.onetrillion.trip.page.PageMaker;
 import com.onetrillion.trip.userRes.UserResCriteria;
 import com.onetrillion.trip.userRes.UserResDTO;
@@ -34,6 +35,15 @@ public class AdminUserResController {
 		model.addAttribute("pageMaker", pageMaker);
 		
 		return "adminUserRes/adminRes";
+	}
+	
+	@RequestMapping(value = "/listMini.do", method = RequestMethod.GET)
+	public String AdminUserResMini(Model model){
+		
+		List<UserResDTO> userResList = service.userSelectAll();
+		model.addAttribute("userResList", userResList);
+		
+		return "adminUserRes/adminResMini";
 	}
 	
 	@RequestMapping(value = "/modify.do", method = RequestMethod.GET)

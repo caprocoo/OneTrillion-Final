@@ -6,7 +6,7 @@
 	<!-- 관리자용 댓글 전체 리스트 출력 (회원명 다나옴) -->
 	<select resultType="com.onetrillion.trip.reply.ReplyDTO" id="replySelectAll">
 		<![CDATA[
-		 SELECT * FROM TRIL_REPLY ORDER BY REPLY_SEQ ASC
+		 SELECT * FROM TRIL_REPLY ORDER BY REPLY_SEQ DESC
 		]]>
 	</select>
 	

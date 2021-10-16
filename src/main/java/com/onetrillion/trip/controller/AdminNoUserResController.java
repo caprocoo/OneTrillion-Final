@@ -13,7 +13,6 @@ import com.onetrillion.trip.noUserRes.NoUserResCriteria;
 import com.onetrillion.trip.noUserRes.NoUserResDTO;
 import com.onetrillion.trip.noUserRes.impl.NoUserResService;
 import com.onetrillion.trip.page.PageMaker;
-import com.onetrillion.trip.userRes.UserResDTO;
 
 
 @Controller
@@ -37,6 +36,15 @@ public class AdminNoUserResController {
 		model.addAttribute("pageMaker", pageMaker);
 		
 		return "adminNoUserRes/adminNoRes";
+	}
+	
+	@RequestMapping(value = "/listMini.do", method = RequestMethod.GET)
+	public String AdminNoUserResMini(Model model){
+		
+		List<NoUserResDTO> noUserResList = service.noUserSelectAll();
+		model.addAttribute("noUserResList", noUserResList);
+		
+		return "adminNoUserRes/adminNoResMini";
 	}
 	
 	@RequestMapping(value = "/insert.do", method = RequestMethod.GET)
@@ -70,5 +78,7 @@ public class AdminNoUserResController {
 		service.noUserResDelete(res_seq);
 		return "redirect:list.do";
 	}
+	
+	
 	
 }

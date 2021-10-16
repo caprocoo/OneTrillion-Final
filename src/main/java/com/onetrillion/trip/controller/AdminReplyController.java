@@ -13,7 +13,6 @@ import com.onetrillion.trip.page.PageMaker;
 import com.onetrillion.trip.reply.ReplyCriteria;
 import com.onetrillion.trip.reply.ReplyDTO;
 import com.onetrillion.trip.reply.impl.ReplyService;
-import com.onetrillion.trip.userRes.UserResDTO;
 
 
 @Controller
@@ -39,10 +38,19 @@ public class AdminReplyController {
 		return "adminReply/adminReview";
 	}
 	
+	@RequestMapping(value = "/listMini.do", method = RequestMethod.GET)
+	public String AdminReplyResMini(Model model){
+		
+		List<ReplyDTO> replyList = service.replySelectAll();
+		model.addAttribute("replyList", replyList);
+		
+		return "adminReply/adminReplyMini";
+	}
+	
+	
 	
 	@RequestMapping(value = "/insert.do", method = RequestMethod.GET)
 	public String AdminReplyInsert(){
-		
 		return "adminReply/adminReviewInput";
 	}
 	
