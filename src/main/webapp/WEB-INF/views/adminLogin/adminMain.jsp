@@ -148,21 +148,21 @@
                 <div class="adminMainDiv1">
                     <p>공지사항</p>
                     <!--요기에 클릭시 해당페이지 넘어가게 설정-->
-                    <iframe src="adminNoticeMini.html" frameborder="0"
+                    <iframe src="http://localhost:8088/trip/adminNotice/listMini.do" frameborder="0"
                         style="width: 100%; height: 255px; border-radius: 0 0 20px 20px;" scrolling="no"></iframe>
 
                 </div>
                 <div class="adminMainDiv1">
                     <p>자주하는질문</p>
                     <!--요기에 클릭시 해당페이지 넘어가게 설정-->
-                    <iframe src="adminOftenMIni.html" frameborder="0"
+                    <iframe src="http://localhost:8088/trip/adminOften/listMini.do" frameborder="0"
                         style="width: 100%; height: 255px; border-radius: 0 0 20px 20px;" scrolling="no"></iframe>
 
                 </div>
                 <div class="adminMainDiv1">
                     <p>1대1문의</p>
                     <!--요기에 클릭시 해당페이지 넘어가게 설정-->
-                    <iframe src="adminPriQueMini.html" frameborder="0"
+                    <iframe src="http://localhost:8088/trip/admin/listMini.do" frameborder="0"
                         style="width: 100%; height: 255px; border-radius: 0 0 20px 20px;" scrolling="no"></iframe>
 
                 </div>

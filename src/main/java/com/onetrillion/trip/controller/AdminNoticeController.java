@@ -30,7 +30,14 @@ public class AdminNoticeController {
 		
 		return "adminNotice/adminNotice";
 	}
-	
+	//관리자 메인페이지 mini
+	@RequestMapping(value = "/listMini.do", method = RequestMethod.GET)
+	public String admin_Mini(Model model){		
+		List<CsnoticeDTO> miniList = noticeService.selectAll();
+		model.addAttribute("miniList", miniList);
+		
+		return "adminNotice/noticeMini";
+	}
 	
 	//입력
 	@RequestMapping(value = "/input.do", method = RequestMethod.GET)
