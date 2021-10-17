@@ -44,10 +44,12 @@ public class AdminController {
 	}	
 	
 	@RequestMapping(value = "/adminMain.do", method = RequestMethod.POST)
-	public String Admin_main_post(AdminDTO dto, HttpSession session, HttpServletRequest req,HttpServletResponse resp) throws IOException {
+	public String Admin_main_post(AdminDTO dto, HttpSession session, HttpServletRequest req,HttpServletResponse resp,Model model) throws IOException {
 
 		AdminDTO admin = adminService.admin_Login(dto);
-
+		List<AdminDTO> adminList = adminService.selectAll(); //관리자 전체 목록
+		
+		model.addAttribute("adminList", adminList);	
 		if (admin != null) { //어드민 로그인 되면!
 			session.setAttribute("AD_ID", dto.getAD_ID());
 			session.setAttribute("admin", admin);
