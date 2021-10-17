@@ -74,12 +74,13 @@
 
 <body>
 	<script type="text/javascript">
-		function deleteUserRes(ures_seq){
+		function deleteUserRes(ures_seq, per_title){
       		var res_confirm = confirm('회원 예약을 삭제하시겠습니까?');
       		if(!res_confirm){
       			return false;
       		}else{
-      			var uresData = {"ures_seq" : ures_seq}
+      			var uresData = {"ures_seq" : ures_seq,
+      							"per_title" : per_title}
       			//console.log(uresData)
       			$.ajax({
 			        url:"http://localhost:8088/trip/adminUserRes/delete.do",
@@ -202,7 +203,7 @@
 									<td><a class="btn btn-secondary btn001"
 										onclick="location.href='http://localhost:8088/trip/adminUserRes/modify.do?ures_seq=${board.ures_seq }'"
 										role="button" style="padding: 5px;">수정</a> <a
-										class="btn btn-secondary btn001" onclick="deleteUserRes(${board.ures_seq })" role="button"
+										class="btn btn-secondary btn001" onclick="deleteUserRes(${board.ures_seq }, '${board.pd_name }')" role="button"
 										style="padding: 5px;">삭제</a></td>
 								</tr>
 							</c:forEach>
