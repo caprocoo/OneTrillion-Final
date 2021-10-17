@@ -55,52 +55,10 @@
 </head>
 
 <body>
-	<script type="text/javascript">
-		function userResList(){ //회원예약
-			location.href = "http://localhost:8088/trip/adminUserRes/list.do"
-		}		
-		function userManagement(){ // 회원관리
-			location.href = "http://localhost:8088/trip/adminUserManagement/userList"
-		}
-		function priQueList(){ //1:1문의
-			location.href = "http://localhost:8088/trip/admin/list.do"
-		}
-		function noticeList(){ //공지사항
-			location.href = "http://localhost:8088/trip/adminNotice/list.do"
-		}
-		function oftenList(){ //자주묻는질문
-			location.href = "http://localhost:8088/trip/adminOften/list.do"
-		}
-
-	</script>
-
         <div style="width: 1800px; height: 100vh;">
-        <div
-            style="float: left; width: 250px; height: 100%; box-shadow: 0 0 20px #ededed; position: fixed; background-color: white;">
-            <div style="margin:auto; width: 80%;"><img style="width: 100%; margin-top: 40px; margin-bottom: 40px;"
-                    src="http://jjcom0214.cafe24.com/web/OneTrillion/logo02.png" alt="logo01"></div>
-            <div>            		
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" onclick="">메인</li>
-                    <li class="list-group-item" onClick="userResList()">회원예약리스트</li>
-                    <li class="list-group-item" onclick="">비회원예약</li>
-                    <li class="list-group-item" onclick="priQueList()">문의</li>
-                    <li class="list-group-item" onclick="">리뷰</li>
-                    <li class="list-group-item" onclick="userManagement()">회원</li>
-                    <li class="list-group-item" onclick="">상품</li>
-                    <li class="list-group-item" onclick="">관리자</li>
-                    <li class="list-group-item" onclick="">찜</li>
-                    <li class="list-group-item" onclick="noticeList()">공지사항</li>
-                    <li class="list-group-item" onclick="oftenList()">자주질문</li>
-                    <li class="list-group-item" onclick="">로그기록</li>
-                    <li class="list-group-item" onclick="">메모장</li>
 
-                </ul>
-            </div>
-            <c:if test="${sessionScope.AD_ID != null }">
-				<a id="adminLogout" style="cursor: pointer; color: purple; padding: 30px;">${AD_ID } 로그아웃</a>
-			</c:if>
-        </div>
+		<jsp:include page="../include/adminInclude.jsp"></jsp:include>
+
         <div style="float:right; width: 1500px;height: 100%;">
             <div style="width: 1500px; column-count: 3;">
                 <div class="adminMainDiv1">

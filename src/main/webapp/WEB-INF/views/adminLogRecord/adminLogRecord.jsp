@@ -10,6 +10,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+		<!--<jsp:include page="../include/adminInclude.jsp"></jsp:include>-->
+
 	<h1>Reply List Page</h1>
 	<table id="resListTab1"
 		style="width: 100%; margin-top: 40px; border-top: 2px solid #343a40">
