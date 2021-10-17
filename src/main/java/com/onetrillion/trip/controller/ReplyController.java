@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.onetrillion.trip.logRecord.LogRecordDTO;
 import com.onetrillion.trip.reply.ReplyDTO;
 import com.onetrillion.trip.reply.impl.ReplyService;
 
@@ -25,7 +26,7 @@ public class ReplyController {
 	public String reply_List(Model model, HttpSession session) {
 		String u_id= (String) session.getAttribute("u_id");		
 
-		System.out.println(u_id);
+		//System.out.println(u_id);
 		List<ReplyDTO> replyList = service.replySelectId(u_id);
 		model.addAttribute("replyList", replyList);
 		
@@ -45,7 +46,6 @@ public class ReplyController {
 	@RequestMapping(value = "insert.do", method = RequestMethod.POST)
 	public String replyInsertCommit(ReplyDTO dto) {
 		
-		//System.out.println(dto);
 		service.replyInsert(dto);
 		//System.out.println(u_id);
 		return "redirect:list.do";

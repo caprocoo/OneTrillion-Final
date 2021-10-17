@@ -55,15 +55,16 @@
         }
     </style>
 </head>
-
+			
 <body>
 	<script type="text/javascript">
-		function deleteReply(reply_seq){
+		function deleteReply(reply_seq, per_title){
       		var res_confirm = confirm('댓글을 삭제하시겠습니까?');
       		if(!res_confirm){
       			return false;
       		}else{
-      			var replyData = {"reply_seq" : reply_seq}
+      			var replyData = {"reply_seq" : reply_seq,
+      							"per_title" : per_title}
       			//console.log(uresData)
       			$.ajax({
 			        url:"http://localhost:8088/trip/adminReply/delete.do",
@@ -131,16 +132,14 @@
 	                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.reply_seq }</td>
 	                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.u_id }</td>
 	                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.pd_seq }</td>
-	                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.reply_title }</td>
+	                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.reply_title}</td>
 	                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.reply_date }</td>
 	                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.reply_content }</td>
 	                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.reply_rate }</td>
 
-								<td><a class="btn btn-secondary btn001"
-										onclick="location.href='http://localhost:8088/trip/adminReply/modify.do?reply_seq=${board.reply_seq }'"
-										role="button" style="padding: 5px;">수정</a> <a
-										class="btn btn-secondary btn001" onclick="deleteReply(${board.reply_seq })" role="button"
-										style="padding: 5px;">삭제</a></td>
+									<td><a class="btn btn-secondary btn001" onclick="location.href='http://localhost:8088/trip/adminReply/modify.do?reply_seq=${board.reply_seq }'"
+										role="button" style="padding: 5px;">수정</a> 
+										<a class="btn btn-secondary btn001" onclick="deleteReply(${board.reply_seq }, '${board.reply_title}' )" role="button" style="padding: 5px;">삭제</a></td>
 	                            </tr>
                             </c:forEach>
                             <!-- forEach 문 끝--------------------------------------------------------------------------------------------------------------------------------------->

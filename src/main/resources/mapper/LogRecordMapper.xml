@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.onetrillion.trip.service.mapper.LogRecordMapper">
+	
+	<select resultType="com.onetrillion.trip.logRecord.LogRecordDTO" id="logRecordSelectAll">
+		<![CDATA[
+		SELECT * FROM TRIL_ADMINLOG ORDER BY log_seq ASC
+	    ]]>
+	</select>
+	
+	<insert id="logRecordInsert">
+		<![CDATA[
+			INSERT INTO TRIL_ADMINLOG(log_seq, ad_id, log_part, per_seq, log_content, log_date, per_title)
+				values(log_seq.nextVal,#{ad_id},#{log_part},#{per_seq},#{log_content},to_char(sysdate,'yyyy-MM-dd HH24:mm'), #{per_title})
+		]]>
+	</insert>
+	
+	<select resultType="com.onetrillion.trip.logRecord.LogRecordDTO" id="LogRecordPaging">
+
+		<![CDATA[
+			SELECT log_seq, ad_id, log_part, per_seq, log_content, log_date, per_title
+			FROM
+			(
+				SELECT log_seq, ad_id, log_part, per_seq, log_content, log_date, per_title,
+				ROW_NUMBER() over(ORDER BY log_seq ASC) AS rn 
+				FROM TRIL_ADMINLOG
+			) WHERE rn BETWEEN #{rowStart} AND #{rowEnd} ORDER  BY log_seq ASC 
+	      ]]>
+	</select>
+		<select resultType="int" id="LogRecordCount">
+	
+		<![CDATA[
+		     select count(log_seq) from TRIL_ADMINLOG where log_seq>0
+      	]]>
+	</select>
+	
+	
+	
+</mapper>

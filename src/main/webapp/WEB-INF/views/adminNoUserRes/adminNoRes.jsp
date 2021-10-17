@@ -74,12 +74,13 @@
 
 <body>
 	<script type="text/javascript">
-		function deleteNoUserRes(res_seq){
+		function deleteNoUserRes(res_seq, per_title){
       		var res_confirm = confirm('회원 예약을 삭제하시겠습니까?');
       		if(!res_confirm){
       			return false;
       		}else{
-      			var resData = {"res_seq" : res_seq}
+      			var resData = {"res_seq" : res_seq,
+      							"per_title" : per_title}
       			//console.log(uresData)
       			$.ajax({
 			        url:"http://localhost:8088/trip/adminNoUserRes/delete.do",
@@ -130,7 +131,7 @@
 			<div
 				style="margin-top: 40px; width: 1500px; height: 90%; border-radius: 20px; box-shadow: 0 0 20px #ededed;">
 				<div class="adminMainDiv1">
-					<p>회원 예약관리 리스트</p>
+					<p>비회원 예약관리 리스트</p>
 					<table class="table table-hover">
 						<thead>
 							<tr>
@@ -202,7 +203,7 @@
 									<td><a class="btn btn-secondary btn001"
 										onclick="location.href='http://localhost:8088/trip/adminNoUserRes/modify.do?res_seq=${board.res_seq }'"
 										role="button" style="padding: 5px;">수정</a> <a
-										class="btn btn-secondary btn001" onclick="deleteNoUserRes(${board.res_seq })" role="button"
+										class="btn btn-secondary btn001" onclick="deleteNoUserRes(${board.res_seq }, '${board.pd_name }')" role="button"
 										style="padding: 5px;">삭제</a></td>
 								</tr>
 							</c:forEach>
@@ -276,7 +277,10 @@
 						<th>RES_SEQ</th>
 						<td id = "res_seq"></td>
 					</tr>
-
+					<tr>
+						<th>RES_PWD</th>
+						<td id = "res_pwd"></td>
+					</tr>
 					<tr>
 						<th>PD_SEQ</th>
 						<td id = "pd_seq"></td>
@@ -330,10 +334,7 @@
 						<th>RES_NAME</th>
 						<td id = "res_name"></td>
 					</tr>
-					<tr>
-						<th>RES_PWD</th>
-						<td id = "res_pwd"></td>
-					</tr>
+
 					<tr>
 						<th>RES_BIRTH</th>
 						<td id = "res_birth"></td>

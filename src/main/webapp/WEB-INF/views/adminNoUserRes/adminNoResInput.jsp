@@ -148,7 +148,7 @@
                     </tr>
                                         <tr>
                         <th>RES_PWD</th>
-                        <td><input type="text" class="form-control" name="pd_seq" value = "1234"></td>
+                        <td><input type="text" class="form-control" name="res_pwd" value = "1234"></td>
                     </tr>
                     <tr>
                         <th>RES_BIRTH</th>
