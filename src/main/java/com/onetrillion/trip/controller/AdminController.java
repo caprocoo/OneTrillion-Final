@@ -2,6 +2,7 @@ package com.onetrillion.trip.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,11 +10,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.onetrillion.trip.admin.AdminDTO;
 import com.onetrillion.trip.admin.impl.AdminService;
+import com.onetrillion.trip.memo.MemoDTO;
+import com.onetrillion.trip.memo.impl.MemoService;
 
 @Controller
 @RequestMapping(value = "/adminLogin")
@@ -21,6 +25,9 @@ public class AdminController {
 
 	@Autowired
 	AdminService adminService;
+	@Autowired
+	public MemoService memeoService;
+
 
 	//관리자 로그인 페이지로 이동
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
@@ -29,7 +36,10 @@ public class AdminController {
 	}
 	//메인페이지로 이동
 	@RequestMapping(value = "/adminMain.do", method = RequestMethod.GET)
-	public String Admin_main_get()  {
+	public String Admin_main_get(Model model)  {
+		List<AdminDTO> adminList = adminService.selectAll(); //관리자 전체 목록
+		model.addAttribute("adminList", adminList);	
+		
 		return "adminLogin/adminMain";	
 	}	
 	
@@ -59,6 +69,13 @@ public class AdminController {
 		HttpSession session = req.getSession();
 		session.invalidate();
 		return "redirect:/"; //메인페이지로 이동
+	}
+	
+	//메모 입력==========================================================================
+	@RequestMapping(value = "/input.do", method = RequestMethod.POST)
+	public String input_p(MemoDTO dto ,Model model) {			
+		memeoService.insert(dto);
+		return "redirect:/adminLogin/adminMain.do";
 	}
 	
 

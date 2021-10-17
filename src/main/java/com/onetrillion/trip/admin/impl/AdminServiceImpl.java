@@ -1,5 +1,7 @@
 package com.onetrillion.trip.admin.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,11 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public AdminDTO admin_Login(AdminDTO dto) {
 		return mapper.admin_Login(dto);
+	}
+	//리스트
+	@Override
+	public List<AdminDTO> selectAll() {
+		return mapper.selectAll();
 	}
 	
 	

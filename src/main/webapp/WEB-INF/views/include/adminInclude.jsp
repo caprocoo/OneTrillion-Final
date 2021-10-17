@@ -59,7 +59,14 @@
             </ul>
         </div>
              <c:if test="${sessionScope.AD_ID != null }">
-				<a id="adminLogout" style="cursor: pointer; color: purple; padding: 30px;">${AD_ID } 로그아웃</a>
+	             <div style="padding-top: 50px">
+					<a id="adminLogout" style="cursor: pointer; color: purple; padding: 30px;">${AD_ID } 로그아웃</a>
+				</div>	
+			</c:if>
+			<c:if test="${sessionScope.AD_ID == null }">
+				<div style="padding-top: 50px">
+				<a id="gohome" style="cursor: pointer; color: purple; padding: 30px;">홈페이지로 이동</a>
+				</div>
 			</c:if>
     </div>
 </body>
@@ -103,6 +110,19 @@
 		function link_13(){ //메모장
 			location.href = "http://localhost:8088/trip/adminMemo/list.do"
 		}	
+		
+
+		$("#adminLogout").on("click", function(){
+		    if(confirm("관리자 로그아웃 하시겠습니까?")){
+		    location.href = "<%=request.getContextPath()%>/adminLogin/logout.do";
+		    alert("로그아웃되었습니다.");
+		    }
+		 });
+		$("#gohome").on("click", function(){
+		    if(confirm("메인페이지로 이동 하시겠습니까?")){
+		    location.href = "<%=request.getContextPath()%>/";
+		    }
+		 });
 
 	</script>
 

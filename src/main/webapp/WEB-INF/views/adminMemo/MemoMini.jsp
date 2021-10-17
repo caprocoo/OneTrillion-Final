@@ -43,21 +43,21 @@
 
 <body>
 
-    <div class="adminMainDiv1" >
-        <table class="table" onclick="link_6()" style="cursor: pointer;">
+    <div class="adminMainDiv1">
+        <table class="table">
             <thead>
                 <tr>                    
-                    <th scope="col" >제목</th>
-                    <th scope="col" style="width:100px">회원아이디</th>
-                    <th scope="col" style="width:150px">등록날짜</th>
+                    <th scope="col" style="width:50px">번호</th>
+                    <th scope="col" style="width:120px">작성자</th>
+                    <th scope="col" style="width:150px">내용</th>
                 </tr>
             </thead>
             <tbody>
             <c:forEach var="list" items="${miniList }">
                 <tr>                    
-                    <td>${list.cl_title}</td>
-                    <td>${list.u_id }</td>
-                    <td>${list.cl_Date }</td>
+                    <td>${list.memo_seq}</td>
+                    <td>${list.ad_id }</td>
+                    <td>${list.memo_content }</td>
                 </tr>
 
              </c:forEach>
@@ -66,9 +66,5 @@
     </div>
 
 </body>
-<script type="text/javascript">
-function link_6(){ //1:1문의
-	window.parent.location.href = "http://localhost:8088/trip/admin/list.do"
-}
-</script>
+
 </html>

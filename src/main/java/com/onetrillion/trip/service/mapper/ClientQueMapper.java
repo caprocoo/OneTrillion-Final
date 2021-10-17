@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.onetrillion.trip.board.BoardDTO;
 import com.onetrillion.trip.clientque.ClientqueDTO;
 
 @Mapper 
