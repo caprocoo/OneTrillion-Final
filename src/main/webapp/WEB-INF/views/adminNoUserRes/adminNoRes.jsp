@@ -159,7 +159,7 @@
 						<tbody>
 							<c:forEach var="board" items="${noUserResList }">
 								<!-- forEach 문 시작--------------------------------------------------------------------------------------------------------------------------------------->
-								<tr style="cursor: pointer;" onclick="">
+								<tr style="cursor: pointer;" onclick="" class = "noUserResDetail">
 									<td data-bs-toggle="modal"
 										data-bs-target=".bd-example-modal-lg" onclick="">${board.res_seq }</td>
 									<td data-bs-toggle="modal"
@@ -274,91 +274,172 @@
 					</tr>
 					<tr>
 						<th>RES_SEQ</th>
-						<td>RES_SEQ</td>
+						<td id = "res_seq"></td>
 					</tr>
-					<tr>
-						<th>USERS_SEQ</th>
-						<td>USERS_SEQ</td>
-					</tr>
+
 					<tr>
 						<th>PD_SEQ</th>
-						<td>PD_SEQ</td>
+						<td id = "pd_seq"></td>
 					</tr>
 					<tr>
 						<th>PD_NAME</th>
-						<td>PD_NAME</td>
+						<td id = "pd_name"></td>
 					</tr>
+
 					<tr>
 						<th>PD_STARTDATE</th>
-						<td>PD_STARTDATE</td>
+						<td id = "pd_startDate"></td>
 					</tr>
 					<tr>
 						<th>PD_ENDDATE</th>
-						<td>PD_ENDDATE</td>
+						<td id = "pd_endDate"></td>
 					</tr>
 					<tr>
 						<th>ADULT_NUM</th>
-						<td>ADULT_NUM</td>
+						<td id = "adult_num"></td>
 					</tr>
 					<tr>
 						<th>TEENAGER_NUM</th>
-						<td>TEENAGER_NUM</td>
+						<td id = "teenager_num"></td>
 					</tr>
 					<tr>
 						<th>PET_NUM</th>
-						<td>PET_NUM</td>
+						<td id = "pet_num"></td>
 					</tr>
 					<tr>
 						<th>ADULT_PRICE</th>
-						<td>ADULT_PRICE</td>
+						<td id = "adult_price"></td>
 					</tr>
 					<tr>
 						<th>TEENAGER_PRICE</th>
-						<td>TEENAGER_PRICE</td>
+						<td id = "teenager_price"></td>
 					</tr>
 					<tr>
 						<th>PET_PRICE</th>
-						<td>PET_PRICE</td>
+						<td id = "pet_price"></td>
 					</tr>
 					<tr>
 						<th>RES_PRICE</th>
-						<td>RES_PRICE</td>
+						<td id = "res_price"></td>
 					</tr>
 					<tr>
 						<th>RES_PEOPLE</th>
-						<td>RES_PEOPLE</td>
+						<td id = "res_people"></td>
 					</tr>
 					<tr>
 						<th>RES_NAME</th>
-						<td>RES_NAME</td>
+						<td id = "res_name"></td>
+					</tr>
+					<tr>
+						<th>RES_PWD</th>
+						<td id = "res_pwd"></td>
 					</tr>
 					<tr>
 						<th>RES_BIRTH</th>
-						<td>RES_BIRTH</td>
+						<td id = "res_birth"></td>
 					</tr>
 					<tr>
 						<th>RES_EMAIL</th>
-						<td>RES_EMAIL</td>
-					</tr>
-					<tr>
-						<th>U_ID</th>
-						<td>U_ID</td>
+						<td id = "res_email"></td>
 					</tr>
 					<tr>
 						<th>RES_COMMENT</th>
-						<td>RES_COMMENT</td>
+						<td id = "res_comment"></td>
+					</tr>
+					<tr>
+						<th>RES_PHONE</th>
+						<td id = "res_phone"></td>
 					</tr>
 				</table>
 				<div style="text-align: right;">
-					<a class="btn btn-secondary" href="#" role="button"
+					<a class="btn btn-secondary" href="#" role="button" onclick = "noUserResModalDelete()"
 						style="margin-top: 10px; margin-bottom: 10px;">삭제</a> <a
-						class="btn btn-secondary" href="#" role="button"
+						class="btn btn-secondary" href="#" role="button" onclick = "noUserResModalModfiy()"
 						style="margin-top: 10px; margin-bottom: 10px; margin-right: 10px;">수정</a>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!--Modal 끝----------------------------------------------------------------------------------------------------------------->
+	
+	<script type="text/javascript">
+
+function noUserResModalDelete(){ 
+	var res_seq= $('#res_seq').text();
+ 	var deleteconfirm = confirm(res_seq+'번 질문을 삭제하시겠습니까?');						    	
+	if(!deleteconfirm){
+		return false;
+	}else{
+	var seqData ={"res_seq":res_seq};
+	
+    $.ajax({
+        url:"delete.do",
+        type:'POST',
+        data: seqData,
+        success:function(data){
+            alert("삭제되었습니다.");
+            location.href = "./list.do";							            	            
+        },
+        error:function(){
+            alert("에러");
+        }
+    });	
+	}		 
+	
+};
+
+function noUserResModalModfiy(){  
+ 	var res_seq= $('#res_seq').text();	    	
+	location.href = "./modify.do?res_seq="+res_seq;	 
+};
+
+
+$(document).ready(function(){       
+    $(".noUserResDetail").on("click", function(){
+    	 var res_seq = $(this).children("td:nth-child(1)").text();  
+    	 var pd_seq = $(this).children("td:nth-child(2)").text();
+    	 var pd_name = $(this).children("td:nth-child(3)").text();
+    	 var pd_startDate = $(this).children("td:nth-child(4)").text();
+    	 var pd_endDate = $(this).children("td:nth-child(5)").text();
+    	 var adult_num = $(this).children("td:nth-child(6)").text();
+    	 var teenager_num = $(this).children("td:nth-child(7)").text();
+    	 var pet_num = $(this).children("td:nth-child(8)").text();
+    	 var adult_price = $(this).children("td:nth-child(9)").text();
+    	 var teenager_price = $(this).children("td:nth-child(10)").text();
+    	 var pet_price = $(this).children("td:nth-child(11)").text();
+    	 var res_price = $(this).children("td:nth-child(12)").text();
+    	 var res_people = $(this).children("td:nth-child(13)").text();
+    	 var res_name = $(this).children("td:nth-child(14)").text();
+    	 var res_pwd = $(this).children("td:nth-child(15)").text();
+    	 var res_birth = $(this).children("td:nth-child(16)").text();
+    	 var res_email = $(this).children("td:nth-child(17)").text();
+    	 var res_comment = $(this).children("td:nth-child(18)").text();
+    	 var res_phone = $(this).children("td:nth-child(19)").text();
+    	   	 
+     	 $('#res_seq').text(res_seq);
+     	 $('#pd_seq').text(pd_seq);
+     	 $('#pd_name').text(pd_name);
+     	 $('#pd_startDate').text(pd_startDate);
+     	 $('#pd_endDate').text(pd_endDate);
+     	 $('#adult_num').text(adult_num);
+     	 $('#teenager_num').text(teenager_num);
+     	 $('#pet_num').text(pet_num);
+     	 $('#adult_price').text(adult_price);
+     	 $('#teenager_price').text(teenager_price);
+     	 $('#pet_price').text(pet_price);
+     	 $('#res_price').text(res_price);
+     	 $('#res_people').text(res_people);
+     	 $('#res_name').text(res_name);
+     	 $('#res_pwd').text(res_pwd);
+     	 $('#res_birth').text(res_birth);
+     	 $('#res_email').text(res_email);
+     	 $('#res_comment').text(res_comment);
+     	 $('#res_phone').text(res_phone);
+
+    })
+            
+})
+
+</script>
 
 </body>
 

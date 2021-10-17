@@ -33,6 +33,7 @@ public class AdminUserResController {
 		
 		model.addAttribute("pageMaker", pageMaker);
 		
+		
 		return "adminUserRes/adminRes";
 	}
 	
