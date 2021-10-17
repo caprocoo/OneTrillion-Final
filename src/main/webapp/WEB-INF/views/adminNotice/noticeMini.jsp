@@ -44,7 +44,7 @@
 <body>
 
     <div class="adminMainDiv1">
-        <table class="table">
+        <table class="table" onclick="link_10()" style="cursor: pointer;">
             <thead>
                 <tr>                    
                     <th scope="col" style="width:15%">번호</th>
@@ -66,5 +66,9 @@
     </div>
 
 </body>
-
+<script type="text/javascript">
+function link_10(){ //공지사항
+	window.parent.location.href = "http://localhost:8088/trip/adminNotice/list.do"
+}
+</script>
 </html>

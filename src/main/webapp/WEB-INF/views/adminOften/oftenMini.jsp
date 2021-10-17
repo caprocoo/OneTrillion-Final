@@ -51,7 +51,7 @@
 <body>
 
     <div class="adminMainDiv1">
-        <table class="table">
+        <table class="table"onclick="link_11()" style="cursor: pointer;">
             <thead>
                 <tr>                    
                     <th scope="col" style="width:20%">번호</th>
@@ -71,5 +71,9 @@
     </div>
 
 </body>
-
+<script type="text/javascript">
+function link_11(){ //자주묻는질문
+	window.parent.location.href = "http://localhost:8088/trip/adminOften/list.do"
+}
+</script>
 </html>
