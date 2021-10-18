@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,8 +16,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.onetrillion.trip.clientAnswer.ClientAnsDTO;
 import com.onetrillion.trip.clientAnswer.Impl.ClientAnsService;
+import com.onetrillion.trip.clientque.ClientqueCriteria;
 import com.onetrillion.trip.clientque.ClientqueDTO;
 import com.onetrillion.trip.clientque.Impl.ClientqueService;
+import com.onetrillion.trip.logRecord.LogRecordDTO;
+import com.onetrillion.trip.logRecord.impl.LogRecordService;
+import com.onetrillion.trip.page.PageMaker;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -27,12 +32,26 @@ public class ClientAnsController {
 
 	@Autowired
 	ClientqueService client_service; //문의service
-
+	
+	@Autowired
+	LogRecordService logService;
+	
+	public LogRecordDTO setLogRecord(String AD_ID, int seq, String log_content, String per_title) {
+		// 로그 번호(PK), 관리자 아이디, 파트, 파트번호, 내용(수정,입력, 삭제, ...), 활동날짜
+		LogRecordDTO logRecord = new LogRecordDTO(0, AD_ID, "1:1문의", seq, log_content, null, per_title);
+		System.out.println(logRecord);
+		return logRecord;
+	}
+	
 	//@@(관리자)1:1문의 목록으로 이동============================================================================
 	@RequestMapping(value = "/list.do", method = RequestMethod.GET)
-	public String adminAns_List(Model model) {			
-		List<ClientqueDTO> clientQueList =client_service.selectAll(); //문의한 리스트 불러오기
+	public String adminAns_List(Model model, ClientqueCriteria cri) {			
+		List<ClientqueDTO> clientQueList =client_service.clientquePaging(cri); //문의한 리스트 불러오기
 		model.addAttribute("clientQueList", clientQueList);
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(client_service.clientqueCount());
+		model.addAttribute("pageMaker", pageMaker);
 		
 		List<ClientAnsDTO> adminAnsList =adminAns_service.selectAll(); //답변 리스트
 		model.addAttribute("adminAnsList", adminAnsList);
@@ -72,11 +91,18 @@ public class ClientAnsController {
 	
 	//@@(관리자 입력)submit 완료!============================================================================
 	@RequestMapping(value = "/input.do", method = RequestMethod.POST)
-	public String adminAns_Insert_post(ClientAnsDTO dto) {
+	public String adminAns_Insert_post(ClientAnsDTO dto, HttpSession session) {
 		adminAns_service.insert(dto);	
 		
 		int cl_seq =dto.getCl_seq();
 		client_service.getAdminAns(cl_seq); //답변가져와
+		
+		
+		String AD_ID = (String) session.getAttribute("AD_ID");
+		String log_content = "INSERT-답변";
+		LogRecordDTO clientQueInsertLog = setLogRecord(AD_ID, dto.getAns_seq(), log_content, dto.getAns_content());
+		logService.logRecordInsert(clientQueInsertLog);
+		
 			return "redirect:/admin/list.do";		
 	}
 	
@@ -105,28 +131,44 @@ public class ClientAnsController {
 	
 	//(관리자 수정 완료) submit ====================================================================================
 	@RequestMapping(value = "modify.do", method = RequestMethod.POST)
-	public String adminAns_modify_post( Model model, ClientAnsDTO dto) {		
+	public String adminAns_modify_post( Model model, ClientAnsDTO dto, HttpSession session) {		
 		adminAns_service.modify(dto);		
 		int cl_seq =dto.getCl_seq();	
 		client_service.getAdminAns(cl_seq); //답변가져와
+		
+		String AD_ID = (String) session.getAttribute("AD_ID");
+		String log_content = "MODIFY-답변";
+		LogRecordDTO clientQueInsertLog = setLogRecord(AD_ID, dto.getAns_seq(), log_content, dto.getAns_content());
+		logService.logRecordInsert(clientQueInsertLog);
 			return "redirect:/admin/detail.do?cl_seq="+cl_seq;	
 
 	}
 
-	//(관리자 답변 삭제) ===========================================================================================
+	//(관리자 답변 삭제) detail에서 ===========================================================================================
 	@RequestMapping(value = "/delete.do", method = RequestMethod.POST)
-	public String adminAns_delete_post(ClientAnsDTO dto) {
-		adminAns_service.delete(dto);
-	
+	public String adminAns_delete_post(ClientAnsDTO dto, HttpSession session, String per_title) {
+		adminAns_service.delete(dto);		
 		client_service.getAdminAns(	dto.getCl_seq()); //답변가져와
+		
+		String AD_ID = (String) session.getAttribute("AD_ID");
+		String log_content = "DELETE-답변";
+		LogRecordDTO clientQueInsertLog = setLogRecord(AD_ID, dto.getAns_seq(), log_content, per_title);
+		logService.logRecordInsert(clientQueInsertLog);
+
+		
 		return "redirect:/admin/list.do";	
 	}
 	
 	//(문의글 삭제) 관리자list에서 ===========================================================================================
 	@RequestMapping(value = "/delete2.do", method = RequestMethod.POST)
-	public String clientQue_delete_post(ClientqueDTO dto, ClientAnsDTO adto) {		
+	public String clientQue_delete_post(ClientqueDTO dto, ClientAnsDTO adto,HttpSession session, String per_title) {		
 		adminAns_service.delete(adto);
 		client_service.delete(dto);//없어도될듯? 왜냐면 ON DELETE CASCADE 해서,, 일단 넣어놔
+		String AD_ID = (String) session.getAttribute("AD_ID");
+		String log_content = "DELETE-문의";
+		LogRecordDTO clientQueInsertLog = setLogRecord(AD_ID, dto.getCl_seq(), log_content, per_title);
+		logService.logRecordInsert(clientQueInsertLog);
+
 		return "redirect:/admin/list.do";
 	}
 	
@@ -139,9 +181,14 @@ public class ClientAnsController {
 	}
 	//(문의글 수정 완료) submit ===========================================================================================
 	@RequestMapping(value = "/modify2.do", method = RequestMethod.POST)
-	public String clientQue_modify_post(@RequestParam("cl_seq") int cl_seq, Model model, ClientqueDTO dto) {
+	public String clientQue_modify_post(@RequestParam("cl_seq") int cl_seq, Model model, ClientqueDTO dto,HttpSession session) {
 		model.addAttribute("cl_seq", cl_seq);
 		client_service.modify(dto);
+		String AD_ID = (String) session.getAttribute("AD_ID");
+		String log_content = "MODIFY-문의";
+		LogRecordDTO clientQueInsertLog = setLogRecord(AD_ID, dto.getCl_seq(), log_content, dto.getCl_content());
+		logService.logRecordInsert(clientQueInsertLog);
+		
 		return "redirect:/admin/list.do";
 
 	}

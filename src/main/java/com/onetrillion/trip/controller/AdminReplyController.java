@@ -32,10 +32,8 @@ public class AdminReplyController {
 	public LogRecordDTO setLogRecord (String AD_ID, int seq, String log_content, String per_title) {
 		//로그 번호(PK), 관리자 아이디, 파트, 파트번호, 내용(수정,입력, 삭제, ...), 활동날짜
 		LogRecordDTO logRecord = new LogRecordDTO(0, AD_ID, "후기", seq, log_content, null,per_title);
-		//System.out.println(AD_ID);
-		//System.out.println(log_content);
 		
-		System.out.println(logRecord);
+		//System.out.println(logRecord);
 		return logRecord;
 	}
 	

@@ -21,6 +21,8 @@
         crossorigin="anonymous"></script>
 </head>
 <body>
+
+
 <h1>userResPage paging</h1>
      <table id="resListTab1" style="width: 100%; margin-top: 40px; border-top:2px solid #343a40">
        <tr style="height: 70px; background-color: #ededed; text-align: center;">

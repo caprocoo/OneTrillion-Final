@@ -101,7 +101,7 @@
                     </tr>
                     <tr style="height: 100px;">
                         <th>내용</th>
-                        <td>${cl_dto.cl_content  }</td>
+                        <td id="CL_CONTENT">${cl_dto.cl_content  }</td>
                     </tr>
                 </table>
                 <div style="text-align: right;">
@@ -136,7 +136,7 @@
 	                <div style="text-align: right;">	                
 	                    <a class="btn btn-primary"  role="button" onclick="location.href='modify.do?cl_seq=${cl_dto.cl_seq}' "
 	                        style="margin-top:10px; margin-bottom: 10px;">답변수정</a>
-	                    <a class="btn btn-primary" href="#" role="button" onclick="ad_btn_delete(${ans_dto.ans_seq })"
+	                    <a class="btn btn-primary" href="#" role="button" onclick="ad_btn_delete(${ans_dto.ans_seq }, '${ans_dto.ans_content }')"
 	                        style="margin-top:10px; margin-bottom: 10px; margin-right: 10px;">답변삭제</a>
 	                </div>
 				</div>
@@ -155,12 +155,12 @@ $(document).ready(function(){  //아직 답변하지 않았으면 보이지 않�
 })//document
 
 //========================================================================@한보영 [답변] 삭제하기 구현 10/14 
-function ad_btn_delete(ans_seq){  
+function ad_btn_delete(ans_seq, per_title){  
     	var ad_delete = confirm('답변을 삭제하시겠습니까?');						    	
     	if(!ad_delete){
     		return false;
     	}else{
-	    	var seqdata ={"ans_seq":ans_seq};
+	    	var seqdata ={"ans_seq":ans_seq, "per_title" : per_title};
 	    	console.log(seqdata)
 		    $.ajax({
 		        url:"delete.do",
@@ -184,12 +184,13 @@ function ad_btn_delete(ans_seq){
     function cl_btn_delete(){  //====================@한보영 [문의] 삭제하기 구현 10/15 		
 		var cl_seq= $('#CL_SEQ').text();
 		var U_ID= $('#U_ID').text();
+		var per_title = $('#CL_CONTENT').text();
 	
 		var cl_delete = confirm(U_ID+'님의 문의글을 삭제하시겠습니까?');						    	
     	if(!cl_delete){
     		return false;
     	}else{
-    	var seqdata ={"cl_seq":cl_seq};
+    	var seqdata ={"cl_seq":cl_seq, "per_title" : per_title};
     	console.log('삭제2 > '+cl_seq)		
     	
 	    $.ajax({

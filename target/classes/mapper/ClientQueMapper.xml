@@ -7,62 +7,82 @@
                                                       <!-- @@ 1:1문의 CRUD   [10/12 화 한보영]  -->
 
 
-<!-- @@ 리스트 @@-->
-<select resultType="com.onetrillion.trip.clientque.ClientqueDTO" id="selectAll">
-<![CDATA[ SELECT * FROM Tril_ClientQue ORDER BY cl_seq  desc  ]]>
-</select>
+	<!-- @@ 리스트 @@-->
+	<select resultType="com.onetrillion.trip.clientque.ClientqueDTO" id="selectAll">
+	<![CDATA[ SELECT * FROM Tril_ClientQue ORDER BY cl_seq  desc  ]]>
+	</select>
+	
+	<!-- @@ 한명만 가져오기 @@-->
+	<select resultType="com.onetrillion.trip.clientque.ClientqueDTO"  id="selectOne">
+			<![CDATA[
+			SELECT * FROM Tril_ClientQue where u_id=#{u_id} ORDER BY cl_seq desc
+			]]>
+	</select>
+	
+	
+	<!-- @@ 입력 @@-->
+	<insert id="insert">
+	<![CDATA[
+		INSERT INTO Tril_ClientQue(cl_seq, u_id, u_nickName, cl_title, cl_content, cl_Date, cl_type,ans_content ) 
+		VALUES ((select nvl(max(cl_seq), 0)+1 from Tril_ClientQue)
+		,#{u_id} ,#{u_nickName} ,#{cl_title} ,#{cl_content} , to_char(sysdate,'yyyy-mm-dd hh:mm'), #{cl_type },#{ans_content } )
+	]]>		
+	</insert>
+	
+	<!-- @@ 디테일 @@-->
+	<select resultType="com.onetrillion.trip.clientque.ClientqueDTO" id="detail">
+	<![CDATA[
+	      select * from Tril_ClientQue where cl_seq=#{cl_seq}]]>
+	</select>
+	
+	
+	<!-- @@ 수정 @@-->
+	<update id="modify">
+	<![CDATA[
+			update Tril_ClientQue set
+			cl_seq =#{cl_seq }, u_id =#{u_id }, u_nickName =#{u_nickName }
+			, cl_title =#{cl_title }, cl_content =#{cl_content }, cl_type =#{cl_type } 
+			, cl_Date=to_char(sysdate,'yyyy-mm-dd hh:mm'), ans_content =#{ans_content } 
+			where cl_seq=#{cl_seq}]]>
+	</update>
+	
+	
+	<!-- @@ 삭제 @@-->
+	<delete id="delete">
+	<![CDATA[
+			delete from Tril_ClientQue where cl_seq=#{cl_seq}]]>
+	</delete>
+	
+	
+	<!-- @@ 관리자가 답변을 달면 -> 답변 값이 저장됨 @@-->
+	<update id="getAdminAns">
+	<![CDATA[
+			update TRIL_CLIENTQUE set
+			ANS_CONTENT=(select ANS_CONTENT from Tril_ClientAnswer 
+	        where TRIL_CLIENTQUE.cl_seq =Tril_ClientAnswer.cl_seq)		
+			]]>
+	</update>
 
-<!-- @@ 한명만 가져오기 @@-->
-<select resultType="com.onetrillion.trip.clientque.ClientqueDTO"  id="selectOne">
+
+	<select resultType="com.onetrillion.trip.clientque.ClientqueDTO" id="clientquePaging">
+
+	<![CDATA[
+		SELECT cl_seq, u_id, u_nickName, cl_title, cl_content, cl_Date, cl_type,ans_content
+		FROM
+		(
+			SELECT cl_seq, u_id, u_nickName, cl_title, cl_content, cl_Date, cl_type,ans_content,
+			ROW_NUMBER() over(ORDER BY cl_seq ASC) AS rn 
+			FROM TRIL_CLIENTQUE
+		) WHERE rn BETWEEN #{rowStart} AND #{rowEnd} ORDER  BY cl_seq ASC 
+      ]]>
+	</select>
+
+	<select resultType="int" id="clientqueCount">
+	
 		<![CDATA[
-		SELECT * FROM Tril_ClientQue where u_id=#{u_id} ORDER BY cl_seq desc
-		]]>
-</select>
-
-
-<!-- @@ 입력 @@-->
-<insert id="insert">
-<![CDATA[
-	INSERT INTO Tril_ClientQue(cl_seq, u_id, u_nickName, cl_title, cl_content, cl_Date, cl_type,ans_content ) 
-	VALUES ((select nvl(max(cl_seq), 0)+1 from Tril_ClientQue)
-	,#{u_id} ,#{u_nickName} ,#{cl_title} ,#{cl_content} , to_char(sysdate,'yyyy-mm-dd hh:mm'), #{cl_type },#{ans_content } )
-]]>		
-</insert>
-
-<!-- @@ 디테일 @@-->
-<select resultType="com.onetrillion.trip.clientque.ClientqueDTO" id="detail">
-<![CDATA[
-      select * from Tril_ClientQue where cl_seq=#{cl_seq}]]>
-</select>
-
-
-<!-- @@ 수정 @@-->
-<update id="modify">
-<![CDATA[
-		update Tril_ClientQue set
-		cl_seq =#{cl_seq }, u_id =#{u_id }, u_nickName =#{u_nickName }
-		, cl_title =#{cl_title }, cl_content =#{cl_content }, cl_type =#{cl_type } 
-		, cl_Date=to_char(sysdate,'yyyy-mm-dd hh:mm'), ans_content =#{ans_content } 
-		where cl_seq=#{cl_seq}]]>
-</update>
-
-
-<!-- @@ 삭제 @@-->
-<delete id="delete">
-<![CDATA[
-		delete from Tril_ClientQue where cl_seq=#{cl_seq}]]>
-</delete>
-
-
-<!-- @@ 관리자가 답변을 달면 -> 답변 값이 저장됨 @@-->
-<update id="getAdminAns">
-<![CDATA[
-		update TRIL_CLIENTQUE set
-		ANS_CONTENT=(select ANS_CONTENT from Tril_ClientAnswer 
-        where TRIL_CLIENTQUE.cl_seq =Tril_ClientAnswer.cl_seq)		
-		]]>
-</update>
-
+		      select count(cl_seq) from TRIL_CLIENTQUE where cl_seq>0
+		      ]]>
+	</select>
 
 
 

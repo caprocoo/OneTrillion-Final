@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.onetrillion.trip.admin.AdminDTO;
 import com.onetrillion.trip.logRecord.LogRecordDTO;
 import com.onetrillion.trip.logRecord.impl.LogRecordService;
 import com.onetrillion.trip.notice.CsnoticeDTO;
@@ -69,9 +68,8 @@ public class AdminNoticeController {
 	}
 	//입력
 	@RequestMapping(value = "/input.do", method = RequestMethod.POST)
-	public String input_p(CsnoticeDTO dto ,AdminDTO addto,HttpSession session,Model model) {
+	public String input_p(CsnoticeDTO dto ,HttpSession session,Model model) {
 		
-		//session.setAttribute("AD_ID", addto.getAD_ID());
 		
 		String AD_ID = (String) session.getAttribute("AD_ID");	
 		String log_content = "INSERT"; 
