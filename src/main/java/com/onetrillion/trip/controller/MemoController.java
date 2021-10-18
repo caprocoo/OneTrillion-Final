@@ -34,7 +34,7 @@ public class MemoController {
 	public LogRecordDTO setLogRecord (String AD_ID, int seq, String log_content, String per_title) {
 		//로그 번호(PK), 관리자 아이디, 파트, 파트번호, 내용(수정,입력, 삭제, ...), 활동날짜
 		LogRecordDTO logRecord = new LogRecordDTO(0, AD_ID, "관리자 메모", seq, log_content, null, per_title);
-		System.out.println(logRecord);
+		//System.out.println(logRecord);
 		return logRecord;
 	}
 	
@@ -104,7 +104,7 @@ public class MemoController {
 	@RequestMapping(value = "/delete.do", method = RequestMethod.POST)
 	public String delete_post(MemoDTO dto,HttpSession session ) {		
 		memeoService.delete(dto);
-		System.out.println(dto);
+		//System.out.println(dto);
 		String AD_ID = (String) session.getAttribute("AD_ID");	
 		String log_content = "DELETE"; 
 		LogRecordDTO memoInsertLog =  setLogRecord(AD_ID, dto.getMemo_seq(), log_content, dto.getMemo_type());

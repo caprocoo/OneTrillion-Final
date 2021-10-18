@@ -69,8 +69,7 @@ public class UserResController {
 	
 	
 	@RequestMapping(value = "/listPage.do", method = RequestMethod.GET)
-	public String userResListPage(Model model, UserResCriteria cri){
-		
+	public String userResListPage(Model model, UserResCriteria cri,HttpSession session){ 
 		List<UserResDTO> userResList = service.userResPaging(cri);
 		model.addAttribute("userResList", userResList);
 
