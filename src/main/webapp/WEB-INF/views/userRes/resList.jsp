@@ -66,13 +66,13 @@
 
           <div style="margin:auto; width:1100px; height:100%; min-height: 800px;">
             <div class="list-group" style="float:left;width:180px; height:600px; margin-top: 40px;">
-              <a href="#" class="list-group-item list-group-item-action"
+              <a href="http://localhost:8088/trip/user/myPageInfo.do?u_id=${member.u_id}" class="list-group-item list-group-item-action"
                 style="background-color: #343a40; color: white;">마이페이지</a>
-              <a href="#" class="list-group-item list-group-item-action">개인정보</a>
+              <a href="http://localhost:8088/trip/user/myPageInfo.do?u_id=${member.u_id}" class="list-group-item list-group-item-action">개인정보</a>
               <a href="<%=request.getContextPath() %>/myPage/list.do" class="list-group-item list-group-item-action">1대1문의</a>  
-              <a href="#" class="list-group-item list-group-item-action">찜 내역</a>
-              <a href="#" class="list-group-item list-group-item-action">예약내역</a>
-              <a href="#" class="list-group-item list-group-item-action">Contact Us</a>
+              <a href="http://localhost:8088/trip/wishlist/list.do?u_id=${member.u_id}" class="list-group-item list-group-item-action">찜 내역</a>
+              <a href="http://localhost:8088/trip/userRes/list.do?u_id=${member.u_id}" class="list-group-item list-group-item-action">예약내역</a>
+              <a href="http://localhost:8088/trip/user/contactUs.do" class="list-group-item list-group-item-action">Contact Us</a>
             </div>
             <div style="float:right;width:915px;">
               <div>
@@ -146,11 +146,11 @@
                       <th>최악</th>
                     </tr>
                     <tr style="height: 70px; border-bottom: 1px solid #ededed;" id = "star">
-                      <td><input type="radio" name="review1" checked id = "fiveStar"> ★★★★★</td>
-                      <td><input type="radio" name="review1" id = "fourStar"> ★★★★☆</td>
-                      <td><input type="radio" name="review1" id = "threeStar"> ★★★☆☆</td>
-                      <td><input type="radio" name="review1" id = "twoStar"> ★★☆☆☆</td>
-                      <td style="border-right: 0;"><input type="radio" name="review1" id = "oneStar"> ★☆☆☆☆</td>
+                      <td><input type="radio" name="review1" checked id = "fiveStar" ><span style="color: #FFB400;"> ★★★★★</span></td>
+                      <td style="color: #FFB400;"> <input type="radio" name="review1" id = "fourStar">★★★★<span style="color: #808080;">★</span></td>
+                      <td style="color: #FFB400;"><input type="radio" name="review1" id = "threeStar"> ★★★<span style="color: #808080;">★★</span></td>
+                      <td style="color: #FFB400;"><input type="radio" name="review1" id = "twoStar">★★<span style="color: #808080;">★★★</span></td>
+                      <td style="border-right: 0;color: #FFB400;"><input type="radio" name="review1" id = "oneStar"> ★<span style="color: #808080;">★★★★</span></td>
                     </tr>
                   </table>
                 </div>

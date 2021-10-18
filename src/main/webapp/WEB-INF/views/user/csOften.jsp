@@ -11,7 +11,7 @@
 <style>
 .introMenu{height:50px; width: 150px; border-bottom:1px solid #ededed; line-height: 50px; text-align: center; margin-left:10px;}
 .introMenu:hover{background-color: #ededed; cursor: pointer;}
-#introQue1, #introQue2{display:none;}
+ #introQue2{display:none;}
 #introinfoTab1 th{width:40%; height:70px; background-color: #ededed;}
 #introinfoTab1 td{width:60%; border-bottom:1px solid #ededed; font-size: 120%;}
 #introinfoTab2 input{ margin-bottom:10px;border: 0; width: 50%; height: 60px; background-color: #ededed; color: black; font-size: 110%; border-radius: 10px; box-shadow: 0 0 10px #ededed;}
@@ -33,47 +33,16 @@
 <div style="margin:auto; width:1100px; min-height: 800px;">
       <div style="float:left;width:180px;">
           <h2 style="margin-left:10px; margin-top:30px; margin-bottom:10px;">고객센터</h2>
-          <div class="introMenu" id="introInfodiv1" style="border-top:2px solid black;">
-          공지사항</div>
-          <div class="introMenu" id="introQuediv1">자주하는질문</div>
-          <div class="introMenu" id="introWishdiv1">1대1문의</div>
+          <div class="introMenu" id="introInfodiv1" style="border-top:2px solid black;" 
+          	onclick="location.href='<%=request.getContextPath()%>/user/cs.do'">공지사항</div>
+          <div class="introMenu" id="introQuediv1" >자주하는질문</div>
+          <div class="introMenu" id="introWishdiv1" onclick="location.href='<%=request.getContextPath()%>/myPage/list.do'">1대1문의</div>
       </div>
       
       
       <div style="float:right; width:915px; height: auto;">         
           
-    <!-- ============================================================================@@ 공지사항 10/11 한보영 -->             
-          
-         <div class="introMenu2" id="introinfo1">
-              <h3 style="margin-left:10px; margin-top:50px; margin-bottom:10px;">공지사항</h3>
-           <!-- @@ 검색 -->   
-              <select  class="serach">
-				<option value="title">제목</option>
-				<option value="content">내용</option>
-			 </select>
-			 <input class="keyword" type="text" /> 	
-              
-               
-           <!-- @@ list --> 
-              <table class="A">
-                    <tr>
-                        <th>No</th>
-                        <th>제목</th>                        
-                    </tr>                    
-                 <c:forEach var="notice" items="${noticeList }">   
-                 <tbody>                 
-                    <tr class="tr01" >
-                        <td class="introInfotd3" >${notice.no_seq }</td>
-                        <td class="introInfotd2" > ${notice.no_title }</td>
-                    </tr>
-                    <tr class="tr02">
-                        <td class="introInfotd1" colspan="2"> ${notice.no_content } </td>
-                    </tr>                    
-                 </c:forEach>    
-                 </tbody>
-              </table>
-          </div>       
-          
+
   <!-- ===============================================================================@@ 자주하는 질문 10/11 한보영 -->       
           
           <div class="introMenu2" id="introQue1">
@@ -109,10 +78,7 @@
           </div>
           
     <!-- ========================================================================================================== -->     
-            
-          <div class="introMenu2" id="introQue2">
-              <h3 style="margin-left:10px; margin-top:50px; margin-bottom:10px;">1대1문의</h3>
-          </div>
+
       </div>
   </div>
   
@@ -134,19 +100,7 @@
 
 
 
-        //메인 --------------------------------------------------------------------
-		$(".introMenu").on("click", function(){
-			$(".introMenu2").css("display", "none")
-			var thisAttr = $(this).attr("id");
-			if(thisAttr == "introInfodiv1"){
-				$("#introinfo1").css("display", "block")
-			}else if(thisAttr == "introQuediv1"){
-				$("#introQue1").css("display", "block")
-			}else{
-				   location.href = "http://localhost:8088/trip/myPage/list.do"
-			}
-		})
-        //메인 --------------------------------------------------------------------
+       
 
 	})
 	

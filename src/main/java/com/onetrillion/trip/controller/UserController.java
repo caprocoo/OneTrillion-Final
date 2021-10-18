@@ -242,18 +242,24 @@ public class UserController {
 		return "redirect:../";
 	}
 
-	// 공지사항 & 자주하는 질문 목록으로 이동
-	@RequestMapping(value = "/user/cs.do", method = RequestMethod.GET)
+	//자주하는 질문 
+	@RequestMapping(value = "/user/csOften.do", method = RequestMethod.GET)
 	public String cs_page(Model model) {
-		// @@ 공지사항 목록 [10/11 월 한보영]
-		List<CsnoticeDTO> noticeList = noticeService.selectAll();
-		model.addAttribute("noticeList", noticeList);
-
 		// @@ 자주하는 질문 목록 [10/11 월 한보영]
 		List<OftenDTO> oftenList = oftenService.selectAll_often();
 		model.addAttribute("oftenList", oftenList);
 
-		return "user/cs";
+		return "user/csOften";
+	}
+	//공지사항
+	@RequestMapping(value = "/user/cs.do", method = RequestMethod.GET)
+	public String cs_page_notice(Model model) {
+		// @@ 공지사항 목록 [10/11 월 한보영]
+		List<CsnoticeDTO> noticeList = noticeService.selectAll();
+		model.addAttribute("noticeList", noticeList);
+
+
+		return "user/csNotice";
 	}
 	@RequestMapping(value = "/user/contactUs.do", method = RequestMethod.GET)
 	public String cs_contact_page(Model model) {

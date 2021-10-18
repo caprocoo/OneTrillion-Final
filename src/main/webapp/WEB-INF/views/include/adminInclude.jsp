@@ -38,7 +38,7 @@
     <div
         style="float: left; width: 250px; height: 100%; box-shadow: 0 0 20px #ededed; position: fixed; background-color: white;">
         <div style="margin:auto; width: 80%;">
-        	<img style="width: 100%; margin-top: 40px; margin-bottom: 40px;"
+        	<img style="width: 100%; margin-top: 40px; margin-bottom: 40px; cursor: pointer;"  onclick="link_1()" 
                 src="http://jjcom0214.cafe24.com/web/OneTrillion/logo02.png" alt="logo01"/>
         </div>
         <div>
