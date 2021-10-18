@@ -62,6 +62,7 @@ public class BoardController {
 	}
 
 
+<<<<<<< HEAD
 	   @RequestMapping(value = "/detail.do", method = RequestMethod.GET) 
 	   public String detail(Model model, int pd_seq, HttpSession session) {
 	      BoardDTO dto = service.detail(pd_seq);
@@ -93,6 +94,40 @@ public class BoardController {
 	      return "board/detail";
 	   }
 
+=======
+	@RequestMapping(value = "/detail.do", method = RequestMethod.GET) 
+	public String detail(Model model, int pd_seq, HttpSession session) {
+		BoardDTO dto = service.detail(pd_seq);
+		UserResDTO userDTO = userResService.userResDetail(pd_seq);
+		
+		String u_id = (String) session.getAttribute("u_id");
+		WishlistDTO wDto = wishService.wishlistDetail(u_id, pd_seq); // 10/14 이희연 찜목록에서 detail.do로 이동
+		
+		//1박 2일 구하기
+		LocalDate start_date = dto.getPd_startDate();
+		LocalDate last_date = dto.getPd_endDate();
+
+		Period period = Period.between(start_date, last_date);
+		Period period2 = period.plusDays(1);
+
+		model.addAttribute("period", period.getDays()); // 6박
+		model.addAttribute("period2", period2.getDays()); // 7일
+
+		// 조회수 추가 
+		dto.setPd_cnt(dto.getPd_cnt() + 1);
+		service.cntUp(dto); // 조회수 증가
+
+		ImageDTO image = service.detailImage(pd_seq);
+		model.addAttribute("dto", dto);
+		model.addAttribute("userDTO", userDTO);
+		model.addAttribute("image", image);
+		model.addAttribute("wDto", wDto); // 10/14 이희연 찜목록 구현 시 추가함
+
+		return "board/detail";
+	}
+	
+	
+>>>>>>> 0ebeaed82946d6dbe8dfc177c7d85ae55703feef
 	@RequestMapping(value = "/search.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String searchData(@RequestParam Map<String, Object> map) {
