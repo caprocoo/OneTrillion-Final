@@ -26,13 +26,10 @@
             margin: 0;
             padding: 0;
         }
-
         table {
             table-layout: fixed;
             word-break: break-all;
-
         }
-
         td {
             overflow: hidden;
             white-space: nowrap;
@@ -40,30 +37,26 @@
         }
     </style>
 </head>
-
 <body>
-
     <div class="adminMainDiv1">
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">고객 ID</th>
                     <th scope="col">찜번호</th>
                     <th scope="col">상품명</th>
+                    <th scope="col">고객 ID</th>
                 </tr>
             </thead>
             <tbody>
             <c:forEach var="wishList" items="${wishList }">
                 <tr>
-                    <td>${wishList.u_id }</td>
                     <td>${wishList.w_seq }</td>
                     <td>${wishList.pd_name }</td>
+                    <td>${wishList.u_id }</td>
                 </tr>
                  </c:forEach>
             </tbody>
         </table>
     </div>
-
 </body>
-
 </html>

@@ -193,7 +193,7 @@ function link_6(){ //1:1문의
 	location.href = "http://localhost:8088/trip/admin/list.do"
 }
 function link_7(){ //찜목록
-	location.href = "http://localhost:8088/trip/adminWishlist/mini.do"
+	location.href = "http://localhost:8088/trip/adminWishlist/list.do"
 }
 
 
