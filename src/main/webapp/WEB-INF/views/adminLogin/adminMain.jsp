@@ -124,10 +124,10 @@
                         style="width: 100%; height: 255px; border-radius: 0 0 20px 20px;" scrolling="no"></iframe>
 
                 </div>
-                <div class="adminMainDiv1">
+                <div class="adminMainDiv1" onclick="link_7()">
                     <p>회원찜내역</p>
                     <!--요기에 클릭시 해당페이지 넘어가게 설정-->
-                    <iframe src="adminWishMini.html" frameborder="0"
+                    <iframe src="http://localhost:8088/trip/adminWishlist/mini.do" frameborder="0"
                         style="width: 100%; height: 255px; border-radius: 0 0 20px 20px;" scrolling="no"></iframe>
                 </div>
 
@@ -191,6 +191,9 @@
 
 function link_6(){ //1:1문의
 	location.href = "http://localhost:8088/trip/admin/list.do"
+}
+function link_7(){ //찜목록
+	location.href = "http://localhost:8088/trip/adminWishlist/mini.do"
 }
 
 

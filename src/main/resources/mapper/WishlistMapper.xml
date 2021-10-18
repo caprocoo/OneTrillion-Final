@@ -5,43 +5,54 @@
 
 	<!-- 찜 insert -->
 	<insert id="insert_wish" parameterType="com.onetrillion.trip.wishlist.WishlistDTO">
-		INSERT INTO TRIL_WISHLIST(w_seq, pd_seq, pd_name, pd_startDate, pd_endDate, pd_price, pd_image, u_id) VALUES((select nvl(max(W_SEQ), 0)+1 from TRIL_WISHLIST), #{pd_seq}, #{pd_name}, #{pd_startDate}, #{pd_endDate}, #{pd_price}, #{pd_image}, #{u_id})
-	</insert>
-	
+			INSERT INTO TRIL_WISHLIST(w_seq, pd_seq, pd_name, pd_startDate, pd_endDate, pd_price, pd_image, u_id) VALUES((select nvl(max(W_SEQ), 0)+1 from TRIL_WISHLIST), #{pd_seq}, #{pd_name}, #{pd_startDate}, #{pd_endDate}, #{pd_price}, #{pd_image}, #{u_id})
+	</insert>	
 	
 	<!-- 찜 delete -->
 	<delete id="delete_wish" parameterType="int">
-	<![CDATA[
-		DELETE FROM TRIL_WISHLIST WHERE w_seq = #{w_seq}]]>
+		<![CDATA[
+			DELETE FROM TRIL_WISHLIST WHERE w_seq = #{w_seq}]]>
 	</delete>
 	
-		<!-- 찜 delete -->
-	<delete id="delete_wish2" parameterType="int">
-	<![CDATA[
-		DELETE FROM TRIL_WISHLIST WHERE w_seq = #{w_seq}]]>
-	</delete>
-	
-	
-	<!-- 찜 리스트 출력 -->
-	<select id="allWishlist" resultType="com.onetrillion.trip.wishlist.WishlistDTO">
-		SELECT * FROM TRIL_WISHLIST ORDER BY W_SEQ ASC
-	</select>
-
 	<!-- 찜 리스트 출력 -->
 	<select id="wishListSelectID" resultType="com.onetrillion.trip.wishlist.WishlistDTO">
-		SELECT * FROM TRIL_WISHLIST where u_id = #{u_id} ORDER BY W_SEQ DESC
+			SELECT * FROM TRIL_WISHLIST where u_id = #{u_id} ORDER BY W_SEQ DESC
+	</select>
+	
+	<!-- BoardController에서 사용하는 mapper  -->
+	<select id="wishlistDetail" resultType="com.onetrillion.trip.wishlist.WishlistDTO" >
+		<![CDATA[
+		      select * from TRIL_WISHLIST where pd_seq=#{pd_seq}]]>
+	</select>
+	
+	<select id="wishlistDetail2" resultType="com.onetrillion.trip.wishlist.WishlistDTO">
+		<![CDATA[
+		      select * from TRIL_WISHLIST where u_id = #{u_id} and pd_seq = #{pd_seq}]]>
 	</select>
 	
 	
-	<select resultType="com.onetrillion.trip.wishlist.WishlistDTO" id="wishlistDetail">
-	
-	<![CDATA[
-	      select * from TRIL_WISHLIST where pd_seq=#{pd_seq}]]>
+	<!-- 관리자 ============================ -->
+	<!-- 전체 회원 찜리스트 출력 -->
+	<select id="admin_allList" resultType="com.onetrillion.trip.wishlist.WishlistDTO">
+			  SELECT * FROM TRIL_WISHLIST ORDER BY W_SEQ DESC
 	</select>
 	
-	<select resultType="com.onetrillion.trip.wishlist.WishlistDTO" id="wishlistDetail2">
-	<![CDATA[
-	      select * from TRIL_WISHLIST where u_id = #{u_id} and pd_seq = #{pd_seq}]]>
+	<select id="admin_modiDetail" resultType="com.onetrillion.trip.wishlist.WishlistDTO" >
+		<![CDATA[
+		      select * from TRIL_WISHLIST where w_seq=#{w_seq}]]>
 	</select>
+
+	
+	<update id="admin_modify">
+		<![CDATA[
+			  update TRIL_WISHLIST 
+			  set 
+				  pd_seq=#{pd_seq}, pd_name=#{pd_name}, 
+				  pd_startDate=#{pd_startDate}, pd_endDate=#{pd_endDate}, pd_price=#{pd_price},
+				  pd_image=#{pd_image}, u_id=#{u_id}
+			  where 
+			  	  w_seq=#{w_seq}]]>
+	</update>
+	
 	
 </mapper>
