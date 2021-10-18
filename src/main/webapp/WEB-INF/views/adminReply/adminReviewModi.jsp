@@ -86,10 +86,6 @@
                         <td><input type="text" class="form-control" name="reply_title"  value = "${replyDetail.reply_title}"></td>
                     </tr>
                     <tr>
-                        <th>REPLY_DATE</th>
-                        <td><input type="text" class="form-control" name="reply_date"  value = "${replyDetail.reply_date}"></td>
-                    </tr>
-                    <tr>
                         <th>REPLY_CONTENT</th>
                         <td><textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
                                  name="reply_content"

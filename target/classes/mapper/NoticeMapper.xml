@@ -5,39 +5,59 @@
 
                                                       <!-- @@ 공지사항 CRUD   [10/11 월 한보영]  -->
 
-<!-- @@ 리스트 -->
-<select resultType="com.onetrillion.trip.notice.CsnoticeDTO" id="selectAll">
-<![CDATA[ SELECT * FROM TRIL_NOTICE ORDER BY no_seq desc ]]>
-</select>
+	<!-- @@ 리스트 -->
+	<select resultType="com.onetrillion.trip.notice.CsnoticeDTO" id="selectAll">
+	<![CDATA[ SELECT * FROM TRIL_NOTICE ORDER BY no_seq desc ]]>
+	</select>
+	
+	<!--[관리자] 상세보기-->
+	<select resultType="com.onetrillion.trip.notice.CsnoticeDTO" id="detail">
+	<![CDATA[   select * from TRIL_NOTICE where no_seq=#{no_seq} ]]> 
+	</select>
+	
+	<!-- [관리자] 입력 -->
+	<insert id="insert">
+	<![CDATA[ insert into
+			TRIL_NOTICE(no_seq, ad_id, no_title, no_content, no_Date)
+			values(
+			(select nvl(max(no_seq), 0)+1 from TRIL_NOTICE)
+			,#{ad_id},#{no_title},#{no_content},sysdate)]]>		
+	</insert>
+	
+	<!-- [관리자] 수정 -->
+	<update id="modify">
+	<![CDATA[
+			update TRIL_NOTICE set
+			no_seq=#{no_seq}, ad_id=#{ad_id}, no_title=#{no_title}
+			, no_content=#{no_content},no_date=sysdate
+			where no_seq=#{no_seq}]]>
+	</update>
+	
+	<!-- [관리자] 삭제 -->
+	<delete id="delete">
+	<![CDATA[
+			delete from TRIL_NOTICE where no_seq=#{no_seq}]]>
+	</delete>
 
-<!--[관리자] 상세보기-->
-<select resultType="com.onetrillion.trip.notice.CsnoticeDTO" id="detail">
-<![CDATA[   select * from TRIL_NOTICE where no_seq=#{no_seq} ]]> 
-</select>
+	<select resultType="com.onetrillion.trip.notice.CsnoticeDTO" id="noticePaging">
 
-<!-- [관리자] 입력 -->
-<insert id="insert">
-<![CDATA[ insert into
-		TRIL_NOTICE(no_seq, ad_id, no_title, no_content, no_Date)
-		values(
-		(select nvl(max(no_seq), 0)+1 from TRIL_NOTICE)
-		,#{ad_id},#{no_title},#{no_content},sysdate)]]>		
-</insert>
-
-<!-- [관리자] 수정 -->
-<update id="modify">
-<![CDATA[
-		update TRIL_NOTICE set
-		no_seq=#{no_seq}, ad_id=#{ad_id}, no_title=#{no_title}
-		, no_content=#{no_content},no_date=sysdate
-		where no_seq=#{no_seq}]]>
-</update>
-
-<!-- [관리자] 삭제 -->
-<delete id="delete">
-<![CDATA[
-		delete from TRIL_NOTICE where no_seq=#{no_seq}]]>
-</delete>
+	<![CDATA[
+		SELECT no_seq, ad_id, no_title, no_content, no_Date
+		FROM
+		(
+			SELECT no_seq, ad_id, no_title, no_content, no_Date,
+			ROW_NUMBER() over(ORDER BY no_seq ASC) AS rn 
+			FROM TRIL_NOTICE
+		) WHERE rn BETWEEN #{rowStart} AND #{rowEnd} ORDER  BY no_seq ASC 
+      ]]>
+	</select>
+	
+		<select resultType="int" id="noticeCount">
+	
+		<![CDATA[
+		      select count(no_seq) from TRIL_NOTICE where no_seq>0
+		      ]]>
+	</select>
 
 
 </mapper>

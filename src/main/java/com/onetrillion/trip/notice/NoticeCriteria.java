@@ -1,8 +1,8 @@
-package com.onetrillion.trip.logRecord;
+package com.onetrillion.trip.notice;
 
 import com.onetrillion.trip.page.Criteria;
 
-public class LogRecordCriteria implements Criteria {
+public class NoticeCriteria implements Criteria {
 	
 	private int page;
 	private int perPageNum;
@@ -10,10 +10,10 @@ public class LogRecordCriteria implements Criteria {
 	private int rowEnd;
 	
 	
-	 public LogRecordCriteria()
+	 public NoticeCriteria()
 	 {
 	  this.page = 1;
-	  this.perPageNum = 10;
+	  this.perPageNum = 5;
 	 }
 
 	 @Override
@@ -32,7 +32,7 @@ public class LogRecordCriteria implements Criteria {
 	 {
 	  if (perPageNum <= 0 || perPageNum > 100)
 	  {
-	   this.perPageNum = 10;
+	   this.perPageNum = 5;
 	   return;
 	  }
 	  this.perPageNum = perPageNum;

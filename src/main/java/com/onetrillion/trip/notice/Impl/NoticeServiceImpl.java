@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 
 import com.onetrillion.trip.notice.CsnoticeDTO;
+import com.onetrillion.trip.page.Criteria;
 import com.onetrillion.trip.service.mapper.NoticeMapper;
 
 
@@ -47,6 +48,16 @@ public class NoticeServiceImpl implements NoticeService  {
 	public int modify(CsnoticeDTO dto) {
 
 		return Notice_mapper.modify(dto);
+	}
+
+	@Override
+	public List<CsnoticeDTO> noticePaging(Criteria cri) {
+		return Notice_mapper.noticePaging(cri);
+	}
+
+	@Override
+	public int noticeCount() {
+		return Notice_mapper.noticeCount();
 	}	
 	
 	
