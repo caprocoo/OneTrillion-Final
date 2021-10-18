@@ -42,6 +42,25 @@ INSERT INTO TRIL_ADMINMEMO(memo_seq, ad_id, ad_to, memo_type, memo_content,memo_
 		delete from TRIL_ADMINMEMO where memo_seq=#{memo_seq}]]>
 </delete>
 
+	<select resultType="com.onetrillion.trip.memo.MemoDTO" id="memoPaging">
+
+	<![CDATA[
+		SELECT memo_seq, ad_id, ad_to, memo_type, memo_content,memo_date
+		FROM
+		(
+			SELECT memo_seq, ad_id, ad_to, memo_type, memo_content,memo_date,
+			ROW_NUMBER() over(ORDER BY memo_seq ASC) AS rn 
+			FROM TRIL_ADMINMEMO
+		) WHERE rn BETWEEN #{rowStart} AND #{rowEnd} ORDER  BY memo_seq ASC 
+      ]]>
+	</select>
+	
+		<select resultType="int" id="memoCount">
+	
+		<![CDATA[
+		      select count(memo_seq) from TRIL_ADMINMEMO where memo_seq>0
+		      ]]>
+	</select>
 
 
 

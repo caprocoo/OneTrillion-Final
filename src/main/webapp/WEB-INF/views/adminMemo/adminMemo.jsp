@@ -92,7 +92,7 @@
                                  -->
                                    <a class="btn btn-secondary btn001" role="button" onclick="location.href='<%=request.getContextPath() %>/adminMemo/modify.do?memo_seq=${memo.memo_seq }' "
                                         style="padding: 5px;">수정</a>
-                                    <a class="btn btn-secondary btn001" href="#" role="button" onclick="btn_delete2(${memo.memo_seq   })"
+                                    <a class="btn btn-secondary btn001" href="#" role="button" onclick="btn_delete2(${memo.memo_seq}, '${memo.memo_type }')"
                                         style="padding: 5px;">삭제</a>
                                 </td>
                             </tr>
@@ -102,34 +102,33 @@
                     </table>
                     <div style="width: 100%;">
                         <!--페이징 tag 시작----------------------------------------------------------------------------------------------------------------------------------------->
-                        <div style="float: left; margin-left: 10px;">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous"
-                                        style="color: gray; border:1px solid #ededed">
-                                        <span aria-hidden="true">&laquo;</span>
-                                        <!-- <span class="sr-only">Previous</span> -->
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#"
-                                        style="color: gray;border:1px solid #ededed">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#"
-                                        style="color: gray;border:1px solid #ededed">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#"
-                                        style="color: gray;border:1px solid #ededed">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#"
-                                        style="color: gray;border:1px solid #ededed">4</a></li>
-                                <li class="page-item"><a class="page-link" href="#"
-                                        style="color: gray;border:1px solid #ededed">5</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next"
-                                        style="color: gray;border:1px solid #ededed">
-                                        <span aria-hidden="true">&raquo;</span>
-                                        <!-- <span class="sr-only">Next</span> -->
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+						<div style="float: left; margin-left: 10px;">
+							<ul class="pagination">
+								<c:if test="${pageMaker.prev}">
+									<li class="page-item"><a class="page-link"
+										href="list.do${pageMaker.makeQuery(pageMaker.startPage - 1)}"
+										aria-label="Previous"
+										style="color: gray; border: 1px solid #ededed"> <span
+											aria-hidden="true">&laquo;</span>
+									</a></li>
+								</c:if>
+								<c:forEach begin="${pageMaker.startPage}"
+									end="${pageMaker.endPage}" var="idx">
+									<li class="page-item"><a class="page-link"
+										href="list.do${pageMaker.makeQuery(idx)}"
+										style="color: gray; border: 1px solid #ededed">${idx}</a></li>
+								</c:forEach>
+
+								<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+									<li class="page-item"><a class="page-link"
+										href="list.do${pageMaker.makeQuery(pageMaker.endPage + 1)}"
+										aria-label="Next"
+										style="color: gray; border: 1px solid #ededed"> <span
+											aria-hidden="true">&raquo;</span>
+									</a></li>
+								</c:if>
+							</ul>
+						</div>
                         <!--페이징 tag 끝----------------------------------------------------------------------------------------------------------------------------------------->
                         <div style="float: right; margin-right: 10px;">
                             <div class="input-group mb-3" style="width: 300px; float: left; margin-right: 10px;">
@@ -310,14 +309,14 @@ function btn_delete(){  //====================@Modal창 안에서 삭제하기
 	
 };//btn_delete  끝=============================================@삭제1	
 
-function btn_delete2(memo_seq){  //====================@ lsit삭제
+function btn_delete2(memo_seq, memo_type){  //====================@ lsit삭제
 	console.log(memo_seq)
 	 var deleteQ = confirm(memo_seq+'번 메모를 삭제하시겠습니까?');						    	
 	if(!deleteQ){
 		return false;
 	}
 	else{
-	var seqdata ={"memo_seq":memo_seq};		
+	var seqdata ={"memo_seq":memo_seq, "memo_type" : memo_type};		
 	
     $.ajax({
         url:"delete.do",
