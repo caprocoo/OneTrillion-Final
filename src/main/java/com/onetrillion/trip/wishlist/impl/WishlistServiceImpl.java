@@ -38,13 +38,8 @@ public class WishlistServiceImpl implements WishlistService{
 	}
 
 	@Override
-	public WishlistDTO wishlistDetail(int pd_seq) {
-		return mapper.wishlistDetail(pd_seq);
-	}
-	
-	@Override
-	public WishlistDTO wishlistDetail2(String u_id, int pd_seq) {
-		return mapper.wishlistDetail2(u_id,pd_seq);
+	public WishlistDTO wishlistDetail(String u_id, int pd_seq) {
+		return mapper.wishlistDetail(u_id,pd_seq);
 	}
 
 	

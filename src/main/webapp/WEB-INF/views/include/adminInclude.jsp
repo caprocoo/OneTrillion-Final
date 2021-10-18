@@ -90,7 +90,7 @@
 			location.href = "http://localhost:8088/trip/admin/list.do"
 		}
 		function link_7(){ //찜
-			location.href = "http://localhost:8088/trip/adminWishlist/mini.do"
+			location.href = ""
 		}	
 		function link_8(){ //상품정보
 			location.href = ""

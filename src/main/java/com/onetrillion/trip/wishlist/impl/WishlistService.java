@@ -14,8 +14,7 @@ public interface WishlistService {
 	public void insert_wish(WishlistDTO dto);
 	public void delete_wish(int w_seq);
 	public List<WishlistDTO> wishListSelectID(String u_id);
-	public WishlistDTO wishlistDetail(int pd_seq);
-	public WishlistDTO wishlistDetail2(@Param("u_id") String u_id, @Param("pd_seq") int pd_seq);
+	public WishlistDTO wishlistDetail(@Param("u_id") String u_id, @Param("pd_seq") int pd_seq);
 	
 	// 관리자 =======================================================
 	public List<WishlistDTO> admin_allList(); // 관리자 페이지 찜목록 전체출력

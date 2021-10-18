@@ -69,7 +69,7 @@ public class WishlistController {
 		public String checkAjax(@RequestParam("pd_seq") int pd_seq, HttpSession session, WishlistDTO dto) {
 			String result = "impossible";
 			String u_id = (String) session.getAttribute("u_id");
-			WishlistDTO wish = service.wishlistDetail2(u_id, pd_seq);
+			WishlistDTO wish = service.wishlistDetail(u_id, pd_seq);
 
 			// DB에 u_id값과 pd_seq가 없으면
 			if (wish == null) {

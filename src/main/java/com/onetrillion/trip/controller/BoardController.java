@@ -63,10 +63,12 @@ public class BoardController {
 
 
 	@RequestMapping(value = "/detail.do", method = RequestMethod.GET) 
-	public String detail(Model model, int pd_seq) {
+	public String detail(Model model, int pd_seq, HttpSession session) {
 		BoardDTO dto = service.detail(pd_seq);
 		UserResDTO userDTO = userResService.userResDetail(pd_seq);
-		WishlistDTO wDto = wishService.wishlistDetail(pd_seq); // 10/14 이희연 찜목록 구현 시 추가함
+		
+		String u_id = (String) session.getAttribute("u_id");
+		WishlistDTO wDto = wishService.wishlistDetail(u_id, pd_seq); // 10/14 이희연 찜목록에서 detail.do로 이동
 		
 		//1박 2일 구하기
 		LocalDate start_date = dto.getPd_startDate();
@@ -90,6 +92,8 @@ public class BoardController {
 
 		return "board/detail";
 	}
+	
+	
 	@RequestMapping(value = "/search.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String searchData(@RequestParam Map<String, Object> map) {
