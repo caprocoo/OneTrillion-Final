@@ -9,6 +9,12 @@
 		AND AD_PWD = #{AD_PWD} 
 	</select>
 
+<!-- 관리자 전체 불러오기 -->
+<select resultType="com.onetrillion.trip.admin.AdminDTO" id="selectAll">
+select * from tril_admin
+</select>
+
+
 </mapper>
 
 

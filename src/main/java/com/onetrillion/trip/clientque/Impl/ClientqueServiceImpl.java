@@ -7,7 +7,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.onetrillion.trip.board.BoardDTO;
 import com.onetrillion.trip.clientque.ClientqueDTO;
 import com.onetrillion.trip.service.mapper.ClientQueMapper;
 

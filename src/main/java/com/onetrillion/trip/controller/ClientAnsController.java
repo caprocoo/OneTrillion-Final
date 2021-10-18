@@ -39,6 +39,14 @@ public class ClientAnsController {
 	
 		 	return "mypage/adminPriQue";
 	}
+	//관리자 메인페이지 mini
+	@RequestMapping(value = "/listMini.do", method = RequestMethod.GET)
+	public String admin_Mini(Model model){		
+		List<ClientqueDTO> miniList = client_service.selectAll();
+		model.addAttribute("miniList", miniList);
+		
+		return "mypage/priQueMini";
+	}
 
 
 	//@@(관리자 입력)1:1문의 입력페이지로 이동============================================================================
@@ -114,7 +122,7 @@ public class ClientAnsController {
 		return "redirect:/admin/list.do";	
 	}
 	
-	//(문의글 삭제) 관리자list에서 
+	//(문의글 삭제) 관리자list에서 ===========================================================================================
 	@RequestMapping(value = "/delete2.do", method = RequestMethod.POST)
 	public String clientQue_delete_post(ClientqueDTO dto, ClientAnsDTO adto) {		
 		adminAns_service.delete(adto);
@@ -122,14 +130,14 @@ public class ClientAnsController {
 		return "redirect:/admin/list.do";
 	}
 	
-	//(문의글 수정) 관리자list에서 
+	//(문의글 수정) 관리자list에서 ===========================================================================================
 	@RequestMapping(value = "/modify2.do", method = RequestMethod.GET)
 	public String clientQue_modify(@RequestParam("cl_seq") int cl_seq, Model model) {
 		ClientqueDTO dto = client_service.detail(cl_seq);
 		model.addAttribute("dto", dto);
 		return "mypage/adminPriQueModi";
 	}
-	//(문의글 수정 완료) submit
+	//(문의글 수정 완료) submit ===========================================================================================
 	@RequestMapping(value = "/modify2.do", method = RequestMethod.POST)
 	public String clientQue_modify_post(@RequestParam("cl_seq") int cl_seq, Model model, ClientqueDTO dto) {
 		model.addAttribute("cl_seq", cl_seq);

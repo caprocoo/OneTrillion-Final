@@ -139,15 +139,19 @@
 
 		{{ for(var i=0; i<searchList.length; i++){  var search=searchList[i]; }}
          <figure>
-            <div onclick="searchImgModalClick()" onmouseover="searchImgModalOver()" onmouseout="searchImgModalOut()" class="searchImgModal">찜</div>
+            <div onclick="searchImgModalClick()" onmouseover="searchImgModalOver()" onmouseout="searchImgModalOut()" class="searchImgModal" id="div111">찜</div>
             <img onmouseover="searchImg01Over()" onmouseout="searchImg01Out()" class="searchImg01" src="{{=search['pd_image'] }} " onclick="location.href='http://localhost:8088/trip/board/detail.do?pd_seq={{=search['pd_seq'] }} ' ">
             <div onmouseover="searchImgModal2Over()" onmouseout="searchImgModal2Out()" class="searchImgModal2">예약하기</div>
              <figcaption>
-				<p>{{=search['pd_name'] }}</p>
-	            <p>{{=search['pd_startDate'] }} ~ {{=search['pd_endDate'] }}</p>
+				<p class="pd_name001">{{=search['pd_name'] }}</p>
+	            <p><span class="pd_startDate001">{{=search['pd_startDate'] }}</span> ~ <span class="pd_endDate001">{{=search['pd_endDate'] }}</span></p>
 	            <p># {{=search['pd_theme'] }} # {{=search['pd_theme'] }} # {{=search['pd_theme'] }}</p>
+             	<p style="display:none" class="pd_seq001">{{=search['pd_seq'] }}</p>
+	            <p style="display:none" class="pd_price001">{{=search['pd_price'] }}</p>
+	            <p style="display:none" class="u_id001">${member.u_id}</p>
              </figcaption>
          </figure>     
+         
 		 {{ } }}
 	
 	`
@@ -156,6 +160,10 @@
 			$("#div001_in01_in02_in01").click(function() {
 				$("#div001_in01_in02_in02").slideToggle("fast");
 			})
+			
+			
+			
+			
 		});
 
 		function search() {
@@ -288,10 +296,10 @@
 					<div style="height: 10px;"></div>
 					<div class="div001_in01_in02_in02_in01">&nbsp;여행 예정일</div>
 					<div style="margin: 10px; height: 30px;">
-						출발 : <input class="startDate" type="date">
+						출발 : <input class="startDate" type="date" value="2021-01-01">
 					</div>
 					<div style="margin: 10px; height: 30px;">
-						도착 : <input class="endDate" type="date">
+						도착 : <input class="endDate" type="date"  value="2021-01-30">
 					</div>
 <!-- 					<div style="height: 10px;"></div>
 					<div class="div001_in01_in02_in02_in01">&nbsp;인원</div>

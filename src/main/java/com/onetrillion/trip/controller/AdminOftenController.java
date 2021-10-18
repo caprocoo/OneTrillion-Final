@@ -30,6 +30,14 @@ public class AdminOftenController {
 		
 		return "adminOften/adminOften";
 	}
+	//[관리자] 메인페이지 mini
+	@RequestMapping(value = "/listMini.do", method = RequestMethod.GET)
+	public String admin_Mini(Model model){		
+		List<OftenDTO> miniList = oftenService.selectAll_often();
+		model.addAttribute("miniList", miniList);
+		
+		return "adminOften/oftenMini";
+	}
 	//입력
 	@RequestMapping(value = "/input.do", method = RequestMethod.GET)
 	public String often_input() {
