@@ -71,7 +71,7 @@ public class ReplyController {
 	}
 	
 	@RequestMapping(value = "modify.do", method = RequestMethod.POST)
-	public String replyModifyCommit(Model model, ReplyDTO dto) {
+	public String replyModifyCommit(ReplyDTO dto) {
 		//System.out.println(dto);
 		service.replyModify(dto);
 		
