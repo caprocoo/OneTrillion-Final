@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.onetrillion.trip.reply.ReplyDTO;
 import com.onetrillion.trip.reply.impl.ReplyService;
+import com.onetrillion.trip.userRes.UserResDTO;
+import com.onetrillion.trip.userRes.impl.UserResService;
 
 @Controller
 @RequestMapping(value = "/reply")
@@ -20,6 +22,9 @@ public class ReplyController {
 	
 	@Autowired
 	public ReplyService service;
+	
+	@Autowired
+	public UserResService userResService;
 
 	@RequestMapping(value = "list.do", method = RequestMethod.GET)
 	public String reply_List(Model model, HttpSession session) {
@@ -43,11 +48,17 @@ public class ReplyController {
 	}
 	
 	@RequestMapping(value = "insert.do", method = RequestMethod.POST)
-	public String replyInsertCommit(ReplyDTO dto) {
+	public String replyInsertCommit(ReplyDTO dto, int ures_seq) {
 		
 		//System.out.println(dto);
 		service.replyInsert(dto);
 		//System.out.println(u_id);
+		
+		UserResDTO userRes = userResService.userResDetail(ures_seq);
+		userRes.setReply_check("ok");
+		userResService.userResModify(userRes);
+		
+		
 		return "redirect:list.do";
 	}
 	

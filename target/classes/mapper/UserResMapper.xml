@@ -20,7 +20,7 @@
 		URES_SEQ =#{ures_seq }, pd_seq =#{pd_seq }, pd_name =#{pd_name }
 		, pd_startDate =#{pd_startDate }, pd_endDate =#{pd_endDate } , adult_num=#{adult_num },teenager_num=#{teenager_num },pet_num=#{pet_num },
 		adult_price=#{adult_price },teenager_price=#{teenager_price },pet_price=#{pet_price },res_price=#{res_price },res_people=#{res_people },
-		res_name=#{res_name },res_birth=#{res_birth },res_email=#{res_email },res_comment=#{res_comment },u_id=#{u_id },res_phone=#{res_phone },reply_check#{reply_check}
+		res_name=#{res_name },res_birth=#{res_birth },res_email=#{res_email },res_comment=#{res_comment },u_id=#{u_id },res_phone=#{res_phone },reply_check=#{reply_check }
 		where ures_seq=#{ures_seq}]]>
 	</update>
 

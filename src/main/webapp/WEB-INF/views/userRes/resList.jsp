@@ -105,11 +105,19 @@
                   <td>${board.res_people }</td>
                   <td>${board.pd_startDate }</td>
                   <td style="border-right: 0; width: 150px;">
-
-				  <button id = "modal_btn" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter"> 리뷰작성하기</button><br/>
+					
+						<c:choose>
+							<c:when test="${board.reply_check eq 'ok'}" >
+								<a>댓글 완료</a>
+							</c:when>
+							<c:otherwise>
+							<button id = "modal_btn" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter"> 리뷰작성하기</button><br/>
+							</c:otherwise>
+						</c:choose>
+						
+				  
  					
-			  	
-                  
+			  		
                   </td>
                 </tr>
                 </c:forEach> 
@@ -130,6 +138,7 @@
 	        </div>
 	        <div class="modal-body">
 	        	<input type="hidden" id = "modal_pd_seq" />
+	        	<input type="hidden" id = "modal_ures_seq" />
 	          <table id="resListTab2" style="width:100%; text-align: center;">
 	            <tr style="height: 70px; border-top: 2px solid #343a40">
 	              <th>제목</th>
@@ -172,6 +181,7 @@
 	    function replyInsert() {
 	    	
 	    	var reply_rate = $('.starScore').text();
+	    	//console.log($('#modal_ures_seq').text())
       		var reply_confirm = confirm('작성을 완료하시겠습니까?');
       		if(!reply_confirm){
       			//console.log($('#modal_pd_seq').text())
@@ -182,6 +192,8 @@
       							"pd_seq" : $('#modal_pd_seq').text(),
       							"reply_title" : $('#reply_title').val(),
       							"reply_content" : $('#reply_content').val(),
+      							"ures_seq":$('#modal_ures_seq').text(),
+      							
       							}
       			//console.log(replyData)
        			$.ajax({
@@ -204,8 +216,10 @@
 			
 	    	$('.risListTr1').on('click', function(){
 	    		var pd_seq = $(this).children("td:nth-child(3)").text();
+	    		var ures_seq = $(this).children("td:nth-child(1)").text();
 	    		//console.log(pd_seq)
 	    		$('#modal_pd_seq').text(pd_seq);
+	    		$('#modal_ures_seq').text(ures_seq);
 	    	})
 			
 	    	
