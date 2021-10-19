@@ -61,7 +61,6 @@ public class BoardController {
 		return "board/search";
 	}
 
-
 	@RequestMapping(value = "/detail.do", method = RequestMethod.GET) 
 	public String detail(Model model, int pd_seq, HttpSession session) {
 		BoardDTO dto = service.detail(pd_seq);
@@ -93,7 +92,7 @@ public class BoardController {
 		return "board/detail";
 	}
 	
-	
+
 	@RequestMapping(value = "/search.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String searchData(@RequestParam Map<String, Object> map) {

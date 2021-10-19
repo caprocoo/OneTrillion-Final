@@ -59,11 +59,11 @@
                         <div class="list-group" style="float:left;width:180px; height:600px; margin-top: 40px;">
                             <a href="#" class="list-group-item list-group-item-action"
                                 style="background-color: #343a40; color: white;">마이페이지</a>
-                            <a href="#" class="list-group-item list-group-item-action">개인정보</a>
-                            <a href="#" class="list-group-item list-group-item-action">1대1문의</a>
-                            <a href="#" class="list-group-item list-group-item-action">찜 내역</a>
-                            <a href="#" class="list-group-item list-group-item-action">예약내역</a>
-                            <a href="#" class="list-group-item list-group-item-action">Contact Us</a>
+                            <a href="http://localhost:8088/trip/user/myPageInfo.do?u_id=${member.u_id}" class="list-group-item list-group-item-action">개인정보</a>
+                            <a href="http://localhost:8088/trip/myPage/list.do " class="list-group-item list-group-item-action">1대1문의</a>
+                            <a href="http://localhost:8088/trip/wishlist/list.do?u_id=${member.u_id} " class="list-group-item list-group-item-action">찜 내역</a>
+                            <a href="http://localhost:8088/trip/userRes/list.do?u_id=${member.u_id}" class="list-group-item list-group-item-action">예약내역</a>
+                            <a href="http://localhost:8088/trip/user/contactUs.do" class="list-group-item list-group-item-action">Contact Us</a>
                         </div>
                         <div style="float:right;width:915px;">
                             <div class="myPageMenu2" id="myPageinfo1">
@@ -126,7 +126,7 @@
 				                                        <td colspan="4"
 				                                            style="border-top: 1px solid #ededed;height: auto; word-break: break-all;">
 				                                            <ul>
-				                                                <li><span class="ans_content">${client.ans_content  }</span></li>
+				                                                <li><span class="ans_content" style="color: blue;">${client.ans_content  }</span></li>
 				                                            </ul>
 				                                        </td>
 				                                    </tr>	
@@ -145,11 +145,7 @@
                                 <div style="text-align: right;">
                                     <input class="btn btn-secondary" type="button" value="문의등록"
                                     onclick="location.href='<%=request.getContextPath() %>/myPage/input.do' "
-                                        style="margin-top:10px; height: 40px;">
-                                        
-                                        
-										<!-- 임시 관리자 CRUD 버튼입니다 @@1013 한보영 -->
-                                        <br><button onclick="location.href='<%=request.getContextPath() %>/admin/list.do' ">관리자 CRUD 임시버튼</button>
+                                        style="margin-top:10px; height: 40px;">                                        
                                 </div>
                             </div>
                         </div>

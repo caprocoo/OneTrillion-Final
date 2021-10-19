@@ -248,7 +248,6 @@
 		       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
 		      	<a class="btn btn-primary"  role="button" id="submitbtn_input"
                         style="margin-top:10px; margin-bottom: 10px;">메모 등록</a>
-		       
 		      </div>
 		      </form>
 		    </div>

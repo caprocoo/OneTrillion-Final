@@ -40,12 +40,11 @@
         <!--  왼쪽 메뉴 ---------------------------------------------------------------------------------------------->
         <div class="list-group" id="leftSlide01"
             style="float:left;width:180px; height:600px; margin-top: 15px; position: relative;">
-            <a href="#" class="list-group-item list-group-item-action"
-                style="background-color: #ededed; color: #343a40; font-weight: bold;">마이페이지</a>
-            <a href="#" class="list-group-item list-group-item-action">개인정보</a>
-            <a href="#" class="list-group-item list-group-item-action">1대1문의</a>
-            <a href="#" class="list-group-item list-group-item-action">찜 내역</a>
-            <a href="#" class="list-group-item list-group-item-action">예약내역</a>
+            <a href="#" class="list-group-item list-group-item-action"  style="background-color: #ededed; color: #343a40; font-weight: bold;">마이페이지</a>
+            <a href="http://localhost:8088/trip/user/myPageInfo.do?u_id=${member.u_id}" class="list-group-item list-group-item-action">개인정보</a>
+            <a href="http://localhost:8088/trip/myPage/list.do " class="list-group-item list-group-item-action">1대1문의</a>
+            <a href="http://localhost:8088/trip/wishlist/list.do?u_id=${member.u_id}" class="list-group-item list-group-item-action">찜 내역</a>
+            <a href="http://localhost:8088/trip/userRes/list.do?u_id=${member.u_id}" class="list-group-item list-group-item-action">예약내역</a>
         </div>
         <!--  왼쪽 메뉴 끝---------------------------------------------------------------------------------------------->
         <div style="float:right; width:915px; height: auto;">
@@ -53,7 +52,7 @@
                 <nav style="margin-top:15px; height: 45px; line-height: 45px; background-color: #ededed; ">
                     <a class="navbar-brand"
                         style="font-size: 100%; margin-left: 20px; color: #343a40; font-weight: bold;"
-                        href="#">1대1문의</a>
+                        href="#">찜 목록</a>
                 </nav>
             <!--  div상단 바 끝---------------------------------------------------------------------------------------------->
             <div style="margin-top: 10px; margin-bottom: 10px;">
