@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>찜 내역 리스트 미니 페이지</title>
+    <title>상품 정보 리스트 미니 페이지</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -26,10 +25,13 @@
             margin: 0;
             padding: 0;
         }
+
         table {
             table-layout: fixed;
             word-break: break-all;
+
         }
+
         td {
             overflow: hidden;
             white-space: nowrap;
@@ -37,31 +39,34 @@
         }
     </style>
 </head>
+
 <body>
+
     <div class="adminMainDiv1">
-        <table class="table" onclick="link_7()" style="cursor: pointer;">
+        <table class="table" onclick="link_8()" style="cursor: pointer;">
             <thead>
                 <tr>
-                    <th scope="col">찜번호</th>
+                    <th scope="col">상품번호</th>
                     <th scope="col">상품명</th>
-                    <th scope="col">고객 ID</th>
+                    <th scope="col">조회수</th>
                 </tr>
             </thead>
             <tbody>
-            <c:forEach var="wishList" items="${wishList }">
+                <c:forEach var="mainList" items="${pdList }">
                 <tr>
-                    <td>${wishList.w_seq }</td>
-                    <td>${wishList.pd_name }</td>
-                    <td>${wishList.u_id }</td>
+                    <td>${mainList.pd_seq }</td>
+                    <td>${mainList.pd_name }</td>
+                    <td>${mainList.pd_cnt }</td>
                 </tr>
-                 </c:forEach>
+                </c:forEach>
             </tbody>
         </table>
     </div>
+
 </body>
 <script>
-function link_7(){ 
-	window.parent.location.href = "http://localhost:8088/trip/adminWishlist/list.do"
+function link_8(){ 
+	window.parent.location.href = "http://localhost:8088/trip/adminProduct/list.do"
 }
 </script>
 </html>

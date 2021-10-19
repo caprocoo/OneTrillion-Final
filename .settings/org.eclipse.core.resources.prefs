@@ -1,4 +1,8 @@
 eclipse.preferences.version=1
+encoding//src/main/webapp/WEB-INF/views/adminProduct/adminPd.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/adminProduct/adminPdInput.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/adminProduct/adminPdMini.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/adminProduct/adminPdModi.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/adminUserManagement/adminMemInput.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/adminUserManagement/adminMemModi.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/mypage/privateQue.jsp=UTF-8
