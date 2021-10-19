@@ -7,8 +7,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.onetrillion.trip.board.BoardDTO;
 import com.onetrillion.trip.clientque.ClientqueDTO;
+import com.onetrillion.trip.page.Criteria;
 import com.onetrillion.trip.service.mapper.ClientQueMapper;
 
 
@@ -56,6 +56,14 @@ public class ClientqueServiceImpl implements ClientqueService{
 	@Override
 	public int getAdminAns(int cl_seq ) {
 		return client_mapper.getAdminAns( cl_seq);
+	}
+	@Override
+	public List<ClientqueDTO> clientquePaging(Criteria cri) {
+		return client_mapper.clientquePaging(cri);
+	}
+	@Override
+	public int clientqueCount() {
+		return client_mapper.clientqueCount();
 	}
 	
 }

@@ -18,7 +18,6 @@ public class WishlistDTO {
 	private String pd_image;
 	private String u_id; // FK
 	
-	
 	public WishlistDTO() {
 	}
 

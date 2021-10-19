@@ -63,28 +63,8 @@
 
 <body>
     <div style="width: 1800px; height: 100vh;">
-        <div style="float: left; width: 250px; height: 100%; box-shadow: 0 0 20px #ededed; position: fixed;">
-            <div style="margin:auto; width: 80%;"><img style="width: 100%; margin-top: 40px; margin-bottom: 40px;"
-                    src="http://jjcom0214.cafe24.com/web/OneTrillion/logo02.png" alt="logo01"></div>
-            <div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" onclick="">메인</li>
-                    <li class="list-group-item" onclick="">회원예약</li>
-                    <li class="list-group-item" onclick="">비회원예약</li>
-                    <li class="list-group-item" onclick="">문의</li>
-                    <li class="list-group-item" onclick="">리뷰</li>
-                    <li class="list-group-item" onclick="">회원</li>
-                    <li class="list-group-item" onclick="">상품</li>
-                    <li class="list-group-item" onclick="">관리자</li>
-                    <li class="list-group-item" onclick="">찜</li>
-                    <li class="list-group-item" onclick="">공지사항</li>
-                    <li class="list-group-item" onclick="">자주질문</li>
-                    <li class="list-group-item" onclick="">로그기록</li>
-                    <li class="list-group-item" onclick="">메모장</li>
+      		<jsp:include page="../include/adminInclude.jsp"></jsp:include>
 
-                </ul>
-            </div>
-        </div>
         <div style="float:right; width: 1500px;height: auto;">
             <div
                 style="margin-top: 40px; margin-bottom: 40px; width: 1000px; height: auto; border-radius: 20px; box-shadow: 0 0 20px #ededed;">
@@ -121,7 +101,7 @@
                     </tr>
                     <tr style="height: 100px;">
                         <th>내용</th>
-                        <td>${cl_dto.cl_content  }</td>
+                        <td id="CL_CONTENT">${cl_dto.cl_content  }</td>
                     </tr>
                 </table>
                 <div style="text-align: right;">
@@ -156,7 +136,7 @@
 	                <div style="text-align: right;">	                
 	                    <a class="btn btn-primary"  role="button" onclick="location.href='modify.do?cl_seq=${cl_dto.cl_seq}' "
 	                        style="margin-top:10px; margin-bottom: 10px;">답변수정</a>
-	                    <a class="btn btn-primary" href="#" role="button" onclick="ad_btn_delete(${ans_dto.ans_seq })"
+	                    <a class="btn btn-primary" href="#" role="button" onclick="ad_btn_delete(${ans_dto.ans_seq }, '${ans_dto.ans_content }')"
 	                        style="margin-top:10px; margin-bottom: 10px; margin-right: 10px;">답변삭제</a>
 	                </div>
 				</div>
@@ -175,12 +155,12 @@ $(document).ready(function(){  //아직 답변하지 않았으면 보이지 않�
 })//document
 
 //========================================================================@한보영 [답변] 삭제하기 구현 10/14 
-function ad_btn_delete(ans_seq){  
+function ad_btn_delete(ans_seq, per_title){  
     	var ad_delete = confirm('답변을 삭제하시겠습니까?');						    	
     	if(!ad_delete){
     		return false;
     	}else{
-	    	var seqdata ={"ans_seq":ans_seq};
+	    	var seqdata ={"ans_seq":ans_seq, "per_title" : per_title};
 	    	console.log(seqdata)
 		    $.ajax({
 		        url:"delete.do",
@@ -204,12 +184,13 @@ function ad_btn_delete(ans_seq){
     function cl_btn_delete(){  //====================@한보영 [문의] 삭제하기 구현 10/15 		
 		var cl_seq= $('#CL_SEQ').text();
 		var U_ID= $('#U_ID').text();
+		var per_title = $('#CL_CONTENT').text();
 	
 		var cl_delete = confirm(U_ID+'님의 문의글을 삭제하시겠습니까?');						    	
     	if(!cl_delete){
     		return false;
     	}else{
-    	var seqdata ={"cl_seq":cl_seq};
+    	var seqdata ={"cl_seq":cl_seq, "per_title" : per_title};
     	console.log('삭제2 > '+cl_seq)		
     	
 	    $.ajax({

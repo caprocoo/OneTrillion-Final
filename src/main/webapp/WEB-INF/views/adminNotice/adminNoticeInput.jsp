@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>공지사항 수정 페이지</title>
+    <title>공지사항 입력 페이지</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -57,66 +60,59 @@
 
 <body>
     <div style="width: 1800px; height: 100vh;">
-        <div style="float: left; width: 250px; height: 100%; box-shadow: 0 0 20px #ededed; position: fixed;">
-            <div style="margin:auto; width: 80%;"><img style="width: 100%; margin-top: 40px; margin-bottom: 40px;"
-                    src="http://jjcom0214.cafe24.com/web/OneTrillion/logo02.png" alt="logo01"></div>
-            <div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" onclick="">메인</li>
-                    <li class="list-group-item" onclick="">회원예약</li>
-                    <li class="list-group-item" onclick="">비회원예약</li>
-                    <li class="list-group-item" onclick="">문의</li>
-                    <li class="list-group-item" onclick="">리뷰</li>
-                    <li class="list-group-item" onclick="">회원</li>
-                    <li class="list-group-item" onclick="">상품</li>
-                    <li class="list-group-item" onclick="">관리자</li>
-                    <li class="list-group-item" onclick="">찜</li>
-                    <li class="list-group-item" onclick="">공지사항</li>
-                    <li class="list-group-item" onclick="">자주질문</li>
-                    <li class="list-group-item" onclick="">로그기록</li>
-                    <li class="list-group-item" onclick="">메모장</li>
+        		<jsp:include page="../include/adminInclude.jsp"></jsp:include>
 
-                </ul>
-            </div>
-        </div>
         <div style="float:right; width: 1500px;height: auto;">
             <div
                 style="margin-top: 40px; margin-bottom: 40px; width: 1000px; height: auto; border-radius: 20px; box-shadow: 0 0 20px #ededed;">
                 <div class="adminMainDiv1">
-                    <p>공지사항 수정</p>
+                    <p>공지사항 입력</p>
                 </div>
+        <form action="input.do" method="post"  id="form">     
+                
                 <table id="adminMemtable1" style="width: 100%; border-top: 2px solid #343a40;">
                     <tr>
-                        <th>NO_SEQ</th>
-                        <td><input type="text" class="form-control" placeholder="NO_SEQ"></td>
+                        <th>관리자 아이디</th>
+                        <td><input type="hidden" name="ad_id" value="${AD_ID }">
+                        	${AD_ID }</td>
+                        
                     </tr>
                     <tr>
-                        <th>AD_ID</th>
-                        <td><input type="text" class="form-control" placeholder="AD_ID"></td>
+                        <th>제목</th>
+                        <td><input type="text" class="form-control" placeholder="NO_TITLE" name="no_title" id="no_title"></td>
                     </tr>
                     <tr>
-                        <th>NO_TITLE</th>
-                        <td><input type="text" class="form-control" placeholder="NO_TITLE"></td>
-                    </tr>
-                    <tr>
-                        <th>NO_CONTENT</th>
+                        <th>내용</th>
                         <td><textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
-                                placeholder="NO_CONTENT"
+                                placeholder="NO_CONTENT" name="no_content"
                                 style="border:0; resize: none; background-color: white;"></textarea></td>
-                    </tr>
-                    <tr>
-                        <th>NO_DATE</th>
-                        <td><input type="text" class="form-control" placeholder="NO_DATE"></td>
                     </tr>
                 </table>
                 <div style="text-align: right;">
-                    <a class="btn btn-secondary" href="#" role="button"
+                    <a class="btn btn-secondary"  role="button"  href="javascript:history.back()"
                         style="margin-top:10px; margin-bottom: 10px;">취소</a>
-                    <input class="btn btn-secondary" type="button" value="저장" style="margin-right: 10px;">
+                    <input class="btn btn-secondary" type="button" value="저장" style="margin-right: 10px;"  id="submitbtn" name="submitbtn">
                 </div>
+			</form>
+	
             </div>
         </div>
     </div>
 </body>
+ <script>
+       $(document).ready(function () {                        	
+       	//========================================================================@한보영 입력하기 구현 10/12 08:16
+       	document.getElementById('submitbtn').onclick = function() {   
+       		
+       	   	 if($('#no_title').val() == ''){ //제목
+           		 alert('제목을 입력해주세요')
+           	 }else if($('#exampleFormControlTextarea1').val() == ''){
+           		 alert('내용을 입력해주세요')
+           	 }else{
+           		 document.getElementById('form').submit(); //입력완료   
+           	 }
+       	};//submitbtn눌렀을 때 form을 submit!
+       });
+</script>
 
 </html>

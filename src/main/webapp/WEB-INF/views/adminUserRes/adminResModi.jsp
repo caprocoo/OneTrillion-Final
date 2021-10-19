@@ -59,28 +59,8 @@
 
 <body>
     <div style="width: 1800px; height: 100vh;">
-        <div style="float: left; width: 250px; height: 100%; box-shadow: 0 0 20px #ededed; position: fixed;">
-            <div style="margin:auto; width: 80%;"><img style="width: 100%; margin-top: 40px; margin-bottom: 40px;"
-                    src="http://jjcom0214.cafe24.com/web/OneTrillion/logo02.png" alt="logo01"></div>
-            <div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" onclick="">메인</li>
-                    <li class="list-group-item" onclick="">회원예약</li>
-                    <li class="list-group-item" onclick="">비회원예약</li>
-                    <li class="list-group-item" onclick="">문의</li>
-                    <li class="list-group-item" onclick="">리뷰</li>
-                    <li class="list-group-item" onclick="">회원</li>
-                    <li class="list-group-item" onclick="">상품</li>
-                    <li class="list-group-item" onclick="">관리자</li>
-                    <li class="list-group-item" onclick="">찜</li>
-                    <li class="list-group-item" onclick="">공지사항</li>
-                    <li class="list-group-item" onclick="">자주질문</li>
-                    <li class="list-group-item" onclick="">로그기록</li>
-                    <li class="list-group-item" onclick="">메모장</li>
+       		<jsp:include page="../include/adminInclude.jsp"></jsp:include>
 
-                </ul>
-            </div>
-        </div>
         		 	
         <div style="float:right; width: 1500px;height: auto;">
             
@@ -90,12 +70,10 @@
                 <div class="adminMainDiv1">
                     <p>회원 예약 수정</p>
                 </div>
-				<form action="modify.do" method="post" id="form">  
+				<form action="modify.do" method="post" id="form">
+				<input type="hidden" name = "ures_seq" value = "${userResDetail.ures_seq }"/>  
                 <table id="adminMemtable1" style="width: 100%; border-top: 2px solid #343a40;">
-                    <tr>
-                        <th>USERS_SEQ</th>
-                        <td><input type="text" class="form-control" name="ures_seq"  value = "${userResDetail.ures_seq}"></td>
-                    </tr>
+					
                     <tr>
                         <th>PD_SEQ</th>
                         <td><input type="text" class="form-control" name="pd_seq" value = "${userResDetail.pd_seq}"></td>
@@ -168,6 +146,10 @@
                     <tr>
                         <th>RES_PHONE</th>
                         <td><input type="text" class="form-control" name="res_phone" value = "${userResDetail.res_phone}"></td>
+                    </tr>
+                    <tr>
+                        <th>REPLY_CHECK</th>
+                        <td><input type="text" class="form-control" name="reply_check" value = "${userResDetail.reply_check}"></td>
                     </tr>
                 </table>
                 <div style="text-align: right;">

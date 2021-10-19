@@ -187,6 +187,7 @@
 <body>
 	<jsp:include page="../include/header2.jsp"></jsp:include>
 	<div style="margin: auto; width: 1100px">
+	
 		<h1 style="margin-top: 30px;">[오늘의 여행] ${dto.pd_name }</h1>
 		<input type="hidden" id="u_id" value="${member.u_id }">
 	</div>
@@ -752,8 +753,9 @@
     	const pd_seq = $("#pd_seq").val().trim();
     	const pd_name = $("#pd_name").val().trim();
     	var u_id=$("#u_id").val();
-    	console.log(u_id);
-    	console.log("${userDTO.u_id}")
+
+    	//console.log(u_id);
+
     	
     	if(u_id == "" ){ 
     		alert("로그인이 필요합니다.");

@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.onetrillion.trip.page.PageMaker;
+import com.onetrillion.trip.reply.ReplyDTO;
+import com.onetrillion.trip.reply.impl.ReplyService;
 import com.onetrillion.trip.userRes.UserResCriteria;
 import com.onetrillion.trip.userRes.UserResDTO;
 import com.onetrillion.trip.userRes.impl.UserResService;
@@ -26,6 +28,8 @@ public class UserResController {
 	@Autowired
 	public UserResService service;
 	
+	@Autowired
+	public ReplyService replyService;
 	
 	//2021. 10. 12 15:30 현성 userReservation -회원 예약하기 아이디별로 전체 리스트 뽑기 구현
 	@RequestMapping(value = "/list.do", method = RequestMethod.GET)
@@ -33,7 +37,10 @@ public class UserResController {
 		
 		String u_id= (String) session.getAttribute("u_id");	
 		List<UserResDTO> userResList = service.userSelectId(u_id);
+		List<ReplyDTO> replyList = replyService.replySelectId(u_id);
+		
 		model.addAttribute("userResList", userResList);
+		model.addAttribute("replyList", replyList);
 
 
 		return "userRes/resList";
@@ -69,8 +76,7 @@ public class UserResController {
 	
 	
 	@RequestMapping(value = "/listPage.do", method = RequestMethod.GET)
-	public String userResListPage(Model model, UserResCriteria cri){
-		
+	public String userResListPage(Model model, UserResCriteria cri,HttpSession session){ 
 		List<UserResDTO> userResList = service.userResPaging(cri);
 		model.addAttribute("userResList", userResList);
 

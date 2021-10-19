@@ -1,176 +1,210 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+		<!DOCTYPE html>
+		<html>
 
-<head>
-<meta charset="UTF-8">
-<title>회원정보 변경전 비밀번호 입력</title>
-<script
-	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-	crossorigin="anonymous"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-	crossorigin="anonymous"></script>
-<style>
-.myPageMenu {
-	height: 50px;
-	width: 150px;
-	border-bottom: 1px solid #ededed;
-	line-height: 50px;
-	text-align: center;
-	margin-left: 10px;
-}
+		<head>
+			<meta charset="UTF-8">
+			<title>회원정보 변경전 비밀번호 입력</title>
+			<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+				integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+				crossorigin="anonymous">
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+				integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+				crossorigin="anonymous"></script>
+			<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+				integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+				crossorigin="anonymous"></script>
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+				integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+				crossorigin="anonymous"></script>
+			<style>
+				.introMenu {
+					height: 50px;
+					width: 150px;
+					border-bottom: 1px solid #ededed;
+					line-height: 50px;
+					text-align: center;
+					margin-left: 10px;
+				}
 
-.passdiv02 {
-	width: 895px;
-	height: 250px;
-	margin-left: 20px;
-	text-align: center;
-}
+				.introMenu:hover {
+					background-color: #ededed;
+					cursor: pointer;
+				}
 
-.passdiv02>img {
-	margin-top: 25px;
-	width: 600px;
-	height: 200px;
-}
+				/*------------------------------------------------------------------------------------------------------*/
+				#logindiv01 {
+					width: 100%;
+					height: 100%;
 
-.passdiv03 {
-	border: solid rgb(195, 194, 194) 1px;
-	width: 895px;
-	height: 250px;
-	margin-left: 20px;
-}
+				}
 
+				#logintable01 {
+					margin: auto;
+					width: 400px;
+					height: 100%;
+					text-align: center;
+				}
 
-.btn-warning {
-	width: 120px;
-    height: 90px;
-    margin-left: 500px;
-}
+				.input-group-sm {
+					width: 400px;
+					height: 45px;
+					margin-bottom: 5px;
+				}
 
-.btn-success {
-	height: 40px;
-	width: 350px;
-	margin-left: 95px;
-	margin-top: 40px;
-}
+				.btn-dark {
+					width: 400px;
+					height: 45px;
+					margin-bottom: 5px;
+				}
 
-.btn-primary {
-	height: 40px;
-	width: 350px;
-	margin-left: 5px;
-	margin-top: 40px;
-}
+				.btn-primary {
+					height: 45px;
+					width: 197px;
+					margin-bottom: 5px;
+				}
 
-.passdiv10 {
-	clear: both;
-	width: 895px;
-	height: 150px;
-	background-color: rgb(226, 219, 219);
-	margin-left: 20px;
-}
-</style>
-</head>
+				.btn-success {
+					height: 45px;
+					width: 197px;
+					margin-bottom: 5px;
+					margin-right: 5px;
+				}
 
-<body>
-	<script type="text/javascript">
-		
-	</script>
-	<c:if test="${sessionScope.u_id != null }">
-		<jsp:include page="../include/header2.jsp"></jsp:include>
-	</c:if>
-	<%
-	// 로그인 처리 -> 로그인 x (로그인페이지 이동)
-	String u_id = (String) session.getAttribute("u_id");
-	if (u_id != null) {
-	} else {
-	%>
-	<script>
-		alert('로그인이 필요합니다.');
-		window.location.href = "http://localhost:8088/trip/user/login.do";
-	</script>
-	<%
-	}
-	%>
+				.btn-secondary {
+					width: 400px;
+					height: 45px;
+					margin-bottom: 5px;
+				}
 
-	<div style="margin: auto; width: 1100px; height: 800px;">
-		<div class="list-group"
-			style="float: left; width: 180px; height: 600px; margin-top: 40px;">
-			<a href="#" class="list-group-item list-group-item-action">마이페이지</a>
-			<a href="#" class="list-group-item list-group-item-action"
-				style="background-color: #343a40; color: white;">개인정보</a> <a
-				href="#" class="list-group-item list-group-item-action">1대1문의</a> <a
-				href="#" class="list-group-item list-group-item-action">찜 내역</a> <a
-				href="#" class="list-group-item list-group-item-action">예약내역</a> <a
-				href="#" class="list-group-item list-group-item-action">Contact
-				Us</a>
-		</div>
-		<div style="float: right; width: 915px;">
-			<div class="myPageMenu2" id="myPageinfo1">
-				<a class="navbar-brand"
-					style="font-size: 100%; margin-top: 40px; margin-left: 20px; color: black;"
-					href="#"><strong>비밀번호 인증</strong></a>
-				<hr style="margin-left: 20px; height: 3px; background-color: gray;">
-				<div class="passdiv02">
-					<img src="http://jjcom0214.cafe24.com/web/OneTrillion/logo02.png">
-				</div>
-				<div class="passdiv03">
-					<form action="modifyInfoPass" method="post">
-						<button type="submit" class="btn btn-warning"
-							style="position: absolute;">
-							<strong>확인</strong>
-						</button>
-						<div class="form-group row"
-							style="margin-left: 50px; margin-top: 80px; width: 500px;">
-							<label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-							<div class="col-sm-7">
-								<input type="text" style="margin-left: 20px;" readonly
-									class="form-control-plaintext" id="staticEmail"
-									value="${member.u_id }">
+				.loginA01 {
+					color: gray;
+					text-decoration: none;
+				}
+
+				.loginA01:hover {
+					color: black;
+				}
+
+				.input-group {
+					height: 45px;
+					margin-bottom: 5px;
+				}
+
+				.input-group-text {
+					width: 50px;
+				}
+			</style>
+		</head>
+
+		<body>
+			<c:if test="${sessionScope.u_id != null }">
+				<jsp:include page="../include/header2.jsp"></jsp:include>
+			</c:if>
+			<% // 로그인 처리 -> 로그인 x (로그인페이지 이동)
+				String u_id = (String) session.getAttribute("u_id");
+				if (u_id != null) {
+				} else {
+				%>
+				<script>
+					alert('로그인이 필요합니다.');
+					window.location.href = "http://localhost:8088/trip/user/login.do";
+				</script>
+				<% } %> -->
+					<div style="margin:auto; width:1100px; min-height: 800px;">
+						<div class="list-group" id="leftSlide01"
+							style="float:left;width:180px; height:600px; margin-top: 15px; position: relative;">
+							<a href="#" class="list-group-item list-group-item-action"
+								style="background-color: #ededed; color: #343a40; font-weight: bold;">마이페이지</a>
+							<a href="#" class="list-group-item list-group-item-action">개인정보</a>
+							<a href="#" class="list-group-item list-group-item-action">1대1문의</a>
+							<a href="#" class="list-group-item list-group-item-action">찜 내역</a>
+							<a href="#" class="list-group-item list-group-item-action">예약내역</a>
+						</div>
+						<div style="float:right; width:915px; height: 70vh;">
+							<div>
+								<nav
+									style="margin-top:15px; height: 45px; line-height: 45px; background-color: #ededed; ">
+									<a class="navbar-brand"
+										style="font-size: 100%; margin-left: 20px; color: #343a40; font-weight: bold;"
+										href="#">개인정보</a>/<a class="navbar-brand"
+										style="font-size: 100%; margin-left: 20px; color: #343a40; font-weight: bold;"
+										href="#">비밀번호
+										입력</a>
+								</nav>
+							</div>
+							<div class="introMenu2" id="introinfo1" style="margin-top: 40px; height: 100%;">
+								<!-- 컨텐츠 ---------------------------------------------------------------------------------------------------------------------------------->
+								<div id="logindiv01">
+									<table id="logintable01">
+										<tr>
+											<td>
+												<div>
+													<div><img style="width: 300px; margin-bottom: 40px; cursor: pointer;"
+															src="http://jjcom0214.cafe24.com/web/OneTrillion/logo02.png"
+															alt="logo01" onclick="GoHome()">
+													</div>
+													<form name="f1" action="modifyInfoPass.do" method="post" id="form">
+														<input id="u_pwd_ori" value="${member.u_pwd }" type="hidden">
+														<div class="input-group">
+															<span class="input-group-text" id="basic-addon1">ID</span>
+															<input type="text" id="staticEmail" name="u_id"
+																class="form-control" aria-label="Username"
+																aria-describedby="basic-addon1" value="${member.u_id }"
+																readonly>
+														</div>
+														<div class="input-group">
+															<span class="input-group-text" id="basic-addon1">PW</span>
+															<input type="password" id="inputPassword" name="u_pwd"
+																class="form-control" aria-label="Username"
+																aria-describedby="basic-addon1">
+														</div>
+														<div>
+															<input type="submit" id="submitbtn" class="btn btn-dark"
+																value="확인">
+														</div>
+														<div style="margin-bottom: 40px; color: gray;"> 비밀번호를 입력해주세요
+														</div>
+
+													</form>
+												</div>
+											</td>
+										</tr>
+									</table>
+								</div>
+								<!-- 컨텐츠 ---------------------------------------------------------------------------------------------------------------------------------->
 							</div>
 						</div>
-						<div class="form-group row"
-							style="margin-left: 50px; margin-top: 10px; width: 500px;">
-							<label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-							<div class="col-sm-7">
-								<input type="password" name="u_pwd" style="margin-left: 20px;"
-									class="form-control" id="inputPassword" placeholder="Password">
-							</div>
-						</div>
-					</form>
-					<!-- 마이페이지 비밀번호 인증폼 -->
-				</div>
-			</div>
-			<div class="passdiv10">
-				<button type="button" class="btn btn-success">Naver</button>
-				<button type="button" class="btn btn-primary">Google</button>
-				<p style="margin-left: 95px; margin-top: 5px; font-size: 80%;">
-					<strong>sns로 가입한 고객님은 다시한번 재인증을 진행해주세요</strong>
-				</p>
-			</div>
-		</div>
-	</div>
-	</div>
-	<script>
-		
-	</script>
+					</div>
 
-	<jsp:include page="../include/footer.jsp"></jsp:include>
-</body>
+					<script>
+						$(document).ready(function () {
 
-</html>
+							// 왼쪽 메뉴 스크롤----------------------------------------------------------------------
+							$(window).scroll(function () {
+								var newpt = $(window).scrollTop() - 60 + "px";
+								if (($("#leftSlide01").offset().top) <= ($(window).scrollTop())) {
+									$("#leftSlide01").css("top", newpt);
+								} else if (($("#leftSlide01").offset().top > $(window).scrollTop())) {
+									$("#leftSlide01").css("top", newpt);
+									if ($(window).scrollTop() <= 60) {
+										$("#leftSlide01").css("top", "0px");
+									}
+								}
+							})
+							// 왼쪽 메뉴 스크롤 끝---------------------------------------------------------------------
+
+						})
+						
+						function GoHome() {
+							location.href='http://localhost:8088/trip/';
+						}
+
+					</script>
+		</body>
+		<jsp:include page="../include/footer.jsp"></jsp:include>
+
+		</html>

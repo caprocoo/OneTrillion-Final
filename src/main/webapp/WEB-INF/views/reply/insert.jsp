@@ -22,7 +22,7 @@
              <tr>
                  <th>상품번호</th>
                  <td>
-                	  <input name = "pd_seq" value = "${replyInsertDto.pd_seq}"/>
+                	  <input name = "pd_seq"  value = "${replyInsertDto.pd_seq}"/>
                  </td>
              </tr>
              <tr>
@@ -41,6 +41,12 @@
                  <th>평점</th>
                  <td>
                      <input type="text" name = "reply_rate" value = 5>
+                 </td>
+             </tr>
+             <tr>
+                 <th>좋아요</th>
+                 <td>
+                     <input type="text" name = "reply_like" value = 5>
                  </td>
              </tr>
          </table>

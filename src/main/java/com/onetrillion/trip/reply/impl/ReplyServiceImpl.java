@@ -54,6 +54,11 @@ public class ReplyServiceImpl implements ReplyService{
 	public int replyCount() {
 		return replyMapper.replyCount();
 	}
+
+	@Override
+	public int replyLikeCountUp(int reply_seq) {
+		return replyMapper.replyLikeCountUp(reply_seq);
+	}
 	
 	
 	

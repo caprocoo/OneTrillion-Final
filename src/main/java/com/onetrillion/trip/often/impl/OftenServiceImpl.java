@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.onetrillion.trip.often.OftenDTO;
+import com.onetrillion.trip.page.Criteria;
 import com.onetrillion.trip.service.mapper.OftenMapper;
 
 
@@ -47,6 +48,16 @@ public class OftenServiceImpl implements OftenService   { //10/16 한보영 CRUD
 	public int modify(OftenDTO dto) {
 
 		return Often_mapper.modify(dto);
+	}
+
+	@Override
+	public List<OftenDTO> oftenPaging(Criteria cri) {
+		return Often_mapper.oftenPaging(cri);
+	}
+
+	@Override
+	public int oftenCount() {
+		return Often_mapper.oftenCount();
 	}
 	
 	

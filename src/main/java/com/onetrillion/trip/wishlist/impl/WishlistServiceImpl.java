@@ -16,7 +16,7 @@ import com.onetrillion.trip.wishlist.WishlistDTO;
 
 @Service
 public class WishlistServiceImpl implements WishlistService{
-	
+
 	@Autowired
 	public WishlistMapper mapper;
 
@@ -33,24 +33,36 @@ public class WishlistServiceImpl implements WishlistService{
 	}
 
 	@Override
-	public List<WishlistDTO> allWishlist(String u_id) {
-		return mapper.allWishlist(u_id);
-	}
-
-	@Override
 	public List<WishlistDTO> wishListSelectID(String u_id) {
 		return mapper.wishListSelectID(u_id);
 	}
 
 	@Override
-	public WishlistDTO wishlistDetail(int w_seq) {
-		return mapper.wishlistDetail(w_seq);
+	public WishlistDTO wishlistDetail(String u_id, int pd_seq) {
+		return mapper.wishlistDetail(u_id,pd_seq);
 	}
-	
-
-
 
 	
+	// 관리자 =======================================================
+	@Override
+	public List<WishlistDTO> admin_allList() {
+		return mapper.admin_allList();
+	}
 
-	
+	@Override
+	public WishlistDTO admin_delete(int w_seq) {
+		return mapper.admin_delete(w_seq);
+	}
+
+	@Override
+	public WishlistDTO admin_modiDetail(int w_seq) {
+		return mapper.admin_modiDetail(w_seq);
+	}
+
+	@Override
+	public int admin_modify(WishlistDTO dto) {
+		return mapper.admin_modify(dto);
+		
+	}
+
 }

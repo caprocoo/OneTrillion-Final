@@ -56,27 +56,8 @@
 
 <body>
     <div style="width: 1800px; height: 100vh;">
-        <div style="float: left; width: 250px; height: 100%; box-shadow: 0 0 20px #ededed; position: fixed;">
-            <div style="margin:auto; width: 80%;"><img style="width: 100%; margin-top: 40px; margin-bottom: 40px;"
-                    src="http://jjcom0214.cafe24.com/web/OneTrillion/logo02.png" alt="logo01"></div>
-            <div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" onClick="adminMain()">메인</li>
-                    <li class="list-group-item" onClick="userResList()">회원예약</li>
-                    <li class="list-group-item" onclick="">비회원예약</li>
-                    <li class="list-group-item" onclick="">문의</li>
-                    <li class="list-group-item" onclick="">리뷰</li>
-                    <li class="list-group-item" onclick="">회원</li>
-                    <li class="list-group-item" onclick="">상품</li>
-                    <li class="list-group-item" onclick="">관리자</li>
-                    <li class="list-group-item" onclick="">찜</li>
-                    <li class="list-group-item" onclick="">공지사항</li>
-                    <li class="list-group-item" onclick="">자주질문</li>
-                    <li class="list-group-item" onclick="">로그기록</li>
-                    <li class="list-group-item" onclick="">메모장</li>
-                </ul>
-            </div>
-        </div>
+       		<jsp:include page="../include/adminInclude.jsp"></jsp:include>
+
         <div style="float:right; width: 1500px;height: 100%;">
             <div
                 style="margin-top: 40px; width: 1500px; height: 90%; border-radius: 20px; box-shadow: 0 0 20px #ededed;">
@@ -120,7 +101,7 @@
                                 <td>
                                     <a class="btn btn-secondary btn001" role="button" onclick="location.href='<%=request.getContextPath() %>/admin/modify2.do?cl_seq=${client.cl_seq}' "
                                         style="padding: 5px;">수정</a>
-                                    <a class="btn btn-secondary btn001" role="button" onclick="cl_btn_delete2(${client.cl_seq  })"
+                                    <a class="btn btn-secondary btn001" role="button" onclick="cl_btn_delete2(${client.cl_seq  }, '${client.cl_content  }')"
                                         style="padding: 5px;">삭제</a>
                                 </td>
                                 <td style="display: none">${client.ans_content  }</td>    
@@ -132,37 +113,33 @@
 		            
                     <div style="width: 100%;">
                         <!--페이징 tag 시작----------------------------------------------------------------------------------------------------------------------------------------->
-                        <div style="float: left; margin-left: 10px;">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous"
-                                        style="color: gray; border:1px solid #ededed">
-                                        <span aria-hidden="true">&laquo;</span>
-                                        <!-- <span class="sr-only">Previous</span> -->
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#"
-                                        style="color: gray;border:1px solid #ededed">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#"
-                                        style="color: gray;border:1px solid #ededed">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#"
-                                        style="color: gray;border:1px solid #ededed">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#"
-                                        style="color: gray;border:1px solid #ededed">4</a></li>
-                                <li class="page-item"><a class="page-link" href="#"
-                                        style="color: gray;border:1px solid #ededed">5</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next"
-                                        style="color: gray;border:1px solid #ededed">
-                                        <span aria-hidden="true">&raquo;</span>
-                                        <!-- <span class="sr-only">Next</span> -->
-                                    </a>
-                                </li>
-                            </ul>
-                                
-    				<a class="btn btn-secondary btn001" role="button" 
-    				onclick="location.href='<%=request.getContextPath() %>/myPage/list.do' " style="padding: 5px;">1:1문의 페이지</a>
-                        </div>
+						<div style="float: left; margin-left: 10px;">
+							<ul class="pagination">
+								<c:if test="${pageMaker.prev}">
+									<li class="page-item"><a class="page-link"
+										href="list.do${pageMaker.makeQuery(pageMaker.startPage - 1)}"
+										aria-label="Previous"
+										style="color: gray; border: 1px solid #ededed"> <span
+											aria-hidden="true">&laquo;</span>
+									</a></li>
+								</c:if>
+								<c:forEach begin="${pageMaker.startPage}"
+									end="${pageMaker.endPage}" var="idx">
+									<li class="page-item"><a class="page-link"
+										href="list.do${pageMaker.makeQuery(idx)}"
+										style="color: gray; border: 1px solid #ededed">${idx}</a></li>
+								</c:forEach>
+
+								<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+									<li class="page-item"><a class="page-link"
+										href="list.do${pageMaker.makeQuery(pageMaker.endPage + 1)}"
+										aria-label="Next"
+										style="color: gray; border: 1px solid #ededed"> <span
+											aria-hidden="true">&raquo;</span>
+									</a></li>
+								</c:if>
+							</ul>
+						</div>
                         <!--페이징 tag 끝----------------------------------------------------------------------------------------------------------------------------------------->
                         <div style="float: right; margin-right: 10px;">
                             <div class="input-group mb-3" style="width: 300px; float: left; margin-right: 10px;">
@@ -264,12 +241,12 @@
 	
 	function cl_btn_delete(){  //====================@Modal창 안에서 [문의글] 삭제하기 10/15 		
 		var cl_seq= $('#CL_SEQ').text();
-	
+		var per_title = $('#CL_CONTENT').text()
 		var cl_delete = confirm(cl_seq+'번 문의글을 삭제하시겠습니까?');						    	
     	if(!cl_delete){
     		return false;
     	}else{
-    	var seqdata ={"cl_seq":cl_seq};
+    	var seqdata ={"cl_seq":cl_seq, "per_title" : per_title};
     	console.log('삭제2 > '+cl_seq)		
     	
 	    $.ajax({
@@ -287,13 +264,13 @@
     	}//if끌						    	
     };//cl_btn_delete  끝=============================================@삭제1	
     
-    function cl_btn_delete2(cl_seq){  //====================@ lsit에서 [문의글] 삭제하기 10/15 		
+    function cl_btn_delete2(cl_seq, per_title){  //====================@ lsit에서 [문의글] 삭제하기 10/15 		
 
 		var cl_delete = confirm(cl_seq+'번 문의글을 삭제하시겠습니까?');						    	
     	if(!cl_delete){
     		return false;
     	}else{
-    	var seqdata ={"cl_seq":cl_seq};
+    	var seqdata ={"cl_seq":cl_seq, "per_title":per_title};
     	console.log('삭제2 > '+cl_seq)		
     	
 	    $.ajax({

@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
@@ -23,13 +22,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.onetrillion.trip.board.BoardCriteria;
 import com.onetrillion.trip.board.BoardDTO;
 import com.onetrillion.trip.board.ImageDTO;
 import com.onetrillion.trip.board.impl.BoardService;
-import com.onetrillion.trip.page.Criteria;
 import com.onetrillion.trip.page.PageMaker;
 import com.onetrillion.trip.userRes.UserResDTO;
 import com.onetrillion.trip.userRes.impl.UserResService;
@@ -60,17 +57,18 @@ public class BoardController {
 		String u_id = (String) session.getAttribute("u_id"); // 10/14 이희연 search.do 내 찜버튼 구현 시 추가함
 		List<WishlistDTO> wishList = wishService.wishListSelectID(u_id); // 10/14 이희연 search.do 내 찜버튼 구현 시 추가함
 		model.addAttribute("wishList", wishList); // 10/14 이희연 search.do 내 찜버튼 구현 시 추가함
-		System.out.println("search.do GET메소드에 들어왔어어어어어어 wishList : " + wishList); // 10/14 이희연 search.do 내 찜버튼 구현 시 추가함
-
+		
 		return "board/search";
 	}
 
-
 	@RequestMapping(value = "/detail.do", method = RequestMethod.GET) 
-	public String detail(Model model, int pd_seq) {
+	public String detail(Model model, int pd_seq, HttpSession session) {
 		BoardDTO dto = service.detail(pd_seq);
-		UserResDTO userDTO = userResService.userResDetail(pd_seq);
-		WishlistDTO wDto = wishService.wishlistDetail(pd_seq); // 10/14 이희연 찜목록 구현 시 추가함
+		UserResDTO userDTO = userResService.userResPdDetail(pd_seq);
+		System.out.println(pd_seq);
+		System.out.println(userDTO);
+		String u_id = (String) session.getAttribute("u_id");
+		WishlistDTO wDto = wishService.wishlistDetail(u_id, pd_seq); // 10/14 이희연 찜목록에서 detail.do로 이동
 		
 		//1박 2일 구하기
 		LocalDate start_date = dto.getPd_startDate();
@@ -94,6 +92,8 @@ public class BoardController {
 
 		return "board/detail";
 	}
+	
+
 	@RequestMapping(value = "/search.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String searchData(@RequestParam Map<String, Object> map) {
@@ -165,47 +165,6 @@ public class BoardController {
 			return searchList.toString(2);
 		}
 	}
-	
-	//관리자 상품 수정 페이지 이동
-	@RequestMapping(value = "modify.do", method = RequestMethod.GET)
-	public String modifyGet(@RequestParam("pd_seq") int pd_seq, Model model) {
-		BoardDTO dto = service.detail(pd_seq);
-		model.addAttribute("dto", dto);
-		return "board/modify";
-	}
-	//관리자 상품 수정 완료(Ajax)
-	@RequestMapping(value = "modify.do", method = RequestMethod.POST)
-	public String modifyPost(@RequestParam("pd_seq") int pd_seq, Model model, BoardDTO dto) {
-		model.addAttribute("pd_seq", pd_seq);
-		service.modify(dto);
-		return "redirect:detail.do";
-
-	}
-	//관리자가 상품 삭제 완료(Ajax)
-	@RequestMapping(value = "delete.do", method = RequestMethod.POST)
-	public String deletePost(BoardDTO dto) {
-		service.delete(dto);
-		return "redirect:search.do";
-	}
-	
-	//관리자 상품 입력 페이지 이동
-	@RequestMapping(value = "/insert.do", method = RequestMethod.GET)
-	public String insertGet() {
-		
-		return "board/insert";
-	}
-	
-	//관리자 상품 입력 완료
-	@RequestMapping(value = "/insert.do", method = RequestMethod.POST)
-	public String insertPost(BoardDTO dto) {
-		System.out.println(dto);
-		int cnt = service.insert(dto);
-		if (cnt > 0) {
-			return "redirect:search.do";
-		}
-		return "board/insert";
-	}
-	
 	
 	//회원 예약하기 페이지 이동
 	@RequestMapping(value = "reservation.do", method = RequestMethod.GET)
@@ -290,11 +249,15 @@ public class BoardController {
 	
 	//테마 더보기 클릭시 페이지 이동
 	@RequestMapping(value = "/searchTheme.do", method = RequestMethod.GET)
-	public String searchTheme(@RequestParam("pd_theme") String pd_theme, Model model) {
+	public String searchTheme(@RequestParam("pd_theme") String pd_theme, Model model, HttpSession session) {
 		// System.out.println(pd_theme);
 		List<BoardDTO> searchThemeList = service.theme(pd_theme);
 		model.addAttribute("searchThemeList", searchThemeList);
 		// System.out.println(searchThemeList);
+		
+		String u_id = (String) session.getAttribute("u_id"); // 10/14 이희연 search.do 내 찜버튼 구현 시 추가함
+		List<WishlistDTO> wishList = wishService.wishListSelectID(u_id); // 10/14 이희연 search.do 내 찜버튼 구현 시 추가함
+		model.addAttribute("wishList", wishList); // 10/14 이희연 search.do 내 찜버튼 구현 시 추가함
 
 		return "board/searchList";
 	}

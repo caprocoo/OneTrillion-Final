@@ -4,41 +4,62 @@
 
 
 
-<!-- @@ 자주하는 질문 CRUD   [10/16 한보영]////////////////////////////////////////////  -->
-<!-- @@ 리스트 -->
-<select resultType="com.onetrillion.trip.often.OftenDTO" id="selectAll_often">
-<![CDATA[ SELECT * FROM TRIL_OFTEN ORDER BY of_seq ASC  ]]>
-</select>
+	<!-- @@ 자주하는 질문 CRUD   [10/16 한보영]////////////////////////////////////////////  -->
+	<!-- @@ 리스트 -->
+	<select resultType="com.onetrillion.trip.often.OftenDTO" id="selectAll_often">
+	<![CDATA[ SELECT * FROM TRIL_OFTEN ORDER BY of_seq ASC  ]]>
+	</select>
+	
+	
+	<!--[관리자] 상세보기-->
+	<select resultType="com.onetrillion.trip.often.OftenDTO" id="detail">
+	<![CDATA[   select * from TRIL_OFTEN where of_seq=#{of_seq} ]]> 
+	</select>
+	
+	<!-- [관리자] 입력 -->
+	<insert id="insert">
+	<![CDATA[ 
+	INSERT INTO TRIL_OFTEN(of_seq, of_title, of_content) 
+		VALUES ((select nvl(max(of_seq), 0)+1 from TRIL_OFTEN)
+		,#{of_title} ,#{of_content})
+	
+	]]>		
+	</insert>
+	
+	<!-- [관리자] 수정 -->
+	<update id="modify">
+	<![CDATA[
+			update TRIL_OFTEN set
+			of_seq=#{of_seq}, of_title=#{of_title}, of_content=#{of_content}
+			where of_seq=#{of_seq}]]>
+	</update>
+	
+	<!-- [관리자] 삭제 -->
+	<delete id="delete">
+	<![CDATA[
+			delete from TRIL_OFTEN where of_seq=#{of_seq}]]>
+	</delete>
 
+	<select resultType="com.onetrillion.trip.often.OftenDTO" id="oftenPaging">
 
-<!--[관리자] 상세보기-->
-<select resultType="com.onetrillion.trip.often.OftenDTO" id="detail">
-<![CDATA[   select * from TRIL_OFTEN where of_seq=#{of_seq} ]]> 
-</select>
+	<![CDATA[
+		SELECT of_seq, of_title, of_content
+		FROM
+		(
+			SELECT of_seq, of_title, of_content,
+			ROW_NUMBER() over(ORDER BY of_seq ASC) AS rn 
+			FROM TRIL_OFTEN
+		) WHERE rn BETWEEN #{rowStart} AND #{rowEnd} ORDER  BY of_seq ASC 
+      ]]>
+	</select>
+	
+		<select resultType="int" id="oftenCount">
+	
+		<![CDATA[
+		      select count(of_seq) from TRIL_OFTEN where of_seq>0
+		      ]]>
+		</select>
 
-<!-- [관리자] 입력 -->
-<insert id="insert">
-<![CDATA[ 
-INSERT INTO TRIL_OFTEN(of_seq, of_title, of_content) 
-	VALUES ((select nvl(max(of_seq), 0)+1 from TRIL_OFTEN)
-	,#{of_title} ,#{of_content})
-
-]]>		
-</insert>
-
-<!-- [관리자] 수정 -->
-<update id="modify">
-<![CDATA[
-		update TRIL_OFTEN set
-		of_seq=#{of_seq}, of_title=#{of_title}, of_content=#{of_content}
-		where of_seq=#{of_seq}]]>
-</update>
-
-<!-- [관리자] 삭제 -->
-<delete id="delete">
-<![CDATA[
-		delete from TRIL_OFTEN where of_seq=#{of_seq}]]>
-</delete>
 
 
 </mapper>

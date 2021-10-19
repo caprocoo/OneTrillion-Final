@@ -27,14 +27,18 @@ public class UserResDTO {
 	private String res_comment; // 요청사항
 	private String u_id; // 회원 아이디 -FK
 	private String res_phone;
-
+	private String reply_check;
+	
+	
 	public UserResDTO() {
 	}
+
+
 
 	public UserResDTO(int ures_seq, int pd_seq, String pd_name, LocalDate pd_startDate, LocalDate pd_endDate,
 			int adult_num, int teenager_num, int pet_num, int adult_price, int teenager_price, int pet_price,
 			int res_price, int res_people, String res_name, String res_birth, String res_email, String res_comment,
-			String u_id, String res_phone) {
+			String u_id, String res_phone, String reply_check) {
 		this.ures_seq = ures_seq;
 		this.pd_seq = pd_seq;
 		this.pd_name = pd_name;
@@ -54,7 +58,10 @@ public class UserResDTO {
 		this.res_comment = res_comment;
 		this.u_id = u_id;
 		this.res_phone = res_phone;
+		this.reply_check = reply_check;
 	}
+
+
 
 	public int getUres_seq() {
 		return ures_seq;
@@ -208,6 +215,12 @@ public class UserResDTO {
 		this.res_phone = res_phone;
 	}
 
+	public String getReply_check() {
+		return reply_check;
+	}
+	public void setReply_check(String reply_check) {
+		this.reply_check = reply_check;
+	}
 	@Override
 	public String toString() {
 		return "UserResDTO [ures_seq=" + ures_seq + ", pd_seq=" + pd_seq + ", pd_name=" + pd_name + ", pd_startDate="
@@ -215,7 +228,7 @@ public class UserResDTO {
 				+ teenager_num + ", pet_num=" + pet_num + ", adult_price=" + adult_price + ", teenager_price="
 				+ teenager_price + ", pet_price=" + pet_price + ", res_price=" + res_price + ", res_people="
 				+ res_people + ", res_name=" + res_name + ", res_birth=" + res_birth + ", res_email=" + res_email
-				+ ", res_comment=" + res_comment + ", u_id=" + u_id + ", res_phone=" + res_phone + "]";
+				+ ", res_comment=" + res_comment + ", u_id=" + u_id + ", res_phone=" + res_phone + ", reply_check="
+				+ reply_check + "]";
 	}
-
 }
