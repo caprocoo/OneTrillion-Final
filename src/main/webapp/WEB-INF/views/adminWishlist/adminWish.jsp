@@ -4,7 +4,6 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -74,9 +73,7 @@
 <body>
     <div style="width: 1800px; height: 100vh;">
 		<jsp:include page="../include/adminInclude.jsp"></jsp:include>
-    </div>
-        </div>
-        <div style="float:right; width: 1500px;height: 100%;">
+    <div style="float:right; width: 1500px;height: 100%;">
             <div
                 style="margin-top: 40px; width: 1500px; height: 90%; border-radius: 20px; box-shadow: 0 0 20px #ededed;">
                 <div class="adminMainDiv1">

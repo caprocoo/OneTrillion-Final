@@ -166,47 +166,6 @@ public class BoardController {
 		}
 	}
 	
-	//관리자 상품 수정 페이지 이동
-	@RequestMapping(value = "modify.do", method = RequestMethod.GET)
-	public String modifyGet(@RequestParam("pd_seq") int pd_seq, Model model) {
-		BoardDTO dto = service.detail(pd_seq);
-		model.addAttribute("dto", dto);
-		return "board/modify";
-	}
-	//관리자 상품 수정 완료(Ajax)
-	@RequestMapping(value = "modify.do", method = RequestMethod.POST)
-	public String modifyPost(@RequestParam("pd_seq") int pd_seq, Model model, BoardDTO dto) {
-		model.addAttribute("pd_seq", pd_seq);
-		service.modify(dto);
-		return "redirect:detail.do";
-
-	}
-	//관리자가 상품 삭제 완료(Ajax)
-	@RequestMapping(value = "delete.do", method = RequestMethod.POST)
-	public String deletePost(BoardDTO dto) {
-		service.delete(dto);
-		return "redirect:search.do";
-	}
-	
-	//관리자 상품 입력 페이지 이동
-	@RequestMapping(value = "/insert.do", method = RequestMethod.GET)
-	public String insertGet() {
-		
-		return "board/insert";
-	}
-	
-	//관리자 상품 입력 완료
-	@RequestMapping(value = "/insert.do", method = RequestMethod.POST)
-	public String insertPost(BoardDTO dto) {
-		System.out.println(dto);
-		int cnt = service.insert(dto);
-		if (cnt > 0) {
-			return "redirect:search.do";
-		}
-		return "board/insert";
-	}
-	
-	
 	//회원 예약하기 페이지 이동
 	@RequestMapping(value = "reservation.do", method = RequestMethod.GET)
 	public String rsv_Get(@RequestParam("pd_seq") int pd_seq, Model model,
