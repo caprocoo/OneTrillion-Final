@@ -42,6 +42,30 @@
 			;
 
 		}
+		#top_btn{
+		  position: fixed;
+		  right: 0;
+		  bottom: -50px;
+		  display: inline-block;
+		  background-color: black;
+		  width: 80px;
+		  height: 60px;
+		  line-height: 50px;
+		  font-weight: bold;
+		  opacity: 0;
+		  transition: 0.7s ease;
+		  font-size: 17px;
+		  text-align: center;
+		
+		}
+		
+		#top_btn.on{
+		  opacity: 1;
+		  cursor: pointer;
+		  bottom: 0;
+		  text-align: center;
+		opacity: 0.8;
+		}
 	</style>
 
 	<body>
@@ -49,7 +73,7 @@
 			style="height:auto; min-height: 70px; box-shadow: 0 0 20px gray;">
 			<div class="container-fluid" style=" padding-right: 0; width: 1300px; ">
 				<a class="navbar-brand" href="<%=request.getContextPath() %>/"
-					style="font-weight: bold;">OneTrillion</a>
+					style="font-weight: bold; font-size: 30px">OneTrillion</a>
 				<% String u_id=(String) session.getAttribute("u_id"); if(u_id==null){%>
 					<div class=" navbar-collapse" id="navbarNav">
 						<ul class="navbar-nav">
@@ -201,6 +225,8 @@
 							</div>
 			</div>
 		</nav>
+		       <a id="top_btn" style="color: white; text-decoration: none ">TOP</a>   
+		
 	</body>
 	<script>
 
@@ -293,7 +319,20 @@
 
 			});
 		}
-
+		$(window).scroll(function(){
+		    
+		    if( $(this).scrollTop() > 100 ){
+		      $("#top_btn").addClass("on");
+		    }
+		    else{
+		      $("#top_btn").removeClass("on");
+		    }
+		    
+		  });
+		    
+		$("#top_btn").click(function(){
+		  window.scrollTo({top : 0, behavior: 'smooth'}); 
+		});
 
 	</script>
 

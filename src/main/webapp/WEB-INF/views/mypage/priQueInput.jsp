@@ -5,7 +5,7 @@
 
         <head>
             <meta charset="UTF-8">
-            <title>1대1문의 등록</title>
+            <title>커뮤니티 글 등록</title>
             <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
