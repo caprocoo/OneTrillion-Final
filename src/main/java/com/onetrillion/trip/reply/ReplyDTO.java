@@ -10,10 +10,13 @@ public class ReplyDTO {
 	private String reply_date;
 	private String reply_content;
 	private int reply_rate;
+	private int reply_like;
 	
 	public ReplyDTO() {}
-	public ReplyDTO(int reply_seq, String u_id, int pd_seq, String reply_title, String reply_date,
-			String reply_content, int reply_rate) {
+
+
+	public ReplyDTO(int reply_seq, String u_id, int pd_seq, String reply_title, String reply_date, String reply_content,
+			int reply_rate, int reply_like) {
 		this.reply_seq = reply_seq;
 		this.u_id = u_id;
 		this.pd_seq = pd_seq;
@@ -21,7 +24,9 @@ public class ReplyDTO {
 		this.reply_date = reply_date;
 		this.reply_content = reply_content;
 		this.reply_rate = reply_rate;
+		this.reply_like = reply_like;
 	}
+
 
 	public String getReply_title() {
 		return reply_title;
@@ -66,12 +71,18 @@ public class ReplyDTO {
 	public void setReply_rate(int reply_rate) {
 		this.reply_rate = reply_rate;
 	}
+	
+	public int getReply_like() {
+		return reply_like;
+	}
+	public void setReply_like(int reply_like) {
+		this.reply_like = reply_like;
+	}
 	@Override
 	public String toString() {
 		return "ReplyDTO [reply_seq=" + reply_seq + ", u_id=" + u_id + ", pd_seq=" + pd_seq + ", reply_title="
 				+ reply_title + ", reply_date=" + reply_date + ", reply_content=" + reply_content + ", reply_rate="
-				+ reply_rate + "]";
+				+ reply_rate + ", reply_like=" + reply_like + "]";
 	}
 
-	
 }

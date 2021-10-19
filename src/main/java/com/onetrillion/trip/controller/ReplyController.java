@@ -86,5 +86,14 @@ public class ReplyController {
 		return "redirect:list.do";
 	}
 	
+	@RequestMapping(value = "like.do", method = RequestMethod.POST)
+	public String replyLikeCommit(Model model, int reply_seq) {
+		//System.out.println(reply_seq);
+		//System.out.println(reply_seq);
+		service.replyLikeCountUp(reply_seq);
+		
+		return "redirect:list.do";
+	}
+	
 	
 }

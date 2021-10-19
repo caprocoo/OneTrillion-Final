@@ -19,6 +19,7 @@
                   <th>댓글 쓴 날짜</th>
                   <th>내용</th>
                   <th>별점</th>
+                  <th>좋아요</th>
                   <th>수정</th>
                   <th>삭제</th>
                   
@@ -34,6 +35,7 @@
                   <td>${board.reply_date}</td>
                   <td>${board.reply_content}</td>
                   <td>${board.reply_rate}</td>
+                  <td><input type="button"  value="♥" onclick="reply_like(${board.reply_seq})" />${board.reply_like}</td>
                   <td><button onClick = "location.href='<%=request.getContextPath() %>/reply/modify.do?reply_seq=${board.reply_seq}' ">수정</button></td>
                   <td><button onClick = "replyDelete(${board.reply_seq})">삭제</button></td>
                   
@@ -42,6 +44,26 @@
                 <!---------forEach 끝-------------------------------------------------------------------------------------------------------------------------->
               </table>
               <script type="text/javascript">
+	              function reply_like(reply_seq){
+	            		var likeQue = confirm("좋아요를 추가하시겠습니까?");
+	            		if(!likeQue){
+	            			return false;
+	            		}
+	            		
+	            		$.ajax({
+	            			url : "like.do",
+	            			type : "POST",
+	            			data : {"reply_seq" : reply_seq },
+	            			success: function(data){
+	            				location.reload();
+	            			},
+	            			error:function(){
+					            alert("에러 발생");
+					        }
+	
+	            		});
+	            	}
+              
               	function replyDelete(reply_seq){
 
               		var reply_confirm = confirm('댓글을 삭제하시겠습니까?');

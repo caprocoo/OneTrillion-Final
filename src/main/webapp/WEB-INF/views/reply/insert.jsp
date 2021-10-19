@@ -43,6 +43,12 @@
                      <input type="text" name = "reply_rate" value = 5>
                  </td>
              </tr>
+             <tr>
+                 <th>좋아요</th>
+                 <td>
+                     <input type="text" name = "reply_like" value = 5>
+                 </td>
+             </tr>
          </table>
              <input type="submit" value="댓글 달기">
   

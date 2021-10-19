@@ -55,7 +55,7 @@
 		FROM
 		(
 			SELECT ures_seq, pd_seq, pd_name, pd_startDate, pd_endDate, adult_num, teenager_num, pet_num, adult_price, teenager_price, pet_price, res_price, res_people, res_name,
-			res_birth, res_email, res_comment, u_id, res_phone, reply_check
+			res_birth, res_email, res_comment, u_id, res_phone, reply_check,
 			ROW_NUMBER() over(ORDER BY ures_seq ASC) AS rn 
 			FROM TRIL_USERRESERVATION
 		) WHERE rn BETWEEN #{rowStart} AND #{rowEnd} ORDER  BY ures_seq ASC 

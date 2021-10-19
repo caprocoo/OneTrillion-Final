@@ -130,6 +130,7 @@
 								<th scope="col">RES_COMMENT</th>
 								<th scope="col">U_ID</th>
 								<th scope="col">RES_PHONE</th>
+								<th scope="col">REPLY_CHECK</th>
 								<th scope="col">수정/삭제</th>
 							</tr>
 						</thead>
@@ -175,6 +176,8 @@
 										data-bs-target=".bd-example-modal-lg" onclick="">${board.u_id }</td>
 									<td data-bs-toggle="modal"
 										data-bs-target=".bd-example-modal-lg" onclick="">${board.res_phone }</td>
+									<td data-bs-toggle="modal"
+										data-bs-target=".bd-example-modal-lg" onclick="">${board.reply_check}</td>
 
 									<td><a class="btn btn-secondary btn001"
 										onclick="location.href='http://localhost:8088/trip/adminUserRes/modify.do?ures_seq=${board.ures_seq }'"
@@ -326,6 +329,10 @@
 						<th>RES_PHONE</th>
 						<td id = "res_phone"></td>
 					</tr>
+					<tr>
+						<th>REPLY_CHEKC</th>
+						<td id = "reply_check"></td>
+					</tr>
 				</table>
 				<div style="text-align: right;">
 					<a class="btn btn-secondary" role="button" onclick = "userResModalDelete()"
@@ -390,6 +397,7 @@ $(document).ready(function(){
     	 var res_comment = $(this).children("td:nth-child(17)").text();
     	 var u_id = $(this).children("td:nth-child(18)").text();
     	 var res_phone = $(this).children("td:nth-child(19)").text();
+    	 var reply_check = $(this).children("td:nth-child(20)").text();
     	   	 
      	 $('#ures_seq').text(ures_seq);
      	 $('#pd_seq').text(pd_seq);
@@ -410,6 +418,7 @@ $(document).ready(function(){
      	 $('#res_comment').text(res_comment);
      	 $('#u_id').text(u_id);
      	 $('#res_phone').text(res_phone);
+     	 $('#reply_check').text(reply_check);
 
     })
             

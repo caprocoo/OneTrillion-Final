@@ -102,6 +102,7 @@
                                 <th scope="col">REPLY_DATE</th>
                                 <th scope="col">REPLY_CONTENT</th>
                                 <th scope="col">REPLY_RATE</th>
+                                <th scope="col">REPLY_LIKE</th>
                                 <th scope="col">수정/삭제</th>
                             </tr>
                         </thead>
@@ -116,6 +117,7 @@
 	                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.reply_date }</td>
 	                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.reply_content }</td>
 	                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.reply_rate }</td>
+	                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.reply_like }</td>
 
 									<td><a class="btn btn-secondary btn001" onclick="location.href='http://localhost:8088/trip/adminReply/modify.do?reply_seq=${board.reply_seq }'"
 										role="button" style="padding: 5px;">수정</a> 
@@ -212,6 +214,10 @@
                         <th>REPLY_RATE </th>
                         <td id = "reply_rate"></td>
                     </tr>
+                    <tr>
+                        <th>REPLY_LIKE </th>
+                        <td id = "reply_like"></td>
+                    </tr>
                 </table>
                 <div style="text-align: right;">
                     <a class="btn btn-secondary" href="#" role="button" onclick = "replyModalDelete()"
@@ -265,6 +271,7 @@ $(document).ready(function(){
     	 var reply_date = $(this).children("td:nth-child(5)").text();
     	 var reply_content = $(this).children("td:nth-child(6)").text();
     	 var reply_rate = $(this).children("td:nth-child(7)").text(); 
+    	 var reply_like = $(this).children("td:nth-child(8)").text(); 
 
     	   	 
      	 $('#reply_seq').text(reply_seq);
@@ -274,6 +281,7 @@ $(document).ready(function(){
      	 $('#reply_date').text(reply_date);
      	 $('#reply_content').text(reply_content);
      	 $('#reply_rate').text(reply_rate);
+     	 $('#reply_like').text(reply_like);
 
 
     })
