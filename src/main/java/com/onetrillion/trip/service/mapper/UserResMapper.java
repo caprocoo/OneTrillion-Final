@@ -12,6 +12,7 @@ public interface UserResMapper {
 	public int userResInsert(UserResDTO dto);
 	public List<UserResDTO> userSelectAll();
 	public UserResDTO userResDetail(int ures_seq);
+	public UserResDTO userResPdDetail(int pd_seq);
 	public List<UserResDTO> userSelectId(String u_id);
 	
 	public List<UserResDTO> userResPaging(Criteria cri);

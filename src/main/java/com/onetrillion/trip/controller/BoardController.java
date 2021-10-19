@@ -64,8 +64,9 @@ public class BoardController {
 	@RequestMapping(value = "/detail.do", method = RequestMethod.GET) 
 	public String detail(Model model, int pd_seq, HttpSession session) {
 		BoardDTO dto = service.detail(pd_seq);
-		UserResDTO userDTO = userResService.userResDetail(pd_seq);
-		
+		UserResDTO userDTO = userResService.userResPdDetail(pd_seq);
+		System.out.println(pd_seq);
+		System.out.println(userDTO);
 		String u_id = (String) session.getAttribute("u_id");
 		WishlistDTO wDto = wishService.wishlistDetail(u_id, pd_seq); // 10/14 이희연 찜목록에서 detail.do로 이동
 		

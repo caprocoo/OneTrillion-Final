@@ -10,6 +10,7 @@ public interface UserResService {
 	int userResInsert(UserResDTO dto);
 	List<UserResDTO> userSelectAll();
 	UserResDTO userResDetail(int ures_seq);
+	UserResDTO userResPdDetail(int pd_seq);
 	List<UserResDTO> userSelectId(String u_id);
 	List<UserResDTO> userResPaging(Criteria cri);
 	int userResCount();

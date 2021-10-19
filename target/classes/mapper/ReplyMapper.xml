@@ -49,6 +49,8 @@
 		      select * from TRIL_REPLY where reply_seq=#{reply_seq}]]>
 	</select>
 	
+
+	
 	<update id="replyModify">
 		<![CDATA[
 		update TRIL_REPLY set
