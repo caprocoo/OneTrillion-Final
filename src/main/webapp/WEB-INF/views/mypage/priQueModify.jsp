@@ -56,11 +56,11 @@
                         <div class="list-group" style="float:left;width:180px; height:600px; margin-top: 40px;">
                             <a href="#" class="list-group-item list-group-item-action"
                                 style="background-color: #343a40; color: white;">마이페이지</a>
-                            <a href="#" class="list-group-item list-group-item-action">개인정보</a>
-                            <a href="#" class="list-group-item list-group-item-action">1대1문의</a>
-                            <a href="#" class="list-group-item list-group-item-action">찜 내역</a>
-                            <a href="#" class="list-group-item list-group-item-action">예약내역</a>
-                            <a href="#" class="list-group-item list-group-item-action">Contact Us</a>
+                            <a href="http://localhost:8088/trip/user/myPageInfo.do?u_id=${member.u_id}" class="list-group-item list-group-item-action">개인정보</a>
+                            <a href="http://localhost:8088/trip/myPage/list.do" class="list-group-item list-group-item-action">1대1문의</a>
+                            <a href="http://localhost:8088/trip/wishlist/list.do?u_id=${member.u_id}  " class="list-group-item list-group-item-action">찜 내역</a>
+                            <a href="http://localhost:8088/trip/userRes/list.do?u_id=${member.u_id}" class="list-group-item list-group-item-action">예약내역</a>
+                            <a href="http://localhost:8088/trip/user/contactUs.do" class="list-group-item list-group-item-action">Contact Us</a>
                         </div>
                         <div style="float:right;width:915px;">
                             <div>
