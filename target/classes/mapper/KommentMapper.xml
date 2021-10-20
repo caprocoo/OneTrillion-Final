@@ -17,7 +17,7 @@
 		<![CDATA[
 		update tril_komment set
 		kom_seq =#{kom_seq }, u_id =#{u_id }, reply_seq =#{reply_seq }
-		, u_nickName =#{u_nickName }, kom_content =#{kom_content }, reply_date =to_char(sysdate,'yyyy-MM-dd HH24:mm')
+		, u_nickName =#{u_nickName }, kom_content =#{kom_content }, kom_date =to_char(sysdate,'yyyy-MM-dd HH24:mm')
 		where kom_seq=#{kom_seq}
 		]]>
 	</update>

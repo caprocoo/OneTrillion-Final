@@ -10,7 +10,8 @@
 <body>
 	<h1>reply modify page</h1>
 	
-		 <form action="modify.do" method="post"  id="form">   
+		 <form action="modify.do" method="post"  id="form">
+		 <input type="hidden" name = "reply_seq" value = "${kommentDetail.reply_seq }" />   
          <table>
 	  		
              <tr>

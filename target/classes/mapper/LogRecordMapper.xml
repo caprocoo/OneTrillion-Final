@@ -15,23 +15,57 @@
 		]]>
 	</insert>
 	
+	<!-- 검색 조건문 -->
+    <sql id="LogRecordCriteria">
+        <trim prefix="AND (" suffix=")" prefixOverrides="OR">
+            <foreach collection="typeArr" item="type">
+                <trim prefix="OR">
+                    <choose>
+                        <when test="type == 'T'.toString()">
+                            log_part like '%'||#{keyword}||'%' 
+                        </when>
+                        <when test="type == 'C'.toString()">
+                            per_title like '%'||#{keyword}||'%' 
+                        </when>
+                        <when test="type == 'W'.toString()">
+                            log_content like '%'||#{keyword}||'%' 
+                        </when>
+                    </choose>
+                </trim>
+            </foreach>
+        </trim>
+    
+    </sql>
+	
+	
 	<select resultType="com.onetrillion.trip.logRecord.LogRecordDTO" id="LogRecordPaging">
 
-		<![CDATA[
-			SELECT log_seq, ad_id, log_part, per_seq, log_content, log_date, per_title
-			FROM
-			(
-				SELECT log_seq, ad_id, log_part, per_seq, log_content, log_date, per_title,
-				ROW_NUMBER() over(ORDER BY log_seq ASC) AS rn 
-				FROM TRIL_ADMINLOG
-			) WHERE rn BETWEEN #{rowStart} AND #{rowEnd} ORDER  BY log_seq ASC 
-	      ]]>
+	<![CDATA[
+		SELECT log_seq, ad_id, log_part, per_seq, log_content, log_date, per_title from(
+		    select /*+INDEX_DESC(log_seq TRIL_ADMINLOG) */ rownum  as rn, log_seq, ad_id, log_part, per_seq, log_content, log_date, per_title
+		    from TRIL_ADMINLOG where rownum <= #{pageNum} * #{amount} 
+	    ]]>
+	    <if test="keyword != null">
+	       <include refid="LogRecordCriteria"></include> 
+	    </if>
+	    
+	<![CDATA[
+			)
+			where rn > (#{pageNum} -1) * #{amount}]]>
 	</select>
+	
+	
+	
 		<select resultType="int" id="LogRecordCount">
 	
-		<![CDATA[
-		     select count(log_seq) from TRIL_ADMINLOG where log_seq>0
-      	]]>
+		
+		     select count(*) from TRIL_ADMINLOG
+      
+      	<if test="keyword != null">
+                 where log_seq>0  <include refid="LogRecordCriteria"></include>
+         </if>
+
+      	
 	</select>
 	
 	

@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.onetrillion.trip.logRecord.LogRecordCriteria;
 import com.onetrillion.trip.logRecord.LogRecordDTO;
+import com.onetrillion.trip.logRecord.PageMakerDTO;
 import com.onetrillion.trip.logRecord.impl.LogRecordService;
-import com.onetrillion.trip.page.PageMaker;
 
 
 
@@ -30,11 +30,10 @@ public class LogRecordController {
 		List<LogRecordDTO> logRecordList = service.LogRecordPaging(cri);
 		model.addAttribute("logRecordList", logRecordList);
 		
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(service.LogRecordCount());
+		int total = service.LogRecordCount(cri);
+		PageMakerDTO pageMake = new PageMakerDTO(cri, total);
+		model.addAttribute("pageMaker", pageMake);
 		
-		model.addAttribute("pageMaker", pageMaker);
 		
 		return "adminLogRecord/adminLogRecord";
 	}
