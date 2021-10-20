@@ -92,7 +92,7 @@
                 <div class="adminMainDiv1">
                     <p>회원정보</p>
                     <!--요기에 클릭시 해당페이지 넘어가게 설정-->
-                    <iframe src="adminMemMini.html" frameborder="0"
+                    <iframe src="http://localhost:8088/trip/adminUserManagement/userMiniList" frameborder="0"
                         style="width: 100%; height: 255px; border-radius: 0 0 20px 20px;" scrolling="no"></iframe>
 
                 </div>

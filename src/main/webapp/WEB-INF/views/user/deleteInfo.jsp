@@ -103,8 +103,8 @@
             <tr>
                 <td>
                     <div>
-                        <div><img style="width: 300px; margin-bottom: 40px;"
-                                src="http://jjcom0214.cafe24.com/web/OneTrillion/logo02.png" alt="logo01">
+                        <div><img style="width: 300px; margin-bottom: 40px; cursor: pointer;"
+                                src="http://jjcom0214.cafe24.com/web/OneTrillion/logo02.png" alt="logo01" onclick="GoHome()">
                         </div>
                         <input id="u_pwd_ori" value="${member.u_pwd }" type="hidden">
                         <div class="input-group">
@@ -154,13 +154,16 @@
 
                         alert("탈퇴 되었습니다. 안녕히가세요ㅜㅜ");
                         document.getElementById('form').submit();
-                        return false;
                     }
 
                 }
 
             };
         };
+        
+        function GoHome() {
+			location.href='http://localhost:8088/trip/';
+		}
     </script>
 
 </body>
