@@ -38,7 +38,7 @@ var s =1;
       <c:forEach var="board" items="${searchList }"  >
       <input type="hidden" value = "${board.pd_seq}" class = "check_pd_seq" />
          <figure>
-            <div class="searchImgModal" id="div222" >찜</div>
+            <div class="searchImgModal" id="${board.pd_seq}" >찜</div>
 			<!-- <script type="text/javascript">
 				add.push(i);
 				//console.log($('.check_pd_seq')[i].value)
@@ -58,8 +58,33 @@ var s =1;
          </figure>
       </c:forEach> 
    </div>
+   <div>
+	   <table>
+	   <c:forEach var="wish" items="${wishList }"  >
+			<tr>
+				<td class="searchWish01">${wish.pd_seq }</td>
+			</tr>  
+		</c:forEach>  
+	   </table>
+   </div>
+   
+<script type="text/javascript">
+/* $(".searchImgModal")[i].id ==  */
+//console.log($(".searchWish01")[0])
+for(var i=0;i<$(".searchImgModal").length;i++){
+	for(var j=0;j<$(".searchWish01").length;j++){
+  	    if($(".searchImgModal")[i].id == $(".searchWish01")[j].innerHTML) {
+  	    	var a = $(".searchImgModal")[i].id
+  	    	$("div#" + a).css("background-color", "black")
+  	    }
+	}
+}
+
+
+</script>   
 
 <script>
+
 
 var searchImg01Over=function(){
 	$($(event.target).prev()).css("visibility", "visible");
@@ -121,7 +146,7 @@ var searchImgModalClick=function(){
 			"pd_price" : pd_price1,
 			"pd_image" : pd_image1 };
 	
-		if($(this).prop("id") != "div222"){
+		if($(this).prop("class") != "searchImgModal"){
 			var Like_confirm = confirm(pd_seq+'번 [ '+pd_name+' ] 상품을 찜하시겠습니까?');
 		  	var sendUrl = "http://localhost:8088/trip/wishlist/checkAjax.do";
 		  	
