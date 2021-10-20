@@ -5,8 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.onetrillion.trip.logRecord.LogRecordCriteria;
 import com.onetrillion.trip.logRecord.LogRecordDTO;
-import com.onetrillion.trip.page.Criteria;
+
 import com.onetrillion.trip.service.mapper.LogRecordMapper;
 
 @Service
@@ -26,13 +27,13 @@ public class LogRecordServiceImpl implements LogRecordService {
 	}
 
 	@Override
-	public List<LogRecordDTO> LogRecordPaging(Criteria cri) {
+	public List<LogRecordDTO> LogRecordPaging(LogRecordCriteria cri) {
 		return logRecordMapper.LogRecordPaging(cri);
 	}
 
 	@Override
-	public int LogRecordCount() {
-		return logRecordMapper.LogRecordCount();
+	public int LogRecordCount(LogRecordCriteria cri) {
+		return logRecordMapper.LogRecordCount(cri);
 	}
 	
 	

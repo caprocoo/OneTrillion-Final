@@ -28,6 +28,8 @@ import com.onetrillion.trip.board.BoardDTO;
 import com.onetrillion.trip.board.ImageDTO;
 import com.onetrillion.trip.board.impl.BoardService;
 import com.onetrillion.trip.page.PageMaker;
+import com.onetrillion.trip.reply.ReplyDTO;
+import com.onetrillion.trip.reply.impl.ReplyService;
 import com.onetrillion.trip.userRes.UserResDTO;
 import com.onetrillion.trip.userRes.impl.UserResService;
 import com.onetrillion.trip.wishlist.WishlistDTO;
@@ -43,12 +45,14 @@ public class BoardController {
 
 	@Autowired
 	public BoardService service;
-	
 	@Autowired
 	public UserResService userResService;
-
 	@Autowired
 	public WishlistService wishService;
+	@Autowired
+	public ReplyService replyService;
+	
+	
 	@RequestMapping(value = "/search.do", method = RequestMethod.GET)
 	public String search(Model model, HttpSession session) {
 		List<BoardDTO> searchList = service.selectAll();
@@ -65,8 +69,9 @@ public class BoardController {
 	public String detail(Model model, int pd_seq, HttpSession session) {
 		BoardDTO dto = service.detail(pd_seq);
 		UserResDTO userDTO = userResService.userResPdDetail(pd_seq);
-		System.out.println(pd_seq);
-		System.out.println(userDTO);
+		//System.out.println(pd_seq);
+		List<ReplyDTO> replyPdDetail = replyService.replyPdDetail(pd_seq);
+		//System.out.println(replyDTO);
 		String u_id = (String) session.getAttribute("u_id");
 		WishlistDTO wDto = wishService.wishlistDetail(u_id, pd_seq); // 10/14 이희연 찜목록에서 detail.do로 이동
 		
@@ -89,6 +94,7 @@ public class BoardController {
 		model.addAttribute("userDTO", userDTO);
 		model.addAttribute("image", image);
 		model.addAttribute("wDto", wDto); // 10/14 이희연 찜목록 구현 시 추가함
+		model.addAttribute("replyPdDetail", replyPdDetail); 
 
 		return "board/detail";
 	}

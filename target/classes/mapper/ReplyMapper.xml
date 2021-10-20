@@ -49,7 +49,10 @@
 		      select * from TRIL_REPLY where reply_seq=#{reply_seq}]]>
 	</select>
 	
-
+	<select resultType="com.onetrillion.trip.reply.ReplyDTO" id="replyPdDetail">
+		<![CDATA[
+		      select * from TRIL_REPLY where pd_seq=#{pd_seq}]]>
+	</select>
 	
 	<update id="replyModify">
 		<![CDATA[

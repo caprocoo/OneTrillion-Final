@@ -59,6 +59,13 @@ public class ReplyServiceImpl implements ReplyService{
 	public int replyLikeCountUp(int reply_seq) {
 		return replyMapper.replyLikeCountUp(reply_seq);
 	}
+
+	@Override
+	public List<ReplyDTO> replyPdDetail(int pd_seq) {
+		return replyMapper.replyPdDetail(pd_seq);
+	}
+
+
 	
 	
 	

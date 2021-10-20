@@ -3,6 +3,8 @@ package com.onetrillion.trip.page;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.onetrillion.trip.logRecord.LogRecordCriteria;
+
 public class PageMaker {
 	private int totalCount;
 	 private int startPage;
@@ -13,6 +15,7 @@ public class PageMaker {
 	 private int displayPageNum = 5;
 
 	 private Criteria cri;
+	 
 	 
 	 public void setCri(Criteria cri) {
 	  this.cri = cri;
