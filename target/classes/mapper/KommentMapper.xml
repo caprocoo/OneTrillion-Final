@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.onetrillion.trip.service.mapper.KommentMapper">
+
+	<select resultType="com.onetrillion.trip.komment.KommentDTO" id="kommentSelectAll">
+	<![CDATA[select * from tril_komment]]>
+	</select>
+
+	<insert id="kommentInsert">
+		<![CDATA[
+			INSERT INTO tril_komment (kom_seq, u_id, reply_seq , u_nickName, kom_content, kom_date)
+			values(kom_seq.nextVal,#{u_id},#{reply_seq},#{u_nickName},#{kom_content}, to_char(sysdate,'yyyy-MM-dd HH24:mm'))
+		]]>		
+	</insert>
+	
+	<update id="kommentModify">
+		<![CDATA[
+		update tril_komment set
+		kom_seq =#{kom_seq }, u_id =#{u_id }, reply_seq =#{reply_seq }
+		, u_nickName =#{u_nickName }, kom_content =#{kom_content }, kom_date =to_char(sysdate,'yyyy-MM-dd HH24:mm')
+		where kom_seq=#{kom_seq}
+		]]>
+	</update>
+	
+	<delete id="kommentDelete">
+		<![CDATA[
+			delete from tril_komment where kom_seq=#{kom_seq}]]>
+	</delete>
+	
+	<select resultType="com.onetrillion.trip.komment.KommentDTO" id="kommentDetail">
+		<![CDATA[
+		      select * from tril_komment where kom_seq=#{kom_seq}]]>
+	</select>
+
+</mapper>

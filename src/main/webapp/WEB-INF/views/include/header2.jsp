@@ -7,7 +7,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>OneTrillion</title>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
 			integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -18,11 +18,35 @@
 			crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
 			integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
-			crossorigin="anonymous"></script>
+			crossorigin="anonymous"></script> -->
 	</head>
 	<style>
 		.navbar a {
 			font-size: 130%;
+		}
+		#top_btn{
+		  position: fixed;
+		  right: 0;
+		  bottom: -50px;
+		  display: inline-block;
+		  background-color: black;
+		  width: 80px;
+		  height: 60px;
+		  line-height: 50px;
+		  font-weight: bold;
+		  opacity: 0;
+		  transition: 0.7s ease;
+		  font-size: 17px;
+		  text-align: center;
+		
+		}
+		
+		#top_btn.on{
+		  opacity: 1;
+		  cursor: pointer;
+		  bottom: 0;
+		  text-align: center;
+		opacity: 0.8;
 		}
 	</style>
 
@@ -30,7 +54,7 @@
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark"
 			style="height:auto; min-height: 70px; box-shadow: 0 0 20px gray;">
 			<div class="container-fluid" style="width: 1300px; padding-right: 0;">
-				<a class="navbar-brand" href="<%=request.getContextPath()%>/" style="font-weight: bold;">OneTrillion</a>
+				<a class="navbar-brand" href="<%=request.getContextPath()%>/" style="font-weight: bold;font-size: 30px">OneTrillion</a>
 				<% String u_id=(String) session.getAttribute("u_id"); if(u_id==null){%>
 					<div class="navbar-collapse" id="navbarNav">
 						<ul class="navbar-nav">
@@ -95,6 +119,7 @@
 							</div>
 			</div>
 		</nav>
+		       <a id="top_btn" style="color: white; text-decoration: none ">TOP</a>   
 
 	</body>
 	<script>
@@ -111,6 +136,21 @@
 				alert("로그아웃되었습니다");
 			}
 		});
+		$(window).scroll(function(){
+		    
+		    if( $(this).scrollTop() > 100 ){
+		      $("#top_btn").addClass("on");
+		    }
+		    else{
+		      $("#top_btn").removeClass("on");
+		    }
+		    
+		  });
+		    
+		$("#top_btn").click(function(){
+		  window.scrollTo({top : 0, behavior: 'smooth'}); 
+		});
+
 
 	</script>
 

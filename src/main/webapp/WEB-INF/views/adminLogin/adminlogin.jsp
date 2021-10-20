@@ -1,116 +1,98 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+		<!DOCTYPE html>
+		<html lang="en">
 
-</head>
-<style>
-* {
-	margin: 0;
-	padding: 0;
-	text-align: center;
-	text-decoration: none;
-}
+		<head>
+			<meta charset="UTF-8">
+			<meta hloginp-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<title>관리자로그인 페이지</title>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+				integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+				crossorigin="anonymous">
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+				integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+				crossorigin="anonymous"></script>
+			<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+				integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+				crossorigin="anonymous"></script>
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+				integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+				crossorigin="anonymous"></script>
+		</head>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				text-decoration: none;
+			}
 
-#logdiv001 {
-	margin: auto;
-	width: 400px;
-	height: 800px;
-}
+			#logindiv01 {
+				width: 100%;
+				height: 95vh;
+			}
 
-#logdiv001>div:nth-child(2)>input {
-	font-size: 110%;
-	width: 400px;
-	height: 50px;
-	border: none;
-	border-radius: 15px 15px 0px 0px;
-	background-color: gainsboro;
-}
+			#logintable01 {
+				margin: auto;
+				width: 400px;
+				height: 100%;
+				text-align: center;
+			}
 
-#logdiv001>div:nth-child(4)>input {
-	font-size: 110%;
-	width: 400px;
-	height: 50px;
-	border: none;
-	background-color: gainsboro;
-}
+			.btn-dark {
+				width: 400px;
+				height: 45px
+			}
 
-#logdiv001>div:nth-child(1) {
-	height: 400px;
-	line-height: 400px;
-}
+			.input-group-text {
+				width: 50px;
+			}
 
-#logdiv001>div:nth-child(3) {
-	height: 2px;
-}
+			.form-control {
+				height: 45px
+			}
 
-#logdiv001>div:nth-child(5) {
-	height: 2px;
-}
+			.input-group {
+				margin-bottom: 5px;
+			}
+		</style>
 
-#logdiv001>div:nth-child(6)>input{
-	font-size: 110%;
-	width: 400px;
-	height: 50px;
-	border: none;
-	border-radius: 0px 0px 15px 15px;
-	background-color: black;
-	color: white;
-	border-right: 1px solid white;
-	cursor: pointer;
-}
-
-#logdiv001>div:nth-child(6)>input:hover {
-	color: red;
-}
-
-#logdiv001>div:nth-child(7) {
-	height: 10px;
-}
-
-#logdiv001>div:nth-child(8)>a:hover {
-	color: red;
-}
-
-
-.regex {
-	font-size: 12px;
-	text-align: center;
-}
-</style>
-
-<jsp:include page="../include/header.jsp"></jsp:include>
-<body>
-
-
-	
-	<form name="f1" action="adminMain.do" method="post" id="adminLoginForm">
-		<div id="logdiv001">
-			<div><h1>관리자 로그인</h1></div>
-			<div>
-				<input type="text" id="AD_ID" name="AD_ID" placeholder="아이디를 입력하세요" value="TrillionAdmin1">
+		<body>
+			<div id="logindiv01">
+				<table id="logintable01">
+					<tr>
+						<td>
+							<div>
+								<form name="f1" action="adminMain.do" method="post" id="adminLoginForm">
+									<div><img style="width: 300px; margin-bottom: 40px; cursor: pointer;"
+											src="http://jjcom0214.cafe24.com/web/OneTrillion/logo02.png" alt="logo01" onclick="GoHome()">
+									</div>
+									<div class="input-group ">
+										<span class="input-group-text" id="basic-addon1">ID</span>
+										<input type="text" id="AD_ID" name="AD_ID" class="form-control"
+											aria-label="Username" aria-describedby="basic-addon1">
+									</div>
+									<div></div>
+									<div class="input-group ">
+										<span class="input-group-text" id="basic-addon1">PW</span>
+										<input type="password" id="AD_PWD" name="AD_PWD" class="form-control"
+											aria-label="Username" aria-describedby="basic-addon1">
+									</div>
+									<div></div>
+									<input type="submit" class="btn btn-dark" value="Login">
+									</form>
+							</div>
+						</td>
+					</tr>
+				</table>
 			</div>
-			<div></div>
-			<div>
-				<input type="password" id="AD_PWD" name="AD_PWD"
-					placeholder="비밀번호를 입력하세요">
-			</div>
-			<div></div>
-			<div>
-				<input type="submit" value="로그인">
-			</div>
+			<script>
+				function GoHome() {
+					location.href='http://localhost:8088/trip/';
+				}
+			</script>
+		</body>
 
-		</div>
-	</form>
-</body>
-</html>
-
-
+		</html>

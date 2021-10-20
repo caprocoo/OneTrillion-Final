@@ -36,8 +36,8 @@
 				<td>
 					<!--컨텐츠--------------------------------------------------------------------------->
 					<div id="findIdDiv001">
-						<div style="text-align: center;"><img style="width: 300px; margin-bottom: 40px;"
-								src="http://jjcom0214.cafe24.com/web/OneTrillion/logo02.png" alt="logo01">
+						<div style="text-align: center;"><img style="width: 300px; margin-bottom: 40px; cursor: pointer;"
+								src="http://jjcom0214.cafe24.com/web/OneTrillion/logo02.png" alt="logo01" onclick="GoHome()">
 						</div>
 
 						<div class="card" style="margin-bottom: 5px; text-align: center;">
@@ -63,6 +63,10 @@
 				location.href = '../user/login.do';
 			})
 		})
+		
+		function GoHome() {
+			location.href='http://localhost:8088/trip/';
+		}
 	</script>
 </body>
 

@@ -55,4 +55,9 @@ public class UserResServiceImpl implements UserResService{
 		return userResMapper.userResModify(dto);
 	}
 
+	@Override
+	public UserResDTO userResPdDetail(int pd_seq) {
+		return userResMapper.userResPdDetail(pd_seq);
+	}
+
 }

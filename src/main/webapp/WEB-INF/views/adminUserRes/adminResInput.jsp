@@ -147,6 +147,10 @@
                         <th>RES_PHONE</th>
                         <td><input type="text" class="form-control" name="res_phone" value = "010-1234-5644"></td>
                     </tr>
+                    <tr>
+                        <th>REPLY_CHECK</th>
+                        <td><input type="text" class="form-control" name="reply_check" value = ""></td>
+                    </tr>
                 </table>
                 <div style="text-align: right;">
                     <a class="btn btn-secondary" onclick="location.href='http://localhost:8088/trip/adminUserRes/list.do'" role="button" style="margin-top:10px; margin-bottom: 10px;">취소</a>

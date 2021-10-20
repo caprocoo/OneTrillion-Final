@@ -70,12 +70,10 @@
                 <div class="adminMainDiv1">
                     <p>회원 예약 수정</p>
                 </div>
-				<form action="modify.do" method="post" id="form">  
+				<form action="modify.do" method="post" id="form">
+				<input type="hidden" name = "ures_seq" value = "${userResDetail.ures_seq }"/>  
                 <table id="adminMemtable1" style="width: 100%; border-top: 2px solid #343a40;">
-                    <tr>
-                        <th>USERS_SEQ</th>
-                        <td><input type="text" class="form-control" name="ures_seq"  value = "${userResDetail.ures_seq}"></td>
-                    </tr>
+					
                     <tr>
                         <th>PD_SEQ</th>
                         <td><input type="text" class="form-control" name="pd_seq" value = "${userResDetail.pd_seq}"></td>
@@ -148,6 +146,10 @@
                     <tr>
                         <th>RES_PHONE</th>
                         <td><input type="text" class="form-control" name="res_phone" value = "${userResDetail.res_phone}"></td>
+                    </tr>
+                    <tr>
+                        <th>REPLY_CHECK</th>
+                        <td><input type="text" class="form-control" name="reply_check" value = "${userResDetail.reply_check}"></td>
                     </tr>
                 </table>
                 <div style="text-align: right;">

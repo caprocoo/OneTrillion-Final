@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.onetrillion.trip.service.mapper.CommunityMapper">
+
+<!-- 게시글 입력 -->
+<select id="selectAll" resultType="com.onetrillion.trip.community.CommunityDTO" >
+   <![CDATA[   select * from TRIL_community ORDER BY com_seq  desc ]]>       
+</select>
+
+
+<!-- 상세보기-->
+<select resultType="com.onetrillion.trip.community.CommunityDTO" id="detail">
+<![CDATA[   select * from TRIL_community where com_seq =#{com_seq } ]]> 
+</select>
+
+<!--  입력 -->
+<insert id="insert">
+<![CDATA[ 
+	INSERT INTO TRIL_community(com_seq , com_title , com_content , u_id ,com_date, com_cnt ) 
+	VALUES ((select nvl(max(com_seq ), 0)+1 from TRIL_community)
+	,#{com_title } ,#{com_content },#{u_id },to_char(sysdate,'yyyy-mm-dd hh:mm'),#{com_cnt})
+
+]]>		
+</insert>
+
+<!--  수정 -->
+<update id="modify">
+<![CDATA[
+		update TRIL_community set
+		com_seq =#{com_seq }, com_title =#{com_title }, com_content =#{com_content }, com_cnt =#{com_cnt }
+		, com_date =to_char(sysdate,'yyyy-mm-dd hh:mm')
+		where com_seq=#{com_seq}]]>
+</update>
+
+<!--  삭제 -->
+<delete id="delete">
+<![CDATA[
+		delete from TRIL_community where com_seq =#{com_seq }]]>
+</delete>
+    
+    
+    
+<update id="cntUp">
+<![CDATA[
+		update TRIL_community set
+		com_cnt =#{com_cnt }
+		where com_seq=#{com_seq}]]>
+</update>   
+
+
+<!-- 댓글################################################################################################################ -->
+
+<!-- 댓글 쓰기 -->
+<insert id="picture_reply_write" parameterType="com.onetrillion.trip.community.CommunityReplyDTO">
+    insert into TRIL_COMMUNITY_REPLY
+    values(0, #{com_seq}, #{grp}, 0, 0, #{writer}, #{re_content}, now())
+</insert>
+
+<!-- 모댓글일경우 no, grp 일치하게 함 -->
+<update id="picture_reply_check" parameterType="com.onetrillion.trip.community.CommunityReplyDTO">
+ <![CDATA[   update TRIL_COMMUNITY_REPLY set grp=#{grp}
+    where rno != grp]]>
+</update>
+
+<!-- 모댓글이 삭제된 댓글일때 그에 딸린 답글들이 모두삭제되면 테이블에서 완전히 삭제한다 -->
+<delete id="picture_reply_delete_after_rereply_delete" parameterType="com.onetrillion.trip.community.CommunityReplyDTO">
+  <![CDATA[     delete from TRIL_COMMUNITY_REPLY
+    where re_content="" and grp=#{grp}]]>  
+</delete>
+
+<!-- 답글 쓰기 -->
+<insert id="picture_rereply_write" parameterType="com.onetrillion.trip.community.CommunityReplyDTO">
+  <![CDATA[      insert into TRIL_COMMUNITY_REPLY
+    values(0, #{com_seq}, #{grp}, 0, #{grpl}, #{writer}, #{re_content}, now())]]>  
+</insert>
+
+<!-- TRIL_community에 댓글수 증가 -->
+<update id="picture_reply_up" parameterType="com.onetrillion.trip.community.CommunityDTO">
+   <![CDATA[      update TRIL_community set reply=reply+1 
+    where rno=#{rno}]]> 
+</update>
+
+<!-- 댓글 리스트 가져오기 -->
+<select id="picutre_replyList" parameterType="com.onetrillion.trip.community.CommunityReplyDTO" resultType="com.onetrillion.trip.community.CommunityReplyDTO">
+  <![CDATA[     select r.rno, r.com_seq, r.grp, r.grpl, r.writer, r.re_content, date_format(wdate,'%Y-%m-%d') wdate, datediff(now(), wdate) wgap , u.profile
+    from TRIL_COMMUNITY_REPLY r left outer join user u
+    on r.writer = u.nick
+    where r.com_seq = #{com_seq}
+    order by grp asc, grps desc ]]>  
+</select>
+
+
+<!-- 댓글 추가/삭제시 댓글 갯수 가져오기 -->
+<select id="picture_reply_count" parameterType="com.onetrillion.trip.community.CommunityDTO" resultType="com.onetrillion.trip.community.CommunityDTO">
+ <![CDATA[       select reply 
+    from TRIL_community
+    where rno=#{rno} ]]> 
+</select>
+
+<!-- 모댓글의 답글수를 카운트 -->
+<select id="picture_count_rereply" parameterType="com.onetrillion.trip.community.CommunityReplyDTO" resultType="int">
+  <![CDATA[       select count(rno)
+    from TRIL_COMMUNITY_REPLY
+    where rno != #{rno} and grp = #{rno}]]> 
+</select>
+
+<!-- 답글수를 카운트 -->
+<select id="picture_count_rereply_fromrereply" parameterType="com.onetrillion.trip.community.CommunityReplyDTO" resultType="int">
+  <![CDATA[     select count(rno)
+    from TRIL_COMMUNITY_REPLY
+    where rno != #{grp} and grp = #{grp} ]]>  
+</select>
+
+<!-- 모댓글 삭제 - 답글 없음 -->
+<delete id="picture_reply_delete" parameterType="com.onetrillion.trip.community.CommunityReplyDTO">
+  <![CDATA[   delete from TRIL_COMMUNITY_REPLY
+    where rno=#{rno}]]>     
+</delete>
+
+<!-- 모댓글 삭제 - 답글 있음 -->
+<update id="picture_reply_not_delete" parameterType="com.onetrillion.trip.community.CommunityReplyDTO">
+ <![CDATA[     update TRIL_COMMUNITY_REPLY set re_content=""
+    where rno=#{rno}  ]]>  
+</update>
+
+<!-- TRIL_community에 댓글수 감소 -->
+<update id="picture_reply_down" parameterType="com.onetrillion.trip.community.CommunityDTO">
+  <![CDATA[      update TRIL_community set reply=reply-1
+    where rno=#{rno}]]>  
+</update>
+
+
+</mapper>
+
+
+
+

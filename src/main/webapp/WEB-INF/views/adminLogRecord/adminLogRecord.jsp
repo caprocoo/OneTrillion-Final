@@ -9,7 +9,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>로그 기록 리스트 페이지</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -83,7 +84,7 @@
                         <tbody>
                         	<c:forEach var="board" items="${logRecordList }">
 	                            <!-- forEach 문 시작--------------------------------------------------------------------------------------------------------------------------------------->
-	                            <tr style="cursor: pointer;" onclick = "" >
+	                            <tr style="cursor: pointer;" onclick = "" class = "log-record-list">
 	                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.log_seq }</td>
 	                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.ad_id }</td>
 	                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.log_part }</td>
@@ -92,32 +93,60 @@
 	                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.log_content }</td>
 	                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.log_date }</td>
 	                            </tr>
+                            
                             </c:forEach>
+                            
                             <!-- forEach 문 끝--------------------------------------------------------------------------------------------------------------------------------------->
                         </tbody>
                     </table>
-                    <div style="width: 100%;">
+                           <div style="float: right; margin-right: 10px;" class = "search_wrap">
+                            <div class="input-group mb-3 search_area" style="width: 300px; float: left; margin-right: 10px;" >
+	                            <select name="type" class = "form-control" style="width:10px;">
+	                            
+					                <option value="" <c:out value="${pageMaker.cri.type == null?'selected':'' }"/>>Search</option>
+					                <option value="T" <c:out value="${pageMaker.cri.type eq 'T'?'selected':'' }"/>>Part</option>
+					                <option value="C" <c:out value="${pageMaker.cri.type eq 'C'?'selected':'' }"/>>Title</option>
+					                <option value="W" <c:out value="${pageMaker.cri.type eq 'W'?'selected':'' }"/>>Content</option>
+					                <option value="TC" <c:out value="${pageMaker.cri.type eq 'TC'?'selected':'' }"/>>Part + Title</option>
+					                <option value="TW" <c:out value="${pageMaker.cri.type eq 'TW'?'selected':'' }"/>>Part + Content</option>
+					                <option value="TCW" <c:out value="${pageMaker.cri.type eq 'TCW'?'selected':'' }"/>>Part + Title + Content</option>
+					            </select>   
+					            
+                                <input type="text" class="form-control keyword" placeholder="검색할 단어를 입력하세요"
+                                    aria-label="Recipient's username" aria-describedby="button-addon2"
+                                    style="border:1px solid #ededed;" name = "keyword" value = "${pageMaker.cri.keyword }">
+                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+                                    style="border:1px solid #ededed">검색</button>
+                               
+                            </div>
+                        </div>
+                    <form id = "moveForm" method = "get">
+				        <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
+				        <input type="hidden" name="amount" value="${pageMaker.cri.amount }">  
+				         <input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
+				         <input type="hidden" name="type" value="${pageMaker.cri.type }">
+                    </form>
+                    
+                    <div style="width: 100%;" class = "pageInfo_wrap">
                         <!--페이징 tag 시작----------------------------------------------------------------------------------------------------------------------------------------->
-						<div style="float: left; margin-left: 10px;">
-							<ul class="pagination">
+						<div style="float: left; margin-left: 10px;" class = "pageInfo_area">
+							<ul class="pagination pageInfo" id = "pageInfo">
 								<c:if test="${pageMaker.prev}">
 									<li class="page-item"><a class="page-link"
-										href="list.do${pageMaker.makeQuery(pageMaker.startPage - 1)}"
+										href="${pageMaker.startPage - 1}"
 										aria-label="Previous"
 										style="color: gray; border: 1px solid #ededed"> <span
 											aria-hidden="true">&laquo;</span>
 									</a></li>
 								</c:if>
-								<c:forEach begin="${pageMaker.startPage}"
-									end="${pageMaker.endPage}" var="idx">
-									<li class="page-item"><a class="page-link"
-										href="list.do${pageMaker.makeQuery(idx)}"
-										style="color: gray; border: 1px solid #ededed">${idx}</a></li>
+								<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
+									<li class="page-item pageInfo_btn ${pageMaker.cri.pageNum == num ? "active":"" }"><a class="page-link pageInfo_btn" href="${num}"
+										style="color: gray; border: 1px solid #ededed">${num}</a></li>
 								</c:forEach>
 
-								<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+								<c:if test="${pageMaker.next}">
 									<li class="page-item"><a class="page-link"
-										href="list.do${pageMaker.makeQuery(pageMaker.endPage + 1)}"
+										href="${pageMaker.endPage + 1}"
 										aria-label="Next"
 										style="color: gray; border: 1px solid #ededed"> <span
 											aria-hidden="true">&raquo;</span>
@@ -126,22 +155,44 @@
 							</ul>
 						</div>
                         <!--페이징 tag 끝----------------------------------------------------------------------------------------------------------------------------------------->
-                        <div style="float: right; margin-right: 10px;">
-                            <div class="input-group mb-3" style="width: 300px; float: left; margin-right: 10px;">
-                                <input type="text" class="form-control" placeholder="검색할 단어를 입력하세요"
-                                    aria-label="Recipient's username" aria-describedby="button-addon2"
-                                    style="border:1px solid #ededed;">
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"
-                                    style="border:1px solid #ededed">검색</button>
-                            </div>
-                            <a class="btn btn-secondary" href="insert.do" role="button">등록</a>
-                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
+    </div>
+    <script type="text/javascript">
+    	let moveForm = $('#moveForm');
+		$(".pageInfo a").on("click", function(e){
+			e.preventDefault();
+	        moveForm.find("input[name='pageNum']").val($(this).attr("href"));
+	        moveForm.attr("action", "/trip/logRecord/list.do");
+	        moveForm.submit(); 
+	    });
+		
+		  $(".search_area button").on("click", function(e){
+		        e.preventDefault();
+		        
+		        let type = $(".search_area select").val();
+		        let keyword = $(".search_area input[name='keyword']").val();
+		        
+		        if(!type){
+		            alert("검색 종류를 선택하세요.");
+		            return false;
+		        }
+		        
+		        if(!keyword){
+		            alert("키워드를 입력하세요.");
+		            return false;
+		        }
+		        moveForm.find("input[name='type']").val(type);
+		        moveForm.find("input[name='keyword']").val(keyword);
+		        moveForm.find("input[name='pageNum']").val(1);
+		        moveForm.submit();
+		    });
+		  
+    </script>
 </body>
 
 </html>
