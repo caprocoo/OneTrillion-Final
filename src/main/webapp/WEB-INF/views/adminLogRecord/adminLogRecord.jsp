@@ -103,7 +103,7 @@
                             <div class="input-group mb-3 search_area" style="width: 300px; float: left; margin-right: 10px;" >
 	                            <select name="type" class = "form-control" style="width:10px;">
 	                            
-					                <option value="" <c:out value="${pageMaker.cri.type == null?'selected':'' }"/>>--</option>
+					                <option value="" <c:out value="${pageMaker.cri.type == null?'selected':'' }"/>>Search</option>
 					                <option value="T" <c:out value="${pageMaker.cri.type eq 'T'?'selected':'' }"/>>Part</option>
 					                <option value="C" <c:out value="${pageMaker.cri.type eq 'C'?'selected':'' }"/>>Title</option>
 					                <option value="W" <c:out value="${pageMaker.cri.type eq 'W'?'selected':'' }"/>>Content</option>
