@@ -50,4 +50,8 @@ public interface UserService {
 	public UserDTO adminReadUser(String u_id);
 	public UserDTO readMember(String u_id);
 	// 끝
+
+	public UserDTO social_Login(String u_email);
+
+	public UserDTO searchEmail(String u_email);
 }

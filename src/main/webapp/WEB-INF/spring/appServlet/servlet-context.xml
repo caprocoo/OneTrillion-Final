@@ -34,6 +34,23 @@
       </message-converters>
    </annotation-driven>
 	
+	<beans:bean id="naverClientID" class="java.lang.String">
+        <beans:constructor-arg value="yFjFge8FKpd99PFHmsC1" />
+	</beans:bean>
+	<beans:bean id="naverClientSecret" class="java.lang.String">
+	        <beans:constructor-arg value="Al7wsG808H" />
+	</beans:bean>
+	<beans:bean id="naverRedirectUrl" class="java.lang.String">
+	        <beans:constructor-arg value="http://localhost:8088/trip/user/naveroauthcallback" />
+	</beans:bean>
+	    
+	<beans:bean id="naverSns" class="com.onetrillion.trip.oauth.NaverValue">
+	        <beans:constructor-arg value="naver" />
+	        <beans:constructor-arg ref="naverClientID" />
+	        <beans:constructor-arg ref="naverClientSecret" />
+	        <beans:constructor-arg ref="naverRedirectUrl" />
+	</beans:bean>
+	
 	
 	
 </beans:beans>

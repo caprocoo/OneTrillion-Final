@@ -127,7 +127,7 @@
 												| <a class="loginA01" href="findPw.do">비밀번호찾기</a></div>
 											<div style="margin-bottom: 10px; font-size: 80%; color: gray;">간편하게 로그인
 											</div>
-											<button type="button" class="btn btn-success">Naver</button><button
+											<a href="${ naver_url }"><button type="button" class="btn btn-success" id="naverLoginBtn">Naver</button></a><button
 												type="button" class="btn btn-primary" id="googleLoginBtn">Google</button>
 											<div
 												style="margin-bottom: 10px; margin-top: 40px; font-size: 80%;  color: gray;">
@@ -143,9 +143,15 @@
 					
 					<script type="text/javascript">
 					
+						const onClickGoogleLogin = (e) => {
+					    	//구글 인증 서버로 인증코드 발급 요청
+					 		window.location.replace("https://accounts.google.com/o/oauth2/v2/auth?client_id=391287285732-4c7pd72fh1ir9af9llc4tmoas2as4qog.apps.googleusercontent.com&redirect_uri=http://localhost:8088/trip/user/oauthcallback&response_type=code&scope=email%20profile%20openid&access_type=offline")
+						}
+						
+						const googleLoginBtn = document.getElementById("googleLoginBtn");
+						googleLoginBtn.addEventListener("click", onClickGoogleLogin);
 					
-					
-					
+						
 					
 
 						$("#u_id").keyup(function () {

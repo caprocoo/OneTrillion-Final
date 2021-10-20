@@ -269,13 +269,12 @@
                                                                 src="http://jjcom0214.cafe24.com/web/OneTrillion/logo02.png"
                                                                 alt="logo01" onclick="GoHome()">
                                                         </div>
-
                                                         <!-- 아이디 입력칸 --------------------------------------------------------------------->
                                                         <div class="">
                                                             <label for="formGroupExampleInput"
                                                                 class="form-label">ID</label>
                                                             <span class="id regex" style="float: right;"></span>
-                                                            <input type="text" id="id" name="u_id" class="form-control"
+                                                            <input type="text" id="id" name="u_id" value="${userEmail}" class="form-control"
                                                                 id="formGroupExampleInput" placeholder="아이디를 입력하세요">
                                                         </div>
                                                         <!-- 아이디 입력칸 --------------------------------------------------------------------->
@@ -309,7 +308,7 @@
                                                             <span class="u_nickName regex" style="float: right;"></span>
                                                             <input type="text" id="u_nickName" name="u_nickName"
                                                                 class="form-control" id="formGroupExampleInput"
-                                                                placeholder="닉네임을 입력하세요">
+                                                                placeholder="닉네임을 입력하세요" >
                                                         </div>
                                                         <!-- 이름 입력 칸 --------------------------------------------------------------------->
 
@@ -320,7 +319,7 @@
                                                             <span class="email regex" style="float: right;"></span>
                                                             <input type="text" id="email" name="u_email"
                                                                 class="form-control" id="formGroupExampleInput"
-                                                                placeholder="이메일을 입력하세요">
+                                                                placeholder="이메일을 입력하세요" value="${userEmail}">
                                                         </div>
                                                         <!-- 이메일 입력 칸 --------------------------------------------------------------------->
                                                         <!-- 동의 --------------------------------------------------------------------->
@@ -2226,7 +2225,7 @@
                                         $.get(sendUrl, function (data, status) {
                                             if (status === 'success') {
                                                 if (data === 'possible' && inputId != "") {
-                                                    $(".id").html("영어 대소문자와 숫자를 혼합하여 8-15자리로 입력하세요 (특수문자 한글제외)");
+                                                    $(".id").html("영어 대소문자와 숫자를 혼합하여 8-15자리로 입력하세요");
                                                     $(".id").css("color", "gray");
                                                     if (inputId.length > 7 && inputId.length < 16 && resultspc == null && result != null) {
                                                         $(".id").html("사용가능한 아이디입니다!");
@@ -2308,18 +2307,18 @@
                                             var name = $("#u_nickName").val();
                                             var email = $("#email").val();
 
-                                            var idregex = /^[A-Za-z\d]{8,15}$/;
+                                            //var idregex = /^[A-Za-z\d]{8,15}$/;
                                             var pwregex = /^[A-Za-z\d]{8,15}$/;
                                             var nameregex = /[가-힣]{2,}/;
                                             var emailregex = /.+@[a-z]+(\.[a-z]+){1,2}$/;
 
 
 
-                                            var idregexc = idregex.exec(id);
-                                            if (idregexc == null) {
-                                                alert("아이디 양식을 다시 확인해주세요");
-                                                return;
-                                            }
+                                            //var idregexc = idregex.exec(id);
+                                            //if (idregexc == null) {
+                                            //    alert("아이디 양식을 다시 확인해주세요");
+                                            //     return;
+                                            //}
 
                                             var pwregexc = pwregex.exec(pw);
                                             if (pwregexc == null) {
