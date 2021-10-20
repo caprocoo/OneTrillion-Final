@@ -15,4 +15,5 @@ public interface ReplyService {
 	List<ReplyDTO> replyPaging(Criteria cri);
 	int replyCount();
 	int replyLikeCountUp(int reply_seq);
+	List<ReplyDTO> replyPdDetail(int pd_seq);
 }

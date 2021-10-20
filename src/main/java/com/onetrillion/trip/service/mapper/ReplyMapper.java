@@ -18,5 +18,6 @@ public interface ReplyMapper {
 	public int replyDelete(int reply_seq);
 	public List<ReplyDTO> replySelectId(String u_id);
 	public int replyLikeCountUp(int reply_seq);
+	public List<ReplyDTO> replyPdDetail(int pd_seq);
 	
 }
