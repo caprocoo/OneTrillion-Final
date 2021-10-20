@@ -34,6 +34,7 @@
       </message-converters>
    </annotation-driven>
 	
+<<<<<<< HEAD
 	<beans:bean id="naverClientID" class="java.lang.String">
         <beans:constructor-arg value="yFjFge8FKpd99PFHmsC1" />
 	</beans:bean>
@@ -52,5 +53,9 @@
 	</beans:bean>
 	
 	
+=======
+	<!-- 10/19 희연 추가 업로드 관련 빈 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"></beans:bean>	
+>>>>>>> 2ee546f2366917755ec7189061642aa519bbe220
 	
 </beans:beans>

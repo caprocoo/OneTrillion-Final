@@ -1,12 +1,8 @@
 package com.onetrillion.trip.service.mapper;
 
 import java.util.List;
-import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
-import org.hibernate.validator.constraints.ParameterScriptAssert;
-
-import com.onetrillion.trip.user.UserDTO;
+import org.apache.ibatis.annotations.Param;import com.onetrillion.trip.wishlist.WishListCriteria;
 import com.onetrillion.trip.wishlist.WishlistDTO;
 
 public interface WishlistMapper {
@@ -22,5 +18,8 @@ public interface WishlistMapper {
 	public WishlistDTO admin_delete(int w_seq); // 관리자 페이지 찜 삭제
 	public WishlistDTO admin_modiDetail(@Param("w_seq") int w_seq);
 	public int admin_modify(WishlistDTO dto);
+	
+	public List<WishlistDTO> wishListPaging(WishListCriteria cri);
+	public int wishListCount(WishListCriteria cri); 
 	
 }

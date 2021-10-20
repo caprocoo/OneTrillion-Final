@@ -119,47 +119,60 @@
                             <!-- forEach 문 끝--------------------------------------------------------------------------------------------------------------------------------------->
                         </tbody>
                     </table>
-                    <div style="width: 100%;">
-                        <!--페이징 tag 시작----------------------------------------------------------------------------------------------------------------------------------------->
-                        <div style="float: left; margin-left: 10px;">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous"
-                                        style="color: gray; border:1px solid #ededed">
-                                        <span aria-hidden="true">&laquo;</span>
-                                        <!-- <span class="sr-only">Previous</span> -->
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#"
-                                        style="color: gray;border:1px solid #ededed">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#"
-                                        style="color: gray;border:1px solid #ededed">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#"
-                                        style="color: gray;border:1px solid #ededed">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#"
-                                        style="color: gray;border:1px solid #ededed">4</a></li>
-                                <li class="page-item"><a class="page-link" href="#"
-                                        style="color: gray;border:1px solid #ededed">5</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next"
-                                        style="color: gray;border:1px solid #ededed">
-                                        <span aria-hidden="true">&raquo;</span>
-                                        <!-- <span class="sr-only">Next</span> -->
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!--페이징 tag 끝----------------------------------------------------------------------------------------------------------------------------------------->
-                        <div style="float: right; margin-right: 10px;">
-                            <div class="input-group mb-3" style="width: 300px; float: left; margin-right: 10px;">
+                                         <div style="float: right; margin-right: 10px;" class = "search_wrap">
+                            <div class="input-group mb-3 search_area" style="width: 300px; float: left; margin-right: 10px;" >
+	                            <select name="type" class = "form-control" style="width:10px;">
+	                            
+					                <option value="" <c:out value="${pageMaker.cri.type == null?'selected':'' }"/>>Search</option>
+					                <option value="T" <c:out value="${pageMaker.cri.type eq 'T'?'selected':'' }"/>>상품명</option>
+					                <option value="C" <c:out value="${pageMaker.cri.type eq 'C'?'selected':'' }"/>>키워드</option>
+					                <option value="TC" <c:out value="${pageMaker.cri.type eq 'TC'?'selected':'' }"/>>상품명 + 키워드</option>
+					            </select>   
+					            
                                 <input type="text" class="form-control keyword" placeholder="검색할 단어를 입력하세요"
                                     aria-label="Recipient's username" aria-describedby="button-addon2"
-                                    style="border:1px solid #ededed;">
+                                    style="border:1px solid #ededed;" name = "keyword" value = "${pageMaker.cri.keyword }">
                                 <button class="btn btn-outline-secondary" type="button" id="button-addon2"
                                     style="border:1px solid #ededed">검색</button>
+                               
                             </div>
-                            <a class="btn btn-secondary" href="<%=request.getContextPath() %>/adminWishlist/input.do" role="button">등록</a>
+                            
                         </div>
+                    <form id = "moveForm" method = "get">
+				        <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
+				        <input type="hidden" name="amount" value="${pageMaker.cri.amount }">  
+				         <input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
+				         <input type="hidden" name="type" value="${pageMaker.cri.type }">
+                    </form>
+                    <div style="width: 100%;">
+                        <!--페이징 tag 시작----------------------------------------------------------------------------------------------------------------------------------------->
+						<div style="float: left; margin-left: 10px;" class = "pageInfo_area">
+							<ul class="pagination pageInfo" id = "pageInfo">
+								<c:if test="${pageMaker.prev}">
+									<li class="page-item"><a class="page-link"
+										href="${pageMaker.startPage - 1}"
+										aria-label="Previous"
+										style="color: gray; border: 1px solid #ededed"> <span
+											aria-hidden="true">&laquo;</span>
+									</a></li>
+								</c:if>
+								<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
+									<li class="page-item pageInfo_btn ${pageMaker.cri.pageNum == num ? "active":"" }"><a class="page-link pageInfo_btn" href="${num}"
+										style="color: gray; border: 1px solid #ededed">${num}</a></li>
+								</c:forEach>
+
+								<c:if test="${pageMaker.next}">
+									<li class="page-item"><a class="page-link"
+										href="${pageMaker.endPage + 1}"
+										aria-label="Next"
+										style="color: gray; border: 1px solid #ededed"> <span
+											aria-hidden="true">&raquo;</span>
+									</a></li>
+								</c:if>
+							</ul>
+						</div>
+                        <!--페이징 tag 끝----------------------------------------------------------------------------------------------------------------------------------------->
+
                     </div>
                 </div>
             </div>
@@ -303,13 +316,38 @@ $(document).ready(function(){
     	 $('#u_id').text(u_id);
     });
           
-              //검색2 ---------------------------------------------------
-          $(".keyword").keyup(function () {
-              $(".tr01").hide();
-              $(".tr01:contains(" + $(this).val() + ")").show();
-          });
-          // 검색2 끝---------------------------------------------------
+
 }); //document ready 종료
+
+let moveForm = $('#moveForm');
+$(".pageInfo a").on("click", function(e){
+	e.preventDefault();
+    moveForm.find("input[name='pageNum']").val($(this).attr("href"));
+    moveForm.attr("action", "/trip/adminWishlist/list.do");
+    moveForm.submit(); 
+});
+
+  $(".search_area button").on("click", function(e){
+        e.preventDefault();
+        
+        let type = $(".search_area select").val();
+        let keyword = $(".search_area input[name='keyword']").val();
+        
+        if(!type){
+            alert("검색 종류를 선택하세요.");
+            return false;
+        }
+        
+        if(!keyword){
+            alert("키워드를 입력하세요.");
+            return false;
+        }
+        moveForm.find("input[name='type']").val(type);
+        moveForm.find("input[name='keyword']").val(keyword);
+        moveForm.find("input[name='pageNum']").val(1);
+        moveForm.submit();
+    });
+  
 </script>
 
 </html>

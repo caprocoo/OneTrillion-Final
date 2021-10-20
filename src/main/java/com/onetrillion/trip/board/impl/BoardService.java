@@ -2,9 +2,9 @@ package com.onetrillion.trip.board.impl;
 
 import java.util.List;
 
+import com.onetrillion.trip.board.BoardCriteria;
 import com.onetrillion.trip.board.BoardDTO;
 import com.onetrillion.trip.board.ImageDTO;
-import com.onetrillion.trip.page.Criteria;
 
 public interface BoardService {
 
@@ -26,9 +26,9 @@ public interface BoardService {
 
 	ImageDTO detailImage(int pd_seq);
 	
-	List<BoardDTO> BoardPaging(Criteria cri);
+	List<BoardDTO> BoardPaging(BoardCriteria cri);
 	
-	int BoardCount();
+	int BoardCount(BoardCriteria cri);
 	
 
 }

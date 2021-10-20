@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.onetrillion.trip.board.BoardCriteria;
 import com.onetrillion.trip.board.BoardDTO;
 import com.onetrillion.trip.board.ImageDTO;
 import com.onetrillion.trip.page.Criteria;
@@ -70,13 +71,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardDTO> BoardPaging(Criteria cri) {
+	public List<BoardDTO> BoardPaging(BoardCriteria cri) {
 		return boardMapper.BoardPaging(cri);
 	}
 
 	@Override
-	public int BoardCount() {
-		return boardMapper.BoardCount();
+	public int BoardCount(BoardCriteria cri) {
+		return boardMapper.BoardCount(cri);
 	};
 	
 

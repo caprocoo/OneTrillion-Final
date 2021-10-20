@@ -98,12 +98,12 @@
                     </tr>
                     <tr>
                         <th>출발일</th>
-                        <td><input type="text" class="form-control" placeholder="PD_STARTDATE" id="pd_startDate" value="${list.pd_startDate }"></td>
+                        <td><input type="date" class="form-control" placeholder="PD_STARTDATE" id="pd_startDate" value="${list.pd_startDate }"></td>
                     	<td><span class="ck_warn pd_keyword_warn">출발일을 선택해주세요.</span></td>
                     </tr>
                     <tr>
                         <th>도착일</th>
-                        <td><input type="text" class="form-control" placeholder="PD_ENDDATE" id="pd_endDate" value="${list.pd_endDate }"></td>
+                        <td><input type="date" class="form-control" placeholder="PD_ENDDATE" id="pd_endDate" value="${list.pd_endDate }"></td>
                     	<td><span class="ck_warn pd_endDate_warn">도착일을 선택해주세요.</span></td>
                     </tr>
                     <tr>

@@ -48,20 +48,45 @@
        </c:forEach> 
        <!---------forEach 끝-------------------------------------------------------------------------------------------------------------------------->
      </table>
-<div>
- <ul>
-  <c:if test="${pageMaker.prev}">
-   <li><a href="listPage.do${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
-  </c:if> 
-  
-  <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-   <li><a href="listPage.do${pageMaker.makeQuery(idx)}">${idx}</a></li>
-  </c:forEach>
-    
-  <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-   <li><a href="listPage.do${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
-  </c:if> 
- </ul>
-</div>
+       <form id = "moveForm" method = "get">
+        <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
+        <input type="hidden" name="amount" value="${pageMaker.cri.amount }">  
+         <input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
+         <input type="hidden" name="type" value="${pageMaker.cri.type }">
+        </form>
+		<div style="float: left; margin-left: 10px;" class = "pageInfo_area">
+			<ul class="pagination pageInfo" id = "pageInfo">
+				<c:if test="${pageMaker.prev}">
+					<li class="page-item"><a class="page-link"
+						href="${pageMaker.startPage - 1}"
+						aria-label="Previous"
+						style="color: gray; border: 1px solid #ededed"> <span
+							aria-hidden="true">&laquo;</span>
+					</a></li>
+				</c:if>
+				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
+					<li class="page-item pageInfo_btn ${pageMaker.cri.pageNum == num ? "active":"" }"><a class="page-link pageInfo_btn" href="${num}"
+						style="color: gray; border: 1px solid #ededed">${num}</a></li>
+				</c:forEach>
+
+				<c:if test="${pageMaker.next}">
+					<li class="page-item"><a class="page-link"
+						href="${pageMaker.endPage + 1}"
+						aria-label="Next"
+						style="color: gray; border: 1px solid #ededed"> <span
+							aria-hidden="true">&raquo;</span>
+					</a></li>
+				</c:if>
+			</ul>
+		</div>
+		<script type="text/javascript">
+    	let moveForm = $('#moveForm');
+		$(".pageInfo a").on("click", function(e){
+			e.preventDefault();
+	        moveForm.find("input[name='pageNum']").val($(this).attr("href"));
+	        moveForm.attr("action", "/trip/board/listPage.do");
+	        moveForm.submit(); 
+	    });
+		</script>
 </body>
 </html>

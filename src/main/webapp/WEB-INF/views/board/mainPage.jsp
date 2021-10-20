@@ -7,9 +7,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
 <style type="text/css">
+#themebox a{
+text-decoration: none;
+color: gray
+}
 .mySlides img {
 	width: 100%;
 	height: 500px;
@@ -101,25 +105,25 @@
 }
 
 /* Fading animation */
-.fade {
-	-webkit-animation-name: fade;
+.fade2 {
+	-webkit-animation-name: fade2;
 	-webkit-animation-duration: 1.5s;
-	animation-name: fade;
+	animation-name: fade2;
 	animation-duration: 1.5s;
 }
 
-@-webkit-keyframes fade {
+@-webkit-keyframes fade2 {
 	from {opacity: .4
-}
+	}
 
 to {
 	opacity: 1
 }
 
 }
-@keyframes fade {
+@keyframes fade2 {
 	from {opacity: .4
-}
+	}
 
 to {
 	opacity: 1
@@ -211,7 +215,7 @@ li.slider>imgs {
 	<jsp:include page="../include/header2.jsp"></jsp:include>
 	<div class="slideshow-container">
 
-		<div class="mySlides fade" id="mySlides001">
+		<div class="mySlides fade2" id="mySlides001">
 			<img src="http://jjcom0214.cafe24.com/web/OneTrillion/busan.jpg"
 				style="width: 100%">
 			<div class="text">
@@ -219,7 +223,7 @@ li.slider>imgs {
 			</div>
 		</div>
 
-		<div class="mySlides fade" id="mySlides002">
+		<div class="mySlides fade2" id="mySlides002">
 			<img src="http://jjcom0214.cafe24.com/web/OneTrillion/jeju.jpg"
 				style="width: 100%">
 			<div class="text">
@@ -227,17 +231,14 @@ li.slider>imgs {
 			</div>
 		</div>
 
-		<div class="mySlides fade" id="mySlides003">
+		<div class="mySlides fade2" id="mySlides003">
 			<img src="http://jjcom0214.cafe24.com/web/OneTrillion/korea.jpg"
 				style="width: 100%">
 			<div class="text">
 				<div>한국의 이모저모</div>
 			</div>
 		</div>
-
-		<a class="prev" onclick="plusSlides(-1)">&#10094;</a> <a class="next"
-			onclick="plusSlides(1)">&#10095;</a>
-
+		<a class="prev" onclick="plusSlides(-1)">&#10094;</a> <a class="next" onclick="plusSlides(1)">&#10095;</a>
 	</div>
 	<script>
 		$("#mySlides001").click(function(){
@@ -250,16 +251,11 @@ li.slider>imgs {
 			location.href="<%=request.getContextPath()%>/board/search.do";
 		})
 	</script>
-	<br>
-
-	<div style="text-align: center">
+	<div style="text-align: center; display:none">
 		<span class="dot" onclick="currentSlide(1)"></span> <span class="dot"
 			onclick="currentSlide(2)"></span> <span class="dot"
 			onclick="currentSlide(3)"></span>
 	</div>
-
-
-
 	<div id="first">
 		<div id="themebox"
 			style="margin: auto; position: relative; top: 10px;">
