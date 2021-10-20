@@ -25,12 +25,10 @@
             margin: 0;
             padding: 0;
         }
-
         .list-group-item:hover {
             cursor: pointer;
             background-color: #f8f9fa;
         }
-
         .adminMainDiv1 p {
             margin-bottom: 0;
             line-height: 45px;
@@ -38,7 +36,6 @@
             font-weight: bold;
             border-radius: 20px 20px 0 0;
         }
-
         #adminMemtable1 th {
             width: 25%;
             height: 40px;
@@ -46,11 +43,9 @@
             border-bottom: 1px solid white;
             text-align: center;
         }
-
         #adminMemtable1 td {
             border-bottom: 1px solid #ededed;
         }
-
         .form-control {
             border: 0;
         }
@@ -66,30 +61,9 @@
         }
     </style>
 </head>
-
 <body>
     <div style="width: 1800px; height: 100vh;">
-        <div style="float: left; width: 250px; height: 100%; box-shadow: 0 0 20px #ededed; position: fixed;">
-            <div style="margin:auto; width: 80%;"><img style="width: 100%; margin-top: 40px; margin-bottom: 40px;"
-                    src="http://jjcom0214.cafe24.com/web/OneTrillion/logo02.png" alt="logo01"></div>
-            <div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" onclick="">메인</li>
-                    <li class="list-group-item" onclick="">회원예약</li>
-                    <li class="list-group-item" onclick="">비회원예약</li>
-                    <li class="list-group-item" onclick="">문의</li>
-                    <li class="list-group-item" onclick="">리뷰</li>
-                    <li class="list-group-item" onclick="">회원</li>
-                    <li class="list-group-item" onclick="">상품</li>
-                    <li class="list-group-item" onclick="">관리자</li>
-                    <li class="list-group-item" onclick="">찜</li>
-                    <li class="list-group-item" onclick="">공지사항</li>
-                    <li class="list-group-item" onclick="">자주질문</li>
-                    <li class="list-group-item" onclick="">로그기록</li>
-                    <li class="list-group-item" onclick="">메모장</li>
-                </ul>
-            </div>
-        </div>
+        		<jsp:include page="../include/adminInclude.jsp"></jsp:include>
         <div style="float:right; width: 1500px;height: auto;">
             <div
                 style="margin-top: 40px; margin-bottom: 40px; width: 1000px; height: auto; border-radius: 20px; box-shadow: 0 0 20px #ededed;">
@@ -125,11 +99,11 @@
                         <td><input type="text" class="form-control" value="${wishList.pd_price}" id="pd_price" readonly="readonly"></td>
                     </tr>
                     <tr>
-                        <th>상품이미지</th>
+                        <th>이미지URL</th>
                         <td><input type="text" class="form-control" value="${wishList.pd_image}" id="pd_image" readonly="readonly"></td>
                     </tr>
                     <tr>
-                        <th>회원명</th>
+                        <th>회원ID</th>
                         <td><input type="text" class="form-control" id="u_id" value="${wishList.u_id}" readonly="readonly"></td>
                     </tr>
                 </table>

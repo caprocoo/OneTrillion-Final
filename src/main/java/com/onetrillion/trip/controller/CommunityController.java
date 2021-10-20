@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.onetrillion.trip.community.CommunityDTO;
+import com.onetrillion.trip.community.CommunityReplyDTO;
 import com.onetrillion.trip.community.impl.CommunityService;
 
 
@@ -41,7 +42,7 @@ public class CommunityController {
 	public String adminAns_detail(@RequestParam("com_seq") int com_seq, Model model) {
 		CommunityDTO dto = service.detail(com_seq);	
 		model.addAttribute("dto", dto);
-		System.out.println(dto );
+		//System.out.println(dto );
 		
 		dto.setCom_cnt(dto.getCom_cnt() + 1);
 		service.cntUp(dto); // 조회수 증가
@@ -88,7 +89,18 @@ public class CommunityController {
 		service.delete(dto);
 		return "redirect:/community/list.do";	
 	}
+//==============================================================위에는 게시판 내용
+//	
+//    @RequestMapping(value = "/replyInput.do" , method = RequestMethod.POST)
+//    public String Replyinput(@RequestParam("com_seq") int com_seq, CommunityReplyDTO reply_dto) {
+//    	
+//    	service.replyInsert(reply_dto);
+//    	System.out.println(reply_dto);
+//	
+//        return "redirect:/community/detail.do?com_seq="+com_seq;
+//    }
 
+	
 	
 	
 }

@@ -49,6 +49,8 @@
 		      select * from TRIL_REPLY where reply_seq=#{reply_seq}]]>
 	</select>
 	
+
+	
 	<update id="replyModify">
 		<![CDATA[
 		update TRIL_REPLY set
@@ -62,6 +64,13 @@
 		<![CDATA[
 			delete from TRIL_REPLY where reply_seq=#{reply_seq}]]>
 	</delete>
+	
+	<update id="replyLikeCountUp">
+		<![CDATA[
+		update TRIL_REPLY set reply_like=reply_like+1 where reply_seq=#{reply_seq}
+		]]>
+	</update>
+	
 	
 
 	

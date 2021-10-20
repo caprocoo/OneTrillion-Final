@@ -60,12 +60,12 @@
                         <td>
                             <div>
 
-                                <div><img style="width: 400px; margin-bottom: 40px;"
-                                        src="http://jjcom0214.cafe24.com/web/OneTrillion/logo02.png" alt="logo01"></div>
+                                <div><img style="width: 400px; margin-bottom: 40px; cursor: pointer;"
+                                        src="http://jjcom0214.cafe24.com/web/OneTrillion/logo02.png" alt="logo01" onclick="GoHome()"></div>
                                 <h2 style="margin-bottom: 20px;">회원가입이 <br>
                                     <strong>완료</strong>되었습니다.
                                 </h2>
-                                <p style="margin-bottom: 20px;"><strong>${u_id}</strong>님의 회원가입을 축하합니다<br>
+                                <p style="margin-bottom: 20px;"><strong>회원</strong>님의 회원가입을 축하합니다<br>
                                     좋은 서비스로 보답하겠습니다</p>
                                 <button type="button" class="btn btn-secondary"
                                     onClick="location.href='/trip/'">홈으로</button><button type="button"
@@ -75,6 +75,11 @@
                     </tr>
                 </table>
             </div>
+            <script>
+	            function GoHome() {
+					location.href='http://localhost:8088/trip/';
+				}
+            </script>
         </body>
 
         </html>

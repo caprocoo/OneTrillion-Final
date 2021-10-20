@@ -63,7 +63,7 @@
 			<span>상품 선택</span>
 			</div>
 			<!-- 검색 영역 -->
-			<div class="search_wrap keyword">
+			<div class="search_wrap keyword" style="margin-left: 700px; margin-top: 20px;">
 				<input type="text" class="form-control keyword1" placeholder="검색할 단어를 입력하세요"
 				aria-label="Recipient's username" aria-describedby="button-addon2"
 				 style="border:1px solid #ededed;">
@@ -74,7 +74,7 @@
 			<div class="content_wrap">
 					<div class="table_wrap">
 	               			<div class="table_exist">
-		                    	<table class="table tr001">
+		                    	<table class="table">
 		                    		<thead>
 		                    			<tr>
 		                    				<td>상품번호</td>
@@ -82,11 +82,11 @@
 		                    				<td>출발일</td>
 		                    				<td>도착일</td>
 		                    				<td>가격</td>
-		                    				<td>이미지</td>
+		                    				<td>이미지 URL</td>
 		                    			</tr>
 		                    		</thead>
 		                    		<c:forEach items="${list}" var="list">
-		                    		<tr>
+		                    		<tr class="tr001">
 		                    			<td data-name="${list.pd_seq}">${list.pd_seq}</td>
 		                    			<td data-name="${list.pd_name}"><a class="move" href="${list.pd_seq}">${list.pd_name}</a></td>
 		                    			<td data-name="${list.pd_startDate}">${list.pd_startDate}</td>
@@ -101,12 +101,12 @@
 		</div>
 </body>
 <script>
-	/* 	//검색2 ---------------------------------------------------
+	 	//검색2 ---------------------------------------------------
 		$(".keyword1").keyup(function() {
 		    $(".tr001").hide();
 		    $(".tr001:contains(" + $(this).val() + ")").show();
 		});
-		// 검색2 끝--------------------------------------------------- */
+		// 검색2 끝--------------------------------------------------- 
 	
 	
 		// 자식창의 text값 부모창으로 전달

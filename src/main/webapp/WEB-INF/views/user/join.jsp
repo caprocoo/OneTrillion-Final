@@ -265,9 +265,9 @@
                                                 <div style="margin-bottom: 40px;">
                                                     <form action="join.do" method="POST" id="signform">
                                                         <div style="text-align: center;"><img
-                                                                style="width: 300px; margin-bottom: 40px;"
+                                                                style="width: 300px; margin-bottom: 40px; cursor:pointer"
                                                                 src="http://jjcom0214.cafe24.com/web/OneTrillion/logo02.png"
-                                                                alt="logo01">
+                                                                alt="logo01" onclick="GoHome()">
                                                         </div>
 
                                                         <!-- 아이디 입력칸 --------------------------------------------------------------------->
@@ -2364,6 +2364,11 @@
              
                                     //---동의 체크--------------------------------------------------------------------------------------
 
+                                    
+                                    function GoHome() {
+										location.href='http://localhost:8088/trip/';
+									}
+                                 
                                 </script>
 
                     </body>

@@ -39,7 +39,7 @@
 </head>
 <body>
     <div class="adminMainDiv1">
-        <table class="table">
+        <table class="table" onclick="link_7()" style="cursor: pointer;">
             <thead>
                 <tr>
                     <th scope="col">찜번호</th>
@@ -59,4 +59,9 @@
         </table>
     </div>
 </body>
+<script>
+function link_7(){ 
+	window.parent.location.href = "http://localhost:8088/trip/adminWishlist/list.do"
+}
+</script>
 </html>

@@ -3,7 +3,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,7 +34,7 @@
 </head>
 
 <body>
-    <div
+     <div
         style="float: left; width: 250px; height: 100%; box-shadow: 0 0 20px #ededed; position: fixed; background-color: white;">
         <div style="margin:auto; width: 80%;">
         	<img style="width: 100%; margin-top: 40px; margin-bottom: 40px; cursor: pointer;"  onclick="link_1()" 
@@ -56,9 +55,16 @@
 				<li class="list-group-item" onclick="link_11()">자주하는질문</li>
 				<li class="list-group-item" onclick="link_12()">로그기록</li>
 				<li class="list-group-item" onclick="link_13()">메모장</li>
+				<li class="list-group-item" id="gohome">사이트이동</li>
+				<c:if test="${sessionScope.AD_ID != null }">
+				<li class="list-group-item" id="adminLogout">${AD_ID } 로그아웃</li>
+				</c:if>
+<%-- 				<c:if test="${sessionScope.AD_ID == null }">
+				<li class="list-group-item" id="gohome">사이트이동</li>
+				</c:if> --%>
             </ul>
         </div>
-             <c:if test="${sessionScope.AD_ID != null }">
+<%--              <c:if test="${sessionScope.AD_ID != null }">
 	             <div style="padding-top: 50px">
 					<a id="adminLogout" style="cursor: pointer; color: purple; padding: 30px;">${AD_ID } 로그아웃</a>
 				</div>	
@@ -67,7 +73,7 @@
 				<div style="padding-top: 50px">
 				<a id="gohome" style="cursor: pointer; color: purple; padding: 30px;">홈페이지로 이동</a>
 				</div>
-			</c:if>
+			</c:if> --%>
     </div>
 </body>
 	<script type="text/javascript">
@@ -90,10 +96,10 @@
 			location.href = "http://localhost:8088/trip/admin/list.do"
 		}
 		function link_7(){ //찜
-			location.href = ""
+			location.href = "http://localhost:8088/trip/adminWishlist/list.do"
 		}	
 		function link_8(){ //상품정보
-			location.href = ""
+			location.href = "http://localhost:8088/trip/adminProduct/list.do"
 		}	
 		function link_9(){ //관리자정보
 			location.href = ""
@@ -107,6 +113,9 @@
 		function link_12(){ //로그기록
 			location.href = "http://localhost:8088/trip/logRecord/list.do"
 		}	
+		function link_13(){ //메모장
+			location.href = "http://localhost:8088/trip/adminMemo/list.do"
+		}
 		function link_13(){ //메모장
 			location.href = "http://localhost:8088/trip/adminMemo/list.do"
 		}	

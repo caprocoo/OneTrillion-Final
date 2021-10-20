@@ -69,7 +69,7 @@ public class AdminUserResController {
 
 	@RequestMapping(value = "/modify.do", method = RequestMethod.POST)
 	public String AdminUserResModifyCommit(UserResDTO dto, HttpSession session) {
-		//System.out.println(dto);
+		System.out.println(dto);
 		String AD_ID = (String) session.getAttribute("AD_ID");
 		String log_content = "MODIFY";
 		LogRecordDTO userInsertLog = setLogRecord(AD_ID, dto.getUres_seq(), log_content, dto.getPd_name());

@@ -33,10 +33,12 @@ SELECT * FROM Tril_PRODUCT ORDER BY PD_SEQ ASC
 
 <![CDATA[
 		update Tril_PRODUCT set
-		pd_seq=#{pd_seq}, pd_name=#{pd_name}, pd_price=#{pd_price}
-		, pd_keyword=#{pd_keyword}, pd_startDate=#{pd_startDate}, pd_endDate=#{pd_endDate}
-		, pd_cnt=#{pd_cnt}, pd_theme=#{pd_theme}, pd_people=#{pd_people}
-		, pd_image=#{pd_image}, pd_content1=#{pd_content1}
+		pd_seq=#{pd_seq}, pd_name=#{pd_name}, pd_price=#{pd_price}, pd_keyword=#{pd_keyword}, pd_startDate=#{pd_startDate}, pd_endDate=#{pd_endDate},
+		pd_cnt=#{pd_cnt}, pd_theme=#{pd_theme}, pd_people=#{pd_people}, pd_image=#{pd_image}, pd_content1=#{pd_content1}
+		, pd_location=#{pd_location}, adult_num=#{adult_num}, teenager_num=#{teenager_num}, pet_num=#{pet_num}, adult_price=#{adult_price}
+		, teenager_price=#{teenager_price}, pet_price=#{pet_price}, pd_content2=#{pd_content2}, pd_content3=#{pd_content3}
+		, pd_content4=#{pd_content4}, pd_content5=#{pd_content5}, pd_contentImage1=#{pd_contentImage1}, pd_contentImage2=#{pd_contentImage2}
+		, pd_contentImage3=#{pd_contentImage3}, pd_contentImage4=#{pd_contentImage4}, pd_contentImage5=#{pd_contentImage5}
 		where pd_seq=#{pd_seq}]]>
 </update>
 
@@ -63,13 +65,15 @@ SELECT * FROM Tril_PRODUCT ORDER BY PD_SEQ ASC
 <insert id="insert">
 <![CDATA[
 		insert into
-		Tril_PRODUCT(pd_seq, pd_name, pd_price, pd_keyword, pd_startDate, pd_endDate, pd_cnt, pd_theme, pd_people, pd_image, pd_content1)
-		values(
+		Tril_PRODUCT values(
 		(select nvl(max(pd_seq), 0)+1 from Tril_PRODUCT)
-		,#{pd_name},#{pd_price},#{pd_keyword},#{pd_startDate},#{pd_endDate},#{pd_cnt},#{pd_theme},#{pd_people},#{pd_image},#{pd_content1})
+		,#{pd_name},#{pd_price},#{pd_keyword},#{pd_startDate},#{pd_endDate},#{pd_cnt},#{pd_theme},#{pd_people},#{pd_image},#{pd_content1}
+		, #{pd_location}, #{adult_num}, #{teenager_num}, #{pet_num}, #{adult_price}, #{teenager_price}, #{pet_price}, #{pd_content2}, #{pd_content3}
+		, #{pd_content4}, #{pd_content5}, #{pd_contentImage1}, #{pd_contentImage2}, #{pd_contentImage3}, #{pd_contentImage4}, #{pd_contentImage5})
 ]]>		
 </insert>
 
+ 
 <select resultType="com.onetrillion.trip.board.BoardDTO" id="theme">
 
 <![CDATA[

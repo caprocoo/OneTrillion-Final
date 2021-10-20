@@ -64,8 +64,9 @@ public class BoardController {
 	@RequestMapping(value = "/detail.do", method = RequestMethod.GET) 
 	public String detail(Model model, int pd_seq, HttpSession session) {
 		BoardDTO dto = service.detail(pd_seq);
-		UserResDTO userDTO = userResService.userResDetail(pd_seq);
-		
+		UserResDTO userDTO = userResService.userResPdDetail(pd_seq);
+		System.out.println(pd_seq);
+		System.out.println(userDTO);
 		String u_id = (String) session.getAttribute("u_id");
 		WishlistDTO wDto = wishService.wishlistDetail(u_id, pd_seq); // 10/14 이희연 찜목록에서 detail.do로 이동
 		
@@ -164,47 +165,6 @@ public class BoardController {
 			return searchList.toString(2);
 		}
 	}
-	
-	//관리자 상품 수정 페이지 이동
-	@RequestMapping(value = "modify.do", method = RequestMethod.GET)
-	public String modifyGet(@RequestParam("pd_seq") int pd_seq, Model model) {
-		BoardDTO dto = service.detail(pd_seq);
-		model.addAttribute("dto", dto);
-		return "board/modify";
-	}
-	//관리자 상품 수정 완료(Ajax)
-	@RequestMapping(value = "modify.do", method = RequestMethod.POST)
-	public String modifyPost(@RequestParam("pd_seq") int pd_seq, Model model, BoardDTO dto) {
-		model.addAttribute("pd_seq", pd_seq);
-		service.modify(dto);
-		return "redirect:detail.do";
-
-	}
-	//관리자가 상품 삭제 완료(Ajax)
-	@RequestMapping(value = "delete.do", method = RequestMethod.POST)
-	public String deletePost(BoardDTO dto) {
-		service.delete(dto);
-		return "redirect:search.do";
-	}
-	
-	//관리자 상품 입력 페이지 이동
-	@RequestMapping(value = "/insert.do", method = RequestMethod.GET)
-	public String insertGet() {
-		
-		return "board/insert";
-	}
-	
-	//관리자 상품 입력 완료
-	@RequestMapping(value = "/insert.do", method = RequestMethod.POST)
-	public String insertPost(BoardDTO dto) {
-		System.out.println(dto);
-		int cnt = service.insert(dto);
-		if (cnt > 0) {
-			return "redirect:search.do";
-		}
-		return "board/insert";
-	}
-	
 	
 	//회원 예약하기 페이지 이동
 	@RequestMapping(value = "reservation.do", method = RequestMethod.GET)

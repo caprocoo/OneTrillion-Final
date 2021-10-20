@@ -51,6 +51,12 @@
                      <input type="text" name = "reply_rate" value = ${replyDetail.reply_rate }>
                  </td>
              </tr>
+             <tr>
+                 <th>좋아요</th>
+                 <td>
+                     <input type="text" name = "reply_like" value = ${replyDetail.reply_like }>
+                 </td>
+             </tr>
          </table>
              <input type="submit" value="댓글 수정">
   

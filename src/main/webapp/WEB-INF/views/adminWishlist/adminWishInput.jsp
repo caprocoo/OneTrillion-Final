@@ -60,25 +60,8 @@
 
 <body>
     <div style="width: 1800px; height: 100vh;">
-		<jsp:include page="../include/adminInclude.jsp"></jsp:include>s
-            <div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" onclick="">메인</li>
-                    <li class="list-group-item" onclick="">회원예약</li>
-                    <li class="list-group-item" onclick="">비회원예약</li>
-                    <li class="list-group-item" onclick="">문의</li>
-                    <li class="list-group-item" onclick="">리뷰</li>
-                    <li class="list-group-item" onclick="">회원</li>
-                    <li class="list-group-item" onclick="">상품</li>
-                    <li class="list-group-item" onclick="">관리자</li>
-                    <li class="list-group-item" onclick="">찜</li>
-                    <li class="list-group-item" onclick="">공지사항</li>
-                    <li class="list-group-item" onclick="">자주질문</li>
-                    <li class="list-group-item" onclick="">로그기록</li>
-                    <li class="list-group-item" onclick="">메모장</li>
-                </ul>
-            </div>
-        </div>
+        		<jsp:include page="../include/adminInclude.jsp"></jsp:include>
+
         <div style="float:right; width: 1500px;height: auto;">
             <div
                 style="margin-top: 40px; margin-bottom: 40px; width: 1000px; height: auto; border-radius: 20px; box-shadow: 0 0 20px #ededed;">
@@ -114,11 +97,11 @@
                         <td><input type="text" class="form-control" id="pd_price" readonly="readonly"></td>
                     </tr>
                     <tr>
-                        <th>상품이미지</th>
+                        <th>이미지URL</th>
                         <td><input type="text" class="form-control" id="pd_image" readonly="readonly"></td>
                     </tr>
                     <tr>
-                        <th>회원명</th>
+                        <th>회원ID</th>
                         <td><input type="text" class="form-control" id="u_id" placeholder="회원을 선택해주세요." readonly="readonly"></td>
                     </tr>
                 </table>

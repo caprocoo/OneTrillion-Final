@@ -3,87 +3,69 @@ package com.onetrillion.trip.community;
 public class CommunityReplyDTO {
 	
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 커뮤니티 댓글[10/19 한보영]
-//	--[커뮤니티  TABLE ]--
-//	-- PK : re_seq 
-//	-- FK : com_seq 
-//	--not null : re_seq , com_seq 
-//
-//	CREATE TABLE TRIL_community_reply (  --커뮤니티 댓글
-//	   re_seq NUMBER(10) NOT NULL,  
-//	   com_seq NUMBER(10) NOT NULL,
-//	   parent_seq NUMBER(10), 
-//	   re_depth NUMBER(10),
-//	   re_content CLOB,
-//	   re_writer VARCHAR2(100),
-//	   re_psw VARCHAR2(30),
-//	   re_date VARCHAR2(30),
-//	   CONSTRAINT pk_re_seq PRIMARY KEY(re_seq),
-//	   CONSTRAINT "fk_com_seq_reply" FOREIGN KEY(com_seq) 
-//	       REFERENCES TRIL_community(com_seq) ON DELETE CASCADE
-//	);
-//
-//	--[ 커뮤니티 SEQUENCE]--
-//	CREATE SEQUENCE re_seq START WITH 1 INCREMENT BY 1;
-//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@	
+	private String rno;
+	private String com_seq;	//	댓글이 속한 게시글 번호 (받아와야 하는 값)
+	private int grp;	//	댓글 그룹 번호 (모댓글과 거기에 속한 대댓글은 같은 grp를 가짐)
+	private int grps;	//	그룹 내 댓글 순서 (오래된글 ~ 최신글  오름차순)
+	private int grpl;	//	그룹내 댓글 깊이(댓글인지 대댓글인지)
+	private String writer;
+	private String re_content;
+	private String wdate;
 	
 	
-	private int re_seq ;  //댓글 seq
-	private int com_seq ;  //커뮤니티 게시판 글 seq
-	private int parent_seq ;  //부모 seq
-	private int re_depth ;  //깊이
-	private String re_content ; //내용
-	private String re_writer ;  //글쓴이
-	private String re_psw ; //비밀번호
-	private String re_date ; //댓글 날짜
 	
-	
-	public CommunityReplyDTO() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	public CommunityReplyDTO(int re_seq, int com_seq, int parent_seq, int re_depth, String re_content, String re_writer,
-			String re_psw, String re_date) {
-		super();
-		this.re_seq = re_seq;
-		this.com_seq = com_seq;
-		this.parent_seq = parent_seq;
-		this.re_depth = re_depth;
-		this.re_content = re_content;
-		this.re_writer = re_writer;
-		this.re_psw = re_psw;
-		this.re_date = re_date;
-	}
-
 	@Override
 	public String toString() {
-		return "CommunityReplyDTO [re_seq=" + re_seq + ", com_seq=" + com_seq + ", parent_seq=" + parent_seq
-				+ ", re_depth=" + re_depth + ", re_content=" + re_content + ", re_writer=" + re_writer + ", re_psw="
-				+ re_psw + ", re_date=" + re_date + "]";
+		return "CommunityReplyDTO [rno=" + rno + ", com_seq=" + com_seq + ", grp=" + grp + ", grps=" + grps + ", grpl="
+				+ grpl + ", writer=" + writer + ", re_content=" + re_content + ", wdate=" + wdate + "]";
 	}
-
-	public int getRe_seq() {
-		return re_seq;
+	public CommunityReplyDTO(String rno, String com_seq, int grp, int grps, int grpl, String writer, String re_content,
+			String wdate) {
+		super();
+		this.rno = rno;
+		this.com_seq = com_seq;
+		this.grp = grp;
+		this.grps = grps;
+		this.grpl = grpl;
+		this.writer = writer;
+		this.re_content = re_content;
+		this.wdate = wdate;
 	}
-	public void setRe_seq(int re_seq) {
-		this.re_seq = re_seq;
+	public String getRno() {
+		return rno;
 	}
-	public int getCom_seq() {
+	public void setRno(String rno) {
+		this.rno = rno;
+	}
+	public String getCom_seq() {
 		return com_seq;
 	}
-	public void setCom_seq(int com_seq) {
+	public void setCom_seq(String com_seq) {
 		this.com_seq = com_seq;
 	}
-	public int getParent_seq() {
-		return parent_seq;
+	public int getGrp() {
+		return grp;
 	}
-	public void setParent_seq(int parent_seq) {
-		this.parent_seq = parent_seq;
+	public void setGrp(int grp) {
+		this.grp = grp;
 	}
-	public int getRe_depth() {
-		return re_depth;
+	public int getGrps() {
+		return grps;
 	}
-	public void setRe_depth(int re_depth) {
-		this.re_depth = re_depth;
+	public void setGrps(int grps) {
+		this.grps = grps;
+	}
+	public int getGrpl() {
+		return grpl;
+	}
+	public void setGrpl(int grpl) {
+		this.grpl = grpl;
+	}
+	public String getWriter() {
+		return writer;
+	}
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
 	public String getRe_content() {
 		return re_content;
@@ -91,27 +73,12 @@ public class CommunityReplyDTO {
 	public void setRe_content(String re_content) {
 		this.re_content = re_content;
 	}
-	public String getRe_writer() {
-		return re_writer;
+	public String getWdate() {
+		return wdate;
 	}
-	public void setRe_writer(String re_writer) {
-		this.re_writer = re_writer;
+	public void setWdate(String wdate) {
+		this.wdate = wdate;
 	}
-	public String getRe_psw() {
-		return re_psw;
-	}
-	public void setRe_psw(String re_psw) {
-		this.re_psw = re_psw;
-	}
-	public String getRe_date() {
-		return re_date;
-	}
-	public void setRe_date(String re_date) {
-		this.re_date = re_date;
-	}
-	
-	
-	
 	
 	
 	

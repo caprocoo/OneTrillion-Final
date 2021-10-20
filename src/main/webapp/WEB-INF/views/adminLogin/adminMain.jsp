@@ -82,17 +82,17 @@
                         style="width: 100%; height: 255px; border-radius: 0 0 20px 20px;" scrolling="no"></iframe>
 
                 </div>
-                <div class="adminMainDiv1">
+                <div class="adminMainDiv1" onclick="link_8()">
                     <p>상품정보</p>
                     <!--요기에 클릭시 해당페이지 넘어가게 설정-->
-                    <iframe src="adminPdMini.html" frameborder="0"
+                    <iframe src="http://localhost:8088/trip/adminProduct/mini.do" frameborder="0"
                         style="width: 100%; height: 255px; border-radius: 0 0 20px 20px;" scrolling="no"></iframe>
 
                 </div>
                 <div class="adminMainDiv1">
                     <p>회원정보</p>
                     <!--요기에 클릭시 해당페이지 넘어가게 설정-->
-                    <iframe src="adminMemMini.html" frameborder="0"
+                    <iframe src="http://localhost:8088/trip/adminUserManagement/userMiniList" frameborder="0"
                         style="width: 100%; height: 255px; border-radius: 0 0 20px 20px;" scrolling="no"></iframe>
 
                 </div>
@@ -192,10 +192,12 @@
 function link_6(){ //1:1문의
 	location.href = "http://localhost:8088/trip/admin/list.do"
 }
-function link_7(){ //찜목록
+function link_7(){ // 회원찜내역
 	location.href = "http://localhost:8088/trip/adminWishlist/list.do"
 }
-
+function link_8(){ // 상품정보
+	location.href = "http://localhost:8088/trip/adminProduct/list.do"
+}
 
 
 //===============================================================메모장 등록

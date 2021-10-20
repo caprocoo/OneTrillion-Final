@@ -108,8 +108,7 @@
 	animation-duration: 1.5s;
 }
 
-@
--webkit-keyframes fade {
+@-webkit-keyframes fade {
 	from {opacity: .4
 }
 
@@ -118,8 +117,7 @@ to {
 }
 
 }
-@
-keyframes fade {
+@keyframes fade {
 	from {opacity: .4
 }
 
