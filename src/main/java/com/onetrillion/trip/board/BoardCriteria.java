@@ -1,78 +1,56 @@
 package com.onetrillion.trip.board;
 
-import com.onetrillion.trip.page.Criteria;
 
-public class BoardCriteria implements Criteria {
+public class BoardCriteria {
 	
-	private int page;
-	private int perPageNum;
-	private int rowStart;
-	private int rowEnd;
-	
-	
-	 public BoardCriteria()
-	 {
-	  this.page = 1;
-	  this.perPageNum = 10;
-	 }
+	private int pageNum;
+	private int amount;
+	private String keyword;
+	private String type;
+	private String[] typeArr;
+	public BoardCriteria() {
+		this(1,10);
+	}
+	public BoardCriteria(int pageNum, int amount) {
+		
+		this.pageNum = pageNum;
+		this.amount = amount;
+	}
+	public int getPageNum() {
+		return pageNum;
+	}
+	public void setPageNum(int pageNum) {
+		this.pageNum = pageNum;
+	}
+	public int getAmount() {
+		return amount;
+	}
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+		this.typeArr = type.split("");
+	}
+	public String[] getTypeArr() {
+		return typeArr;
+	}
+	public void setTypeArr(String[] typeArr) {
+		this.typeArr = typeArr;
+	}
+	@Override
+	public String toString() {
+		return "LogRecordCriteria [pageNum=" + pageNum + ", amount=" + amount + ", keyword=" + keyword + ", type="
+				+ type + ", typeArr=" + typeArr + "]";
+	}
 
-	 @Override
-	public void setPage(int page)
-	 {
-	  if (page <= 0)
-	  {
-	   this.page = 1;
-	   return;
-	  }
-	  this.page = page;
-	 }
-
-	 @Override
-	public void setPerPageNum(int perPageNum)
-	 {
-	  if (perPageNum <= 0 || perPageNum > 100)
-	  {
-	   this.perPageNum = 10;
-	   return;
-	  }
-	  this.perPageNum = perPageNum;
-	 }
-
-	 @Override
-	public int getPage()
-	 {
-	  return page;
-	 }
-
-	 @Override
-	public int getPageStart()
-	 {
-	  return (this.page - 1) * perPageNum;
-	 }
-
-	 @Override
-	public int getPerPageNum()
-	 {
-	  return this.perPageNum;
-	 }
-
-	 @Override
-	 public String toString() {
-	  return "Criteria [page=" + page + ", perPageNum=" + perPageNum + ""
-	    + ", rowStart=" +  getRowStart() + ", rowEnd=" + getRowEnd()
-	    + "]";
-	 }
-
-	 @Override
-	public int getRowStart() {
-	  rowStart = ((page - 1) * perPageNum) + 1;
-	  return rowStart;
-	 }
-
-	 @Override
-	public int getRowEnd() {
-	  rowEnd = rowStart + perPageNum - 1;
-	  return rowEnd;
-	 }
-	
 }

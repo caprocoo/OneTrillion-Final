@@ -81,26 +81,54 @@ SELECT * FROM Tril_PRODUCT ORDER BY PD_SEQ ASC
       ]]>
 </select>
 
-<select resultType="com.onetrillion.trip.board.BoardDTO" id="BoardPaging">
 
-<![CDATA[
-	SELECT pd_seq, pd_name, pd_price, pd_keyword, pd_startDate, pd_endDate, pd_cnt, pd_theme, pd_people, pd_image, pd_content1, pd_location, adult_num, teenager_num, pet_num, adult_price, 
-	teenager_price, pet_price
-	FROM
-	(
-		SELECT pd_seq, pd_name, pd_price, pd_keyword, pd_startDate, pd_endDate, pd_cnt, pd_theme, pd_people, pd_image, pd_content1, pd_location, adult_num, teenager_num, pet_num, adult_price, 
-		teenager_price, pet_price,
-		ROW_NUMBER() over(ORDER BY pd_seq ASC) AS rn 
-		FROM TRIL_PRODUCT 
-	) WHERE rn BETWEEN #{rowStart} AND #{rowEnd} ORDER BY PD_SEQ ASC 
-	      ]]>
-</select>
+	<!-- 검색 조건문 -->
+    <sql id="BoardCriteria">
+        <trim prefix="AND (" suffix=")" prefixOverrides="OR">
+            <foreach collection="typeArr" item="type">
+                <trim prefix="OR">
+                    <choose>
+                        <when test="type == 'T'.toString()">
+                            pd_name like '%'||#{keyword}||'%' 
+                        </when>
+                        <when test="type == 'C'.toString()">
+                            pd_keyword like '%'||#{keyword}||'%' 
+                        </when>
+                        <when test="type == 'W'.toString()">
+                            pd_content1 like '%'||#{keyword}||'%' 
+                        </when>
+                    </choose>
+                </trim>
+            </foreach>
+        </trim>
+    
+    </sql>
 
-<select resultType="int" id="BoardCount">
 
-	<![CDATA[
-	      select count(pd_seq) from Tril_PRODUCT where pd_seq>0
-	      ]]>
-</select>
+
+	<select resultType="com.onetrillion.trip.board.BoardDTO" id="BoardPaging">
+		<![CDATA[
+	        select * from(
+			    select /*+INDEX_DESC(pd_seq TRIL_PRODUCT) */ rownum  as rn, pd_seq, pd_name, pd_price, pd_keyword, pd_startDate, pd_endDate, pd_cnt, pd_theme, pd_people, pd_image, pd_content1, pd_location, adult_num, teenager_num, pet_num, adult_price, 
+				teenager_price, pet_price
+	                  
+	                from TRIL_PRODUCT where rownum <= #{pageNum} * #{amount} 
+	    ]]>            
+		    <if test="keyword != null">
+		       <include refid="BoardCriteria"></include> 
+		    </if>
+	    <![CDATA[
+	                )
+	        where rn > (#{pageNum} -1) * #{amount} ORDER BY PD_SEQ ASC
+	    ]]>
+	</select>
+	
+	<select resultType="int" id="BoardCount">
+	
+		      select count(pd_seq) from Tril_PRODUCT 
+		      <if test="keyword != null">
+	                 where pd_seq>0  <include refid="BoardCriteria"></include>
+	         </if>
+	</select>
 
 </mapper>

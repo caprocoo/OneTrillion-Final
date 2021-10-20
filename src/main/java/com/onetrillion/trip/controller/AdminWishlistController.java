@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.onetrillion.trip.board.BoardDTO;
 import com.onetrillion.trip.board.impl.BoardService;
+
 import com.onetrillion.trip.user.UserDTO;
 import com.onetrillion.trip.user.Impl.UserService;
+import com.onetrillion.trip.wishlist.PageMakerDTO;
+import com.onetrillion.trip.wishlist.WishListCriteria;
 import com.onetrillion.trip.wishlist.WishlistDTO;
 import com.onetrillion.trip.wishlist.impl.WishlistService;
 
@@ -30,9 +33,14 @@ public class AdminWishlistController {
 	
 	// 전체 리스트 출력
 	@RequestMapping(value = "/list.do", method = RequestMethod.GET)
-	public String ListAll(Model model) {
-		List<WishlistDTO> wishList = service.admin_allList();
+	public String ListAll(Model model, WishListCriteria cri) {
+		List<WishlistDTO> wishList = service.wishListPaging(cri);
 		model.addAttribute("wishList", wishList);
+		
+		int total = service.wishListCount(cri);
+		PageMakerDTO pageMake = new PageMakerDTO(cri, total);
+		model.addAttribute("pageMaker", pageMake);
+		
 		return "adminWishlist/adminWish";
 	}
 	

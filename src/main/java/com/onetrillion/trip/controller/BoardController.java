@@ -33,6 +33,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.onetrillion.trip.board.BoardCriteria;
 import com.onetrillion.trip.board.BoardDTO;
 import com.onetrillion.trip.board.ImageDTO;
+import com.onetrillion.trip.board.PageMakerDTO;
 import com.onetrillion.trip.board.impl.BoardService;
 import com.onetrillion.trip.page.PageMaker;
 import com.onetrillion.trip.reply.ReplyDTO;
@@ -304,10 +305,10 @@ public class BoardController {
 		
 		List<BoardDTO> list = service.BoardPaging(cri);
 		model.addAttribute("list", list);
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(service.BoardCount());
-		model.addAttribute("pageMaker", pageMaker);
+		int total = service.BoardCount(cri);
+		PageMakerDTO pageMake = new PageMakerDTO(cri, total);
+
+		model.addAttribute("pageMaker", pageMake);
 		
 		return "board/listPage";
 	}

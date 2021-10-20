@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.onetrillion.trip.service.mapper.WishlistMapper;
-
+import com.onetrillion.trip.wishlist.WishListCriteria;
 import com.onetrillion.trip.wishlist.WishlistDTO;
 
 @Service
@@ -61,6 +61,16 @@ public class WishlistServiceImpl implements WishlistService{
 	public int admin_modify(WishlistDTO dto) {
 		return mapper.admin_modify(dto);
 		
+	}
+
+	@Override
+	public List<WishlistDTO> wishListPaging(WishListCriteria cri) {
+		return mapper.wishListPaging(cri);
+	}
+
+	@Override
+	public int wishListCount(WishListCriteria cri) {
+		return mapper.wishListCount(cri);
 	}
 
 }

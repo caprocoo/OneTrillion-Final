@@ -23,7 +23,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.onetrillion.trip.admin.AttachImageVO;
+import com.onetrillion.trip.board.BoardCriteria;
 import com.onetrillion.trip.board.BoardDTO;
+import com.onetrillion.trip.board.PageMakerDTO;
 import com.onetrillion.trip.board.impl.BoardService;
 
 @Controller
@@ -34,9 +36,14 @@ public class AdminProductController {
 	public BoardService service;
 
 	@RequestMapping(value = "/list.do", method = RequestMethod.GET)
-	public String ListAll(Model model) {
-		List<BoardDTO> pdList = service.selectAll();
+	public String ListAll(Model model, BoardCriteria cri) {
+		List<BoardDTO> pdList = service.BoardPaging(cri);
 		model.addAttribute("pdList", pdList);
+		int total = service.BoardCount(cri);
+		PageMakerDTO pageMake = new PageMakerDTO(cri, total);
+
+		model.addAttribute("pageMaker", pageMake);
+		
 		return "adminProduct/adminPd";
 	}
 
