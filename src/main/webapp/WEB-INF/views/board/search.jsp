@@ -6,47 +6,100 @@
 <head>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>전체 여행 리스트</title>
 <style type="text/css">
 *{margin:0; padding:0;}
-#searchDiv001{column-width: 230px; margin:15px; position: absolute; margin-top:45px; margin-left:70px; margin-right:70px}
+#searchDiv001{column-width: 230px; margin:15px; position: absolute;  margin-left:70px; margin-right:70px}
 #searchDiv001 figure{display: inline-block;}
 #searchDiv001 figure img{width:100%; border-radius:20px; }
 #searchDiv001 figure img:hover{cursor: pointer;}
-#searchDiv001 figure figcaption p{margin-left:20px; position: relative; top:-30px;}
+#searchDiv001 figure figcaption p{margin-left:20px; position: relative; margin-bottom:0;}
 #searchDiv001 figure figcaption p:nth-child(1){font-weight: bold;}
 #searchDiv001 figure figcaption p:nth-child(2){font-size: 80%;}
-.searchImgModal{position: relative; float:right;top: 40px;right:10px;width:40px;height: 30px;background-color: red;border-radius: 15px;text-align: center;color: white;line-height: 25px;z-index: 1;cursor: pointer;visibility:hidden;}
-.searchImgModal2{position: relative;bottom: 43px;left: 10px;width:100px;height: 30px;background-color: red;border-radius: 15px;text-align: center;color: white;line-height: 25px;z-index: 1;cursor: pointer;visibility:hidden;}
+#searchDiv001 figure figcaption p:nth-child(3){margin-bottom:20px;}
+.searchImgModal{margin-top:-30px; position: relative; float:right;top: 40px;right:10px;width:40px;height: 30px;background-color: red;border-radius: 15px;text-align: center;color: white;line-height: 25px;z-index: 1;cursor: pointer;visibility:hidden;}
+.searchImgModal2{margin-top:-30px; bottom:10px; position: relative;left: 10px;width:100px;height: 30px;background-color: red;border-radius: 15px;text-align: center;color: white;line-height: 25px;z-index: 1;cursor: pointer;visibility:hidden;}
 @media (max-width:1400px){#searchDiv001{margin-left:15px; margin-right:15px;}}
 @media (max-width:1100px){#searchDiv001{width:1050px;}}
 #searchInput001:hover{cursor: pointer; color: red;}
+/* 토스트 css------------------------------------------------*/
+#toast01 {
+			position: fixed;
+			min-width: 150px;
+			bottom: 50px;
+			right: 50%;
+			transform: translateX(50%);
+			text-align: right;
+		}
+
+		#toast01 .toastWrap {
+			margin: 6px 0 0;
+			padding: 18px 0 15px;
+			display: none;
+		}
+
+		.toast01 {
+			border: 1px solid #ededed;
+			background: #ededed;
+			padding: 10px 40px 10px 40px;
+			text-align: left;
+			border-radius: 5px;
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+			font-size: 20px;
+			white-space: pre;
+			position: relative;
+			background-color: rgba(255, 255, 255, 0.8);
+			z-index: 1;
+		}
+
+		#toast01 b {
+			display: block;
+			position: absolute;
+			top: 3px;
+			right: 4px;
+			width: 12px;
+			height: 12px;
+			font: normal 12px/1 Arial, sans-serif;
+			text-align: right;
+			cursor: pointer;
+			text-shadow: #FFF 0 1px 0;
+		}
+
+		#toast01 b:before {
+			content: "\2716";
+		}
+
+		.timerWrap {
+			position: absolute;
+			background-color: rgba(255, 255, 255, 0.5);
+			bottom: 4px;
+			left: 4px;
+			overflow: hidden;
+			border-radius: 5px;
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+		}
+
+		.timer {
+			display: block;
+			height: 0px;
+			width: 0;
+			background-color: rgba(255, 255, 255, 0.5);
+		}
+/* 토스트 css 끝------------------------------------------------*/
 </style>
    	<jsp:include page="../include/header.jsp"></jsp:include>
 </head>
 <body>
-<!-- <script type="text/javascript">
-var add = [];
-var add1 = [];
-var i = 1;
-var s =1;
-</script> -->
- 	<%-- <c:forEach var="wishList" items="${wishList }">
- 		<input type="hidden" value = "${wishList.pd_seq}" class = "check_w_seq" />
- 	</c:forEach>  --%>
+
    	<div id="searchDiv001">
       <c:forEach var="board" items="${searchList }"  >
       <input type="hidden" value = "${board.pd_seq}" class = "check_pd_seq" />
          <figure>
-            <div class="searchImgModal" id="${board.pd_seq}" >찜</div>
-			<!-- <script type="text/javascript">
-				add.push(i);
-				//console.log($('.check_pd_seq')[i].value)
-				changeColor();
-				i +=1;
-			</script> -->
+            <div class="searchImgModal" id="${board.pd_seq}"  onclick="toast01('${board.pd_name } 를 찜하셨습니다',2000)">찜</div>
             <img class="searchImg01" id="pd_image" src="${board.pd_image }" onclick="location.href='<%=request.getContextPath() %>/board/detail.do?pd_seq=${board.pd_seq}' ">
-            <div class="searchImgModal2" onclick="location.href='<%=request.getContextPath() %>/board/detail.do?pd_seq=${board.pd_seq}' " >상세보기</div>
+            <div class="searchImgModal2" onclick="location.href='<%=request.getContextPath() %>/board/detail.do?pd_seq=${board.pd_seq}' " >View : ${board.pd_cnt}</div>
              <figcaption>
 	           <p id="pd_name" class="pd_name_class">${board.pd_name }</p>
 	           <p><span id="pd_startDate">${board.pd_startDate}</span> ~ <span id="pd_endDate">${board.pd_endDate}</span></p>
@@ -58,7 +111,7 @@ var s =1;
          </figure>
       </c:forEach> 
    </div>
-   <div>
+   <div style="display:none;">
 	   <table>
 	   <c:forEach var="wish" items="${wishList }"  >
 			<tr>
@@ -67,10 +120,9 @@ var s =1;
 		</c:forEach>  
 	   </table>
    </div>
-   
-<script type="text/javascript">
-/* $(".searchImgModal")[i].id ==  */
-//console.log($(".searchWish01")[0])
+<div id="toast01"></div>
+<script>
+<!-- 찜 추가 했을경우 찜색상 고정-------------------------------------------->
 for(var i=0;i<$(".searchImgModal").length;i++){
 	for(var j=0;j<$(".searchWish01").length;j++){
   	    if($(".searchImgModal")[i].id == $(".searchWish01")[j].innerHTML) {
@@ -79,11 +131,7 @@ for(var i=0;i<$(".searchImgModal").length;i++){
   	    }
 	}
 }
-
-
-</script>   
-
-<script>
+<!-- 찜 추가 했을경우 찜색상 고정-------------------------------------------->
 
 
 var searchImg01Over=function(){
@@ -219,7 +267,7 @@ var searchImgModalClick=function(){
 	if($(event.target).css("background-color") == "rgb(255, 0, 0)"){
 		$(event.target).css("background-color", "rgb(0, 0, 0)");
 	}else{
-		$(event.target).css("background-color", "rgb(255, 0, 0)");
+		/* $(event.target).css("background-color", "rgb(255, 0, 0)"); */
 	}
 };
 
@@ -291,6 +339,45 @@ $(document).ready(function(){
 	});  // ajax 종료   */
 	
 });
+//토스트함수------------------------------------------------------------------------
+function toast01(msg, timer) {
+	if ($(event.target).css("background-color") == "rgb(255, 0, 0)") {
+		var $elem = $("<div class='toastWrap'><span class='toast01'>" + msg + "<b></b><div class='timerWrap'><div class='timer'></div></div></span></div>");
+		$("#toast01").append($elem); //top = prepend, bottom = append
+		$elem.slideToggle(100, function () {
+			$('.timerWrap', this).first().outerWidth($elem.find('.toast01').first().outerWidth() - 10);
+			if (!isNaN(timer)) {
+				fillWidth($elem.find('.timer').first()[0], timer);
+				setTimeout(function () {
+					$elem.fadeOut(function () {
+						$(this).remove();
+					});
+				}, timer);
+			}
+		});
+	}
+}
+function fillWidth(elem, timer, limit) {
+
+	  var width = 1;
+	  var id = setInterval(frame, timer / 100);
+
+	  function frame() {
+	    if (width >= limit) {
+
+	    } else {
+	      width++;
+	      elem.style.width = width + '%';
+	    }
+	  }
+	};
+
+
+$("#toast01").on("click", "b", function () {
+	$(this).closest('.toastWrap').remove();
+})
+//토스트함수------------------------------------------------------------------------
+
 	
 </script>
 </body>

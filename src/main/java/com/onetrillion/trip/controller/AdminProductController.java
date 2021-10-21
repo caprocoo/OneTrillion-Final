@@ -167,7 +167,7 @@ public class AdminProductController {
 	}*/
 
 	
-	
+/*	
 	// image 경로 설정
 	@RequestMapping(value = "/image", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getImage(String fileName) {
@@ -243,6 +243,11 @@ public class AdminProductController {
 			uploadFileName = uuid + "_" + uploadFileName; // 기존 파일명 + uuid 적용 파일 이름 
 			
 			File saveFile = new File(uploadPath, uploadFileName); // 파일 위치, 파일 이름을 합친 File 생성
+			
+			
+			
+			
+			
 			System.out.println("saveFile"+saveFile);
 			
 			// 최종 파일 저장 
@@ -259,6 +264,26 @@ public class AdminProductController {
 		ResponseEntity<List<AttachImageVO>> result = new ResponseEntity<List<AttachImageVO>>(list, HttpStatus.OK);
 		return result;
 	}
+	*/
+	
+	
+	
+	
+	@RequestMapping(value = "/uploadForm.do", method = RequestMethod.GET)
+	public String uploadFormGET() {
+
+		
+		return "adminProduct/adminPdInput";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }
