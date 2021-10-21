@@ -206,7 +206,6 @@ public class UserController {
 		} else {
 			UserDTO member = userService.social_Login(userEmail);
 			model.addAttribute("member", member);
-			session.setAttribute("token", result.getAccessToken());
 			session.setAttribute("member", member);
 			session.setAttribute("u_id", member.getU_id());
 			session.setMaxInactiveInterval(-1);
