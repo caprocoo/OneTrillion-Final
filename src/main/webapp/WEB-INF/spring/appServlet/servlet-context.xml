@@ -33,6 +33,10 @@
          </beans:bean>
       </message-converters>
    </annotation-driven>
+<<<<<<< HEAD
+=======
+	
+>>>>>>> deec812d5f072fd8eaf50342be358b032c48bb35
 
 	<beans:bean id="naverClientID" class="java.lang.String">
         <beans:constructor-arg value="yFjFge8FKpd99PFHmsC1" />
@@ -52,8 +56,20 @@
 	</beans:bean>
 	
 
+<<<<<<< HEAD
 	<!-- 10/19 희연 추가 업로드 관련 빈 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"></beans:bean>	
+=======
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <beans:property name="maxUploadSize" value="10485760"></beans:property>
+    </beans:bean>
+    <!-- 10/20 희연 추가 업로드 관련 빈 -->
+    <beans:bean id="uploadPath" class="java.lang.String">
+        <beans:constructor-arg value="C:\onetrillion"/>
+    </beans:bean>
+
+
+>>>>>>> deec812d5f072fd8eaf50342be358b032c48bb35
 
 	
 </beans:beans>
