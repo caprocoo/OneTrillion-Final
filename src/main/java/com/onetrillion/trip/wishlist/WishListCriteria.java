@@ -1,17 +1,18 @@
-package com.onetrillion.trip.board;
+package com.onetrillion.trip.wishlist;
 
 
-public class BoardCriteria {
-	
+
+public class WishListCriteria  {
+
 	private int pageNum;
 	private int amount;
 	private String keyword;
 	private String type;
 	private String[] typeArr;
-	public BoardCriteria() {
-		this(1,10);
+	public WishListCriteria() {
+		this(1,5);
 	}
-	public BoardCriteria(int pageNum, int amount) {
+	public WishListCriteria(int pageNum, int amount) {
 		
 		this.pageNum = pageNum;
 		this.amount = amount;
@@ -52,5 +53,7 @@ public class BoardCriteria {
 		return "LogRecordCriteria [pageNum=" + pageNum + ", amount=" + amount + ", keyword=" + keyword + ", type="
 				+ type + ", typeArr=" + typeArr + "]";
 	}
+
+	
 
 }

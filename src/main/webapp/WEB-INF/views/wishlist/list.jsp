@@ -93,38 +93,6 @@
                 </c:forEach> 
                 <!---------forEach 끝-------------------------------------------------------------------------------------------------------------------------->
               </div>
-                <!--페이징 tag 시작----------------------------------------------------------------------------------------------------------------------------------------->
-                              
-                <div style="margin:auto; width:220px;margin-bottom:40px">
-                  <ul class="pagination">
-                      <li class="page-item">
-                          <a class="page-link" href="#" aria-label="Previous"
-                              style="color: gray; border:1px solid #ededed">
-                              <span aria-hidden="true">&laquo;</span>
-                              <!-- <span class="sr-only">Previous</span> -->
-                          </a>
-                      </li>
-                      <li class="page-item"><a class="page-link" href="#"
-                              style="color: gray;border:1px solid #ededed">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#"
-                              style="color: gray;border:1px solid #ededed">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#"
-                              style="color: gray;border:1px solid #ededed">3</a></li>
-                      <li class="page-item"><a class="page-link" href="#"
-                              style="color: gray;border:1px solid #ededed">4</a></li>
-                      <li class="page-item"><a class="page-link" href="#"
-                              style="color: gray;border:1px solid #ededed">5</a></li>
-                      <li class="page-item">
-                          <a class="page-link" href="#" aria-label="Next"
-                              style="color: gray;border:1px solid #ededed">
-                              <span aria-hidden="true">&raquo;</span>
-                              <!-- <span class="sr-only">Next</span> -->
-                          </a>
-                      </li>
-                  </ul>
-              </div>
- 
-              <!--페이징 tag 끝----------------------------------------------------------------------------------------------------------------------------------------->
             </div>
           </div>
           <script>

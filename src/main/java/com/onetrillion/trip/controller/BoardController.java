@@ -1,5 +1,8 @@
 package com.onetrillion.trip.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.Period;
@@ -16,8 +19,12 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,6 +33,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.onetrillion.trip.board.BoardCriteria;
 import com.onetrillion.trip.board.BoardDTO;
 import com.onetrillion.trip.board.ImageDTO;
+import com.onetrillion.trip.board.PageMakerDTO;
 import com.onetrillion.trip.board.impl.BoardService;
 import com.onetrillion.trip.page.PageMaker;
 import com.onetrillion.trip.reply.ReplyDTO;
@@ -297,12 +305,12 @@ public class BoardController {
 		
 		List<BoardDTO> list = service.BoardPaging(cri);
 		model.addAttribute("list", list);
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(service.BoardCount());
-		model.addAttribute("pageMaker", pageMaker);
+		int total = service.BoardCount(cri);
+		PageMakerDTO pageMake = new PageMakerDTO(cri, total);
+
+		model.addAttribute("pageMaker", pageMake);
 		
 		return "board/listPage";
 	}
-
+	
 }

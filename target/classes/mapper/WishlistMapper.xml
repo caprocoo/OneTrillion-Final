@@ -50,4 +50,55 @@
 	</update>
 	
 	
+		<!-- 검색 조건문 -->
+    <sql id="WishListCriteria">
+        <trim prefix="AND (" suffix=")" prefixOverrides="OR">
+            <foreach collection="typeArr" item="type">
+                <trim prefix="OR">
+                    <choose>
+                        <when test="type == 'T'.toString()">
+                            pd_name like '%'||#{keyword}||'%' 
+                        </when>
+                        <when test="type == 'C'.toString()">
+                            pd_startDate like '%'||#{keyword}||'%' 
+                        </when>
+                    </choose>
+                </trim>
+            </foreach>
+        </trim>
+    
+    </sql>
+	
+	
+		<select resultType="com.onetrillion.trip.wishlist.WishlistDTO" id="wishListPaging">
+
+	<![CDATA[
+		SELECT w_seq, pd_seq, pd_name, pd_startDate, pd_endDate, pd_price, pd_image, u_id from(
+		    select /*+INDEX_DESC(w_seq TRIL_WISHLIST) */ rownum  as rn, w_seq, pd_seq, pd_name, pd_startDate, pd_endDate, pd_price, pd_image, u_id
+		    from TRIL_WISHLIST where rownum <= #{pageNum} * #{amount} 
+	    ]]>
+	    <if test="keyword != null">
+	       <include refid="WishListCriteria"></include> 
+	    </if>
+	    
+	<![CDATA[
+			)
+			where rn > (#{pageNum} -1) * #{amount}]]>
+	</select>
+	
+	
+	
+		<select resultType="int" id="wishListCount">
+	
+		
+		     select count(*) from TRIL_WISHLIST
+      
+      	<if test="keyword != null">
+                 where w_seq>0  <include refid="WishListCriteria"></include>
+         </if>
+
+      	
+	</select>
+	
+	
 </mapper>

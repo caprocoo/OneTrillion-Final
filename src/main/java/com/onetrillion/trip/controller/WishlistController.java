@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.onetrillion.trip.board.impl.BoardService;
+import com.onetrillion.trip.logRecord.LogRecordCriteria;
 import com.onetrillion.trip.wishlist.WishlistDTO;
 import com.onetrillion.trip.wishlist.impl.WishlistService;
 
