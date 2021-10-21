@@ -45,5 +45,10 @@ public interface UserMapper {
 	public UserDTO readMember(String u_id);
 	public UserDTO adminReadUser(String u_id);
 	// 끝
-	
+
+
+	// 소셜로그인관련
+	public UserDTO social_Login(String u_email);
+	public UserDTO searchEmail(String u_email);
+	// 끝
 }

@@ -7,6 +7,11 @@
    <select resultType="com.onetrillion.trip.user.UserDTO" id="AlluserList">
       select * from Tril_Member order by u_id asc 
    </select>
+   
+   <!-- 전체 유저 리스트 -->
+   <select resultType="com.onetrillion.trip.user.UserDTO" id="searchEmail">
+      select * from Tril_Member WHERE U_EMAIL =#{u_email} 
+   </select>
 
 
    <select resultType="com.onetrillion.trip.user.UserDTO" id="selectMember" parameterType="String">
@@ -87,6 +92,11 @@
    <!-- 유저 로그인 09 13 수정 -->
    <select resultType="com.onetrillion.trip.user.UserDTO" id="member_Login">
       SELECT u_id, u_pwd, u_nickName, u_email FROM Tril_Member WHERE u_id = #{u_id} AND u_pwd = #{u_pwd} 
+   </select>
+   
+   <!-- 이메일로만 강제로그인 시키기  -->
+    <select resultType="com.onetrillion.trip.user.UserDTO" id="social_Login">
+      SELECT u_id, u_pwd, u_nickName, u_email FROM Tril_Member WHERE u_id = #{u_email}
    </select>
    
     <!-- 마이페이지 회원정보변경 인증 10/13 -->

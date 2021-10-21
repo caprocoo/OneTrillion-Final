@@ -1,7 +1,6 @@
 package com.onetrillion.trip.user;
 
 
-import java.sql.Date;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;

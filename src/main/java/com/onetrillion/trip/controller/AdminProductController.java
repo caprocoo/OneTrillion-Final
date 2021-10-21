@@ -269,8 +269,11 @@ public class AdminProductController {
 	
 	
 	
-	@RequestMapping(value = "/uploadForm.do", method = RequestMethod.GET)
-	public String uploadFormGET() {
+	@RequestMapping(value = "/uploadForm.do", method = RequestMethod.POST)
+	public String uploadFormGET(MultipartFile file, Model model) {
+		
+		System.out.printf("uploadForm 들어왔어 originalName={}, size={}, contentType={}", file.getOriginalFilename(),
+				file.getSize(), file.getContentType());
 
 		
 		return "adminProduct/adminPdInput";

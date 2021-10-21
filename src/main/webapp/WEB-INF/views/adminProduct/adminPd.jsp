@@ -166,7 +166,7 @@
                                     style="border:1px solid #ededed">검색</button>
                                
                             </div>
-                            
+						<a class="btn btn-secondary" href="<%=request.getContextPath() %>/adminProduct/input.do" role="button">등록</a>
                         </div>
                     <form id = "moveForm" method = "get">
 				        <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">

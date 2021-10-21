@@ -195,4 +195,16 @@ public class UserServiceImpl implements UserService {
 		}
 		return mav;
 	}
+	
+	
+	@Override
+	public UserDTO social_Login(String u_email) {
+		return mapper.social_Login(u_email);
+	}
+	
+	@Override
+	public UserDTO searchEmail(String u_email) {
+		return mapper.searchEmail(u_email);
+	}
+
 }
