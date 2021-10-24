@@ -36,10 +36,10 @@
         }else{%>
         <script> alert('로그인이 필요합니다.'); window.location.href = "http://localhost:8088/trip/user/login.do";</script>
         <%}%>
-          <div style="margin:auto; width:1100px; height:100%; min-height: 800px;">
+          <div style="margin:auto; width:1100px; height:auto; min-height:800px; ">
         <!--  왼쪽 메뉴 ---------------------------------------------------------------------------------------------->
         <div class="list-group" id="leftSlide01"
-            style="float:left;width:180px; height:600px; margin-top: 15px; position: relative;">
+            style="float:left;width:180px;  margin-top: 15px;">
             <a href="#" class="list-group-item list-group-item-action"  style="background-color: #ededed; color: #343a40; font-weight: bold;">마이페이지</a>
             <a href="http://localhost:8088/trip/user/myPageInfo.do?u_id=${member.u_id}" class="list-group-item list-group-item-action">개인정보</a>
             <a href="http://localhost:8088/trip/myPage/list.do " class="list-group-item list-group-item-action">1대1문의</a>
@@ -176,7 +176,7 @@
         	} // else 종료
         } //DeleteClick() 함수 종료
           
-            $(document).ready(function () {
+/*             $(document).ready(function () {
               $(window).scroll(function () {
                 var newpt = $(window).scrollTop() - 60 + "px";
                 if (($("#asdf").offset().top) <= ($(window).scrollTop())) {
@@ -189,7 +189,7 @@
                 }
               })//scroll 함수끝				
             })
-
+ */
           </script>
           <jsp:include page="../include/footer.jsp"></jsp:include>
     </body>

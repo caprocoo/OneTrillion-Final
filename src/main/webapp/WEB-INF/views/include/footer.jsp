@@ -22,7 +22,7 @@
     </style>
 
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="clear:both;">
             <div class="container-fluid" style="width: 1300px;">
                 <a class="navbar-brand" href="<%=request.getContextPath()%>/board/introduce.do">Company</a>
                 <div class=" navbar-collapse" id="navbarNav">

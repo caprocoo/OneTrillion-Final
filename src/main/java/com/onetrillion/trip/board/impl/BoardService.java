@@ -2,6 +2,8 @@ package com.onetrillion.trip.board.impl;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.onetrillion.trip.board.BoardCriteria;
 import com.onetrillion.trip.board.BoardDTO;
 import com.onetrillion.trip.board.ImageDTO;
@@ -30,5 +32,7 @@ public interface BoardService {
 	
 	int BoardCount(BoardCriteria cri);
 	
+	List<BoardDTO> selectImage(String pd_image);
+
 
 }

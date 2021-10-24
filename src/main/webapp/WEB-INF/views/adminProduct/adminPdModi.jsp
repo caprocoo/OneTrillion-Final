@@ -166,7 +166,7 @@
                     </tr>
                     <tr>
                         <th>대표 이미지 확인</th>
-                        <td><img id="pd_image" src="${list.pd_image }" alt="PD_IMAGE"></td>
+                        <td><img id="pd_image" src="C:/onetrillion/c61b3164-4ce2-4983-989c-4fbf1c2e1eed.jpg" alt="PD_IMAGE"></td>
                     </tr>
                     <tr>
                         <th>컨텐츠 1</th>

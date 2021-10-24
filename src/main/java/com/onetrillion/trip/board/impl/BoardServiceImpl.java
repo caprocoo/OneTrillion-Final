@@ -78,6 +78,12 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int BoardCount(BoardCriteria cri) {
 		return boardMapper.BoardCount(cri);
+	}
+
+	@Override
+	public List<BoardDTO> selectImage(String pd_image) {
+		// TODO Auto-generated method stub
+		return boardMapper.selectImage(pd_image);
 	};
 	
 

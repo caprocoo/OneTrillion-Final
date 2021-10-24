@@ -130,11 +130,11 @@
                                 <td  style="display: none;" data-toggle="modal" data-target=".bd-example-modal-lg" onclick="">${pdlist.pd_content3 }</td>
                                 <td  style="display: none;" data-toggle="modal" data-target=".bd-example-modal-lg" onclick="">${pdlist.pd_content4 }</td>
                                 <td  style="display: none;" data-toggle="modal" data-target=".bd-example-modal-lg" onclick="">${pdlist.pd_content5 }</td>
-                                <td  style="display: none;" data-toggle="modal" data-target=".bd-example-modal-lg" onclick="">${pdlist.pd_contentImage1 }</td>
+                                <td style="display: none;" data-toggle="modal" data-target=".bd-example-modal-lg" onclick="">${pdlist.pd_contentImage1 }</td>
                                 <td  style="display: none;" data-toggle="modal" data-target=".bd-example-modal-lg" onclick="">${pdlist.pd_contentImage2 }</td>
                                 <td  style="display: none;" data-toggle="modal" data-target=".bd-example-modal-lg" onclick="">${pdlist.pd_contentImage3 }</td>
                                 <td  style="display: none;" data-toggle="modal" data-target=".bd-example-modal-lg" onclick="">${pdlist.pd_contentImage4 }</td>
-                                <td  style="display: none;" data-toggle="modal" data-target=".bd-example-modal-lg" onclick="">${pdlist.pd_contentImage5 }</td>
+                                <td  style="display: none;" data-toggle="modal" data-target=".bd-example-modal-lg" onclick="">${pdlist.pd_contentImage5 }</td> 
                                 <td>
                                     <a class="btn btn-secondary btn001" href="<%=request.getContextPath() %>/adminProduct/modify.do?pd_seq=${pdlist.pd_seq}" role="button"
                                         style="padding: 5px;">수정</a>
@@ -288,36 +288,38 @@
                     </tr>
                     <tr>
                         <th>대표이미지</th>
-                        <td style="padding-left: 0;"><img id="pd_image" src="" alt="PD_IMAGE"></td>
+                        <td style="padding-left: 0;"><img id="pd_image" src="" alt="PD_IMAGE">
+
+                        </td>
                     </tr>
                     <tr>
                         <th>대표이미지 URL</th>
                         <td id="pd_image" value=""></td>
                     </tr>
                     <tr>
-                        <th>컨텐츠 1</th>
+                        <th>컨텐츠</th>
                         <td style="padding: 0;" id="exampleFormControlTextarea1"></td>
                     </tr>
                     <tr>
                         <th>상품이미지1</th>
-                        <td id="pd_contentImage1"><img id="pd_contentImage1" src="" alt="" style="width:90%;" height="100px" /></td>
+                        <td id=""><img id="pd_contentImage1" src="" alt="" style="width:90%;" height="100px" /></td>
                     </tr>
-<!--                     <tr>
+                     <tr>
                         <th>이미지 URL 1</th>
                         <td value=""></td>
-                    </tr> -->
-                    <tr>
+                    </tr> 
+                     <tr>
                         <th>컨텐츠2</th>
                         <td style="padding: 0;" id="exampleFormControlTextarea2"></td>
-                    </tr>
+                    </tr> 
                     <tr>
                         <th>상품이미지2</th>
                         <td id="pd_contentImage2"><img id="pd_contentImage2" src="" alt="" style="width:90%;" height="100px" /></td>
                     </tr>
-<!--                     <tr>
+                    <tr>
                         <th>이미지 URL 2</th>
                         <td value=""></td>
-                    </tr> -->
+                    </tr>
                     <tr>
                         <th>컨텐츠3</th>
                         <td style="padding: 0;" id="exampleFormControlTextarea3"></td>
@@ -326,10 +328,10 @@
                         <th>상품이미지3</th>
                         <td id="pd_contentImage3"><img id="pd_contentImage3" src="" alt="" style="width:90%;" height="100px" /></td>
                     </tr>
-<!--                     <tr>
+                    <tr>
                         <th>이미지 URL 3</th>
                         <td value=""></td>
-                    </tr> -->
+                    </tr>
                     <tr>
                         <th>컨텐츠4</th>
                         <td style="padding: 0;" id="exampleFormControlTextarea4"></td>
@@ -338,10 +340,10 @@
                         <th>상품이미지4</th>
                         <td id="pd_contentImage4"><img id="pd_contentImage4" src="" alt="" style="width:90%;" height="100px" /></td>
                     </tr>
-<!--                     <tr>
+                    <tr>
                         <th>이미지 URL 4</th>
                         <td value=""></td>
-                    </tr> -->
+                    </tr>
                     <tr>
                         <th>컨텐츠5</th>
                         <td style="padding: 0;" id="exampleFormControlTextarea5"></td>
@@ -350,10 +352,10 @@
                         <th>상품이미지5</th>
                         <td id="pd_contentImage5"><img id="pd_contentImage5" src="" alt="" style="width:90%;" height="100px" /></td>
                     </tr>
-<!--                     <tr>
+                    <tr>
                         <th>이미지 URL 5</th>
                         <td value=""></td>
-                    </tr> -->
+                    </tr>
                 </table>
                 <div style="text-align: right;">
                     <a class="btn btn-secondary" href="#" role="button"
@@ -366,6 +368,7 @@
     </div>
     <!--Modal 끝----------------------------------------------------------------------------------------------------------------->
 </body>
+
 <script>
 
 // 삭제
@@ -438,10 +441,10 @@ $(document).ready(function(){
     	 var pd_content4 = $(this).children("td:nth-child(21)").text(); 
     	 var pd_content5 = $(this).children("td:nth-child(22)").text(); 
     	 var pd_contentImage1 = $(this).children("td:nth-child(23)").text(); 
-    	 var pd_contentImage2 = $(this).children("td:nth-child(24)").text(); 
+     	 var pd_contentImage2 = $(this).children("td:nth-child(24)").text(); 
     	 var pd_contentImage3 = $(this).children("td:nth-child(25)").text();   
     	 var pd_contentImage4 = $(this).children("td:nth-child(26)").text();   
-    	 var pd_contentImage5 = $(this).children("td:nth-child(27)").text();  
+    	 var pd_contentImage5 = $(this).children("td:nth-child(27)").text();   
     	 
     	 $('#pd_seq').text(pd_seq);
     	 $('#pd_name').text(pd_name);
@@ -459,18 +462,20 @@ $(document).ready(function(){
     	 $('#adult_price').text(adult_price);
     	 $('#teenager_price').text(teenager_price);
     	 $('#pet_price').text(pet_price);
-    	 $('#pd_image').prop("src",pd_image); 
-    	 $('#pd_contentImage1').prop("src",pd_contentImage1); 
-    	 $('#pd_contentImage2').prop("src",pd_contentImage2); 
-    	 $('#pd_contentImage3').prop("src",pd_contentImage3); 
-    	 $('#pd_contentImage4').prop("src",pd_contentImage4); 
-    	 $('#pd_contentImage5').prop("src",pd_contentImage5); 
+    	 $('#pd_image').prop("src", "<%=request.getContextPath() %>/resources/upload/"+pd_image); 
+    	 $('#pd_contentImage1').prop("src","<%=request.getContextPath() %>/resources/upload/"+pd_contentImage1); 
+     	 $('#pd_contentImage2').prop("src","<%=request.getContextPath() %>/resources/upload/"+pd_contentImage2); 
+    	 $('#pd_contentImage3').prop("src","<%=request.getContextPath() %>/resources/upload/"+pd_contentImage3); 
+    	 $('#pd_contentImage4').prop("src","<%=request.getContextPath() %>/resources/upload/"+pd_contentImage4); 
+    	 $('#pd_contentImage5').prop("src","<%=request.getContextPath() %>/resources/upload/"+pd_contentImage5);  
     	 $('#exampleFormControlTextarea1').text(pd_content1);
     	 $('#exampleFormControlTextarea2').text(pd_content2);
     	 $('#exampleFormControlTextarea3').text(pd_content3);
     	 $('#exampleFormControlTextarea4').text(pd_content4);
     	 $('#exampleFormControlTextarea5').text(pd_content5);
+    	 
     });
+
 
 }); //document ready 종료
 let moveForm = $('#moveForm');

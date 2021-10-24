@@ -1,7 +1,15 @@
 package com.onetrillion.trip.controller;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,7 +17,17 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,12 +35,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.onetrillion.trip.admin.AttachImageVO;
+import com.google.gson.JsonObject;
+import com.onetrillion.trip.admin.BoardUpFile;
 import com.onetrillion.trip.board.BoardCriteria;
 import com.onetrillion.trip.board.BoardDTO;
 import com.onetrillion.trip.board.PageMakerDTO;
@@ -31,6 +54,8 @@ import com.onetrillion.trip.board.impl.BoardService;
 @Controller
 @RequestMapping(value = "/adminProduct")
 public class AdminProductController {
+
+	private static final Logger log = LoggerFactory.getLogger(AdminProductController.class);
 
 	@Autowired
 	public BoardService service;
@@ -44,6 +69,8 @@ public class AdminProductController {
 
 		model.addAttribute("pageMaker", pageMake);
 		
+		System.out.println(pdList.toString());
+	
 		return "adminProduct/adminPd";
 	}
 
@@ -71,12 +98,6 @@ public class AdminProductController {
 	}
 
 	// 관리자 상품 입력 페이지 이동
-	@RequestMapping(value = "/input.do", method = RequestMethod.GET)
-	public String insertGet() {
-		return "adminProduct/adminPdInput";
-	}
-
-	// 관리자 상품 입력 페이지 이동
 	@RequestMapping(value = "/mini.do", method = RequestMethod.GET)
 	public String mini(Model model) {
 		List<BoardDTO> pdList = service.selectAll();
@@ -84,209 +105,106 @@ public class AdminProductController {
 		return "adminProduct/adminPdMini";
 	}
 
-	// 관리자 상품 입력 완료
-	@RequestMapping(value = "/input.do", method = RequestMethod.POST)
-	public String insertPost(BoardDTO dto) {
-		System.out.println(dto);
-		int cnt = service.insert(dto);
-		if (cnt > 0) {
-			return "redirect:/adminProduct/list.do";
-		}
+	
+	  // 관리자 상품 입력 완료
+	  
+	 @RequestMapping(value = "/input.do", method = RequestMethod.POST)
+	 public String insertPost(BoardDTO dto) throws IllegalStateException, IOException {		 
+// 메인 이미지 파일 업로드 처리--------------------------------------------------------------------------
+			String pd_image=null;
+			MultipartFile uploadFile = dto.getUploadFile();
+			if (!uploadFile.isEmpty()) {
+				String originalFileName = uploadFile.getOriginalFilename();
+				String ext = FilenameUtils.getExtension(originalFileName);	//확장자 구하기
+				UUID uuid = UUID.randomUUID();	//UUID 구하기
+				pd_image=uuid+"."+ext;
+				uploadFile.transferTo(new File( "D:\\OneTrillion-final\\OneTrillion-Final\\src\\main\\webapp\\resources\\upload\\" + pd_image));
+			}
+			dto.setPd_image(pd_image);
+			
+			String pd_contentImage1=null;
+			MultipartFile uploadFile1 = dto.getUploadFile1();
+			if (!uploadFile1.isEmpty()) {
+				String originalFileName1 = uploadFile1.getOriginalFilename();
+				String ext1 = FilenameUtils.getExtension(originalFileName1);	//확장자 구하기
+				UUID uuid1 = UUID.randomUUID();	//UUID 구하기
+				pd_contentImage1=uuid1+"."+ext1;
+				uploadFile1.transferTo(new File( "D:\\OneTrillion-final\\OneTrillion-Final\\src\\main\\webapp\\resources\\upload\\" + pd_contentImage1));
+			}
+			dto.setPd_contentImage1(pd_contentImage1);
+			
+			String pd_contentImage2=null;
+			MultipartFile uploadFile2 = dto.getUploadFile2();
+			if (!uploadFile2.isEmpty()) {
+				String originalFileName2 = uploadFile2.getOriginalFilename();
+				String ext2 = FilenameUtils.getExtension(originalFileName2);	//확장자 구하기
+				UUID uuid2 = UUID.randomUUID();	//UUID 구하기
+				pd_contentImage2=uuid2+"."+ext2;
+				uploadFile2.transferTo(new File( "D:\\OneTrillion-final\\OneTrillion-Final\\src\\main\\webapp\\resources\\upload\\" + pd_contentImage2));
+			}
+			dto.setPd_contentImage2(pd_contentImage2);
+			
+			String pd_contentImage3=null;
+			MultipartFile uploadFile3 = dto.getUploadFile3();
+			if (!uploadFile3.isEmpty()) {
+				String originalFileName3 = uploadFile3.getOriginalFilename();
+				String ext3 = FilenameUtils.getExtension(originalFileName3);	//확장자 구하기
+				UUID uuid3 = UUID.randomUUID();	//UUID 구하기
+				pd_contentImage3=uuid3+"."+ext3;
+				uploadFile3.transferTo(new File( "D:\\OneTrillion-final\\OneTrillion-Final\\src\\main\\webapp\\resources\\upload\\" + pd_contentImage3));
+			}
+			dto.setPd_contentImage3(pd_contentImage3);
+			
+			String pd_contentImage4=null;
+			MultipartFile uploadFile4 = dto.getUploadFile4();
+			if (!uploadFile4.isEmpty()) {
+				String originalFileName4 = uploadFile4.getOriginalFilename();
+				String ext4 = FilenameUtils.getExtension(originalFileName4);	//확장자 구하기
+				UUID uuid4 = UUID.randomUUID();	//UUID 구하기
+				pd_contentImage4=uuid4+"."+ext4;
+				uploadFile4.transferTo(new File( "D:\\OneTrillion-final\\OneTrillion-Final\\src\\main\\webapp\\resources\\upload\\" + pd_contentImage4));
+			}
+			dto.setPd_contentImage4(pd_contentImage4);
+			
+			String pd_contentImage5=null;
+			MultipartFile uploadFile5 = dto.getUploadFile5();
+			if (!uploadFile5.isEmpty()) {
+				String originalFileName5 = uploadFile5.getOriginalFilename();
+				String ext5 = FilenameUtils.getExtension(originalFileName5);	//확장자 구하기
+				UUID uuid5 = UUID.randomUUID();	//UUID 구하기
+				pd_contentImage5=uuid5+"."+ext5;
+				uploadFile5.transferTo(new File( "D:\\OneTrillion-final\\OneTrillion-Final\\src\\main\\webapp\\resources\\upload\\" + pd_contentImage5));
+			}
+			dto.setPd_contentImage5(pd_contentImage5);
+			
+			service.insert(dto);
+			return "redirect:/adminProduct/list.do"; 
+//파일 업로드 처리--------------------------------------------------------------------------	 
+			
+// pd_contentImage1 이미지 파일 업로드 처리--------------------------------------------------------------------------
+		/*	String pd_contentImage1=null;
+			MultipartFile uploadFile = dto.getUploadFile();
+			if (!uploadFile.isEmpty()) {
+				String originalFileName = uploadFile.getOriginalFilename();
+				String ext = FilenameUtils.getExtension(originalFileName);	//확장자 구하기
+				UUID uuid = UUID.randomUUID();	//UUID 구하기
+				pd_image=uuid+"."+ext;
+				uploadFile.transferTo(new File( "D:\\OneTrillion-final\\OneTrillion-Final\\src\\main\\webapp\\resources\\upload\\" + pd_image));
+			}
+			dto.setPd_image(pd_image);
+			System.out.println(pd_image);
+			service.insert(dto); 
+			return "redirect:/adminProduct/list.do"; */
+//파일 업로드 처리--------------------------------------------------------------------------	 
+		 
+	 }
+
+	// 관리자 상품 입력 페이지 이동
+	@RequestMapping(value = "/input.do", method = RequestMethod.GET)
+	public String insertGet() {
 		return "adminProduct/adminPdInput";
 	}
-	
-	
-/*
-	@RequestMapping(value = "/uploadAjax.do", method = RequestMethod.POST, 
-			produces = MediaType.APPLICATION_JSON_UTF8_VALUE) // json데이터가 인코딩된 상태로 전송되게하는 속성
-	public ResponseEntity<List<AttachImageVO>> uploadAjaxPost(MultipartFile pd_image) { // formData.append("pd_image", fileObj)의 key값 받아오기
-		//System.out.println("파일업로드 컨트롤러 드러왔당");
-		//System.out.println("파일 이름 : " + pd_image.getOriginalFilename());
-		//System.out.println("파일 타입 : " + pd_image.getContentType());
-		//System.out.println("파일 크기 : " + pd_image.getSize());
 
-			// 파일이 이미지인지 체크해주는 코드
-			File checkfile = new File(pd_image.getOriginalFilename());
-			String type = null;
-		
-			try {
-				type = Files.probeContentType(checkfile.toPath());
-				System.out.println("MIME TYPE : "+ type);
-				
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-			if(!type.startsWith("image")) { // 파일이 이미지가 아니면
-				List<AttachImageVO> list = null; //list에 null값을 입력해줌
-				return new ResponseEntity<>(list, HttpStatus.BAD_REQUEST); // 상태가 400인 코드를 반환해줌
-			}
-		
-		String uploadFolder = "C:\\onetrillion"; // 이미지 저장경로
-		
-		//날짜별로 저장해주는 코드 (일단 주석!)
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = new Date();
-		String str = sdf.format(date);
-		String datePath = str.replace("-", File.separator);
-		
-		File uploadPath = new File(uploadFolder); // 폴더 생성 
-		if (uploadPath.exists() == false) {
-			uploadPath.mkdirs();
-		}
-		
-		List<AttachImageVO> list = new ArrayList();
-			
-			// 이미지 정보 담는 객체 
-			AttachImageVO vo = new AttachImageVO(); // 생성자로 초기화
-			String uploadFileName = pd_image.getOriginalFilename(); // 파일 이름 설정
-			vo.setFileName(uploadFileName);
-			vo.setUploadPath(datePath);
-			
-			String uuid = UUID.randomUUID().toString(); // uuid 적용 파일 이름 
-			vo.setUuid(uuid);
-			uploadFileName = uuid + "_" + uploadFileName; // 기존 파일명 + uuid 적용 파일 이름 
-			
-			File saveFile = new File(uploadPath, uploadFileName); // 파일 위치, 파일 이름을 합친 File 생성
-			System.out.println("saveFile"+saveFile);
-			
-			// 최종 파일 저장 
-			try {
-				pd_image.transferTo(saveFile);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-			list.add(vo);
 
-		// ResponseEntity를 이용해서 http 상태가 200일 때 http Body에 이미지정보가 담긴 List객체를 view페이지에 보내줌
-		// ResponseEntity를 이용하면 상태코드와 http response 메시지를 조작할 수 있음
-		ResponseEntity<List<AttachImageVO>> result = new ResponseEntity<List<AttachImageVO>>(list, HttpStatus.OK);
-		
-		return result;
-	}*/
 
-	
-/*	
-	// image 경로 설정
-	@RequestMapping(value = "/image", method = RequestMethod.GET)
-	public ResponseEntity<byte[]> getImage(String fileName) {
-//		System.out.println("여기 들어왔어~~");
-//		System.out.println("fileName"+fileName);
-		File file = new File("c:\\onetrillion\\" + fileName);
-		ResponseEntity<byte[]> result = null;
-		
-		try {
-			HttpHeaders header = new HttpHeaders();
-			header.add("Content-type", Files.probeContentType(file.toPath()));
-//			System.out.println("header : " + header);
-			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
-//			System.out.println("result : " + result);
-		}catch (IOException e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
-	
-	
-	
-	@RequestMapping(value = "/uploadAjax.do", method = RequestMethod.POST, 
-			produces = MediaType.APPLICATION_JSON_UTF8_VALUE) // json데이터가 인코딩된 상태로 전송되게하는 속성
-	public ResponseEntity<List<AttachImageVO>> uploadAjaxPost(MultipartFile pd_contentImage) { // formData.append("pd_image", fileObj)의 key값 받아오기
-		//System.out.println("파일업로드 컨트롤러 드러왔당");
-		//System.out.println("파일 이름 : " + pd_image.getOriginalFilename());
-		//System.out.println("파일 타입 : " + pd_image.getContentType());
-		//System.out.println("파일 크기 : " + pd_image.getSize());
-
-			// 파일이 이미지인지 체크해주는 코드
-			File checkfile = new File(pd_contentImage.getOriginalFilename());
-			System.out.println("checkfile"+ checkfile);
-			System.out.println("pd_contentImage.getOriginalFilename()"+ pd_contentImage.getOriginalFilename());
-			String type = null;
-		
-			try {
-				type = Files.probeContentType(checkfile.toPath());
-				System.out.println("MIME TYPE : "+ type);
-				
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-			if(!type.startsWith("image")) { // 파일이 이미지가 아니면
-				List<AttachImageVO> list = null; //list에 null값을 입력해줌
-				return new ResponseEntity<>(list, HttpStatus.BAD_REQUEST); // 상태가 400인 코드를 반환해줌
-			}
-		
-		String uploadFolder = "C:\\onetrillion"; // 이미지 저장경로
-		
-		//날짜별로 저장해주는 코드 (일단 주석!)
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = new Date();
-		String str = sdf.format(date);
-		String datePath = str.replace("-", File.separator);
-		
-		File uploadPath = new File(uploadFolder); // 폴더 생성 
-		if (uploadPath.exists() == false) {
-			uploadPath.mkdirs();
-		}
-		
-		List<AttachImageVO> list = new ArrayList();
-		
-			// 이미지 정보 담는 객체 
-			AttachImageVO vo = new AttachImageVO(); // 생성자로 초기화
-			String uploadFileName = pd_contentImage.getOriginalFilename(); // 파일 이름 설정
-			vo.setFileName(uploadFileName);
-			vo.setUploadPath(datePath);
-			
-			String uuid = UUID.randomUUID().toString(); // uuid 적용 파일 이름 
-			vo.setUuid(uuid);
-			uploadFileName = uuid + "_" + uploadFileName; // 기존 파일명 + uuid 적용 파일 이름 
-			
-			File saveFile = new File(uploadPath, uploadFileName); // 파일 위치, 파일 이름을 합친 File 생성
-			
-			
-			
-			
-			
-			System.out.println("saveFile"+saveFile);
-			
-			// 최종 파일 저장 
-			try {
-				pd_contentImage.transferTo(saveFile);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-			list.add(vo);
-
-		// ResponseEntity를 이용해서 http 상태가 200일 때 http Body에 이미지정보가 담긴 List객체를 view페이지에 보내줌
-		// ResponseEntity를 이용하면 상태코드와 http response 메시지를 조작할 수 있음
-		ResponseEntity<List<AttachImageVO>> result = new ResponseEntity<List<AttachImageVO>>(list, HttpStatus.OK);
-		return result;
-	}
-	*/
-	
-	
-	
-	
-	@RequestMapping(value = "/uploadForm.do", method = RequestMethod.POST)
-	public String uploadFormGET(MultipartFile file, Model model) {
-		
-		System.out.printf("uploadForm 들어왔어 originalName={}, size={}, contentType={}", file.getOriginalFilename(),
-				file.getSize(), file.getContentType());
-
-		
-		return "adminProduct/adminPdInput";
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

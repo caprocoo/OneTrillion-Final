@@ -21,5 +21,6 @@ public interface BoardMapper {
 	public ImageDTO detailImage(int pd_seq);
 	public List<BoardDTO> BoardPaging(BoardCriteria cri);
 	public int BoardCount(BoardCriteria cri);
+	public List<BoardDTO> selectImage(String pd_image);
 	
 }
