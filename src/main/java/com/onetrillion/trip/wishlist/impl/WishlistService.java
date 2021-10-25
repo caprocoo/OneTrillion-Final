@@ -1,13 +1,11 @@
 package com.onetrillion.trip.wishlist.impl;
 
-
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
 import com.onetrillion.trip.wishlist.WishListCriteria;
 import com.onetrillion.trip.wishlist.WishlistDTO;
-
 
 public interface WishlistService {
 	
@@ -22,7 +20,6 @@ public interface WishlistService {
 	public WishlistDTO admin_delete(int w_seq);
 	public WishlistDTO admin_modiDetail(@Param("w_seq") int w_seq); // 수정창으로 이동
 	public int admin_modify(WishlistDTO dto); // 수정 실행
-	
 	public List<WishlistDTO> wishListPaging(WishListCriteria cri);
 	public int wishListCount(WishListCriteria cri); 
 	

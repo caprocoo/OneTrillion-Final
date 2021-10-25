@@ -18,8 +18,6 @@ public class WishlistServiceImpl implements WishlistService{
 	@Autowired
 	public WishlistMapper mapper;
 
-
-	// 10/11 15:30 이희연 찜 구현 중
 	@Override
 	public void insert_wish(WishlistDTO dto) {
 		mapper.insert_wish(dto);

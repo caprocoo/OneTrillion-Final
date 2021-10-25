@@ -25,31 +25,26 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public BoardDTO detail(int pd_seq) {
-
 		return boardMapper.detail(pd_seq);
 	}
 
 	@Override
 	public int insert(BoardDTO dto) {
-
 		return boardMapper.insert(dto);
 	}
 
 	@Override
 	public int delete(BoardDTO dto) {
-
 		return boardMapper.delete(dto);
 	}
 
 	@Override
 	public int modify(BoardDTO dto) {
-
 		return boardMapper.modify(dto);
 	}
 
 	@Override
 	public List<BoardDTO> searchData() {
-		
 		return boardMapper.searchData();
 	}
 	
@@ -60,13 +55,11 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<BoardDTO> theme(String pd_theme) {
-		
 		return boardMapper.theme(pd_theme);
 	}
 
 	@Override
 	public ImageDTO detailImage(int pd_seq) {
-		
 		return boardMapper.detailImage(pd_seq);
 	}
 
@@ -78,7 +71,6 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int BoardCount(BoardCriteria cri) {
 		return boardMapper.BoardCount(cri);
-	};
-	
+	}
 
 }

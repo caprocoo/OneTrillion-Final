@@ -126,6 +126,7 @@
 
          #detailDivCon001 table:nth-child(2) td:nth-child(1) {
             background-color: #ededed;
+            
          }
 
 
@@ -180,34 +181,24 @@
          }
 
          .form-select {
-            height: 45px;
+            height: 40px;
          }
 
          .input-group {
-            height: 45px;
-            margin-bottom: 10px;
+            height: 40px;
+            margin-bottom: 5px;
 
          }
-
-         .input-group-text {
-            font-size: 80%;
-            width: 60px;
-            padding: 0;
-            padding-left: 3px;
+         .input-group-text{
+         width:80.5px;
          }
 
-         .form-control {
-            background-color: black;
-         }
 
-         #detailTab001 td {
-            padding: 20px;
-         }
       </style>
 
       <body>
          <jsp:include page="../include/header2.jsp"></jsp:include>
-         <div style="margin:auto; width: 1300px;margin-top: 40px;">
+         <div style="margin:auto; width: 1300px;margin-top: 40px; border-top:2px solid #343a40;padding-top:10px;">
             <input type="hidden" id="u_id" value="${member.u_id }">
             <div style="margin: auto; width: 1300px; height: auto;">
                <div style="margin:auto; width:1300px; height:550px;">
@@ -229,45 +220,45 @@
                   <!-- swiper 부분끝-->
                   <div style="float: left; width:500px;height: 550px; padding: 20px; padding-top: 0;">
                      <!-- 1-->
-                     <div style="height: 55px; width: 100%;">
+                     <div style="height: 60px; width: 100%; color:gray;">
                         <div style="float: left;">
-                           <h5>상품번호 : ${dto.pd_seq }</h5>
+                           <h6>상품번호 : ${dto.pd_seq }</h6>
                         </div>
                         <div style="float: right;">
-                           <h5>조회수 : ${dto.pd_cnt }회</h5>
+                           <h6>조회수 : ${dto.pd_cnt }회</h6>
                         </div>
                      </div>
                      <!-- 2-->
-                     <div style="height: 125px; width: 100%;">
-                        <h2 style="clear: both;">[OneTrillion 독점]${dto.pd_name }</h2>
+                     <div style="height: 130px; width: 100%; ">
+                        <h1 style="clear: both; font-weight: bold;">[OneTrillion 독점]${dto.pd_name }테스트에요</h1>
                      </div>
                      <!-- 3-->
-                     <div style="height: 110px; width: 100%;">
-                        <h4>#${dto.pd_name } #${dto.pd_name } #${dto.pd_name } #${dto.pd_name }</h4>
+                     <div style="height: 110px; width: 100%; color:gray">
+                        <h4>#${dto.pd_theme } #${dto.pd_location } #${dto.pd_name } #(${period}박 ${period2}일) #${dto.pd_keyword } #${wDto.u_id}</h4>
                      </div>
                      <!-- 5-->
                      <div style="height: 35px; width: 100%;">
-                        <h5>${dto.pd_startDate } ~ ${dto.pd_endDate }</h5>
+                        <h5>${dto.pd_startDate } ~ ${dto.pd_endDate } <strong>(${period}박 ${period2}일)</strong></h5>
                      </div>
                      <!-- 5-->
                      <div style="height: 90px; width: 100%;">
                         <hr>
                         <div style="float: left;  margin-bottom: 10px;">
-                           <h5>리뷰 : (포이치로 전체 리뷰 개수 구현)</h5>
+                           <h5><strong>리뷰 : 몇개?</strong></h5><!-- (포이치로 전체 리뷰 개수 구현) -->
                         </div>
                         <div style="float: right;  margin-bottom: 10px;">
-                           <h5>(포이치로 전체 평점 평균)/ 5</h5>
+                           <h5><strong>5점 / 5</strong></h5><!-- (포이치로 전체 평점 평균) -->
                         </div>
                         <hr style="clear: both;">
                      </div>
                      <!-- 6-->
                      <div style="height: 100px; width: 100%;">
                         <div>
-                           <h5 style="float: right;"><br>
-                              성인 ${dto.pd_people}</h5>
+                           <h6 style="float: right; color:gray">
+                              성인 ${dto.pd_people}명</h6>
                         </div>
                         <div>
-                           <h2 style=" clear:both; float: right;">${dto.pd_price} 원</h2>
+                           <h1 style=" clear:both; float: right;"><strong>${dto.pd_price}원</strong></h1>
                         </div>
                      </div>
                   </div>
@@ -279,43 +270,38 @@
          <div style="margin:auto;width:1300px;height:auto; margin-top: 10px; ">
             <div
                style="border: 1.25px solid rgb(206, 212, 218); border-radius: 5px; background-color: white; width: 230px;position:sticky; top:10px; float:right; padding: 10px;">
-               <h5 style="text-align: center; font-weight: bold;">${dto.pd_name }</h5>
+               <h5 style="text-align: center; font-weight: bold; margin-top:10px;">${dto.pd_name }</h5>
                <hr style="margin-top: 10px; margin-bottom: 10px;" />
                <div>
                   <div class="input-group">
-                     <span class="input-group-text" id="basic-addon1"
-                        style="padding-left: 7px;">출&nbsp;&nbsp;&nbsp;&nbsp;발</span>
+                     <span class="input-group-text" id="basic-addon1">출&nbsp;&nbsp;&nbsp;&nbsp;발</span>
                      <input type="text" class="form-control" value="${dto.pd_startDate }" disabled readonly>
                   </div>
                </div>
 
                <div>
                   <div class="input-group">
-                     <span class="input-group-text" id="basic-addon1"
-                        style="padding-left: 7px;">도&nbsp;&nbsp;&nbsp;&nbsp;착</span>
+                     <span class="input-group-text" id="basic-addon1">도&nbsp;&nbsp;&nbsp;&nbsp;착</span>
                      <input type="text" class="form-control" value="${dto.pd_endDate }" disabled readonly>
                   </div>
                </div>
                <div>
                   <div class="input-group">
-                     <span class="input-group-text" id="basic-addon1"
-                        style="padding-left: 7px;">인&nbsp;&nbsp;&nbsp;&nbsp;원</span>
+                     <span class="input-group-text" id="basic-addon1" >인&nbsp;&nbsp;&nbsp;&nbsp;원</span>
                      <input type="text" class="form-control" value="${dto.pd_people }" disabled readonly>
                   </div>
                </div>
                <div>
                   <div class="input-group">
-                     <span class="input-group-text" id="basic-addon1"
-                        style="padding-left: 7px;">금&nbsp;&nbsp;&nbsp;&nbsp;액</span>
+                     <span class="input-group-text" id="basic-addon1">금&nbsp;&nbsp;&nbsp;&nbsp;액</span>
                      <input type="text" class="form-control" value="${dto.pd_price }" disabled readonly>
                   </div>
                </div>
-               <hr style="margin-top: 10px; margin-bottom: 5px;" />
-               <div>
-                  <div class="detailDiv002" id="detailDiv003" style="float: right;">${dto.adult_price }</div>
+               <hr style="margin-top: 10px; margin-bottom: 10px;" />
+               <div data-bs-toggle="tooltip" data-bs-placement="right" title="${dto.adult_price }원">
+                  <div class="detailDiv002" id="detailDiv003" style="float: right; display:none;">${dto.adult_price }</div>
                   <div id="detailDiv007" class="input-group">
-                     <span class="input-group-text" id="basic-addon1"
-                        style="padding-left: 7px;">성&nbsp;&nbsp;&nbsp;&nbsp;인</span>
+                     <span class="input-group-text " id="basic-addon1">성&nbsp;&nbsp;&nbsp;&nbsp;인</span>
                      <select id="sel_adault" class="form-select" aria-label="Default select example">
                         <option value="0">0</option>
                         <option value="1">1</option>
@@ -325,10 +311,10 @@
                      </select>
                   </div>
                </div>
-               <div>
-                  <div class="detailDiv002" id="detailDiv004" style="float: right;">${dto.teenager_price}</div>
+               <div data-bs-toggle="tooltip" data-bs-placement="right" title="${dto.teenager_price }원">
+                  <div class="detailDiv002" id="detailDiv004" style="float: right; display:none;">${dto.teenager_price}</div>
                   <div id="detailDiv008" class="input-group">
-                     <span class="input-group-text" id="basic-addon1">18세미만</span>
+                     <span class="input-group-text" id="basic-addon1" style="padding:5px;">18세미만</span>
                      <select id="sel_young" class="form-select" aria-label="Default select example">
                         <option value="0">0</option>
                         <option value="1">1</option>
@@ -338,10 +324,10 @@
                      </select>
                   </div>
                </div>
-               <div>
-                  <div class="detailDiv002" id="detailDiv005" style="float: right;">${dto.pet_price }</div>
+               <div data-bs-toggle="tooltip" data-bs-placement="right" title="${dto.pet_price }원">
+                  <div class="detailDiv002" id="detailDiv005" style="float: right; display:none;">${dto.pet_price }</div>
                   <div id="detailDiv009" class="input-group">
-                     <span class="input-group-text" id="basic-addon1">반려동물</span>
+                     <span class="input-group-text" id="basic-addon1" style="padding:6px;">반려동물</span>
                      <select id="sel_pet" class="form-select" aria-label="jDefault select example">
                         <option value="0">0</option>
                         <option value="1">1</option>
@@ -355,19 +341,19 @@
                <hr style="margin-top: 10px; margin-bottom: 10px;" />
                <div>
                   <div class="input-group">
-                     <span class="input-group-text" id="basic-addon1">추가인원</span>
+                     <span class="input-group-text" id="basic-addon1" style="padding:6px;">추가인원</span>
                      <input id="detailDiv006_1" type="text" class="form-control" value="0" disabled readonly>
                   </div>
                </div>
                <div>
                   <div class="input-group">
-                     <span class="input-group-text" id="basic-addon1">추가금액</span>
+                     <span class="input-group-text" id="basic-addon1" style="padding:6px;">추가금액</span>
                      <input id="detailDiv006" type="text" class="form-control" value="0" disabled readonly>
                   </div>
                </div>
                <div>
                   <div class="input-group">
-                     <span class="input-group-text" id="basic-addon1">총 &nbsp;&nbsp;합계</span>
+                     <span class="input-group-text" id="basic-addon1" style="padding:6px;">총 &nbsp;&nbsp;합계</span>
                      <input id="detailDiv006_2" type="text" class="form-control" value="${dto.pd_price}" disabled
                         readonly>
                   </div>
@@ -375,16 +361,16 @@
                <hr style="margin-top: 10px; margin-bottom: 10px;" />
                <div>
                   <input type="button" class="btn btn-secondary"
-                     style="width: 100%; height: 45px; margin-bottom: 5px;" onclick="If_User()" value="예약하기" />
+                     style="width: 100%; height: 40px; margin-bottom: 5px;" onclick="If_User()" value="예약하기" />
                </div>
                <div>
                   <input type="button" class="btn btn-secondary"
-                     style="width: 100%; height: 45px; margin-bottom: 5px;" onclick="If_NoUser()"
+                     style="width: 100%; height: 40px; margin-bottom: 5px;" onclick="If_NoUser()"
                      value="비회원 예약하기" />
                </div>
                <div>
                   <input type="button" class="btn btn-secondary"
-                     style="width: 100%; height: 45px; margin-bottom: 5px;" onclick="Wish_Click()" value="찜" />
+                     style="width: 100%; height: 40px; margin-bottom: 5px;" onclick="Wish_Click()" value="찜" />
                </div>
                <div style="height: 45px; width: 100%; margin-top: 5px;">
                   <div id="test001" style="margin: auto; width: 160px;">
@@ -408,7 +394,7 @@
                   style="width:100%; margin-top: 10px;" />
                <table style=" border-bottom: 1px solid #ededed;">
                   <tr>
-                     <td>
+                     <td style="text-align:center;">
                         <div>여행기간</div>
                      </td>
                      <td colspan="3">
@@ -416,13 +402,13 @@
                      </td>
                   </tr>
                   <tr>
-                     <td>
+                     <td style="text-align:center;">
                         <div>이용교통</div>
                      </td>
                      <td>
                         <div>버스</div>
                      </td>
-                     <td style="background-color: #ededed">
+                     <td style="background-color: #ededed; text-align:center;">
                         <div>방문도시</div>
                      </td>
                      <td>
@@ -430,7 +416,7 @@
                      </td>
                   </tr>
                   <tr>
-                     <td>
+                     <td style="text-align:center;">
                         <div>최소인원</div>
                      </td>
                      <td colspan="3">
@@ -508,32 +494,6 @@
                <table id="detailTableCon001" style="border-bottom:1px solid #ededed;">
                   <tr>
                      <td>
-                        <!-- <div>&nbsp</div>
-                  <div>★ ${dto.pd_name }</div>
-                  <div>${dto.pd_name }의 사계절과 문화유산을 담은 곳으로 보문호수를 배경으로 진정한 휴식과 쉼을 주는 호텔</div>
-                  <div>부대시설: F&B 레스토랑, 실내외 수영장, 키즈라운지 등</div>
-                  <div>&nbsp</div>
-                  <div>★ ${dto.pd_name } 시티투어</div>
-                  <div>1, 세계문화유산투어</div>
-                  <div>코스: 승차-무열왕릉-대릉원(천마총)-분황사-석굴암-불국사-하차</div>
-                  <div>*운행일: 매일</div>
-                  <div>*소요시간: 7~8시간</div>
-                  <div>*최소출발인원: 15명 (인원미달로 취소시 전날 15시까지 연락드립니다)</div>
-                  <div>*픽업시간: 호텔앞 오전 09:50 셔틀버스 출발 예정</div>
-                  <div>&nbsp</div>
-                  <img style="width:1050px;" src="http://jjcom0214.cafe24.com/web/OneTrillion/detail01.png"
-                     alt="" />
-                  <div>&nbsp</div>
-                  <div>2, ${dto.pd_name } 야간투어</div>
-                  <div>코스: 승차-동궁과 월지-첨성대-계림-교촌마을-월정교-하차</div>
-                  <div>*운행일: 매일</div>
-                  <div>*시간: 18:30~22:00</div>
-                  <div>*최소출발인원: 15명 (인원미달로 취소시 전날 16시 이후 연락드립니다)</div>
-                  <div>*픽업시간: 호텔앞 오전 19:15 셔틀버스 출발 예정</div>
-                  <div>&nbsp</div>
-                  <img style="width:1050px;" src="http://jjcom0214.cafe24.com/web/OneTrillion/detail02.png"
-                     alt="" />
-                  <div>&nbsp</div> -->
                         <div>${pd_content1}</div>
                      </td>
                   </tr>
@@ -607,30 +567,30 @@
                   </tr>
                </table>
                <!-- 하단 페이징/검색----------------------------------------------------------------------------------------------------------------------->
-               <div style=" margin: auto; width: 150px; margin-top: 10px; margin-bottom: 40px;">
-                  <ul class="pagination">
+               <div style="margin-top: 10px; margin-bottom: 40px;">
+                  <ul class="pagination justify-content-center pagination-sm">
                      <li class="page-item">
                         <c:if test="${pageMaker.prev}">
                            <a class="page-link"
                               href="listPage.do${pageMaker.makeQuery(pageMaker.startPage - 1)}"
-                              aria-label="Previous" style="color: gray; border:1px solid #ededed">
-                              <span aria-hidden="true">&laquo;</span>
+                              aria-label="Previous" style="border:1px solid #ededed">
+                              <span aria-hidden="true">&chevron-double-left;</span>
                            </a>
                         </c:if>
                      </li>
 
-                     <li class="page-item">
+                     <li class="page-item active">
                         <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
                            <a class="page-link" href="listPage.do${pageMaker.makeQuery(idx)}"
-                              style="color: gray;border:1px solid #ededed">${idx}</a>
+                              style="border:1px solid #ededed">${idx}</a>
                         </c:forEach>
                      </li>
 
                      <li class="page-item">
                         <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
                            <a class="page-link" href="listPage.do${pageMaker.makeQuery(pageMaker.endPage + 1)}"
-                              aria-label="Next" style="color: gray;border:1px solid #ededed">
-                              <span aria-hidden="true">&raquo;</span>
+                              aria-label="Next" style="border:1px solid #ededed">
+                              <span aria-hidden="true">&chevron-double-right;</span>
                            </a>
                         </c:if>
                      </li>
@@ -638,9 +598,9 @@
                </div>
                <!-- 하단 페이징/검색 끝----------------------------------------------------------------------------------------------------------------------->
             </div>
-               <div id="modal_body">
+               <div id="modal_body"  style = "display: none">
       <!-- 수정 및 삭제 -->
-      <div id="conBox" style = "display: none">
+      <div id="conBox">
          <table
             style="margin: 100px auto; background-color: white; height: 700px; box-shadow: 0 0 20px; border-radius: 20px;"
             border="1px solid black">
@@ -735,6 +695,12 @@
    </div>
    <!-- 모달창 끝----------------------------------------------------------------------------------------------------------------------------------------------->
             <script> //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-= [Front_script]
+            //--------툴팁--------------------------------------------------------
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+              return new bootstrap.Tooltip(tooltipTriggerEl)
+            })//--------툴팁--------------------------------------------------------
+            
                $(document).ready(function () {
 
                   var option03 = $('#detailDiv007 select').val();
@@ -795,6 +761,8 @@
                } else {
                   $(".star").css("color", "black")
                }
+               
+
 
          }); //document 함수 끝
 
@@ -847,7 +815,7 @@
 
                   const pd_seq = $("#pd_seq").val().trim();
                   const pd_name = $("#pd_name").val().trim();
-                  var u_id = $("#u_id").val();
+                  var u_id = $("#u_id").val().trim();
                   console.log(u_id);
 
                   if (u_id == "") {
@@ -909,6 +877,8 @@
                   const pd_endDate = $("#pd_endDate").val();
                   const pd_image = $("#pd_image").val().trim();
                   
+                  console.log(u_id, "${wDto.u_id}")
+                  
                   var Like_confirm = confirm(pd_seq+'번 [ '+pd_name+' ] 상품을 찜하시겠습니까?');
                   
                   if(!Like_confirm){
@@ -936,7 +906,7 @@
                               if(status == 'success'){
                                  var confirm_again = confirm('찜 목록에 담겼습니다. 찜 목록으로 이동하시겠습니까?');
                                  if(!confirm_again){ //아니오
-                                    return false;
+                                	 location.href = "http://localhost:8088/trip/board/detail.do?pd_seq="+pd_seq; 
                                  }else{
                                     location.href = "http://localhost:8088/trip/wishlist/list.do?u_id="+u_id;    
                                  }//내부(2) if문 - 찜목록 이동? 안이동?

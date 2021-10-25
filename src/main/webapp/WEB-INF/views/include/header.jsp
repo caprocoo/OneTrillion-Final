@@ -56,6 +56,7 @@
 		  transition: 0.7s ease;
 		  font-size: 17px;
 		  text-align: center;
+		  z-index:2;
 		
 		}
 		
@@ -257,19 +258,21 @@
 		var searchTemp = `
 
 		{{ for(var i=0; i<searchList.length; i++){  var search=searchList[i]; }}
-         <figure>
-            <div onclick="searchImgModalClick()" onmouseover="searchImgModalOver()" onmouseout="searchImgModalOut()" class="searchImgModal">찜</div>
-            <img onmouseover="searchImg01Over()" onmouseout="searchImg01Out()" class="searchImg01" src="{{=search['pd_image'] }} " onclick="location.href='http://localhost:8088/trip/board/detail.do?pd_seq={{=search['pd_seq'] }} ' ">
-            <div onmouseover="searchImgModal2Over()" onmouseout="searchImgModal2Out()" class="searchImgModal2">예약하기</div>
-             <figcaption>
-				<p>{{=search['pd_name'] }}</p>
-	            <p>{{=search['pd_startDate'] }} ~ {{=search['pd_endDate'] }}</p>
+        <figure>
+	        <div onclick="searchImgModalClick()" onmouseover="searchImgModalOver()" onmouseout="searchImgModalOut()" class="searchImgModal" id="{{=search['pd_seq'] }}">찜</div>
+	        <img onmouseover="searchImg01Over()" onmouseout="searchImg01Out()" class="searchImg01" src="{{=search['pd_image'] }} " onclick="location.href='http://localhost:8088/trip/board/detail.do?pd_seq={{=search['pd_seq'] }} ' ">
+	        <div onmouseover="searchImgModal2Over()" onmouseout="searchImgModal2Out()" class="searchImgModal2">View : {{=search['pd_cnt'] }}</div>
+	         <figcaption>
+				<p class="pd_name001">{{=search['pd_name'] }}</p>
+	            <p><span class="pd_startDate001">{{=search['pd_startDate'] }}</span> ~ <span class="pd_endDate001">{{=search['pd_endDate'] }}</span></p>
 	            <p># {{=search['pd_theme'] }} # {{=search['pd_theme'] }} # {{=search['pd_theme'] }}</p>
-             </figcaption>
-         </figure>     
+	         	<p style="display:none" class="pd_seq001">{{=search['pd_seq'] }}</p>
+	            <p style="display:none" class="pd_price001">{{=search['pd_price'] }}</p>
+	            <p style="display:none" class="u_id001">${member.u_id}</p>
+	         </figcaption>
+	     </figure>      
 		 {{ } }}
-	
-	`
+		`
 
 		$(document).ready(function () {
 			$("#div001_in01_in02_in01").click(function () {
@@ -314,6 +317,16 @@
 						var html = compiled({ "searchList": searchList });
 						//html.trigger("create")
 						$('#searchDiv001').html(html);
+						<!-- 찜 추가 했을경우 찜색상 고정-------------------------------------------->
+						for(var i=0;i<$(".searchImgModal").length;i++){
+							for(var j=0;j<$(".searchWish01").length;j++){
+						  	    if($(".searchImgModal")[i].id == $(".searchWish01")[j].innerHTML) {
+						  	    	var a = $(".searchImgModal")[i].id
+						  	    	$("div#" + a).css("background-color", "black")
+						  	    }
+							}
+						}
+						<!-- 찜 추가 했을경우 찜색상 고정-------------------------------------------->
 					}
 				}
 

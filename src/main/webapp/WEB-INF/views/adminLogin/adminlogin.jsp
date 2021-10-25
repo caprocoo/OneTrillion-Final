@@ -72,13 +72,13 @@
 									<div class="input-group ">
 										<span class="input-group-text" id="basic-addon1">ID</span>
 										<input type="text" id="AD_ID" name="AD_ID" class="form-control"
-											aria-label="Username" aria-describedby="basic-addon1">
+											aria-label="Username" aria-describedby="basic-addon1" value="TrillionAdmin1">
 									</div>
 									<div></div>
 									<div class="input-group ">
 										<span class="input-group-text" id="basic-addon1">PW</span>
 										<input type="password" id="AD_PWD" name="AD_PWD" class="form-control"
-											aria-label="Username" aria-describedby="basic-addon1">
+											aria-label="Username" aria-describedby="basic-addon1" value="TrillionAdmin1">
 									</div>
 									<div></div>
 									<input type="submit" class="btn btn-dark" value="Login">

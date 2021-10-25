@@ -36,8 +36,11 @@
 <<<<<<< HEAD
 =======
 	
+<<<<<<< HEAD
 >>>>>>> deec812d5f072fd8eaf50342be358b032c48bb35
 
+=======
+>>>>>>> 2aa25d262c436c0fabeec0b8d9204bd841b261d9
 	<beans:bean id="naverClientID" class="java.lang.String">
         <beans:constructor-arg value="yFjFge8FKpd99PFHmsC1" />
 	</beans:bean>
@@ -54,6 +57,7 @@
 	        <beans:constructor-arg ref="naverClientSecret" />
 	        <beans:constructor-arg ref="naverRedirectUrl" />
 	</beans:bean>
+<<<<<<< HEAD
 	
 
 <<<<<<< HEAD
@@ -70,6 +74,11 @@
 
 
 >>>>>>> deec812d5f072fd8eaf50342be358b032c48bb35
+=======
+		<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	</beans:bean>
+    
+>>>>>>> 2aa25d262c436c0fabeec0b8d9204bd841b261d9
 
 	
 </beans:beans>

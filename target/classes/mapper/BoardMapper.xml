@@ -12,7 +12,7 @@ SELECT * FROM Tril_PRODUCT ORDER BY PD_SEQ ASC
 <select resultType="com.onetrillion.trip.board.BoardDTO" id="searchData">
 
 <![CDATA[
- SELECT * FROM TRIL_PRODUCT WHERE PD_STARTDATE BETWEEN TO_DATE('2021-01-01', 'YYYY-MM-DD') AND TO_DATE('2021-01-03') ORDER BY PD_SEQ ASC
+ SELECT * FROM Tril_PRODUCT WHERE PD_STARTDATE BETWEEN TO_DATE('2021-01-01', 'YYYY-MM-DD') AND TO_DATE('2021-01-03') ORDER BY PD_SEQ ASC
     ]]>
 </select>
 
@@ -25,7 +25,7 @@ SELECT * FROM Tril_PRODUCT ORDER BY PD_SEQ ASC
 <!-- TRIL_IMAGE 이용한 쿼리문 -->
 <select resultType="com.onetrillion.trip.board.ImageDTO" id="detailImage">
 <![CDATA[
-      SELECT * FROM TRIL_IMAGE where pd_seq=#{pd_seq}]]>
+      SELECT * FROM Tril_IMAGE where pd_seq=#{pd_seq}]]>
 </select>
 
 
@@ -64,12 +64,14 @@ SELECT * FROM Tril_PRODUCT ORDER BY PD_SEQ ASC
 
 <insert id="insert">
 <![CDATA[
-		insert into
-		Tril_PRODUCT values(
-		(select nvl(max(pd_seq), 0)+1 from Tril_PRODUCT)
-		,#{pd_name},#{pd_price},#{pd_keyword},#{pd_startDate},#{pd_endDate},#{pd_cnt},#{pd_theme},#{pd_people},#{pd_image},#{pd_content1}
-		, #{pd_location}, #{adult_num}, #{teenager_num}, #{pet_num}, #{adult_price}, #{teenager_price}, #{pet_price}, #{pd_content2}, #{pd_content3}
-		, #{pd_content4}, #{pd_content5}, #{pd_contentImage1}, #{pd_contentImage2}, #{pd_contentImage3}, #{pd_contentImage4}, #{pd_contentImage5})
+		insert into Tril_PRODUCT(pd_seq,pd_name,pd_price,pd_keyword,pd_startDate,pd_endDate,pd_cnt,pd_theme,pd_people,pd_image,pd_content1,
+		pd_location,adult_num,teenager_num,pet_num,adult_price,teenager_price,pet_price,pd_content2,pd_content3,pd_content4,pd_content5,
+		pd_contentImage1,pd_contentImage2,pd_contentImage3,pd_contentImage4,pd_contentImage5) 
+		values(
+		(select nvl(max(pd_seq), 0)+1 from Tril_PRODUCT),#{pd_name},#{pd_price},#{pd_keyword},#{pd_startDate},#{pd_endDate},#{pd_cnt},#{pd_theme},
+		#{pd_people},#{pd_image},#{pd_content1}, #{pd_location}, #{adult_num}, #{teenager_num}, #{pet_num}, #{adult_price}, #{teenager_price}, 
+		#{pet_price}, #{pd_content2}, #{pd_content3}, #{pd_content4}, #{pd_content5}, #{pd_contentImage1}, #{pd_contentImage2}, #{pd_contentImage3}, 
+		#{pd_contentImage4}, #{pd_contentImage5})
 ]]>		
 </insert>
 
@@ -77,7 +79,7 @@ SELECT * FROM Tril_PRODUCT ORDER BY PD_SEQ ASC
 <select resultType="com.onetrillion.trip.board.BoardDTO" id="theme">
 
 <![CDATA[
-      SELECT * FROM TRIL_PRODUCT WHERE PD_THEME =#{pd_theme}
+      SELECT * FROM Tril_PRODUCT WHERE pd_theme=#{pd_theme}
       ]]>
 </select>
 
@@ -109,8 +111,9 @@ SELECT * FROM Tril_PRODUCT ORDER BY PD_SEQ ASC
 	<select resultType="com.onetrillion.trip.board.BoardDTO" id="BoardPaging">
 		<![CDATA[
 	        select * from(
-			    select /*+INDEX_DESC(pd_seq TRIL_PRODUCT) */ rownum  as rn, pd_seq, pd_name, pd_price, pd_keyword, pd_startDate, pd_endDate, pd_cnt, pd_theme, pd_people, pd_image, pd_content1, pd_location, adult_num, teenager_num, pet_num, adult_price, 
-				teenager_price, pet_price
+			    select /*+INDEX_DESC(pd_seq TRIL_PRODUCT) */ rownum  as rn, pd_seq,pd_name,pd_price,pd_keyword,pd_startDate,pd_endDate,pd_cnt,pd_theme,
+			    pd_people,pd_image,pd_content1,pd_location,adult_num,teenager_num,pet_num,adult_price,teenager_price,
+			    pet_price,pd_content2,pd_content3,pd_content4,pd_content5,pd_contentImage1,pd_contentImage2,pd_contentImage3,pd_contentImage4,pd_contentImage5
 	                  
 	                from TRIL_PRODUCT where rownum <= #{pageNum} * #{amount} 
 	    ]]>            
@@ -130,5 +133,9 @@ SELECT * FROM Tril_PRODUCT ORDER BY PD_SEQ ASC
 	                 where pd_seq>0  <include refid="BoardCriteria"></include>
 	         </if>
 	</select>
+
+
+
+
 
 </mapper>
