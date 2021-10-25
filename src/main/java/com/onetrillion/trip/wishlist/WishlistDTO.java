@@ -103,7 +103,4 @@ public class WishlistDTO {
 				+ pd_startDate + ", pd_endDate=" + pd_endDate + ", pd_price=" + pd_price + ", pd_image=" + pd_image
 				+ ", u_id=" + u_id + "]";
 	}
-
-
-	
 }

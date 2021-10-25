@@ -39,9 +39,7 @@
         }
     </style>
 </head>
-
 <body>
-
     <div class="adminMainDiv1">
         <table class="table" onclick="link_8()" style="cursor: pointer;">
             <thead>
@@ -62,7 +60,6 @@
             </tbody>
         </table>
     </div>
-
 </body>
 <script>
 function link_8(){ 

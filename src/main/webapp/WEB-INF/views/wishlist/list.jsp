@@ -175,21 +175,6 @@
         		} // confirmAlert if문 종료
         	} // else 종료
         } //DeleteClick() 함수 종료
-          
-/*             $(document).ready(function () {
-              $(window).scroll(function () {
-                var newpt = $(window).scrollTop() - 60 + "px";
-                if (($("#asdf").offset().top) <= ($(window).scrollTop())) {
-                  $("#asdf").css("top", newpt);
-                } else if (($("#asdf").offset().top > $(window).scrollTop())) {
-                  $("#asdf").css("top", newpt);
-                  if ($(window).scrollTop() <= 60) {
-                    $("#asdf").css("top", "0px");
-                  }
-                }
-              })//scroll 함수끝				
-            })
- */
           </script>
           <jsp:include page="../include/footer.jsp"></jsp:include>
     </body>

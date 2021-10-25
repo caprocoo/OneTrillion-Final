@@ -361,10 +361,4 @@ public class BoardDTO {
 				+ uploadFile + ", uploadFile1=" + uploadFile1 + ", uploadFile2=" + uploadFile2 + ", uploadFile3="
 				+ uploadFile3 + ", uploadFile4=" + uploadFile4 + ", uploadFile5=" + uploadFile5 + "]";
 	}
-
-	
-
-	
-	
-	
 }

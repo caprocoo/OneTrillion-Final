@@ -302,7 +302,7 @@
                     </tr>
                     <tr>
                         <th>상품이미지1</th>
-                        <td id=""><img id="pd_contentImage1" src="" alt="" style="width:90%;" height="100px" /></td>
+                        <td><img id="pd_contentImage1" src="" alt="" style="width:90%;" height="100px" /></td>
                     </tr>
                      <tr>
                         <th>이미지 URL 1</th>
@@ -314,7 +314,7 @@
                     </tr> 
                     <tr>
                         <th>상품이미지2</th>
-                        <td id="pd_contentImage2"><img id="pd_contentImage2" src="" alt="" style="width:90%;" height="100px" /></td>
+                        <td><img id="pd_contentImage2" src="" alt="" style="width:90%;" height="100px" /></td>
                     </tr>
                     <tr>
                         <th>이미지 URL 2</th>
@@ -326,7 +326,7 @@
                     </tr>
                     <tr>
                         <th>상품이미지3</th>
-                        <td id="pd_contentImage3"><img id="pd_contentImage3" src="" alt="" style="width:90%;" height="100px" /></td>
+                        <td><img id="pd_contentImage3" src="" alt="" style="width:90%;" height="100px" /></td>
                     </tr>
                     <tr>
                         <th>이미지 URL 3</th>
@@ -338,7 +338,7 @@
                     </tr>
                     <tr>
                         <th>상품이미지4</th>
-                        <td id="pd_contentImage4"><img id="pd_contentImage4" src="" alt="" style="width:90%;" height="100px" /></td>
+                        <td><img id="pd_contentImage4" src="" alt="" style="width:90%;" height="100px" /></td>
                     </tr>
                     <tr>
                         <th>이미지 URL 4</th>
@@ -350,7 +350,7 @@
                     </tr>
                     <tr>
                         <th>상품이미지5</th>
-                        <td id="pd_contentImage5"><img id="pd_contentImage5" src="" alt="" style="width:90%;" height="100px" /></td>
+                        <td><img id="pd_contentImage5" src="" alt="" style="width:90%;" height="100px" /></td>
                     </tr>
                     <tr>
                         <th>이미지 URL 5</th>
@@ -473,11 +473,10 @@ $(document).ready(function(){
     	 $('#exampleFormControlTextarea3').text(pd_content3);
     	 $('#exampleFormControlTextarea4').text(pd_content4);
     	 $('#exampleFormControlTextarea5').text(pd_content5);
-    	 
     });
-
-
 }); //document ready 종료
+
+
 let moveForm = $('#moveForm');
 $(".pageInfo a").on("click", function(e){
 	e.preventDefault();
@@ -506,7 +505,5 @@ $(".pageInfo a").on("click", function(e){
         moveForm.find("input[name='pageNum']").val(1);
         moveForm.submit();
     });
-  
-
 </script>
 </html>
