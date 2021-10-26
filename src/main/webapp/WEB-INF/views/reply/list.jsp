@@ -12,7 +12,7 @@
 <h1>Reply List Page</h1>
               <table id="resListTab1" style="width: 100%; margin-top: 40px; border-top:2px solid #343a40">
                 <tr style="height: 70px; background-color: #ededed; text-align: center;">
-                  <th>댓글 번호</th>
+                  <th>댓글번호</th>
                   <th>아이디</th>
                   <th>상품번호</th>
                   <th>상품명</th>
