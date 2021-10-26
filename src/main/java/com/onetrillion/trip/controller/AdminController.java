@@ -80,5 +80,13 @@ public class AdminController {
 		return "redirect:/adminLogin/adminMain.do";
 	}
 	
+	
+	@RequestMapping(value="/listMini.do", method = RequestMethod.GET)
+	public String adminList(Model model) {
+		List<AdminDTO> adminList = adminService.selectAll();
+		model.addAttribute("adminList",adminList);
+		return "adminLogin/adminListMini";
+	}
+	
 
 }
