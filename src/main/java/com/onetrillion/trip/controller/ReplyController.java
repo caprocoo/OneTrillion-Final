@@ -50,7 +50,7 @@ public class ReplyController {
 	@RequestMapping(value = "insert.do", method = RequestMethod.POST)
 	public String replyInsertCommit(ReplyDTO dto, int ures_seq) {
 		
-		//System.out.println(dto);
+		System.out.println(dto);
 		service.replyInsert(dto);
 		//System.out.println(u_id);
 		
